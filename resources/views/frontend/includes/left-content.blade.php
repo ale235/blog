@@ -66,7 +66,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-12- blogShort">
         <h2><a href="">Title Blog 3</a></h2>
         <div class="row row-article">
@@ -99,6 +99,15 @@
                     | <i class="fa fa-share-alt-square" aria-hidden="true"></i> <a href="#">4 Shares</a>
                 </p>
             </div>
+        </div>
+    </div>
+
+    <div class="row">   
+        <div class="col-md-12"> 
+            <ul class="pager">
+                <li class="previous"><a href="#">Previous</a></li>
+                <li class="next"><a href="#">Next</a></li>
+            </ul>
         </div>
     </div>
 

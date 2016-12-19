@@ -20,10 +20,10 @@
             <li><a href="#">Contact</a></li>
             <li><a href="#">Admin</a></li>
         </ul>
-        <div class="col-sm-3 col-md-3">
+        <div class="col-sm-4 col-md-4" style="border: 1px solid red--">
             <form class="navbar-form" role="search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search" name="q">
+                <div class="input-group col-md-12" style="border: 1px solid black-">
+                    <input type="text" class="form-control" placeholder="Search" name="search" id="search">
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                     </span>
