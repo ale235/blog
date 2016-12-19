@@ -166,19 +166,33 @@ footer ul li {
     color: #333;
 }
 
-
 .navbar-custom .logo{
     color: #333;  
 }
 .navbar-custom .nav li a{
+    
+}
+
+.navbar-custom .nav > li > a {
     color: #333;
     padding-top:20px;
     height: 60px;
 }
+
+.navbar-custom .nav li .dropdown-menu{
+    margin-top: -4px;
+    border-radius: 0px;
+    border: 2px solid #DD5F13;
+}
+.navbar-custom .nav li .dropdown-menu a{
+    color: #333;
+    height: 30px;
+}
+
+
 .navbar-custom .nav li a:hover{
     color: #fff; 
     background: #DD5F13;
-
 }
 
 .navbar-custom .input-group{
@@ -191,6 +205,10 @@ footer ul li {
     color:#fff;
     outline:none;
 }
+
+
+
+
 /*--------------------end navbar-custom--------------------------------------*/
 
 /*--------------------left-content--------------------------------------*/
