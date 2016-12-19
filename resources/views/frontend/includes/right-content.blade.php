@@ -96,9 +96,9 @@
 
     <div class="panel panel-default panel-custom2">
         <div class="panel-heading">
-            <h3 class="panel-title">
+            <p class="panel-title">
                 Post Tags
-            </h3>
+            </p>
         </div>
         <div class="panel-body">
             <ul class="ul-tag">
