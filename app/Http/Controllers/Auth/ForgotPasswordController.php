@@ -37,8 +37,8 @@ use SendsPasswordResetEmails;
         //parent::showLinkRequestForm();
         $title = 'Forgot Passsword';
         return view('frontend.auth.passwords.email', compact('title'));
-        
-        
     }
+    
+    
 
 }
