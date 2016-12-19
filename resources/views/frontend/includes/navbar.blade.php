@@ -34,10 +34,23 @@
                 </div>
             </form>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ url('/register')}}">Register</a></li>
-            <li><a href="{{ url('/login')}}">Sign In</a></li>
+        <ul class="nav navbar-nav navbar-right"> 
+            @if (Auth::guest())
+                <li><a href="{{ url('/login') }}">Login</a></li>
+                <li><a href="{{ url('/register') }}">Register</a></li>
+            @else
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->username }} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url('/profile') }}">Profile</a></li>
+                        <li><a href="{{ url('/change_password') }}">Change password</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{{ url('/logout') }}">Sign out</a></li>
+                    </ul>
+                </li>
+            @endif
         </ul>
+        
     </div><!-- /.navbar-collapse -->
    
     </div>

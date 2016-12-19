@@ -34,6 +34,11 @@ Route::get('/contact', function () {
 
 
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
+Route::get('/register/confirm', function () {
+    return view('frontend.auth.confirm');
+});
+
 
 Route::get('/home', 'HomeController@index');
 

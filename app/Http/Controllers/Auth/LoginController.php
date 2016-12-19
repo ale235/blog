@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller {
     /*
@@ -24,7 +26,8 @@ use AuthenticatesUsers;
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = 'blog';
+    protected $redirectAfterLogout = 'blog';
 
     /**
      * Create a new controller instance.
@@ -50,37 +53,40 @@ use AuthenticatesUsers;
      *
      * @return Response
      */
-    public function login(\Illuminate\Http\Request $request) {
-
-        $email = $request['email'];
+    public function login(Request $request) {
+        $email    = $request['email'];
         $password = $request['password'];
-
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'users_status_id' => 2])) {
-
-            return redirect()->intended($redirectTo);
-        } else {
-
-            return back()->withErrors(array('Email or password incorrect or Account not active!'));
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'users_status_id' => 1])) {
+            return redirect()->intended($this->redirectTo);
+        } 
+        else {
+            return back()->withErrors(array('Email or password incorrect!'))->withInput();
         }
+    }
+    /*
+     * authentication with more details
+     */
+    public function login2(Request $request) {
+        
+        
     }
 
     /*
      * 
      */
 
-    public function logout() {
-        //Auth::logout();
-        //return Redirect::to('login');
+    public function logout(Request $request) {
+        $this->guard()->logout();
+        $request->session()->flush();
+        $request->session()->regenerate();
+        return redirect($this->redirectAfterLogout);
     }
-
+    
     /*
      * 
      */
 
     protected function sendFailedLoginResponse() {
-
-        // return response()->json( [ 'status' => false, 'message' => $this->getFailedLoginMessage() ]);
-
         return back()->withErrors(array('Email or password incorrect!'));
     }
 
