@@ -16,7 +16,7 @@ html,body {
     width: 100%;
     height: 100%;
 
-    background: #F3F3F3 url(../../images/-background.jpg);
+    /*background: #F3F3F3 url(../../images/-background.jpg);*/
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: top center;
@@ -54,6 +54,16 @@ html,body {
     /*width: 100%;*/
     /*padding: 0px 12px;*/
     /*margin-bottom: 50px;*/
+}
+
+.navbar-brand{
+    padding-left:0px;
+}
+.navbar-brand .logo{
+    width: 110px;
+    height: 44px; margin-top: -8px; 
+    background: #F3F3F3 url(../../images/logo44.jpg);
+    background-repeat: no-repeat;
 }
 
 footer0 {

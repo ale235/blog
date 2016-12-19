@@ -10,8 +10,9 @@
             <span class="icon-bar"></span>
         </button>
         <!--<a class="navbar-brand" href="#" >Start Bootstrap</a>-->
-        <a class="navbar-brand" href="{{ url('/')}}" style="padding-left:0px;">
-            <img src="/images/logox.jpg" alt="" style="height: 44px; margin-top: -8px; border: 0px solid red;">
+        <a class="navbar-brand" href="{{ url('/')}}" style="">
+            <div class="logo"></div>
+            <!--<img src="/images/logox.jpg" alt="" style="height: 44px; margin-top: -8px; border: 0px solid red;">-->
         </a>
     </div>
 
