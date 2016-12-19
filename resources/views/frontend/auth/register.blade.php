@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label>Confirm Password</label><em>*</em>
-                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" value="{{ old('password_confirmation') ? old('password_confirmation'):@$password_confirmation }}">
+                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" value="{{ old('password_confirmation') ? old('password_confirmation'):@$password }}">
                                 </div>
                             </div>
                             <div class="" style="margin-top: 20px;">

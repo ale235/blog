@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -26,7 +26,7 @@ use RegistersUsers;
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/register/confirmation';
     protected $redirectAfterLogout = 'login';
 
     /**
@@ -46,9 +46,10 @@ use RegistersUsers;
      */
     protected function validator(array $data) {
         return Validator::make($data, [
-                    'name' => 'required|max:255',
-                    'email' => 'required|email|max:255|unique:users',
-                    'password' => 'required|min:6|confirmed',
+            'name' => 'required|max:20',
+            'email' => 'required|email|max:255|unique:users',
+            'phone' => 'numeric|min:8',
+            'password' => 'required|min:4|confirmed'
         ]);
     }
 
@@ -60,9 +61,12 @@ use RegistersUsers;
      */
     protected function create(array $data) {
         return User::create([
-                    'name' => $data['name'],
-                    'email' => $data['email'],
-                    'password' => bcrypt($data['password']),
+            'username' => $data['name'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'users_status_id' => 2,
+            'users_role_id' => 3,
+            'password' => bcrypt($data['password'])
         ]);
     }
 
@@ -73,7 +77,29 @@ use RegistersUsers;
      */
     public function showRegistrationForm() {
         //parent::showRegistrationForm();
-        $title = 'RegisterForm';
-        return view('frontend.auth.register', compact('title'));
+        $data = array();
+        
+        $data = $this->example_of_user();
+        $data['title'] = 'RegisterForm';
+        
+        return view('frontend.auth.register', $data);
     }
+
+    /*
+     * Get Random user for testing
+     */
+    
+    private function example_of_user() {
+        $data = array();
+        $randomString = \App\Helpers::generateRandomString(1);
+        $data['name'] = 'User' . $randomString;
+        $data['phone'] = '';
+        $data['email'] = 'user' . $randomString . '@gmail.com';
+        $data['password'] = '1234';
+        $data['password'] = '1234';
+
+        return $data;
+    }
+    
+
 }

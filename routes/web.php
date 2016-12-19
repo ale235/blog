@@ -43,9 +43,14 @@ Route::get('/home', 'HomeController@index');
 | Admin pages
 |--------------------------------------------*/
 
-Route::get('/admin', function () {
-    return view('backend.home');
-});
+/*---------------------------------------------
+| Dashborad page
+|--------------------------------------------*/
+
+Route::get('/admin', 'AdminController@index');  
+//Route::get('/admin', function () {
+//    return view('backend.home');
+//});
 
 Route::get('/admin/post', function () {
     return view('backend.post.list');
