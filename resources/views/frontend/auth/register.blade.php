@@ -1,15 +1,18 @@
 @extends('frontend.layouts.master')
+@section('auth-style')
+   <link href="/css/front/login.css" rel="stylesheet">
+@endsection
 
 @section('content')
 <div id="page-content" class="container" style="border: 0px solid red;">
     <div class="row">
         <div class="col-lg-12 left-content" style="padding-bottom: 60px;">
 
-            <div class="col-lg-8 col-lg-offset-2 auth_form" style="height: 400px; border: 0px solid silver">
+            <div class="col-lg-8 col-lg-offset-2 form auth-form" style="height: 400px; border: 0px solid silver">
 
                 <form role="form" method="POST" action="{{ url('/register') }}">
                     {{ csrf_field() }}    
-                    <h3 class="auth_title">Register Form</h3>
+                    <h3 class="form-title">Register Form</h3>
                     <div class="row">
                         <div class="col-lg-12">	
                             <div class="row form-group">

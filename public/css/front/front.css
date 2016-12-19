@@ -337,3 +337,32 @@ h2{color:#34ca78;}
 }
 
 /*--------------------end right-content--------------------------------------*/
+.page-title{
+    
+}
+.form{
+    
+}
+.form .form-title{
+    line-height: 300%;
+}
+.form em{
+    color: red;
+    margin-top: 1px;
+    position: absolute;
+    margin-left: 2px;
+    font-size: 1.1em;
+}
+
+.form .help-control{
+    cursor: help;
+    margin-left: 15px;
+    margin-top: -1px;
+    font-size: 1.2em;
+    position: absolute;
+}
+
+.popover-content {
+    font-size: 0.9em;
+    color: #23527C;
+}

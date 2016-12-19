@@ -6,8 +6,8 @@
         
        
         <div class="col-lg-12 left-content" style="padding-bottom: 60px;">
-
-              About page
+            <h3 class="page-title">About</h3>
+            
         
         </div>
         

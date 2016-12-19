@@ -17,8 +17,8 @@
 
         <!-- Styles -->
         <link href="/css/front/front.css" rel="stylesheet">
-        <link href="/css/front/login.css" rel="stylesheet">
-
+        @yield('auth-style')
+                
         <!-- Scripts -->
         <script>window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?></script>
     </head>

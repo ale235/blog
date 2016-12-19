@@ -1,15 +1,15 @@
 @extends('frontend.layouts.master')
 
+
 @section('content')
 <div id="page-content" class="container" style="border: 0px solid red;">
     <div class="row">
         <div class="col-lg-12 left-content" style="padding-bottom: 60px;">
 
-            <div class="col-lg-8 col-lg-offset-2 auth_form" style="height: 550px; border: 0px solid silver">
-
+            <div class="col-lg-8 col-lg-offset-2 form" style="height: 570px; border: 0px solid silver">
                 <form role="form" method="POST" action="{{ url('/contact') }}">
                     {{ csrf_field() }}    
-                    <h3 class="">Conact Form</h3>
+                    <h3 class="form-title">Conact Form</h3>
                     <div class="row">
                         <div class="col-lg-12">	
                             <div class="row form-group">
