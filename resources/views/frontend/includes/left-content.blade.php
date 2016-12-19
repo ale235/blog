@@ -1,4 +1,4 @@
-<div class="col-lg-8" style="background: silver-">
+<div class="col-lg-8" style="background: #fff;">
 
     <!--    @for ($i = 0; $i < 50; $i++)
         <p>This is text {{ $i }}</p>
