@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller {
     /*
@@ -53,7 +54,7 @@ use AuthenticatesUsers;
      *
      * @return Response
      */
-    public function login(Request $request) {
+    public function login0(Request $request) {
         $email    = $request['email'];
         $password = $request['password'];
         if (Auth::attempt(['email' => $email, 'password' => $password, 'users_status_id' => 1])) {
@@ -66,9 +67,38 @@ use AuthenticatesUsers;
     /*
      * authentication with more details
      */
-    public function login2(Request $request) {
+    public function login(Request $request) {
+        $rules = [
+            'email' => 'required|email',
+            'password' => 'required'
+        ];
         
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return Redirect::back()->withInput()->withErrors($validator);
+        }
         
+        $credentials = [
+            'email' => $request['email'],
+            'password' => $request['password']
+        ];
+        
+        if (Auth::validate($credentials)) {
+            $user = Auth::getLastAttempted();
+            if ($user->users_status_id ==1) {
+                Auth::login($user);
+                return redirect()->intended($this->redirectTo); 
+            } 
+            elseif($user->users_status_id ==2) {
+                return back()->withErrors(array('Account not active!'))->withInput();
+            }
+            else{
+                return back()->withErrors(array('Account was disabled!'))->withInput();
+            }
+        }
+        else{
+            return back()->withErrors(array('Email or password incorrect!'))->withInput();
+        }
     }
 
     /*
