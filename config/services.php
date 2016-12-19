@@ -35,6 +35,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
     
+    //https://www.youtube.com/watch?v=SvJ8cssqAo4
+    
     'github' => [  // change it to any provider
         'client_id' => 'your-github-app-id',
         'client_secret' => 'your-github-app-secret',
