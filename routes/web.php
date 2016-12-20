@@ -14,6 +14,15 @@
 Route::get('/', function () {
     return view('frontend.home');
 });
+Route::get('/blog', function () {
+    return view('frontend.blog');
+});
+
+Route::get('/post', function () {
+    return view('frontend.post');
+});
+
+
 
 Auth::routes();
 

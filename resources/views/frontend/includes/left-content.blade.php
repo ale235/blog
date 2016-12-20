@@ -5,7 +5,7 @@
         @endfor-->
     
     <div class="col-md-12- blogShort">
-        <h2><a href="">Title Blog 1</a></h2>
+        <h2><a href="{{ url('/post')}}">Title Blog 1</a></h2>
         <div class="row row-article">
             <div class="col-md-12">
                 <img src="http://placehold.it/200x120" alt="post img" class="pull-left img-responsive img-thumbnail thumb margin10">
