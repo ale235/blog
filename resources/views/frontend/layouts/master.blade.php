@@ -18,20 +18,31 @@
         <!-- Styles -->
         <link href="/css/front/front.css" rel="stylesheet">
         @yield('auth-style')
-                
+
         <!-- Scripts -->
         <script>window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?></script>
+        <!-- Remove "#_=_" from Facebook Redirect -->
+        <script type="text/javascript">
+//            if (window.location.hash && window.location.hash == '#_=_') { 
+//                window.location.hash = '';
+//            }
+            if (window.location.hash == '#_=_') {
+                window.location.hash = ''; // for older browsers, leaves a # behind
+                history.pushState('', document.title, window.location.pathname); // nice and clean
+                e.preventDefault(); // no page reload
+            }
+        </script>
     </head>
     <body>
         <div id="site">
             @include('frontend.includes.navbar')
-            
+
             <div id="wrapper">
                 <div id="page-content-wrapper">
                     @yield('content')
                 </div>
             </div>
-            
+
             @include('frontend.includes.footer')
         </div>
 
