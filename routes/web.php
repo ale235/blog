@@ -55,6 +55,10 @@ Route::get('auth/facebook/callback', 'Auth\RegisterController@handleProviderCall
 Route::get('auth/google', 'Auth\RegisterController@redirectToGoogle'); 
 Route::get('auth/google/callback', 'Auth\RegisterController@handleGoogleCallback');
 
+//Twitter routes
+Route::get('auth/twitter', 'Auth\AuthController@redirectToTwitter');
+Route::get('auth/twitter/callback', 'Auth\AuthController@handleTwitterCallback');
+
 
 /*
   |--------------------------------------------------------------------------

@@ -45,9 +45,14 @@ return [
     // CALLBACK_URL=http://localhost:8000/auth/facebook/callback
     
     
+    // google
     //https://console.developers.google.com/apis/library
     //http://itsolutionstuff.com/post/laravel-5-google-oauth-authentication-using-socialite-packageexample.html
     //http://kim.sg/ubuntu/129-google-oauth-with-socialite-in-laravel-5-3
+    //http://www.hc-kr.com/2016/10/laravel-5-tutorial-login-with-google-in-laravel-53.html
+    
+    // twitter
+    //http://goodheads.io/2015/08/24/using-twitter-authentication-for-login-in-laravel-5/
     
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
@@ -61,5 +66,9 @@ return [
         'redirect' => env('GOOGLE_REDIRECT')
     ],
     
-    
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect' => env('TWITTER_CALLBACK_URL'),
+     ],
 ];

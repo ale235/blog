@@ -202,12 +202,12 @@ use RegistersUsers;
         }
 
         return User::create([
-                    'facebook_id' => $facebookUser->getId(),
-                    'username' => $facebookUser->getName(),
-                    'email' => $facebookUser->getEmail(),
-                    'avatar' => $facebookUser->getAvatar(),
-                    'users_status_id' => 1,
-                    'users_role_id' => 3
+            'facebook_id' => $facebookUser->getId(),
+            'username' => $facebookUser->getName(),
+            'email' => $facebookUser->getEmail(),
+            'avatar' => $facebookUser->getAvatar(),
+            'users_status_id' => 1,
+            'users_role_id' => 3
         ]);
     }
 
@@ -225,9 +225,11 @@ use RegistersUsers;
      * 
      */
     public function handleGoogleCallback() {
+        
         try {
             $google = Socialite::driver('google')->user();
-        } catch (Exception $e) {
+        } 
+        catch (Exception $e) {
             return redirect('/');
         }
 
@@ -239,7 +241,9 @@ use RegistersUsers;
                 'username' => $google->getName(),
                 'email' => $google->getEmail(),
                 'password' => bcrypt($google->getId()),
-                'avatar' => $google->getAvatar()
+                'avatar' => $google->getAvatar(),
+                'users_status_id' => 1,
+                'users_role_id' => 3        
             ]);
         }
 
@@ -247,5 +251,47 @@ use RegistersUsers;
         #return redirect()->to('/home'); 
         return redirect()->intended($this->socialRedirectTo);
     }
+    
+    /**
+     * Redirect the user to the Twitter authentication page.
+     *
+     * @return Response
+     */
+    public function redirectToTwitter() {
+        return Socialite::driver('twitter')->redirect();
+    }
+    
+    /*
+     * Obtain the user information from Google.
+     * @return Response
+     * 
+     */
+    public function handleTwitterCallback() {
+        
+        try {
+            $google = Socialite::driver('twitter')->user();
+        } 
+        catch (Exception $e) {
+            return redirect('/');
+        }
 
+        $user = User::where('twitter_id', $google->getId())->first();
+
+        if (!$user) {
+            $user = User::create([
+                'google_id' => $google->getId(),
+                'username' => $google->getName(),
+                'email' => $google->getEmail(),
+                'password' => bcrypt($google->getId()),
+                'avatar' => $google->getAvatar(),
+                'users_status_id' => 1,
+                'users_role_id' => 3        
+            ]);
+        }
+
+        auth()->login($user);
+        #return redirect()->to('/home'); 
+        return redirect()->intended($this->socialRedirectTo);
+    }
+    
 }
