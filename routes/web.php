@@ -47,9 +47,14 @@ Route::get('/register/confirm', function () {
     return view('frontend.auth.confirm');
 });
 
-//Facebook Auth
+//Facebook routes
 Route::get('auth/facebook', 'Auth\RegisterController@redirectToProvider');
 Route::get('auth/facebook/callback', 'Auth\RegisterController@handleProviderCallback');
+
+//Google routes
+Route::get('auth/google', 'Auth\RegisterController@redirectToGoogle'); 
+Route::get('auth/google/callback', 'Auth\RegisterController@handleGoogleCallback');
+
 
 /*
   |--------------------------------------------------------------------------
