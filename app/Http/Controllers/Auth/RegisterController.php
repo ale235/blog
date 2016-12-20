@@ -11,7 +11,6 @@ use App\Models\User;
 use Auth;
 use Socialite;
 
-
 //use Illuminate\Contracts\Auth\Authenticatable;
 
 
@@ -55,10 +54,10 @@ use RegistersUsers;
      */
     protected function validator(array $data) {
         return Validator::make($data, [
-            'name' => 'required|max:20',
-            'email' => 'required|email|max:255|unique:users',
-            'phone' => 'numeric|min:8',
-            'password' => 'required|min:4|confirmed'
+                    'name' => 'required|max:20',
+                    'email' => 'required|email|max:255|unique:users',
+                    'phone' => 'numeric|min:8',
+                    'password' => 'required|min:4|confirmed'
         ]);
     }
 
@@ -70,12 +69,12 @@ use RegistersUsers;
      */
     protected function create0(array $data) {
         return User::create([
-            'username' => $data['name'],
-            'phone' => $data['phone'],
-            'email' => $data['email'],
-            'users_status_id' => 2,
-            'users_role_id' => 3,
-            'password' => bcrypt($data['password'])
+                    'username' => $data['name'],
+                    'phone' => $data['phone'],
+                    'email' => $data['email'],
+                    'users_status_id' => 2,
+                    'users_role_id' => 3,
+                    'password' => bcrypt($data['password'])
         ]);
     }
 
@@ -91,17 +90,16 @@ use RegistersUsers;
         }
 
         $user = User::create([
-            'username' => $request['name'],
-            'phone' => $request['phone'],
-            'email' => $request['email'],
-            'users_status_id' => 2,
-            'users_role_id' => 3,
-            'password' => bcrypt($request['password'])
+                    'username' => $request['name'],
+                    'phone' => $request['phone'],
+                    'email' => $request['email'],
+                    'users_status_id' => 2,
+                    'users_role_id' => 3,
+                    'password' => bcrypt($request['password'])
         ]);
         if (!$user) {
             throw new Exception('Error in saving data!');
-        } 
-        else {
+        } else {
 
             $data = ['foo' => 'bar'];
 
@@ -109,11 +107,9 @@ use RegistersUsers;
 //                $message->to('arwahtakhdam@gmail.com', 'Halim Lardjane');
 //                $message->subject('Verify your email address');
 //            });
-
             //return view('frontend.auth.confirm')->with('success',"Thanks for signing up! Please check your email.");  
             //session()->flash('flash_message', 'Thanks for signing up! Please check your email.');
             return redirect($this->redirectTo);
-            
         }
     }
 
@@ -148,14 +144,13 @@ use RegistersUsers;
 
         return $data;
     }
-    
-    
+
     /**
      * Redirect the user to the Facebook authentication page.
      *
      * @return Response
      */
-    public function redirectToProvider(){
+    public function redirectToProvider() {
         return Socialite::driver('facebook')->redirect();
     }
 
@@ -168,23 +163,22 @@ use RegistersUsers;
      * 4- change mysql database config 'strict' => false,
      * 
      */
-    public function handleProviderCallback(){
-       
-        try{
-            $socialUser = Socialite::driver('facebook')->user(); 
-        } 
-        catch (Exception $ex) {
+    public function handleProviderCallback() {
+
+        try {
+            $socialUser = Socialite::driver('facebook')->user();
+        } catch (Exception $ex) {
             return redirect('/');
         }
-        
-        $user = $this->findOrCreateUser($socialUser);
-        
-        Auth::login($user);
-        
-        return redirect($this->socialRedirectTo);
 
+        $user = $this->findOrCreateUser($socialUser);
+
+        Auth::login($user, true);
+
+        //return redirect($this->socialRedirectTo);
+        return redirect($this->socialRedirectTo);
     }
-    
+
     /**
      * Return user if exists; create and return if doesn't
      *
@@ -199,24 +193,59 @@ use RegistersUsers;
      *   $user->getAvatar();
      * 
      */
-    private function findOrCreateUser($facebookUser){
-        
+    private function findOrCreateUser($facebookUser) {
+
         $user = User::where('facebook_id', $facebookUser->getId())->first();
- 
-        if ($user){
+
+        if ($user) {
             return $user;
         }
-        
+
         return User::create([
-            'facebook_id' => $facebookUser->getId(),
-            'username' => $facebookUser->getName(),
-            'email' => $facebookUser->getEmail(),
-            'avatar' => $facebookUser->getAvatar(),
-            'users_status_id' => 1,
-            'users_role_id' => 3
+                    'facebook_id' => $facebookUser->getId(),
+                    'username' => $facebookUser->getName(),
+                    'email' => $facebookUser->getEmail(),
+                    'avatar' => $facebookUser->getAvatar(),
+                    'users_status_id' => 1,
+                    'users_role_id' => 3
         ]);
     }
-    
-    
+
+    /**
+     * Redirect the user to the Google authentication page.
+     *
+     * @return Response
+     */
+    public function redirectToGoogle() {
+        return Socialite::driver('google')->redirect();
+    }
+    /*
+     * Obtain the user information from Google.
+     * @return Response
+     * 
+     */
+    public function handleGoogleCallback() {
+        try {
+            $google = Socialite::driver('google')->user();
+        } catch (Exception $e) {
+            return redirect('/');
+        }
+
+        $user = User::where('google_id', $google->getId())->first();
+
+        if (!$user) {
+            $user = User::create([
+                'google_id' => $google->getId(),
+                'username' => $google->getName(),
+                'email' => $google->getEmail(),
+                'password' => bcrypt($google->getId()),
+                'avatar' => $google->getAvatar()
+            ]);
+        }
+
+        auth()->login($user);
+        #return redirect()->to('/home'); 
+        return redirect()->intended($this->socialRedirectTo);
+    }
 
 }
