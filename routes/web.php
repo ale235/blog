@@ -53,9 +53,6 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-
-
-
 /*
   |--------------------------------------------------------------------------
   | Auth routes
@@ -71,6 +68,13 @@ Route::get('/register/confirm', function () {
     return view('frontend.auth.confirm');
 });
 
+
+/*
+  |--------------------------------------------------------------------------
+  | Scial routes
+  |--------------------------------------------------------------------------
+  |
+ */
 //Facebook routes
 Route::get('auth/facebook', 'Auth\RegisterController@redirectToProvider');
 Route::get('auth/facebook/callback', 'Auth\RegisterController@handleProviderCallback');
@@ -104,9 +108,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         return view('backend.post.add');
     });
 
-    Route::get('/users', function () {
-        return view('backend.users.list');
-    });
+    
+    
+    Route::get('/users', 'UsersController@index');
+    Route::get('users/getdata', 'UsersController@getUsers');
+    
+//    Route::get('/users', function () {
+//        return view('backend.users.list');
+//    });
+    
+    
 
     Route::get('/users/add', function () {
         return view('backend.users.add');

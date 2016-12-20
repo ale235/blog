@@ -20,6 +20,8 @@
 
         <!-- Custom Fonts -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        
+        @stack('css')
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,7 +52,9 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="/js/back/sb-admin-2.js"></script>
-
+        
+        @stack('scripts')
+        
+       
     </body>
-
 </html>
