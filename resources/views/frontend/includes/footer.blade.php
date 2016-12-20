@@ -49,48 +49,6 @@
 
 
 <style>
-    footer { 
-        background-color:#0c1a1e; 
-        min-height:150px; 
-        border-top: 4px solid #fcab0e;
-        opacity: 0.9;
-    }
-    footer {
-        margin-top:30px; padding:25px 0px;
-    }
-    .titlefooter { margin-bottom:10px; font-size:25px; color:#fff; font-weight:700;}
-
-    footer p { color:#fff; font-size:12px !important; margin-bottom:10px;}
-    footer p i { width:16px; color:#999;}
-    footer a { color: #fff}
-    footer a:hover { color: #fff}
-    footer ul{
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    } 
-    footer ul li {
-        margin: 10px 2px;
-        font-size:12px;
-
-    }    
-    .social{
-        margin-top: 12px;
-    }
-    .social i{
-        margin-right: 5px;
-    }
-
-
-
-    .copyright { 
-        min-height:40px; 
-        background-color:#000000;
-        font-size: 12px;
-        opacity: 0.9;
-    }
-    .copyright p { text-align:left; color:#FFF; padding:10px 0; margin-bottom:0px;}
-
 
 
 

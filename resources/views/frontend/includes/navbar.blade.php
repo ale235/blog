@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top navbar-custom" role="navigation">
-    <div class="container" style="border: 1px solid red-">
-    
+    <div class="container" style="border: 0px solid red">
+       
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -9,7 +9,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <!--<a class="navbar-brand" href="#" >Start Bootstrap</a>-->
+        <a class="navbar-brand" href="#" style="padding-left:0px;">
+            <img src="/images/logox.jpg" alt="" style="height: 44px; margin-top: -8px; border: 0px solid red;">
+        </a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,15 +38,6 @@
             <li><a href="#">Sign In</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
-    
+   
     </div>
 </nav>
-
-<!-- <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                    <i class="fa fa-search"></i>
-                </button>
-            </span>
-        </div>-->

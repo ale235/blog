@@ -1,10 +1,9 @@
-<div class="col-lg-8" style="background: #fff;">
+<div class="col-lg-8 left-content">
 
     <!--    @for ($i = 0; $i < 50; $i++)
         <p>This is text {{ $i }}</p>
         @endfor-->
-
-
+    
     <div class="col-md-12- blogShort">
         <h2><a href="">Title Blog 1</a></h2>
         <div class="row row-article">
@@ -112,23 +111,3 @@
     </div>
 
 </div>
-
-
-<style>
-    .blogShort{ 
-        overflow: hidden; 
-        padding-bottom: 8px;
-        border-bottom:1px solid #ddd;
-    }
-
-    h2{color:#34ca78;}
-    .margin10{margin-bottom:10px; margin-right:10px;}
-
-
-    .row-info{
-        margin-top: 15px;
-    }
-
-    .img-box{box-shadow: 0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23);border-radius: 2px;border: 0;}
-
-</style>
