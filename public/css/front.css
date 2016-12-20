@@ -218,9 +218,7 @@ h2{color:#34ca78;}
     background: #DDDDDD;
     border-radius: 0px;
     outline: none;
-
 }
-
 
 .panel-default{
     border-radius: 0px;
@@ -319,7 +317,7 @@ h2{color:#34ca78;}
 
 
 .panel.with-nav-tabs .panel-heading{
-    padding: 4px 4px 0 3px;
+    padding: 4px 5px 0 5px;
 }
 .panel.with-nav-tabs .nav-tabs{
     border-bottom: none;
