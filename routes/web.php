@@ -30,7 +30,31 @@ Route::get('/contact', function () {
     return view('frontend.contact');
 });
 
-Route::get('/home', 'HomeController@index');
+Route::get('/contact', function () {
+    return view('frontend.contact');
+});
+
+Route::get('/contact', function () {
+    return view('frontend.contact');
+});
+
+
+Route::group(['middleware' => 'auth'], function () {
+    
+    Route::get('/profile', function () {
+        return view('frontend.user.profile');
+    });
+    Route::get('/change_password', function () {
+        return view('frontend.user.change_password');
+    });
+    
+    
+    
+});
+
+
+
+
 
 /*
   |--------------------------------------------------------------------------
@@ -60,6 +84,7 @@ Route::get('auth/twitter', 'Auth\AuthController@redirectToTwitter');
 Route::get('auth/twitter/callback', 'Auth\AuthController@handleTwitterCallback');
 
 
+
 /*
   |--------------------------------------------------------------------------
   | Admin routes
@@ -67,8 +92,8 @@ Route::get('auth/twitter/callback', 'Auth\AuthController@handleTwitterCallback')
   |
  */
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
-
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
+    
     Route::get('/', 'AdminController@index');
 
     Route::get('/post', function () {
@@ -105,6 +130,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
     Route::get('/survey/add', function () {
         return view('backend.survey.add');
+    });
+    
+    
+    Route::get('/profile', function () {
+        return view('backend.settings.profile');
+    });
+    
+    Route::get('/password', function () {
+        return view('backend.settings.password');
     });
     
 });
