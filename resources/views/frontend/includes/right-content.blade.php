@@ -1,91 +1,53 @@
 <div class="col-lg-4">
 
-    <div class="panel with-nav-tabs panel-default panel-custom1">
+    <div class="panel panel-default panel-custom1">
         <div class="panel-heading">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab1default" data-toggle="tab">Polpular</a></li>
-                <li><a href="#tab2default" data-toggle="tab">Recent</a></li>
-                <li><a href="#tab3default" data-toggle="tab">Comments</a></li>
-            </ul>
+            <p class="panel-title">
+                Popular Post
+            </p>
         </div>
         <div class="panel-body">
-            <div class="tab-content">
-                <div class="tab-pane fade in active" id="tab1default">
-                    <ul class="media-list">
-                        <div class="media-body">
-                            <li class="media">
-                                <h4 class="media-heading"><a href="#" class="text-info">This is one title for post</a></h4>
-                                <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i> Sept 12th, 2016
-                                    <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">45 Comments</a>
-                                </p>
-                            </li>
-                            <li class="media">
-                                <h4 class="media-heading"><a href="#" class="text-info">An other title is one title for post</a></h4>
-                                <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i> Sept 13th, 2016
-                                    <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">454 Comments</a>
-                                </p>
-                            </li>
-                            <li class="media">
-                                <h4 class="media-heading"><a href="#" class="text-info">An other title is one title for or some othe</a></h4>
-                                <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i> Sept 14th, 2016
-                                    <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">4 Comments</a>
-                                </p>
-                            </li>
-                            <li class="media">
-                                <h4 class="media-heading"><a href="#" class="text-info">An other title is one title for or some othe</a></h4>
-                                <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i> Sept 14th, 2016
-                                    <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">4 Comments</a>
-                                </p>
-                            </li>
-                            <li class="media">
-                                <h4 class="media-heading"><a href="#" class="text-info">An other title is one title for or some othe</a></h4>
-                                <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i> Sept 14th, 2016
-                                    <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">4 Comments</a>
-                                </p>
-                            </li>
-                        </div>
-                    </ul>
-<!--                    <hr>
-                    <button type="button" class="btn btn-primary btn-sm" id="prevBtn">Prev</button>
-                    <button type="button" class="btn btn-primary btn-sm" id="nextBtn">Next</button>-->
+            <ul class="media-list">
+                <div class="media-body">
+                    <li class="media">
+                        <h4 class="media-heading"><a href="#" class="text-info">This is one title for post</a></h4>
+                        <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
+                            <i class="fa fa-calendar" aria-hidden="true"></i> Sept 12th, 2016
+                            <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">45 Comments</a>
+                        </p>
+                    </li>
+                    <li class="media">
+                        <h4 class="media-heading"><a href="#" class="text-info">An other title is one title for post</a></h4>
+                        <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
+                            <i class="fa fa-calendar" aria-hidden="true"></i> Sept 13th, 2016
+                            <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">454 Comments</a>
+                        </p>
+                    </li>
+                    <li class="media">
+                        <h4 class="media-heading"><a href="#" class="text-info">An other title is one title for or some othe</a></h4>
+                        <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
+                            <i class="fa fa-calendar" aria-hidden="true"></i> Sept 14th, 2016
+                            <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">4 Comments</a>
+                        </p>
+                    </li>
+                    <li class="media">
+                        <h4 class="media-heading"><a href="#" class="text-info">An other title is one title for or some othe</a></h4>
+                        <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
+                            <i class="fa fa-calendar" aria-hidden="true"></i> Sept 14th, 2016
+                            <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">4 Comments</a>
+                        </p>
+                    </li>
+                    <li class="media">
+                        <h4 class="media-heading"><a href="#" class="text-info">An other title is one title for or some othe</a></h4>
+                        <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
+                            <i class="fa fa-calendar" aria-hidden="true"></i> Sept 14th, 2016
+                            <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">4 Comments</a>
+                        </p>
+                    </li>
                 </div>
+            </ul>
 
-                <div class="tab-pane fade" id="tab2default">
-                    <ul class="media-list">
-                        <div class="media-body">
-                            <li class="media">
-                                <h4 class="media-heading"><a href="#" class="text-info">This is one title for post</a></h4>
-                                <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i> Sept 12th, 2016
-                                    <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">45 Comments</a>
-                                </p>
-                            </li>
-                            <li class="media">
-                                <h4 class="media-heading"><a href="#" class="text-info">An other title is one title for post</a></h4>
-                                <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i> Sept 13th, 2016
-                                    <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">454 Comments</a>
-                                </p>
-                            </li>
-                            <li class="media">
-                                <h4 class="media-heading"><a href="#" class="text-info">An other title is one title for or some othe</a></h4>
-                                <p class="margin-top-10 margin-bottom-20" style="font-size: 0.8em;">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i> Sept 14th, 2016
-                                    <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">4 Comments</a>
-                                </p>
-                            </li>
-                        </div>
-                    </ul>
-                </div>
-                
-                <div class="tab-pane fade" id="tab3default">Default3</div>
-                
-            </div>
+
         </div>
         <div class="panel-footer">
             <button type="button" class="btn btn-primary btn-sm" id="prevBtn">Prev</button>
