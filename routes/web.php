@@ -33,12 +33,53 @@ Route::get('/contact', function () {
 
 
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+
+
+/*---------------------------------------------
+| Admin pages
+|--------------------------------------------*/
+
 Route::get('/admin', function () {
     return view('backend.home');
 });
 
+Route::get('/admin/post', function () {
+    return view('backend.post.list');
+});
+
+Route::get('/admin/post/add', function () {
+    return view('backend.post.add');
+});
+
+Route::get('/admin/users', function () {
+    return view('backend.users.list');
+});
+
+Route::get('/admin/users/add', function () {
+    return view('backend.users.add');
+});
 
 
-Auth::routes();
+Route::get('/admin/parameters', function () {
+    return view('backend.settings.parameters');
+});
 
-Route::get('/home', 'HomeController@index');
+Route::get('/admin/comments', function () {
+    return view('backend.comments.list');
+});
+
+Route::get('/admin/messages', function () {
+    return view('backend.messages.list');
+});
+
+Route::get('/admin/survey', function () {
+    return view('backend.survey.list');
+});
+
+Route::get('/admin/survey/add', function () {
+    return view('backend.survey.add');
+});

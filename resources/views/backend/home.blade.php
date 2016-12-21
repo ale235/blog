@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="{{ url('/admin/post') }}">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="{{ url('/admin/comments') }}">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="{{ url('/admin/surveys') }}">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <a href="{{ url('/admin/messages') }}">
                 <div class="panel-footer">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

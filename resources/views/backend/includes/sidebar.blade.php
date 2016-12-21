@@ -43,7 +43,7 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href=""><i class="fa fa-weixin"></i> All Messages</a>
+                <a href="{{ url('/admin/messages') }}"><i class="fa fa-weixin"></i> All Messages</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-wrench fa-fw"></i> Settings<span class="fa arrow"></span></a>
