@@ -9,7 +9,7 @@
 
                 <form role="form" method="POST" action="{{ url('/contact') }}">
                     {{ csrf_field() }}    
-                    <h3 class="auth_title">Conact Form</h3>
+                    <h3 class="">Conact Form</h3>
                     <div class="row">
                         <div class="col-lg-12">	
                             <div class="row form-group">
