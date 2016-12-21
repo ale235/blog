@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Facades\Datatables;
 use \User;
@@ -29,16 +28,33 @@ class UsersController extends Controller {
         $title = 'Admin | Users';
         return view('backend.users.list', compact('title'));
     }
-    
+
     /*
      * 
      */
-    public function getUsers() {
-       // https://yajrabox.com/docs/laravel-datatables/6.0/add-column#view
+
+    public function getUsers0() {
+        // https://yajrabox.com/docs/laravel-datatables/6.0/add-column#view
         $users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at']);
         return Datatables::of($users)->make();
+
+
     }
+
+    public function getUsers() {
+        //$users = User::select(['users_id', 'username', 'email', 'created_at']);
+        $users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at']);
+
+        return Datatables::of($users)
+            ->addColumn('action', function ($user) {
+                return '<a href="#edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            })
+            ->editColumn('users_id', 'ID: {{$users_id}}')
+            ->removeColumn('password')
+            ->make(true);
+        
+        
     
-    
+    }
 
 }

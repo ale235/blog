@@ -24,6 +24,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Created At</th>
+                    <th></th>
                 </tr>
             </thead>
         </table>
@@ -57,6 +58,14 @@
 //                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 //            },
             ajax: '{{ url("/admin/users/getdata") }}',
+            columns: [
+                {data: 'users_id', name: 'users_id'},
+                {data: 'username', name: 'username'},
+                {data: 'email', name: 'email'},
+                {data: 'created_at', name: 'created_at'},
+                {data: 'action', name: 'action', orderable: false, searchable: false}
+            ]
+            //['users_id', 'username', 'email', 'created_at']
             //headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
             //headers : { 'Content-Type': 'application/json' }
             
