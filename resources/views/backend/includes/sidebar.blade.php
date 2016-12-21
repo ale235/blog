@@ -13,31 +13,31 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="{{ url('/admin') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-file-text-o"></i> Posts<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="flot.html">New Post</a>
+                        <a href="{{ url('/admin/post/add') }}">New Post</a>
                     </li>
                     <li>
-                        <a href="morris.html">All Posts</a>
+                        <a href="{{ url('/admin/post') }}">All Posts</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="tables.html"><i class="fa fa-comments"></i> All Comments</a>
+                <a href="{{ url('admin/comments') }}"><i class="fa fa-comments"></i> All Comments</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Surveys<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="blank.html">New Survey</a>
+                        <a href="{{ url('/admin/survey/add') }}">New Survey</a>
                     </li>
                     <li>
-                        <a href="login.html">All Surveys</a>
+                        <a href="{{ url('/admin/survey') }}">All Surveys</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
@@ -49,13 +49,13 @@
                 <a href="#"><i class="fa fa-wrench fa-fw"></i> Settings<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="blank.html">New User</a>
+                        <a href="{{ url('/admin/users/add') }}">New User</a>
                     </li>
                     <li>
-                        <a href="login.html">All Users</a>
+                        <a href="{{ url('/admin/users') }}">All Users</a>
                     </li>
                     <li>
-                        <a href="login.html">Parameters</a>
+                        <a href="{{ url('/admin/parameters') }}">Parameters</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
