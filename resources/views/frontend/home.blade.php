@@ -16,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <link href="/css/home.css" rel="stylesheet">
+        <link href="/css/front/home.css" rel="stylesheet">
 
         <!-- Scripts -->
         <script>window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?></script>

@@ -16,7 +16,8 @@
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <link href="/css/front.css" rel="stylesheet">
+        <link href="/css/front/front.css" rel="stylesheet">
+        <link href="/css/front/login.css" rel="stylesheet">
 
         <!-- Scripts -->
         <script>window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?></script>
@@ -37,6 +38,6 @@
         <!-- JS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
-        <script src="/js/front.js"></script>
+        <script src="/js/front/front.js"></script>
     </body>
 </html>

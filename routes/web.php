@@ -22,6 +22,21 @@ Route::get('/post', function () {
     return view('frontend.post');
 });
 
+Route::get('/about', function () {
+    return view('frontend.about');
+});
+
+Route::get('/contact', function () {
+    return view('frontend.contact');
+});
+
+
+
+
+Route::get('/admin', function () {
+    return view('backend.home');
+});
+
 
 
 Auth::routes();

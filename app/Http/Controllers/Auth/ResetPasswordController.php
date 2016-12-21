@@ -29,4 +29,15 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+    
+     /**
+     * Show the reset password form.
+     *
+     * @return \Illuminate\Http\Response
+     */  
+    public function showResetForm(\Illuminate\Http\Request $request, $token = null) {
+        parent::showResetForm($request, $token);
+    }
+    
+    
 }
