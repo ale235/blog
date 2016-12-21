@@ -16,35 +16,51 @@
                 <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-file-text-o"></i> Posts<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="flot.html">Flot Charts</a>
+                        <a href="flot.html">New Post</a>
                     </li>
                     <li>
-                        <a href="morris.html">Morris.js Charts</a>
+                        <a href="morris.html">All Posts</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                <a href="tables.html"><i class="fa fa-comments"></i> All Comments</a>
             </li>
             <li>
-                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Surveys<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="blank.html">Blank Page</a>
+                        <a href="blank.html">New Survey</a>
                     </li>
                     <li>
-                        <a href="login.html">Login Page</a>
+                        <a href="login.html">All Surveys</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
+            <li>
+                <a href=""><i class="fa fa-weixin"></i> All Messages</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-wrench fa-fw"></i> Settings<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="blank.html">New User</a>
+                    </li>
+                    <li>
+                        <a href="login.html">All Users</a>
+                    </li>
+                    <li>
+                        <a href="login.html">Parameters</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            
         </ul>
     </div>
     <!-- /.sidebar-collapse -->
