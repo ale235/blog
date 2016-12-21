@@ -48,8 +48,6 @@ Route::group(['middleware' => 'auth'], function () {
         return view('frontend.user.change_password');
     });
     
-    
-    
 });
 
 
@@ -99,8 +97,8 @@ Route::get('auth/twitter/callback', 'Auth\AuthController@handleTwitterCallback')
 //Route::get('admin/users', 'Admin\UsersController@index');
 //Route::get('admin/users/getdata', 'Admin\UsersController@getUsers');
 
-//Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth']], function() {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
+//Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth']], function() {
     
     
     Route::get('/', 'AdminController@index');
@@ -113,20 +111,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         return view('backend.post.add');
     });
 
-    
     Route::get('/users', 'UsersController@index');
-    
-    //Route::get('/users/getdata/', 'UsersController@getUsers');
     Route::get('users/getdata', 'UsersController@getUsers');
 
-    
-    
-    
-    
-//    Route::get('/users', function () {
-//        return view('backend.users.list');
-//    });
-    
     
 
     Route::get('/users/add', function () {
@@ -157,10 +144,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/profile', function () {
         return view('backend.settings.profile');
     });
+
     
-    Route::get('/password', function () {
-        return view('backend.settings.password');
-    });
+    Route::get('/profile',   'ProfileController@index');
+    Route::post('/profile',  'ProfileController@updateProfile');
+    Route::get('/password',  'ProfileController@showPasswordForm');
+    Route::post('/password', 'ProfileController@updatePassword');
     
 });
 

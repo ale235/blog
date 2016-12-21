@@ -27,7 +27,7 @@
         
         <!-- Scripts -->
        
-        
+        <link href="/css/back/back.css" rel="stylesheet">
         @stack('css')
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -56,7 +56,7 @@ use RegistersUsers;
         return Validator::make($data, [
                     'name' => 'required|max:20',
                     'email' => 'required|email|max:255|unique:users',
-                    'phone' => 'numeric|min:8',
+                    'phone' => 'numeric|min:10',
                     'password' => 'required|min:4|confirmed'
         ]);
     }

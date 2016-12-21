@@ -8,3 +8,39 @@ and open the template in the editor.
     Author     : Halim
 */
 
+.form{
+    
+}
+.form .form-title{
+    line-height: 300%;
+}
+.form em{
+    color: red;
+    margin-top: 1px;
+    position: absolute;
+    margin-left: 2px;
+    font-size: 1.1em;
+}
+
+.form .help-control{
+    cursor: help;
+    margin-left: 15px;
+    margin-top: -1px;
+    font-size: 1.2em;
+    position: absolute;
+}
+.popover-content {
+    font-size: 0.9em;
+    color: #23527C;
+}
+
+ul.errors{
+    list-style-type: none;
+    padding-left: 25px;
+}
+
+.form-error{
+   color: #A94442;
+   font-weight: normal;
+   font-size: 0.9em;
+}
