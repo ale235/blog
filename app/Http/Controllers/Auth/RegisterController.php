@@ -190,6 +190,14 @@ use RegistersUsers;
      *
      * @param $facebookUser
      * @return User
+     * 
+     *   All Providers ,Facebook, Twitter, LinkedIn, Google, GitHub, Bitbucket 
+     *   $user->getId();
+     *   $user->getNickname();
+     *   $user->getName();
+     *   $user->getEmail();
+     *   $user->getAvatar();
+     * 
      */
     private function findOrCreateUser($facebookUser){
         
@@ -203,6 +211,7 @@ use RegistersUsers;
             'facebook_id' => $facebookUser->getId(),
             'username' => $facebookUser->getName(),
             'email' => $facebookUser->getEmail(),
+            'avatar' => $facebookUser->getAvatar(),
             'users_status_id' => 1,
             'users_role_id' => 3
         ]);
