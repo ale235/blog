@@ -7,7 +7,12 @@ A nice blog system with laravel 5.3
 
 ![alt tag](https://github.com/halimus/laravel5.3-blog/blob/master/public/images/capture.png)
 
+![alt tag](https://github.com/halimus/laravel5.3-blog/blob/master/public/images/capture2.png)
 
 
 ## The project is still under dev ... Thanks
+
+
+
+
 
