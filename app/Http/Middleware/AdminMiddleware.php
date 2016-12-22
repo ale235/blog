@@ -18,7 +18,8 @@ class AdminMiddleware {
         if (\Auth::user()->users_role_id == 1) {
             return $next($request);
         }
-        return redirect()->guest('/blog');
+        //return redirect()->guest('/blog');
+        return response()->view('errors.403', [], 403);
     }
 
 }
