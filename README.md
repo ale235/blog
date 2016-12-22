@@ -5,13 +5,13 @@ A nice blog system with laravel 5.3
 
 ![alt tag](https://github.com/halimus/laravel5.3-blog/blob/master/public/images/mpd.png)
 
-
+## Home page
 ![alt tag](https://github.com/halimus/laravel5.3-blog/blob/master/public/images/capture.png)
 
-
+## Blog page
 ![alt tag](https://github.com/halimus/laravel5.3-blog/blob/master/public/images/capture2.png)
 
-
+## Admin Dashboard
 ![alt tag](https://github.com/halimus/laravel5.3-blog/blob/master/public/images/capture3.png)
 
 
