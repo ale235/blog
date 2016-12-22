@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Facades\Datatables;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller {
 
@@ -33,18 +35,13 @@ class UsersController extends Controller {
      * 
      */
 
-    public function getUsers0() {
-        // https://yajrabox.com/docs/laravel-datatables/6.0/add-column#view
-        $users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at']);
-        return Datatables::of($users)->make();
-    }
-
     /*
      * Get the users List
      */
     public function getUsers() {
         //$users = User::select(['users_id', 'username', 'email', 'created_at']);
         $users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at']);
+        //return Datatables::of($users)->make();
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
@@ -67,7 +64,37 @@ class UsersController extends Controller {
     /*
      * 
      */
-    public function addUser() {
+    public function addUser(Request $request) {
+        
+        $rules = $this->rules_user();
+        $validator = Validator::make($request->all(), $rules);
+        
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        } 
+        else {
+            
+            $user = User::create([
+                'username' => $request['name'],
+                'phone' => $request['phone'],
+                'email' => $request['email'],
+                'users_status_id' => $request['users_status_id'],
+                'users_role_id' => $request['users_role_id'],
+                'password' => bcrypt($request['password'])
+            ]);
+
+            if (!$user) {
+                throw new Exception('Error in saving data!');
+            } 
+            else {
+                Session::flash('notif_type', 'success');
+                Session::flash('notif', 'User created successfully!');
+                //return view('backend.users.add')->with('success',"User created successfully.");  
+                //session()->flash('flash_message', 'User created successfully.');
+                //return redirect($this->redirectTo);
+            }
+        }
+        
         return view('backend.users.add');
     }
     
@@ -102,6 +129,25 @@ class UsersController extends Controller {
         return redirect('admin/users');
         
     }  
+    
+    
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules_user() {
+        return[
+            'name' => 'required|max:20',
+            'email' => 'required|email|max:255|unique:users',
+            'phone' => 'numeric|digits_between:10,12',
+            'password' => 'required|min:4|confirmed',
+            'password_confirmation' => 'required',
+            'users_role_id' => 'required'
+        ];
+    }
+    
+    
     
 
 }

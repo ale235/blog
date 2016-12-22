@@ -22,6 +22,13 @@
                     @endforeach
                 </ul>
                 @endif
+                
+                @if(Session::has('notif'))
+                <div class="errors alert alert-{{ Session::get('notif_type') }} alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <p>{{ Session::get('notif') }}</p>
+                </div>
+                @endif
 
 
                 <form role="form" method="POST" action="{{ url('/admin/users/add') }}">
@@ -31,10 +38,10 @@
                             <div class="row form-group">
                                 <div class="col-md-6 {{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label>Name</label><em>*</em>
-                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') ? old('name'):@$name }}">
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') ? old('name'):@$username }}">
                                     @if ($errors->has('name'))
                                     <span class="form-error">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        {{ $errors->first('name') }}
                                     </span>
                                     @endif
                                 </div>
@@ -43,7 +50,7 @@
                                     <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') ? old('phone'):@$phone }}">
                                     @if ($errors->has('phone'))
                                     <span class="form-error">
-                                        <strong>{{ $errors->first('phone') }}</strong>
+                                        {{ $errors->first('phone') }}
                                     </span>
                                     @endif
                                 </div>
@@ -54,7 +61,7 @@
                                     <input type="email" name="email" id="email" class="form-control" value="{{ old('email') ? old('email'):@$email }}">
                                     @if ($errors->has('email'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        {{ $errors->first('email') }}
                                     </span>
                                     @endif
                                 </div>
@@ -68,7 +75,7 @@
                                     </select>
                                     @if ($errors->has('users_role_id'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('users_role_id') }}</strong>
+                                        {{ $errors->first('users_role_id') }}
                                     </span>
                                     @endif
                                 </div>
@@ -80,7 +87,7 @@
                                     <input type="password" name="password" id="password" class="form-control" value="{{ old('password') ? old('password'):@$password }}">
                                     @if ($errors->has('password'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        {{ $errors->first('password') }}
                                     </span>
                                     @endif
                                 </div>
@@ -89,11 +96,23 @@
                                     <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" value="{{ old('password_confirmation') ? old('password_confirmation'):@$password }}">
                                     @if ($errors->has('password_confirmation'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                        {{ $errors->first('password_confirmation') }}
                                     </span>
                                     @endif
                                 </div>
                             </div>
+                            
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <label>User Status</label><em>*</em>
+                                    <select id="users_status_id" name="users_status_id" class="form-control">
+                                        <option value="1" {{ (old('users_role_id') == '1' ? "selected":"") }}>Active</option>
+                                        <option value="2" {{ (old('users_role_id') == '2' ? "selected":"") }}>Inactive</option>
+                                        <option value="3" {{ (old('users_role_id') == '3' ? "selected":"") }}>Disabled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
                             <div class="row form-group">
                                 <div class="col-md-6">
                                     <button class="btn btn-primary btn-block-" type="submit">Send</button>

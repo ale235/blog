@@ -54,10 +54,10 @@ use RegistersUsers;
      */
     protected function validator(array $data) {
         return Validator::make($data, [
-                    'name' => 'required|max:20',
-                    'email' => 'required|email|max:255|unique:users',
-                    'phone' => 'numeric|min:10',
-                    'password' => 'required|min:4|confirmed'
+            'name' => 'required|max:20',
+            'email' => 'required|email|max:255|unique:users',
+            'phone' => 'numeric|min:10',
+            'password' => 'required|min:4|confirmed'
         ]);
     }
 
@@ -90,16 +90,17 @@ use RegistersUsers;
         }
 
         $user = User::create([
-                    'username' => $request['name'],
-                    'phone' => $request['phone'],
-                    'email' => $request['email'],
-                    'users_status_id' => 2,
-                    'users_role_id' => 3,
-                    'password' => bcrypt($request['password'])
+            'username' => $request['name'],
+            'phone' => $request['phone'],
+            'email' => $request['email'],
+            'users_status_id' => 2,
+            'users_role_id' => 3,
+            'password' => bcrypt($request['password'])
         ]);
         if (!$user) {
             throw new Exception('Error in saving data!');
-        } else {
+        } 
+        else {
 
             $data = ['foo' => 'bar'];
 
