@@ -87,9 +87,6 @@ footer {
     position:absolute;
     bottom:0;
     left:0;
-
-
-    
     
     background-color:#0c1a1e; 
     min-height:150px; 
@@ -155,7 +152,7 @@ footer ul li {
     -moz-box-shadow:0px 5px 3px -3px rgba(0,0,0,0.3);
     box-shadow:0px 5px 3px -3px rgba(0,0,0,0.3);  
     border-bottom: 4px solid #fcab0e;
-    border-bottom: 4px solid #DD5F13;
+    border-bottom: 3px solid #DD5F13;
 
 
 }
@@ -180,7 +177,7 @@ footer ul li {
 }
 
 .navbar-custom .nav li .dropdown-menu{
-    margin-top: -4px;
+    margin-top: -3px;
     border-radius: 0px;
     border: 2px solid #DD5F13;
 }
@@ -200,12 +197,10 @@ footer ul li {
     /*border: 1px solid red;*/
 }
 
-.navbar-custom .menu li a.active{
-    background-color: #ED7104;     /*orange*/
+.navbar-custom .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background: #DD5F13;
     color:#fff;
-    outline:none;
 }
-
 
 
 

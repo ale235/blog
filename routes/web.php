@@ -1,15 +1,15 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
-*/
+  |--------------------------------------------------------------------------
+  | Web Routes
+  |--------------------------------------------------------------------------
+  |
+  | This file is where you may define all of the routes that are handled
+  | by your application. Just tell Laravel the URIs it should respond
+  | to using a Closure or controller method. Build something great!
+  |
+ */
 
 Route::get('/', function () {
     return view('frontend.home');
@@ -30,66 +30,73 @@ Route::get('/contact', function () {
     return view('frontend.contact');
 });
 
+Route::get('/home', 'HomeController@index');
 
-
+/*
+  |--------------------------------------------------------------------------
+  | Auth routes
+  |--------------------------------------------------------------------------
+  |
+ */
 
 Auth::routes();
+
 Route::get('/logout', 'Auth\LoginController@logout');
+
 Route::get('/register/confirm', function () {
     return view('frontend.auth.confirm');
 });
 
+/*
+  |--------------------------------------------------------------------------
+  | Admin routes
+  |--------------------------------------------------------------------------
+  |
+ */
 
-Route::get('/home', 'HomeController@index');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
 
+    Route::get('/', 'AdminController@index');
 
+    Route::get('/admin/post', function () {
+        return view('backend.post.list');
+    });
 
-/*---------------------------------------------
-| Admin pages
-|--------------------------------------------*/
+    Route::get('/post/add', function () {
+        return view('backend.post.add');
+    });
 
-/*---------------------------------------------
-| Dashborad page
-|--------------------------------------------*/
+    Route::get('/users', function () {
+        return view('backend.users.list');
+    });
 
-Route::get('/admin', 'AdminController@index');  
-//Route::get('/admin', function () {
-//    return view('backend.home');
-//});
+    Route::get('/users/add', function () {
+        return view('backend.users.add');
+    });
 
-Route::get('/admin/post', function () {
-    return view('backend.post.list');
+    Route::get('/parameters', function () {
+        return view('backend.settings.parameters');
+    });
+
+    Route::get('/comments', function () {
+        return view('backend.comments.list');
+    });
+
+    Route::get('/messages', function () {
+        return view('backend.messages.list');
+    });
+
+    Route::get('/survey', function () {
+        return view('backend.survey.list');
+    });
+
+    Route::get('/survey/add', function () {
+        return view('backend.survey.add');
+    });
+    
 });
 
-Route::get('/admin/post/add', function () {
-    return view('backend.post.add');
-});
-
-Route::get('/admin/users', function () {
-    return view('backend.users.list');
-});
-
-Route::get('/admin/users/add', function () {
-    return view('backend.users.add');
-});
 
 
-Route::get('/admin/parameters', function () {
-    return view('backend.settings.parameters');
-});
 
-Route::get('/admin/comments', function () {
-    return view('backend.comments.list');
-});
 
-Route::get('/admin/messages', function () {
-    return view('backend.messages.list');
-});
-
-Route::get('/admin/survey', function () {
-    return view('backend.survey.list');
-});
-
-Route::get('/admin/survey/add', function () {
-    return view('backend.survey.add');
-});

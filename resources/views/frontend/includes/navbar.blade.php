@@ -22,7 +22,9 @@
             <li><a href="{{ url('/blog')}}">Blog</a></li>
             <li><a href="{{ url('/about')}}">About</a></li>
             <li><a href="{{ url('/contact')}}">Contact</a></li>
+            @if (@Auth::user()->users_role_id == 1)
             <li><a href="{{ url('/admin')}}">Admin</a></li>
+            @endif
         </ul>
         <div class="col-sm-4 col-md-4" style="border: 1px solid red--">
             <form class="navbar-form" role="search">
