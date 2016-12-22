@@ -3,7 +3,9 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">New User</h1>
+        <h1 class="page-header">New User
+             <a href="{{ url('admin/users') }}" style="float: right;font-size: 16px; margin-top:20px;">Back to Users</a>
+        </h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
