@@ -47,6 +47,10 @@ Route::get('/register/confirm', function () {
     return view('frontend.auth.confirm');
 });
 
+//Facebook Auth
+Route::get('auth/facebook', 'Auth\RegisterController@redirectToProvider');
+Route::get('auth/facebook/callback', 'Auth\RegisterController@handleProviderCallback');
+
 /*
   |--------------------------------------------------------------------------
   | Admin routes
@@ -58,7 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
 
     Route::get('/', 'AdminController@index');
 
-    Route::get('/admin/post', function () {
+    Route::get('/post', function () {
         return view('backend.post.list');
     });
 

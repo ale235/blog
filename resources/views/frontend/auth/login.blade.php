@@ -24,13 +24,13 @@
                     <h3 class="form-title">Login or <a href="{{ url('register') }}">Sign up</a></h3>
                     <div class="row">
                         <div class="col-lg-4 social_btn">
-                            <a href="#" class="btn btn-block btn-facebook" role="button">Facebook</a>
+                            <a href="{{ url('/auth/facebook') }}" class="btn btn-block btn-facebook" role="button">Facebook</a>
                         </div>
                         <div class="col-lg-4 social_btn">
-                            <a href="#" class="btn btn-block btn-twitter" role="button">Twitter</a>
+                            <a href="{{ url('/auth/twitter') }}" class="btn btn-block btn-twitter" role="button">Twitter</a>
                         </div>	
                         <div class="col-lg-4 social_btn">
-                            <a href="#" class="btn  btn-block btn-google" role="button">Google+</a>
+                            <a href="{{ url('/auth/google') }}" class="btn  btn-block btn-google" role="button">Google+</a>
                         </div>	
                     </div>
 

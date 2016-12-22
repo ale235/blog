@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use App\Models\User;
+use Auth;
+use Socialite;
+
+
+//use Illuminate\Contracts\Auth\Authenticatable;
+
 
 
 class RegisterController extends Controller {
@@ -30,6 +36,7 @@ use RegistersUsers;
      * @var string
      */
     protected $redirectTo = '/register/confirm';
+    protected $socialRedirectTo = '/blog';
 
     /**
      * Create a new controller instance.
@@ -48,10 +55,10 @@ use RegistersUsers;
      */
     protected function validator(array $data) {
         return Validator::make($data, [
-                    'name' => 'required|max:20',
-                    'email' => 'required|email|max:255|unique:users',
-                    'phone' => 'numeric|min:8',
-                    'password' => 'required|min:4|confirmed'
+            'name' => 'required|max:20',
+            'email' => 'required|email|max:255|unique:users',
+            'phone' => 'numeric|min:8',
+            'password' => 'required|min:4|confirmed'
         ]);
     }
 
@@ -63,12 +70,12 @@ use RegistersUsers;
      */
     protected function create0(array $data) {
         return User::create([
-                    'username' => $data['name'],
-                    'phone' => $data['phone'],
-                    'email' => $data['email'],
-                    'users_status_id' => 2,
-                    'users_role_id' => 3,
-                    'password' => bcrypt($data['password'])
+            'username' => $data['name'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'users_status_id' => 2,
+            'users_role_id' => 3,
+            'password' => bcrypt($data['password'])
         ]);
     }
 
@@ -84,12 +91,12 @@ use RegistersUsers;
         }
 
         $user = User::create([
-                    'username' => $request['name'],
-                    'phone' => $request['phone'],
-                    'email' => $request['email'],
-                    'users_status_id' => 2,
-                    'users_role_id' => 3,
-                    'password' => bcrypt($request['password'])
+            'username' => $request['name'],
+            'phone' => $request['phone'],
+            'email' => $request['email'],
+            'users_status_id' => 2,
+            'users_role_id' => 3,
+            'password' => bcrypt($request['password'])
         ]);
         if (!$user) {
             throw new Exception('Error in saving data!');
@@ -141,5 +148,66 @@ use RegistersUsers;
 
         return $data;
     }
+    
+    
+    /**
+     * Redirect the user to the Facebook authentication page.
+     *
+     * @return Response
+     */
+    public function redirectToProvider(){
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Facebook.
+     * @return Response
+     * 1- check if the user exists in our database with facebook_id
+     * 2- if not create a new user
+     * 3- login this user into our application
+     * 4- change mysql database config 'strict' => false,
+     * 
+     */
+    public function handleProviderCallback(){
+       
+        try{
+            $socialUser = Socialite::driver('facebook')->user(); 
+        } 
+        catch (Exception $ex) {
+            return redirect('/');
+        }
+        
+        $user = $this->findOrCreateUser($socialUser);
+        
+        Auth::login($user);
+        
+        return redirect($this->socialRedirectTo);
+
+    }
+    
+    /**
+     * Return user if exists; create and return if doesn't
+     *
+     * @param $facebookUser
+     * @return User
+     */
+    private function findOrCreateUser($facebookUser){
+        
+        $user = User::where('facebook_id', $facebookUser->getId())->first();
+ 
+        if ($user){
+            return $user;
+        }
+        
+        return User::create([
+            'facebook_id' => $facebookUser->getId(),
+            'username' => $facebookUser->getName(),
+            'email' => $facebookUser->getEmail(),
+            'users_status_id' => 1,
+            'users_role_id' => 3
+        ]);
+    }
+    
+    
 
 }
