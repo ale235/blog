@@ -43,12 +43,12 @@
                         <div class="col-lg-12">	
                             <div class="input-group" style="margin-top: 20px;">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="email address" value="{{ old('email') }}">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="email address" value="admin@gmail.com">
                             </div>
                             <span class="help-block"></span>
                             <div class="input-group" style="margin-top: 20px;">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="">
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" value="1234">
                             </div>
                             <div class="" style="margin-top: 20px;">
                                 <button class="btn btn-primary btn-block" type="submit">Login</button>

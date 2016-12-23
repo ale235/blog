@@ -38,10 +38,29 @@
 
 <script>
     $(function () {
+//        $.ajaxSetup({
+//            headers: {
+//                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//                //'CSRFToken': $('meta[name="csrf-token"]').attr('content')
+//            }
+//        });
+
+//        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+        
         $('#users-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ url("admin/users/getdata") }}',
+            //"_token": "{{ csrf_token() }}",
+            //dataType: 'json',
+            //headers: {'X-CSRF-TOKEN': {{ csrf_token() }} },
+//            headers: {
+//                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//            },
+            ajax: '{{ url("/admin/users/getdata") }}',
+            //headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+            //headers : { 'Content-Type': 'application/json' }
+            
+            
         });
 
     });

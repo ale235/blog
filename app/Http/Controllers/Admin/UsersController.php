@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Facades\Datatables;
-use App\Models\User;
+use \User;
 
 class UsersController extends Controller {
 
@@ -29,9 +30,13 @@ class UsersController extends Controller {
         return view('backend.users.list', compact('title'));
     }
     
+    /*
+     * 
+     */
     public function getUsers() {
-        $users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at']);
-        return Datatables::of($users)->make();
+       // https://yajrabox.com/docs/laravel-datatables/6.0/add-column#view
+        //$users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at']);
+        //return Datatables::of($users)->make();
     }
     
     
