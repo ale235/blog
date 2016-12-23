@@ -58,13 +58,11 @@ class Helpers {
      * 
      */
 
-    public static function print_r($array, $exit = '') {
+    public static function print_r($array, $exit = false) {
         echo '<pre>';
         print_r($array);
         echo '</pre>';
-        if (!empty($exit)) {
-            exit;
-        }
+        if ($exit) {exit;}
     }
 
     /*

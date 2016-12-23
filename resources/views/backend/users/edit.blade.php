@@ -96,7 +96,7 @@
                             
                             <div class="row form-group">
                                 <div class="col-md-6">
-                                    <label><input type="checkbox" id="reset_password" name="reset_password" value="1"> Reset Password</label>
+                                    <label><input type="checkbox" id="reset_password" name="reset_password"> Reset Password</label>
                                 </div>
                             </div>
                             

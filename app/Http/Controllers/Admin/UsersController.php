@@ -9,6 +9,7 @@ use Yajra\Datatables\Facades\Datatables;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use App\Helpers;
 
 class UsersController extends Controller {
 
@@ -112,8 +113,31 @@ class UsersController extends Controller {
     /*
      * 
      */
-    public function EditUser() {
-        return view('backend.users.edit');
+    public function EditUser($id, Request $request) {
+        $user = User::findOrFail($id);
+        
+        //Helpers::print_r($_POST, true);
+        
+        $check_password = false;
+        if($request['reset_password']){
+            $rules = $this->rules_user($check_password=true);
+        }
+        
+        $rules = $this->rules_user($check_password);
+        $validator = Validator::make($request->all(), $rules);
+        
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        } 
+        else {
+            
+            $user->update($request->all());
+           
+        }
+
+        
+
+        return redirect("admin/users/edit/$id");
     }  
     
     /**
@@ -142,18 +166,25 @@ class UsersController extends Controller {
      *
      * @return array
      */
-    public function rules_user() {
-        return[
+    public function rules_user($check_password=false) {
+        $rules = [
             'name' => 'required|max:20',
             'email' => 'required|email|max:255|unique:users',
             'phone' => 'numeric|digits_between:10,12',
-            'password' => 'required|min:4|confirmed',
-            'password_confirmation' => 'required',
             'users_role_id' => 'required'
         ];
+        
+        if($check_password){
+            $rules = [
+                'password' => 'required|min:4|confirmed',
+                'password_confirmation' => 'required',
+            ]; 
+        }
+        
+        return $rules;
     }
     
-    
-    
+
+   
 
 }

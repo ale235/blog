@@ -59,9 +59,7 @@ Route::group(['middleware' => 'auth'], function () {
  */
 
 Auth::routes();
-
 Route::get('/logout', 'Auth\LoginController@logout');
-
 Route::get('/register/confirm', function () {
     return view('frontend.auth.confirm');
 });
