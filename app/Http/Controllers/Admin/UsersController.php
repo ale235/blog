@@ -40,7 +40,7 @@ class UsersController extends Controller {
     }
 
     /*
-     * 
+     * Get the users List
      */
     public function getUsers() {
         //$users = User::select(['users_id', 'username', 'email', 'created_at']);
@@ -48,12 +48,60 @@ class UsersController extends Controller {
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
-                return '<a href="/admin/users/edit/" class="btn btn-xs btn-primary">Edit</a>
-                        <a href="#" class="btn btn-xs btn-danger dt-delete">Delete</a>';
+                return '<a href="/admin/users/edit/'.$user->users_id.'" class="btn btn-xs btn-primary">Edit</a>
+                        <a href="#" tab="users" rel="'.$user->users_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
             })
             ->editColumn('users_id', 'ID: {{$users_id}}')
             ->removeColumn('password')
-            ->make(true);
+            ->make(true);    
     }
+    
+    /*
+     * 
+     */
+
+    public function ShowAddUserForm() {
+        return view('backend.users.add');
+    }
+    
+    /*
+     * 
+     */
+    public function addUser() {
+        return view('backend.users.add');
+    }
+    
+    /*
+     * 
+     */
+    public function ShowEditUserForm() {
+        return view('backend.users.edit');
+    } 
+    
+    /*
+     * 
+     */
+    public function EditUser() {
+        return view('backend.users.edit');
+    }  
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function deleteUser($id) {
+        
+        $user = User::findOrFail($id);
+        $user->delete();
+        
+        Session::flash('notif_type', 'success');
+        Session::flash('notif', 'User has been deleted!');
+        
+        return redirect('admin/users');
+        
+    }  
+    
 
 }

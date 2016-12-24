@@ -8,7 +8,9 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Users</h1>
+        <h1 class="page-header">Users
+            <a href="{{ url('admin/users/add') }}" style="float: right;font-size: 16px; margin-top:20px;">New User</a>
+        </h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -17,7 +19,7 @@
 <div class="row">
 
     <div class="col-xs-12 table-responsive" id="example4">
-        <table class="stripe hover row-border- cell-border order-column" id="users-table">
+        <table class="stripe hover row-border- cell-border order-column table" id="users-table">
             <thead>
                 <tr>
                     <th>Id</th>

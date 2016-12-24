@@ -59,7 +59,8 @@
         <script src="/plugings/back/metisMenu/metisMenu.min.js"></script>
 
         <!-- Custom Theme JavaScript -->
-        <!--<script src="/js/back/sb-admin-2.js"></script>-->
+        <script src="/js/back/sb-admin-2.js"></script>
+        <script src="/js/back/back.js"></script>
         
         @stack('scripts')
         

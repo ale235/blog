@@ -111,14 +111,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         return view('backend.post.add');
     });
 
-    Route::get('/users', 'UsersController@index');
-    Route::get('users/getdata', 'UsersController@getUsers');
-
+   
     
-
-    Route::get('/users/add', function () {
-        return view('backend.users.add');
-    });
+    
 
     Route::get('/parameters', function () {
         return view('backend.settings.parameters');
@@ -146,6 +141,20 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     });
 
     
+    //User routes
+    Route::get('/users', 'UsersController@index');
+    Route::get('users/getdata', 'UsersController@getUsers');
+    
+    Route::get('users/add', 'UsersController@ShowAddUserForm');
+    Route::post('users/add', 'UsersController@addUser');
+    
+    Route::get('users/edit/{id}', 'UsersController@ShowEditUserForm');
+    Route::post('users/edit/{id}', 'UsersController@EditUser');
+    
+    Route::post('users/delete/{id}', 'UsersController@deleteUser');
+    
+    
+    //Profile & password routes
     Route::get('/profile',   'ProfileController@index');
     Route::post('/profile',  'ProfileController@updateProfile');
     Route::get('/password',  'ProfileController@showPasswordForm');
