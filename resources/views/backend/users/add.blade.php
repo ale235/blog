@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="row form-group">
-                                <div class="col-md-6" style="margin-top: 20px;">
+                                <div class="col-md-6">
                                     <button class="btn btn-primary btn-block-" type="submit">Send</button>
                                 </div>
                             </div>
