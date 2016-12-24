@@ -10,13 +10,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema blogdb
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `blogdb` ;
+-- DROP SCHEMA IF EXISTS `blogdb` ;
 
 -- -----------------------------------------------------
 -- Schema blogdb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `blogdb` DEFAULT CHARACTER SET utf8 ;
-USE `blogdb` ;
+-- CREATE SCHEMA IF NOT EXISTS `blogdb` DEFAULT CHARACTER SET utf8 ;
+-- USE `blogdb` ;
 
 -- -----------------------------------------------------
 -- Table `users_status`

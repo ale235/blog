@@ -24,7 +24,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Created At</th>
-                    <th></th>
+                    <th>Action</th>
                 </tr>
             </thead>
         </table>
@@ -39,37 +39,22 @@
 
 <script>
     $(function () {
-//        $.ajaxSetup({
-//            headers: {
-//                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//                //'CSRFToken': $('meta[name="csrf-token"]').attr('content')
-//            }
-//        });
-
-//        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-        
         $('#users-table').DataTable({
+            "oLanguage": {
+                sProcessing: '<i class="fa fa-spinner fa-spin fa-4x text-info loader"></i>'
+            },
+            bAutoWidth: true,
             processing: true,
             serverSide: true,
-            //"_token": "{{ csrf_token() }}",
-            //dataType: 'json',
-            //headers: {'X-CSRF-TOKEN': {{ csrf_token() }} },
-//            headers: {
-//                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//            },
+            order: [3, "DESC"],
             ajax: '{{ url("/admin/users/getdata") }}',
             columns: [
-                {data: 'users_id', name: 'users_id'},
-                {data: 'username', name: 'username'},
-                {data: 'email', name: 'email'},
-                {data: 'created_at', name: 'created_at'},
-                {data: 'action', name: 'action', orderable: false, searchable: false}
+                {data: 'users_id', visible: true, searchable: false},
+                {data: 'username'},
+                {data: 'email'},
+                {data: 'created_at'},
+                {data: 'action', orderable: false, searchable: false, bSortable: false, width: '72px'},
             ]
-            //['users_id', 'username', 'email', 'created_at']
-            //headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-            //headers : { 'Content-Type': 'application/json' }
-            
-            
         });
 
     });
