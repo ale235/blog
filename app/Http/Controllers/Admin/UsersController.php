@@ -79,7 +79,7 @@ class UsersController extends Controller {
             ->addColumn('action', function ($user) {
                 $url_edit = url("/admin/users/edit/$user->users_id");
                 return '<a href="'.$url_edit.'" class="btn btn-xs btn-primary">Edit</a>
-                        <a href="#" tab="users" rel="'.$user->users_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
+                        <a href="#" route="users" rel="'.$user->users_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
             })
             ->editColumn('users_id', 'ID: {{$users_id}}')
             ->editColumn('users_status_name',
@@ -192,9 +192,7 @@ class UsersController extends Controller {
     public function deleteUser($id) {
         
         $user = User::findOrFail($id);
-        $user->delete();
-        
-        //return redirect('admin/users');
+        //$user->delete();
         
         return response()->json([
             'type' => 'success',

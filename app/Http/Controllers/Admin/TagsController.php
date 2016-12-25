@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Facades\Datatables;
-//use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Helpers;
@@ -44,7 +43,7 @@ class TagsController extends Controller {
             ->addColumn('action', function ($tag) {
                 $url_edit = url("/admin/tags/edit/$tag->tag_id");
                 return '<a href="#" rel="'.$tag->tag_id.'" class="btn btn-xs btn-primary edit_tag">Edit</a>
-                        <a href="#" tab="users" rel="'.$tag->tag_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
+                        <a href="#" route="tags" rel="'.$tag->tag_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
             })
             ->make(true);    
     }
@@ -54,13 +53,8 @@ class TagsController extends Controller {
      */
     public function addTag(Request $request) {   
         
-        
-        
-            
-        
-        
         $rules = array(
-            'field' => 'required|unique:tag',
+            'tag_name' => 'required'
         );
         
         $validator = Validator::make($request->all(), $rules);
@@ -75,9 +69,9 @@ class TagsController extends Controller {
         } 
         else {
             
-//            DB::table('tag')->insert(
-//                ['tag_name' => $request['field']]
-//            );
+            DB::table('tag')->insert(
+                ['tag_name' => $request['tag_name']]
+            );
             
             return response()->json([
                 'success' => true,
@@ -86,8 +80,28 @@ class TagsController extends Controller {
             ], 200);
             
         }
+    }
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy($id) {
         
+        $tag = DB::table('tag')->where('tag_id', '=', $id);
+        if($tag){
+            
+            $tag->delete();
+            //DB::table('tag')->where('tag_id', '=', $id)->delete();
         
+            return response()->json([
+                'type' => 'success',
+                'msg'  => 'Tag has been deleted!'
+            ]);
+        }
+                
     }
     
     

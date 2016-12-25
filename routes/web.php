@@ -142,21 +142,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/tags', 'TagsController@index');
     Route::get('tags/getdata', 'TagsController@getTags');
     Route::post('/tags', 'TagsController@addTag');
-    
-    
-    
+    Route::post('/tags/{id}', 'TagsController@editTag');
+    Route::delete('/tags/{id}', 'TagsController@destroy');
+
     //User routes
     Route::get('/users', 'UsersController@index');
     Route::get('users/getdata', 'UsersController@getUsers');
-    
     Route::get('users/add', 'UsersController@ShowAddUserForm');
     Route::post('users/add', 'UsersController@addUser');
-    
     Route::get('users/edit/{id}', 'UsersController@ShowEditUserForm');
     Route::post('users/edit/{id}', 'UsersController@EditUser');
-    
-    Route::get('/users/delete/{id}', 'UsersController@deleteUser');
-    
+    Route::delete('users/{id}', 'UsersController@deleteUser');
     
     //Profile & password routes
     Route::get('/profile',   'ProfileController@index');

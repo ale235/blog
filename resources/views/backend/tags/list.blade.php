@@ -94,7 +94,7 @@
                         lobibox(response.type, response.msg);
                     }
                     else{
-                        alert('cc');
+                        alert('errors');
                     }    
                 },
                 error: function () {

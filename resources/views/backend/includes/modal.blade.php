@@ -11,7 +11,7 @@
                     <h4 class="modal-title">Modal Header</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="field" id="field" class="form-control" value="" placeholder="Tag name">
+                    <input type="text" name="tag_name" id="tag_name" class="form-control" value="" placeholder="Tag name">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary pull-left">Save</button>
