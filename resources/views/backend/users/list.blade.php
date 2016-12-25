@@ -19,7 +19,7 @@
 <div class="row">
 
     <div class="col-xs-12 table-responsive" id="example4">
-        <table class="stripe hover row-border- cell-border order-column table" id="users-table">
+        <table class="stripe hover row-border- cell-border order-column table" id="table">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -41,14 +41,14 @@
 
 <script>
     $(function () {
-        $('#users-table').DataTable({
+        $('#table').DataTable({
             "oLanguage": {
                 sProcessing: '<i class="fa fa-spinner fa-spin fa-4x text-info loader"></i>'
             },
             bAutoWidth: true,
             processing: true,
             serverSide: true,
-            order: [3, "DESC"],
+            order: [3, "desc"],
             ajax: '{{ url("/admin/users/getdata") }}',
             columns: [
                 {data: 'users_id', visible: true, searchable: false},

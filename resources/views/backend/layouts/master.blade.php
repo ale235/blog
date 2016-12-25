@@ -25,6 +25,8 @@
         <!-- Custom Fonts -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         
+        <link href="{{asset('plugings/back/lobibox/css/lobibox.min.css')}}" rel="stylesheet">
+              
         <!-- Scripts -->
        
         <link href="/css/back/back.css" rel="stylesheet">
@@ -57,6 +59,7 @@
 
         <!-- Metis Menu Plugin JavaScript -->
         <script src="/plugings/back/metisMenu/metisMenu.min.js"></script>
+        <script src="{{asset('plugings/back/lobibox/js/notifications.min.js')}}"></script>
 
         <!-- Custom Theme JavaScript -->
         <script src="/js/back/sb-admin-2.js"></script>

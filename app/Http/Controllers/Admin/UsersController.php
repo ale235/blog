@@ -123,10 +123,12 @@ class UsersController extends Controller {
         $user = User::findOrFail($id);
         $user->delete();
         
-        Session::flash('notif_type', 'success');
-        Session::flash('notif', 'User has been deleted!');
+        //return redirect('admin/users');
         
-        return redirect('admin/users');
+        return response()->json([
+            'type' => 'success',
+            'msg'  => 'User has been deleted!'
+        ]);
         
     }  
     

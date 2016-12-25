@@ -151,7 +151,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('users/edit/{id}', 'UsersController@ShowEditUserForm');
     Route::post('users/edit/{id}', 'UsersController@EditUser');
     
-    Route::post('users/delete/{id}', 'UsersController@deleteUser');
+    Route::get('/users/delete/{id}', 'UsersController@deleteUser');
     
     
     //Profile & password routes
