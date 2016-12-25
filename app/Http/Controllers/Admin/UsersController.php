@@ -101,8 +101,12 @@ class UsersController extends Controller {
     /*
      * 
      */
-    public function ShowEditUserForm() {
-        return view('backend.users.edit');
+    public function ShowEditUserForm($id) {
+        
+        $user = User::findOrFail($id);
+        
+        return view('backend.users.edit', compact('user'));
+        
     } 
     
     /*

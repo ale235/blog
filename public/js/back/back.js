@@ -31,8 +31,27 @@ $(function () {
         }
         return false;
     });
-
-
+    
+    
+    /*
+     * 
+     */
+    $("#reset_password").change(function() {
+        if(this.checked) {
+            $('.row-password').show();
+        }
+        else{
+           $('.row-password').hide(); 
+           $('#password').val('');
+           $('#password_confirmation').val('');
+        }
+    });
+    
+    
+    
+    
+    
+    
 });
 
 /*
