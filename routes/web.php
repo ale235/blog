@@ -136,7 +136,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/profile', function () {
         return view('backend.settings.profile');
     });
-
+    
+    
+    //Tag routes
+    Route::get('/tags', 'TagsController@index');
+    Route::get('tags/getdata', 'TagsController@getTags');
+    Route::post('/tags', 'TagsController@addTag');
+    
+    
     
     //User routes
     Route::get('/users', 'UsersController@index');

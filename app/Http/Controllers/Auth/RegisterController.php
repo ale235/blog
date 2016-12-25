@@ -69,12 +69,12 @@ use RegistersUsers;
      */
     protected function create0(array $data) {
         return User::create([
-                    'username' => $data['name'],
-                    'phone' => $data['phone'],
-                    'email' => $data['email'],
-                    'users_status_id' => 2,
-                    'users_role_id' => 3,
-                    'password' => bcrypt($data['password'])
+            'username' => $data['name'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'users_status_id' => 2,
+            'users_role_id' => 3,
+            'password' => bcrypt($data['password'])
         ]);
     }
 

@@ -31,6 +31,9 @@
                 <a href="{{ url('admin/comments') }}"><i class="fa fa-comments"></i> All Comments</a>
             </li>
             <li>
+                <a href="{{ url('admin/tags') }}"><i class="fa fa-list"></i> Tags List</a>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Surveys<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 @section('auth-style')
-<link href="/css/front/login.css" rel="stylesheet">
+   <link href="{{ asset('/css/front/login.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')

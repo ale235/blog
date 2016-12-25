@@ -46,7 +46,8 @@ class UsersController extends Controller {
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
-                return '<a href="/admin/users/edit/'.$user->users_id.'" class="btn btn-xs btn-primary">Edit</a>
+                $url_edit = url("/admin/users/edit/$user->users_id");
+                return '<a href="'.$url_edit.'" class="btn btn-xs btn-primary">Edit</a>
                         <a href="#" tab="users" rel="'.$user->users_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
             })
             ->editColumn('users_id', 'ID: {{$users_id}}')
@@ -61,19 +62,29 @@ class UsersController extends Controller {
     
     public function getUsers() {
         
-        //die('yes');
-        $users = User::select(['users_id', 'username', 'email', 'created_at', 'updated_at']);
-        //$users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at', 'updated_at']);
-        //$users = DB::select('select * from view_users');
+        //$users = DB::table('view_users')->select(['users_id', 'username', 'email', 'users_role_name', 'created_at_us', 'updated_at_us', 'users_status_id', 'users_status_name']);
+//        $users = DB::table('view_users')->select([
+//            'users_id', 'username as name', 'email', 'users_role_name as role_name', 
+//            'created_at_us as created_at', 'updated_at_us as updated_at', 'users_status_id', 'users_status_name as status_name']
+//        );
         
-        //return Datatables::of($users)->make();
+        
+        
+        $users = DB::table('view_users')->select([
+            'users_id', 'username', 'email', 'users_role_name', 
+            'created_at_us', 'updated_at_us', 'users_status_id', 'users_status_name']
+        );
 
         return Datatables::of($users)
             ->addColumn('action', function ($user) {
-                return '<a href="/admin/users/edit/'.$user->users_id.'" class="btn btn-xs btn-primary">Edit</a>
+                $url_edit = url("/admin/users/edit/$user->users_id");
+                return '<a href="'.$url_edit.'" class="btn btn-xs btn-primary">Edit</a>
                         <a href="#" tab="users" rel="'.$user->users_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
             })
             ->editColumn('users_id', 'ID: {{$users_id}}')
+            ->editColumn('users_status_name',
+                '@if($users_status_id==1) <span class="label label-success">{{$users_status_name}}</span> @else <span class="label label-danger">{{$users_status_name}}</span> @endif'
+            )
             ->removeColumn('password')
             ->make(true);    
     }

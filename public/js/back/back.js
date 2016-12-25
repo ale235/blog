@@ -14,7 +14,7 @@ $(function () {
         if (confirm(msgConfirm)) {
             $.ajax({
                 type: "GET",
-                url: "/admin/users/delete/" + id,
+                url: base_url+"/admin/users/delete/" + id,
                 data: {'id': id},
                 dataType: 'JSON',
                 success: function (response) {
@@ -84,7 +84,7 @@ function lobibox(type, msg, options){
         delay: delay,
         position: '' + position + '',
         sound: sound,
-        soundPath: '/plugings/back/lobibox/sounds/',
+        soundPath: base_url+'/plugings/back/lobibox/sounds/',
         delayIndicator: false,
         closeOnClick: true,
         width: width,

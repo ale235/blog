@@ -16,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <link href="/css/front/home.css" rel="stylesheet">
+        <link href="{{ asset('/css/front/home.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
         <script>window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?></script>
@@ -27,7 +27,7 @@
                 <div id="page-content" class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <img src="/images/laravel.png" alt="Laravel" class="center">
+                            <img src="{{ asset('/images/laravel.png') }}" alt="Laravel" class="center">
                             <h1 class="intro-text1">Laravel Blog</h1>
                             <h2 class="intro-text2" style="">With Laravel 5.3</h2>      
                             <div class="centered">

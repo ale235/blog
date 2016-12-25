@@ -14,13 +14,13 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         
         <!-- MetisMenu CSS -->
-        <link href="/plugings/back/metisMenu/metisMenu.min.css" rel="stylesheet">
+        <link href="{{ asset('/plugings/back/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="/css/back/sb-admin-2.css" rel="stylesheet">
+        <link href="{{ asset('/css/back/sb-admin-2.css') }}" rel="stylesheet">
 
         <!-- Morris Charts CSS -->
-        <link href="/plugings/back/morrisjs/morris.css" rel="stylesheet">
+        <link href="{{ asset('/plugings/back/morrisjs/morris.css') }}" rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -29,7 +29,7 @@
               
         <!-- Scripts -->
        
-        <link href="/css/back/back.css" rel="stylesheet">
+        <link href="{{ asset('/css/back/back.css') }}" rel="stylesheet">
         @stack('css')
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -55,15 +55,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <!-- Bootstrap Core JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-        <script src="/js/back/config.js"></script> <!-- Do your $.ajaxSetup in this file -->
+        <script src="{{ asset('/js/back/config.js') }}"></script> <!-- Do your $.ajaxSetup in this file -->
 
         <!-- Metis Menu Plugin JavaScript -->
-        <script src="/plugings/back/metisMenu/metisMenu.min.js"></script>
+        <script src="{{ asset('/plugings/back/metisMenu/metisMenu.min.js') }}"></script>
         <script src="{{asset('plugings/back/lobibox/js/notifications.min.js')}}"></script>
 
         <!-- Custom Theme JavaScript -->
-        <script src="/js/back/sb-admin-2.js"></script>
-        <script src="/js/back/back.js"></script>
+        <script src="{{ asset('/js/back/sb-admin-2.js') }}"></script>
+        <script>var base_url ="{{ asset('/') }}";</script>
+        <script src="{{ asset('/js/back/back.js') }}"></script>
         
         @stack('scripts')
         
