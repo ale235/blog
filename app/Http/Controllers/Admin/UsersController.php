@@ -216,22 +216,15 @@ class UsersController extends Controller {
         ];
         
         if(!empty($users_id)){
-            $rules = [
-                'email' => 'required|email|max:45|unique:users,email, ' . $users_id . ',users_id'
-            ];
+            $rules['email'] = 'required|email|max:45|unique:users,email, ' . $users_id . ',users_id';
         }
         else{
-            $rules = [
-                'email' => 'required|email|max:45|unique:users'
-            ];
+            $rules['email'] = 'required|email|max:45|unique:users';
         }
         
-        
         if($check_password){
-            $rules = [
-                'password' => 'required|min:4|confirmed',
-                'password_confirmation' => 'required',
-            ]; 
+            $rules['password'] = 'required|min:4|confirmed';
+            $rules['password_confirmation'] = 'required';
         }
         
         return $rules;

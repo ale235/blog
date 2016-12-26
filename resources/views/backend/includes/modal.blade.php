@@ -12,6 +12,8 @@
                 </div>
                 <div class="modal-body">
                     <input type="text" name="tag_name" id="tag_name" class="form-control" value="" placeholder="Tag name">
+                    <input type="hidden" name="tag_id" id="tag_id" value="" readonly>
+                    <span class="help-block"></span>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary pull-left">Save</button>

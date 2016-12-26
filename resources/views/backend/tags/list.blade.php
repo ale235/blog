@@ -66,20 +66,31 @@
          * 
          */
         $(document).on('click', '.add_tag', function () {
+            init_form();
             $('#myModal .modal-title').html('New Tag');
             $('#myModal').modal({backdrop: 'static', keyboard: false});
             return false;
         });
-
+        
+        function init_form(){
+            $('#modal-form .modal-body').removeClass('has-error');
+            $('#modal-form .help-block').html('');
+            $("#modal-form")[0].reset(); 
+        }
         /*
          * 
          */
         $(document).on('submit', '#modal-form', function () {
+            var tag_id = $('#modal-form #tag_id').val();
+            var url = '{{ url("/admin/tags/") }}';
+            if(tag_id){
+                url = '{{ url("/admin/tags/") }}'+'/'+tag_id;
+            }    
             $.ajax({
                 //dataType: 'json',
                 type: 'POST',
                 //url: $("#modal-form").attr("action"),
-                url: '{{ url("/admin/tags/") }}',
+                url: url,
                 data: $("#modal-form").serialize(),
                 //data: {"app_id": app_id, "action_id": action_id},
                 beforeSend: function () {
@@ -94,7 +105,8 @@
                         lobibox(response.type, response.msg);
                     }
                     else{
-                        alert('errors');
+                        $('#modal-form .modal-body').addClass('has-error');
+                        $('#modal-form .help-block').html(response.errors.tag_name);
                     }    
                 },
                 error: function () {
@@ -105,15 +117,36 @@
             //alert('sub');
             return false;
         });
-
-
-
+        
         /*
          * 
          */
         $(document).on('click', '.edit_tag', function () {
-            $('#myModal .modal-title').html('Edit Tag');
-            $('#myModal').modal({backdrop: 'static', keyboard: false});
+            init_form();
+            var id = $(this).attr('rel');
+            $.ajax({
+                dataType: 'json',
+                type: 'GET',
+                url: '{{ url("/admin/tags/") }}'+'/'+id,
+                //data: {"id": id},
+                beforeSend: function () {
+
+                },
+                success: function (response) {
+                    if(response.success){ 
+                        $('#myModal .modal-title').html('Edit Tag');
+                        $('#myModal').modal({backdrop: 'static', keyboard: false});
+                        $('#modal-form #tag_name').val(response.tag.tag_name);
+                        $('#modal-form #tag_id').val(response.tag.tag_id);
+                    }
+                    else{
+                        alert('errors');
+                    }    
+                },
+                error: function () {
+                    console.log('Failed request; give feedback to admin');
+                }
+            });
             return false;
         });
 

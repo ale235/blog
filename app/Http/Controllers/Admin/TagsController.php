@@ -9,6 +9,9 @@ use Yajra\Datatables\Facades\Datatables;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use App\Helpers;
+use Illuminate\Database\Query\Builder;
+use App\Models\Tag;
+use Carbon\Carbon;
 
 class TagsController extends Controller {
 
@@ -103,6 +106,66 @@ class TagsController extends Controller {
         }
                 
     }
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function showEditTag($id) {
+        //$tag = Tag::findOrFail($id);
+        //$tag = DB::table('tag')->where('tag_id', '37')->get();
+        //$tag = DB::select('select tag_id, tag_name from tag where tag_id = ?', array($id));
+        //$tag = DB::table('tag')->where('tag_id', '=', 37)->get();
+        
+        $tag = DB::table('tag')->select('tag_id', 'tag_name')->where('tag_id', $id)->first();
+        
+        if($tag){
+            return response()->json([
+                'success' => true,
+                'tag' => $tag
+            ], 200);
+        }
+        else{
+            
+        }
+        
+    }
+    
+    /*
+     * 
+     */
+    public function update($id, Request $request) {
+      
+        $tag = DB::table('tag')->where('tag_id', '=', $id);
+        if($tag){
+            $rules = array('tag_name' =>  'required|min:2|max:20|unique:tag');           
+            $validator = Validator::make($request->all(), $rules);
+            if ($validator->fails()) {
+                return response()->json(array(
+                    'success' => false,
+                    'errors' => $validator->getMessageBag()->toArray()
+                ));
+            } 
+            else {
+                DB::table('tag')->where('tag_id', $id)
+                        ->update([
+                            'tag_name' => $request['tag_name'],
+                            'updated_at' =>  Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
+                        ]);
+                return response()->json([
+                    'success' => true,
+                    'type' => 'success',
+                    'msg'  => 'Tag has been updated.'
+                ]);
+            }
+        }
+        else{
+            
+        }
+        
+    } 
     
     
     

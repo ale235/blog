@@ -141,8 +141,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     //Tag routes
     Route::get('/tags', 'TagsController@index');
     Route::get('tags/getdata', 'TagsController@getTags');
+    
     Route::post('/tags', 'TagsController@addTag');
-    Route::post('/tags/{id}', 'TagsController@editTag');
+    
+    Route::get('/tags/{id}', 'TagsController@showEditTag');
+    
+    Route::post('/tags/{id}', 'TagsController@update');
+    
     Route::delete('/tags/{id}', 'TagsController@destroy');
 
     //User routes
