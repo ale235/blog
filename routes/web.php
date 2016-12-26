@@ -124,13 +124,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         return view('backend.messages.list');
     });
 
-    Route::get('/survey', function () {
-        return view('backend.survey.list');
-    });
-
-    Route::get('/survey/add', function () {
-        return view('backend.survey.add');
-    });
+   
     
     
     Route::get('/profile', function () {
@@ -138,18 +132,24 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     });
     
     
+    //Survey routes
+    Route::get('/survey', 'SurveyController@index');
+    Route::get('/survey/getdata', 'SurveyController@getSurvey');
+    Route::get('/survey/add', 'SurveyController@create');
+    Route::post('/survey/add', 'SurveyController@store');
+    
+
+    
+    
+    
     //Tag routes
     Route::get('/tags', 'TagsController@index');
     Route::get('tags/getdata', 'TagsController@getTags');
-    
     Route::post('/tags', 'TagsController@addTag');
-    
     Route::get('/tags/{id}', 'TagsController@showEditTag');
-    
     Route::post('/tags/{id}', 'TagsController@update');
-    
     Route::delete('/tags/{id}', 'TagsController@destroy');
-
+    
     //User routes
     Route::get('/users', 'UsersController@index');
     Route::get('users/getdata', 'UsersController@getUsers');

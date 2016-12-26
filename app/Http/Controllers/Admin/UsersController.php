@@ -60,16 +60,13 @@ class UsersController extends Controller {
      * https://www.sitepoint.com/deploy-website-using-laravel-git/
      */
     
-    public function getUsers() {
-        
-        //$users = DB::table('view_users')->select(['users_id', 'username', 'email', 'users_role_name', 'created_at_us', 'updated_at_us', 'users_status_id', 'users_status_name']);
+    public function getUsers() {    
+//        $users = DB::table('view_users')->select(['users_id', 'username', 'email', 'users_role_name', 'created_at_us', 'updated_at_us', 'users_status_id', 'users_status_name']);
 //        $users = DB::table('view_users')->select([
 //            'users_id', 'username as name', 'email', 'users_role_name as role_name', 
 //            'created_at_us as created_at', 'updated_at_us as updated_at', 'users_status_id', 'users_status_name as status_name']
 //        );
-        
-        
-        
+
         $users = DB::table('view_users')->select([
             'users_id', 'username', 'email', 'users_role_name', 
             'created_at_us', 'updated_at_us', 'users_status_id', 'users_status_name']
@@ -88,11 +85,7 @@ class UsersController extends Controller {
             ->removeColumn('password')
             ->make(true);    
     }
-    
-    
-    
-    
-    
+
     /*
      * 
      */
@@ -135,7 +128,8 @@ class UsersController extends Controller {
             }
         }
         
-        return view('backend.users.add');
+        return redirect("admin/users/add/");
+        //return view('backend.users.add');
     }
     
     /*
