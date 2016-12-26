@@ -54,11 +54,16 @@ class UsersController extends Controller {
             ->make(true);    
     }
     
+    
+    /*
+     * https://www.sitepoint.com/deploy-website-using-laravel-git/
+     */
+    
     public function getUsers() {
         
         //die('yes');
-        
-        $users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at', 'seen']);
+        $users = User::select(['users_id', 'username', 'email', 'created_at', 'updated_at']);
+        //$users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at', 'updated_at']);
         //$users = DB::select('select * from view_users');
         
         //return Datatables::of($users)->make();
