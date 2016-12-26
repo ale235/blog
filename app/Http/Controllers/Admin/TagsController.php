@@ -94,17 +94,15 @@ class TagsController extends Controller {
     public function destroy($id) {
         
         $tag = DB::table('tag')->where('tag_id', '=', $id);
-        if($tag){
-            
-            $tag->delete();
-            //DB::table('tag')->where('tag_id', '=', $id)->delete();
-        
-            return response()->json([
-                'type' => 'success',
-                'msg'  => 'Tag has been deleted!'
-            ]);
+        if(!$tag){
+            die('nor exit -> redirect');
         }
-                
+        
+        $tag->delete();
+        return response()->json([
+            'type' => 'success',
+            'msg'  => 'Tag has been deleted!'
+        ]);      
     }
     
     /**
@@ -138,31 +136,31 @@ class TagsController extends Controller {
      */
     public function update($id, Request $request) {
       
-        $tag = DB::table('tag')->where('tag_id', '=', $id);
-        if($tag){
-            $rules = array('tag_name' =>  'required|min:2|max:20|unique:tag');           
-            $validator = Validator::make($request->all(), $rules);
-            if ($validator->fails()) {
-                return response()->json(array(
-                    'success' => false,
-                    'errors' => $validator->getMessageBag()->toArray()
-                ));
-            } 
-            else {
-                DB::table('tag')->where('tag_id', $id)
-                        ->update([
-                            'tag_name' => $request['tag_name'],
-                            'updated_at' =>  Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
-                        ]);
-                return response()->json([
-                    'success' => true,
-                    'type' => 'success',
-                    'msg'  => 'Tag has been updated.'
-                ]);
-            }
+        //$tag = DB::table('tag')->where('tag_id', '=', $id);
+        $tag = DB::table('tag')->where('tag_id', $id)->first();
+        if(!$tag){
+            die('nor exit -> redirect');
         }
-        else{
-            
+        
+        $rules = array('tag_name' =>  'required|min:2|max:20|unique:tag');           
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return response()->json(array(
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
+            ));
+        } 
+        else {
+            DB::table('tag')->where('tag_id', $id)
+                    ->update([
+                        'tag_name' => $request['tag_name'],
+                        'updated_at' =>  Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
+                    ]);
+            return response()->json([
+                'success' => true,
+                'type' => 'success',
+                'msg'  => 'Tag has been updated.'
+            ]);
         }
         
     } 

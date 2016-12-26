@@ -30,13 +30,8 @@
         </div>
         @endif
         
-        <?php 
         
-           //print_r($response);
-        
-        ?>
-
-        <form role="form" method="POST" action="{{ url('/admin/survey/add') }}">
+        <form role="form" method="POST" action="{{ url("/admin/survey/edit/$survey->survey_id") }}">
             {{ csrf_field() }}  
             <div class="row form-group">
                 <div class="col-lg-12 {{ $errors->has('question') ? ' has-error' : '' }}">
@@ -50,37 +45,16 @@
                 </div>
             </div>
             
-            @foreach ($response as $response_item)
-                 
-            
-            
-            @endforeach
-            
-            
-            
-            <div class="row form-group">
-                <div class="col-lg-4 {{ $errors->has('response1') ? ' has-error' : '' }}">
-                    <label>Responses:</label><em>*</em>
-                    <input type="text" name="response1"  class="form-control" value="">
-                </div>
-            </div>
-            <div class="row form-group">
-                <div class="col-lg-4 {{ $errors->has('response2') ? ' has-error' : '' }}">
-                    <input type="text" name="response2"  class="form-control" value="">
-                </div>
-            </div>
-            
-            
-            
             <div id="bloc-response">
-            </div>
-
-            <div class="row form-group" style="margin-top:20px; margin-bottom: 20px">
-                <div class="col-md-6">
-                    <button class="btn btn-sm btn-default" id="add-response" type="button"><i class="fa fa-plus" aria-hidden="true"></i> Add more response</button>
+            @foreach ($responses as $response)
+                <div class="row form-group">
+                    <div class="col-lg-4">
+                        <input type="text" name="response[]"  class="form-control" value="{{ $response->response_text }}" disabled>
+                    </div>
                 </div>
+            @endforeach
             </div>
-
+            
             <div class="row form-group">
                 <div class="col-md-4">
                     <label>Status</label><em>*</em>

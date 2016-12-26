@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Yajra\Datatables\Facades\Datatables;
+use Carbon\Carbon;
 
 
 class SurveyController extends Controller {
@@ -30,9 +31,13 @@ class SurveyController extends Controller {
         return Datatables::of($items)
             ->addColumn('action', function ($item) {
                 $url_edit = url("/admin/survey/edit/$item->survey_id");
+                $url_stat = url("/admin/survey/stat/$item->survey_id");
                 return '<a href="'.$url_edit.'" class="btn btn-xs btn-primary edit_tag">Edit</a>
                         <a href="#" route="survey" rel="'.$item->survey_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
             })
+            ->editColumn('question', 
+                '<a href="{{url(\'/admin/survey/stat/\')}}/{{ $survey_id }}">{{ $question }}</a>'
+            )
             ->editColumn('active',
                 '@if($active==1) <span class="label label-success">YES</span> @else <span class="label label-danger">NO</span> @endif'
             )
@@ -127,14 +132,13 @@ class SurveyController extends Controller {
         
         $survey = DB::table('survey')->where('survey_id', $id)->first();
         //Task::where('column_name', '=' ,'column_data')->firstOrFail();
+        if(!$survey){
+            die('nor exit -> redirect');
+        }
+  
+        $responses = DB::table('response')->where('survey_id', $id)->get();
+        return view('backend.survey.edit', compact('title', 'survey', 'responses'));
 
-        if($survey){
-            $response = DB::table('response')->where('survey_id', $id)->get();
-            return view('backend.survey.edit', compact('title', 'survey', 'response'));
-        }
-        else{
-            
-        }
     }
 
     /**
@@ -146,6 +150,33 @@ class SurveyController extends Controller {
      */
     public function update(Request $request, $id) {
         
+        $survey = DB::table('survey')->where('survey_id', $id)->first();
+        if(!$survey){
+            die('nor exit -> redirect');
+        }
+        
+        $rules = ['question' => 'required|min:5'];
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+        else{
+            
+            $slug = str_slug($request['question'], '-');
+            
+            DB::table('survey')->where('survey_id', $id)
+                    ->update([
+                        'question' => $request['question'],
+                        'slug' => $slug,
+                        'active' => $request['active'],
+                        'updated_at' =>  Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
+                    ]);
+            
+            Session::flash('notif_type', 'success');
+            Session::flash('notif', 'Survey has been updated!');
+        }
+        
+        return redirect("admin/survey/edit/$id");
     }
 
     /**
@@ -155,15 +186,31 @@ class SurveyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
+        //$survey = DB::table('survey')->where('survey_id', $id)->first();
         $survey = DB::table('survey')->where('survey_id', '=', $id);
-        if($survey){
-            $survey->delete();
-            return response()->json([
-                'type' => 'success',
-                'msg'  => 'Survey has been deleted!'
-            ]);
+        if(!$survey){
+            die('nor exit -> redirect');
         }
+        $survey->delete();
+        return response()->json([
+            'type' => 'success',
+            'msg'  => 'Survey has been deleted!'
+        ]);
     }
+    
+    /*
+     * 
+     */
+    public function getStat($id) {
+        $survey = DB::table('survey')->where('survey_id', $id)->first();
+        if(!$survey){
+            die('nor exit -> redirect');
+        }
+        
+        return view('backend.survey.stat', compact('title', 'survey'));
+        
+    }
+    
     
     /**
      * Get the validation rules that apply to the request.

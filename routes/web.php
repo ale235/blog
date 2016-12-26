@@ -140,6 +140,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/survey/edit/{id}', 'SurveyController@edit');
     Route::post('/survey/edit/{id}', 'SurveyController@update');
     Route::delete('/survey/{id}', 'SurveyController@destroy');
+    Route::get('/survey/stat/{id}', 'SurveyController@getStat');
     
     
     
