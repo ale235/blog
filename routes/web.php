@@ -121,14 +121,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         return view('backend.settings.profile');
     });
     
-    
-    
-    
     //Message routes
     Route::get('/messages', 'ContactController@index');
     Route::get('/messages/getdata', 'ContactController@getMessage');
     Route::get('/messages/{id}', 'ContactController@show');
-    
     
     //Survey routes
     Route::get('/survey', 'SurveyController@index');
@@ -139,8 +135,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::post('/survey/edit/{id}', 'SurveyController@update');
     Route::delete('/survey/{id}', 'SurveyController@destroy');
     Route::get('/survey/stat/{id}', 'SurveyController@getStat');
-    
-    
     
     //Tag routes
     Route::get('/tags', 'TagsController@index');
