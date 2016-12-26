@@ -124,7 +124,19 @@ class SurveyController extends Controller {
      */
     public function edit($id) {
         $title = 'Admin | Survey';
-        return view('backend.survey.edit', compact('title'));
+        
+        $survey = DB::table('survey')->where('survey_id', '=', $id);
+        
+        //Task::where('column_name', '=' ,'column_data')->firstOrFail();
+        //$survey = DB::table('survey')->where('survey_id', '=', $id)->firstOrFail();
+        
+        if($survey){
+            $response = DB::table('response')->where('survey_id', '=', $id);
+            return view('backend.survey.edit', compact('title', 'survey', 'response'));
+        }
+        else{
+            
+        }
     }
 
     /**
