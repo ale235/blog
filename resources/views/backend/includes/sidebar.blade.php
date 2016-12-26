@@ -19,7 +19,7 @@
                 <a href="#"><i class="fa fa-file-text-o"></i> Posts<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ url('/admin/post/add') }}">New Post</a>
+                        <a href="{{ url('/admin/post/create') }}">New Post</a>
                     </li>
                     <li>
                         <a href="{{ url('/admin/post') }}">All Posts</a>

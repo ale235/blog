@@ -96,30 +96,28 @@ Route::get('auth/twitter/callback', 'Auth\RegisterController@handleTwitterCallba
 //Route::get('admin/users/getdata', 'Admin\UsersController@getUsers');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
-//Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth']], function() {
-    
-    
+     
     Route::get('/', 'AdminController@index');
 
-    Route::get('/post', function () {
-        return view('backend.post.list');
-    });
-
-    Route::get('/post/add', function () {
-        return view('backend.post.add');
-    });
-
-    Route::get('/parameters', function () {
-        return view('backend.settings.parameters');
-    });
-
+    //Comments routes
     Route::get('/comments', function () {
         return view('backend.comments.list');
     });
+    
 
-    Route::get('/profile', function () {
-        return view('backend.settings.profile');
-    });
+    //Post routes
+    Route::get('/post', 'PostController@index');
+    
+    Route::get('/post/create', 'PostController@create');
+    Route::post('/post', 'PostController@store');
+    
+    Route::get('/post/{id}', 'PostController@show');
+    
+    Route::get('/post/{id}/edit', 'PostController@edit');
+    Route::patch('/post/{id}', 'PostController@update');
+    
+    Route::delete('/post/{id}', 'PostController@destroy');
+    
     
     //Message routes
     Route::get('/messages', 'ContactController@index');
@@ -158,6 +156,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::post('/profile',  'ProfileController@updateProfile');
     Route::get('/password',  'ProfileController@showPasswordForm');
     Route::post('/password', 'ProfileController@updatePassword');
+    
+    //Other routes
+    Route::get('/parameters', function () {
+        return view('backend.settings.parameters');
+    });
     
 });
 

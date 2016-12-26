@@ -47,7 +47,7 @@ class ContactController extends Controller {
      */
     public function show($id) {
         
-        $message = \App\Models\Message::findOrFail($id);
+        $message = Contact::findOrFail($id);
 
         $users = '';
         if($message->users_id){
