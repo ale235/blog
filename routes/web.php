@@ -137,7 +137,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/survey/getdata', 'SurveyController@getSurvey');
     Route::get('/survey/add', 'SurveyController@create');
     Route::post('/survey/add', 'SurveyController@store');
-    
+    Route::get('/survey/edit/{id}', 'SurveyController@edit');
+    Route::post('/survey/edit/{id}', 'SurveyController@update');
 
     
     

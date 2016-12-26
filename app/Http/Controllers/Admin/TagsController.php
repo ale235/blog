@@ -72,9 +72,9 @@ class TagsController extends Controller {
         } 
         else {
             
-            DB::table('tag')->insert(
-                ['tag_name' => $request['tag_name']]
-            );
+            DB::table('tag')->insert([
+                'tag_name' => $request['tag_name'] 
+            ]);
             
             return response()->json([
                 'success' => true,

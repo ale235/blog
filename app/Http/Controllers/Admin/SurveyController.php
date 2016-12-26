@@ -30,7 +30,7 @@ class SurveyController extends Controller {
         return Datatables::of($items)
             ->addColumn('action', function ($item) {
                 $url_edit = url("/admin/survey/edit/$item->survey_id");
-                return '<a href="#" rel="'.$url_edit.'" class="btn btn-xs btn-primary edit_tag">Edit</a>
+                return '<a href="'.$url_edit.'" class="btn btn-xs btn-primary edit_tag">Edit</a>
                         <a href="#" route="survey" rel="'.$item->survey_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
             })
             ->editColumn('active',
@@ -66,8 +66,11 @@ class SurveyController extends Controller {
         }
         else{
             
+            $slug = str_slug($request['question'], '-');
+             
             $survey = DB::table('survey')->insert([
                 'question' => $request['question'],
+                'slug' => $slug,
                 'active' => $request['active'],
             ]);
             
@@ -120,7 +123,8 @@ class SurveyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        
+        $title = 'Admin | Survey';
+        return view('backend.survey.edit', compact('title'));
     }
 
     /**
