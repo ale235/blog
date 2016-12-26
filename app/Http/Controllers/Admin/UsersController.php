@@ -39,7 +39,7 @@ class UsersController extends Controller {
     /*
      * Get the users List
      */
-    public function getUsers() {
+    public function getUsers0000() {
         //$users = User::select(['users_id', 'username', 'email', 'created_at']);
         $users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at']);
         //return Datatables::of($users)->make();
@@ -53,6 +53,29 @@ class UsersController extends Controller {
             ->removeColumn('password')
             ->make(true);    
     }
+    
+    public function getUsers() {
+        
+        //die('yes');
+        
+        $users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at', 'seen']);
+        //$users = DB::select('select * from view_users');
+        
+        //return Datatables::of($users)->make();
+
+        return Datatables::of($users)
+            ->addColumn('action', function ($user) {
+                return '<a href="/admin/users/edit/'.$user->users_id.'" class="btn btn-xs btn-primary">Edit</a>
+                        <a href="#" tab="users" rel="'.$user->users_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
+            })
+            ->editColumn('users_id', 'ID: {{$users_id}}')
+            ->removeColumn('password')
+            ->make(true);    
+    }
+    
+    
+    
+    
     
     /*
      * 
@@ -76,7 +99,7 @@ class UsersController extends Controller {
         else {
             
             $user = User::create([
-                'username' => $request['name'],
+                'username' => $request['username'],
                 'phone' => $request['phone'],
                 'email' => $request['email'],
                 'users_status_id' => $request['users_status_id'],
@@ -116,28 +139,32 @@ class UsersController extends Controller {
     public function EditUser($id, Request $request) {
         $user = User::findOrFail($id);
         
-        //Helpers::print_r($_POST, true);
-        
         $check_password = false;
         if($request['reset_password']){
-            $rules = $this->rules_user($check_password=true);
+            $check_password=true;
         }
+        $rules = $this->rules_user($user->users_id, $check_password);
         
-        $rules = $this->rules_user($check_password);
         $validator = Validator::make($request->all(), $rules);
         
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         } 
         else {
-            
-            $user->update($request->all());
-           
+            $updated = $user->update($request->all());
+            if($check_password){
+                
+                User::where('users_id', $id)->update(
+                  ['password' => bcrypt($request['password'])]      
+                );
+  
+            }
+            Session::flash('notif_type', 'success');
+            Session::flash('notif', 'User updated successfully!');
         }
-
         
-
         return redirect("admin/users/edit/$id");
+        
     }  
     
     /**
@@ -166,13 +193,25 @@ class UsersController extends Controller {
      *
      * @return array
      */
-    public function rules_user($check_password=false) {
+    public function rules_user($users_id = null, $check_password=false) {
         $rules = [
-            'name' => 'required|max:20',
-            'email' => 'required|email|max:255|unique:users',
+            'username' => 'required|max:20',
             'phone' => 'numeric|digits_between:10,12',
-            'users_role_id' => 'required'
+            'users_role_id' => 'required',
+            
         ];
+        
+        if(!empty($users_id)){
+            $rules = [
+                'email' => 'required|email|max:45|unique:users,email, ' . $users_id . ',users_id'
+            ];
+        }
+        else{
+            $rules = [
+                'email' => 'required|email|max:45|unique:users'
+            ];
+        }
+        
         
         if($check_password){
             $rules = [
@@ -184,7 +223,4 @@ class UsersController extends Controller {
         return $rules;
     }
     
-
-   
-
 }

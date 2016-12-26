@@ -38,12 +38,12 @@
                     <div class="row">
                         <div class="col-lg-12">	
                             <div class="row form-group">
-                                <div class="col-md-6 {{ $errors->has('name') ? ' has-error' : '' }}">
+                                <div class="col-md-6 {{ $errors->has('username') ? ' has-error' : '' }}">
                                     <label>Name</label><em>*</em>
-                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') ? old('name'):$user->username }}">
-                                    @if ($errors->has('name'))
+                                    <input type="text" name="username" id="username" class="form-control" value="{{ old('username') ? old('username'):$user->username }}">
+                                    @if ($errors->has('username'))
                                     <span class="form-error">
-                                        {{ $errors->first('name') }}
+                                        {{ $errors->first('username') }}
                                     </span>
                                     @endif
                                 </div>
@@ -87,20 +87,24 @@
                                 <div class="col-md-6">
                                     <label>User Status</label><em>*</em>
                                     <select id="users_status_id" name="users_status_id" class="form-control">
-                                        <option value="1" {{ ($user->users_role_id == '1' ? "selected":"") }}>Active</option>
-                                        <option value="2" {{ ($user->users_role_id == '2' ? "selected":"") }}>Inactive</option>
-                                        <option value="3" {{ ($user->users_role_id == '3' ? "selected":"") }}>Disabled</option>
+                                        <option value="1" {{ ($user->users_status_id == '1' ? "selected":"") }}>Active</option>
+                                        <option value="2" {{ ($user->users_status_id == '2' ? "selected":"") }}>Inactive</option>
+                                        <option value="3" {{ ($user->users_status_id == '3' ? "selected":"") }}>Disabled</option>
                                     </select>
                                 </div>
                             </div>
                             
                             <div class="row form-group">
                                 <div class="col-md-6">
-                                    <label><input type="checkbox" id="reset_password" name="reset_password"> Reset Password</label>
+                                    <!--<label><input type="checkbox" id="reset_password" name="reset_password"> Reset Password</label>-->
+                                    {{ Form::checkbox('reset_password', '1', old('reset_password', false), array('id'=>'reset_password', 'class' => 'check')) }}
+
+                                    {{ Form::label('reset_password', 'Reset Password') }}
+
                                 </div>
                             </div>
                             
-                            <div class="row form-group row-password" style="display: none">
+                            <div class="row form-group row-password" style="<?php if(!old('reset_password')) echo 'display:none'?>">
                                 <div class="col-md-6 {!! ($errors->has('password')) ? ' has-error' : '' !!}">
                                     <label>Password</label><em>*</em>
                                     <input type="password" name="password" id="password" class="form-control" value="{{ old('password') ? old('password'):@$password }}">
@@ -120,9 +124,7 @@
                                     @endif
                                 </div>
                             </div>
-                            
-
-                            
+                                   
                             <div class="row form-group">
                                 <div class="col-md-6">
                                     <button class="btn btn-primary btn-block-" type="submit">Send</button>

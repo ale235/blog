@@ -38,12 +38,12 @@
                     <div class="row">
                         <div class="col-lg-12">	
                             <div class="row form-group">
-                                <div class="col-md-6 {{ $errors->has('name') ? ' has-error' : '' }}">
+                                <div class="col-md-6 {{ $errors->has('username') ? ' has-error' : '' }}">
                                     <label>Name</label><em>*</em>
-                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name') ? old('name'):@$username }}">
-                                    @if ($errors->has('name'))
+                                    <input type="text" name="username" id="username" class="form-control" value="{{ old('username') ? old('username'):@$username }}">
+                                    @if ($errors->has('username'))
                                     <span class="form-error">
-                                        {{ $errors->first('name') }}
+                                        {{ $errors->first('username') }}
                                     </span>
                                     @endif
                                 </div>

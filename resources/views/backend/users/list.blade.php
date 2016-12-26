@@ -26,6 +26,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Created At</th>
+                    <th>Seen</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -48,13 +49,15 @@
             bAutoWidth: true,
             processing: true,
             serverSide: true,
-            order: [3, "desc"],
+            //order: [3, "desc"],
+            
             ajax: '{{ url("/admin/users/getdata") }}',
             columns: [
                 {data: 'users_id', visible: true, searchable: false},
                 {data: 'username'},
                 {data: 'email'},
                 {data: 'created_at'},
+                {data: 'seen'},
                 {data: 'action', orderable: false, searchable: false, bSortable: false, width: '72px'},
             ]
         });
