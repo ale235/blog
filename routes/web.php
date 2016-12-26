@@ -26,17 +26,17 @@ Route::get('/about', function () {
     return view('frontend.about');
 });
 
-Route::get('/contact', function () {
-    return view('frontend.contact');
-});
+//Route::get('/contact', function () {
+//    return view('frontend.contact');
+//});
 
-Route::get('/contact', function () {
-    return view('frontend.contact');
-});
+//Route::get('/contact', function () {
+//    return view('frontend.contact');
+//});
 
-Route::get('/contact', function () {
-    return view('frontend.contact');
-});
+//Contact routes
+Route::get('/contact', 'ContactController@index');
+Route::post('/contact', 'ContactController@store');
 
 
 Route::group(['middleware' => 'auth'], function () {
