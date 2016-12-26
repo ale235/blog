@@ -125,13 +125,11 @@ class SurveyController extends Controller {
     public function edit($id) {
         $title = 'Admin | Survey';
         
-        $survey = DB::table('survey')->where('survey_id', '=', $id);
-        
+        $survey = DB::table('survey')->where('survey_id', $id)->first();
         //Task::where('column_name', '=' ,'column_data')->firstOrFail();
-        //$survey = DB::table('survey')->where('survey_id', '=', $id)->firstOrFail();
-        
+
         if($survey){
-            $response = DB::table('response')->where('survey_id', '=', $id);
+            $response = DB::table('response')->where('survey_id', $id)->get();
             return view('backend.survey.edit', compact('title', 'survey', 'response'));
         }
         else{

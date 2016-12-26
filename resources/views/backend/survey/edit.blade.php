@@ -29,6 +29,12 @@
             <p>{{ Session::get('notif') }}</p>
         </div>
         @endif
+        
+        <?php 
+        
+           //print_r($response);
+        
+        ?>
 
         <form role="form" method="POST" action="{{ url('/admin/survey/add') }}">
             {{ csrf_field() }}  
@@ -43,6 +49,15 @@
                     @endif
                 </div>
             </div>
+            
+            @foreach ($response as $response_item)
+                 
+            
+            
+            @endforeach
+            
+            
+            
             <div class="row form-group">
                 <div class="col-lg-4 {{ $errors->has('response1') ? ' has-error' : '' }}">
                     <label>Responses:</label><em>*</em>
@@ -54,6 +69,9 @@
                     <input type="text" name="response2"  class="form-control" value="">
                 </div>
             </div>
+            
+            
+            
             <div id="bloc-response">
             </div>
 
@@ -67,8 +85,8 @@
                 <div class="col-md-4">
                     <label>Status</label><em>*</em>
                     <select id="active" name="active" class="form-control">
-                        <option value="1" {{ (old('active') == '1' ? "selected":"") }}>Active</option>
-                        <option value="0" {{ (old('active') == '0' ? "selected":"") }}>Inactive</option>
+                        <option value="1" {{ (@$survey->active == '1' ? "selected":"") }}>Active</option>
+                        <option value="0" {{ (@$survey->active == '0' ? "selected":"") }}>Inactive</option>
                     </select>
                 </div>
             </div>

@@ -92,7 +92,7 @@
          * 
          */
         $(document).on('click', '#add-response', function () {
-            var html = '' +
+            var row = '' +
                     '<div class="row form-group" style="">' +
                     '<div class="col-lg-4">' +
                     '<input type="text" name="response[]"  class="form-control" value="">' +
@@ -101,7 +101,7 @@
                     '<button class="btn btn-sm btn-danger delete-response" type="button"><i class="fa fa-trash"></i></button>' +
                     '</div>' +
                     '</div>';
-            $('#bloc-response').append(html);
+            $('#bloc-response').append(row);
             return false;
         });
         /*
