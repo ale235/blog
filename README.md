@@ -11,6 +11,9 @@ A nice blog system with laravel 5.3
 ## Blog page
 ![alt tag](https://github.com/halimus/laravel5.3-blog/blob/master/public/images/capture2.png)
 
+## Login Page with [Laravel Socialite](https://github.com/laravel/socialite)
+![alt tag](https://github.com/halimus/laravel5.3-blog/blob/master/public/images/capture5.png)
+
 ## Admin Dashboard
 ![alt tag](https://github.com/halimus/laravel5.3-blog/blob/master/public/images/capture3.png)
 
