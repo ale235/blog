@@ -34,6 +34,7 @@ Route::get('/about', function () {
 //    return view('frontend.contact');
 //});
 
+
 //Contact routes
 Route::get('/contact', 'ContactController@index');
 Route::post('/contact', 'ContactController@store');
@@ -108,10 +109,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         return view('backend.post.add');
     });
 
-   
-    
-    
-
     Route::get('/parameters', function () {
         return view('backend.settings.parameters');
     });
@@ -120,16 +117,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         return view('backend.comments.list');
     });
 
-    Route::get('/messages', function () {
-        return view('backend.messages.list');
-    });
-
-   
-    
-    
     Route::get('/profile', function () {
         return view('backend.settings.profile');
     });
+    
+    
+    
+    
+    //Message routes
+    Route::get('/messages', 'ContactController@index');
+    Route::get('/messages/getdata', 'ContactController@getMessage');
+    Route::get('/messages/{id}', 'ContactController@show');
     
     
     //Survey routes
