@@ -145,7 +145,14 @@ class SurveyController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        
+        $survey = DB::table('survey')->where('survey_id', '=', $id);
+        if($survey){
+            $survey->delete();
+            return response()->json([
+                'type' => 'success',
+                'msg'  => 'Survey has been deleted!'
+            ]);
+        }
     }
     
     /**
