@@ -47,7 +47,7 @@ class SurveyController extends Controller {
             return response()->json([
                 'success' => false,
                 'type' => 'error',
-                'msg'  => 'You was voted for this survey!'
+                'msg'  => 'You already voted for this survey!'
             ], 200);
         }
         
