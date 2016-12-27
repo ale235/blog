@@ -34,7 +34,9 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        
+        \App\Helpers::print_r($_POST); exit;
+        
     }
 
     /**

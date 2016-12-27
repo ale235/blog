@@ -14,25 +14,14 @@
 Route::get('/', function () {
     return view('frontend.home');
 });
-Route::get('/blog', function () {
-    return view('frontend.blog');
-});
-
-Route::get('/post', function () {
-    return view('frontend.post');
-});
-
 Route::get('/about', function () {
     return view('frontend.about');
 });
 
-//Route::get('/contact', function () {
-//    return view('frontend.contact');
-//});
 
-//Route::get('/contact', function () {
-//    return view('frontend.contact');
-//});
+// Blog routes
+Route::get('/blog', 'BlogController@index');
+Route::get('/post', 'BlogController@getPost');
 
 
 //Contact routes
@@ -42,12 +31,13 @@ Route::post('/contact', 'ContactController@store');
 
 Route::group(['middleware' => 'auth'], function () {
     
-    Route::get('/profile', function () {
-        return view('frontend.user.profile');
-    });
-    Route::get('/change_password', function () {
-        return view('frontend.user.change_password');
-    });
+    //Profile routes
+    Route::get('/profile', 'ProfileController@showProfileForm');
+    Route::post('/profile', 'ProfileController@updateProfile');
+    Route::get('/change_password', 'ProfileController@showPasswordForm');
+    Route::post('/change_password', 'ProfileController@updatePassword');
+    
+    
     
 });
 
@@ -92,13 +82,12 @@ Route::get('auth/twitter/callback', 'Auth\RegisterController@handleTwitterCallba
   |
  */
 
-//Route::get('admin/users', 'Admin\UsersController@index');
-//Route::get('admin/users/getdata', 'Admin\UsersController@getUsers');
-
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
      
+    //Dashboard routes
     Route::get('/', 'AdminController@index');
 
+    
     //Comments routes
     Route::get('/comments', function () {
         return view('backend.comments.list');
@@ -110,6 +99,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     
     Route::get('/post/create', 'PostController@create');
     Route::post('/post', 'PostController@store');
+    //Route::post('/post/create', 'PostController@store');
     
     Route::get('/post/{id}', 'PostController@show');
     
@@ -156,6 +146,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::post('/profile',  'ProfileController@updateProfile');
     Route::get('/password',  'ProfileController@showPasswordForm');
     Route::post('/password', 'ProfileController@updatePassword');
+    
     
     //Other routes
     Route::get('/parameters', function () {
