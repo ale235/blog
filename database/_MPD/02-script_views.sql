@@ -60,4 +60,90 @@ FROM
 );
 
 
+--
+-- 2- view_survery
+--
+
+CREATE
+    /*[ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
+    [DEFINER = { user | CURRENT_USER }]
+    [SQL SECURITY { DEFINER | INVOKER }]*/
+    VIEW `view_survery` 
+    AS
+(
+SELECT
+    `survey`.`survey_id`
+    , `survey`.`question`
+    , `survey`.`slug`
+    , `survey`.`created_at`
+    , `survey`.`updated_at`
+    , DATE_FORMAT(`survey`.`created_at`, '%m/%d/%Y %H:%i:%s') AS `created_at_us`
+    , `survey`.`active`
+    , `response`.`response_id`
+    , `response`.`response_text`
+FROM
+    `response`
+    INNER JOIN `survey` 
+        ON (`response`.`survey_id` = `survey`.`survey_id`)
+);
+
+
+--
+-- 3- view_users_survey
+--
+
+CREATE
+    /*[ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
+    [DEFINER = { user | CURRENT_USER }]
+    [SQL SECURITY { DEFINER | INVOKER }]*/
+    VIEW `view_users_survey` 
+    AS
+(
+SELECT
+	`users_survey`.`users_survey_id`
+    , `users_survey`.`users_id`
+    , `users_survey`.`response_id`
+    , `view_survery`.`response_text`
+    , `users_survey`.`seen`
+    , `users_survey`.`created_at` AS voted_at
+    , DATE_FORMAT(`users_survey`.`created_at`, '%m/%d/%Y %H:%i:%s') AS `voted_at_us`
+    , `view_survery`.`survey_id`
+    , `view_survery`.`question`
+    , `view_survery`.`slug`
+    , `view_survery`.`created_at`
+    , `view_survery`.`created_at_us`
+    , `view_survery`.`updated_at`
+    , `view_survery`.`active`
+FROM
+    `users_survey`
+    INNER JOIN `view_survery` 
+        ON (`users_survey`.`response_id` = `view_survery`.`response_id`)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -35,12 +35,15 @@ class SurveyController extends Controller {
         $users_id = Auth::id();
         
         
+        $response = DB::table('response')->where('response_id', $response_id)->first();
         
+        $is_vote = DB::table('view_users_survey')->where('users_id', $users_id)
+                                           ->where('survey_id', $response->survey_id)
+                                           ->first();
         
-        $is_vote = DB::table('users_survey')->where('users_id', $users_id)
-                                           ->where('response_id', $response_id)
-                                           ->get();
-        if(!$is_vote){
+                                   //print_r($is_vote);
+        
+        if(!empty($is_vote)){
             return response()->json([
                 'success' => false,
                 'type' => 'error',
