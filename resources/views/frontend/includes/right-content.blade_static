@@ -63,15 +63,18 @@
             </p>
         </div>
         <div class="panel-body">
-            @if(!empty($tags))
-                <ul class="ul-tag">
-                @foreach ($tags as $tag)
-                    <li><a href="{{ url('/blog?tag='.$tag->tag_slug.'') }}">{{ $tag->tag_name }}</a></li>
-                @endforeach
-                </ul>
-            @endif
+            <ul class="ul-tag">
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
+                <li><a href="#">Web Developement</a></li>
+                <li><a href="#">AngularJS</a></li>
+                <li><a href="#">React</a></li>
+                <li><a href="#">NodeJS</a></li>
+            </ul>
         </div>
     </div>
+
 
 
     <div class="panel panel-default panel-custom3">
@@ -80,33 +83,31 @@
                 Survey of the week
             </p>
         </div>
-        <form method="post" action="{{ url('/survey') }}" id="form-vote">
-            {{ csrf_field() }}  
-            <div class="panel-body">
-                <div class="survey_response">
-                @if(!empty($tags))
-                   <span>{{ $survey->question }}</span> 
-                   <ul class="list-group" style="border:0px solid silver;margin-bottom: 0px; margin-left: 15px">
-                       @foreach ($responses as $response)
-                            <li class="list-group-item" style="border:1px solid transparent; padding:0px">
-                                <div class="radio">
-                                    <label><input type="radio" name="response[]" value="{{ $response->response_id }}"> {{ $response->response_text }}</label>
-                                </div>
-                            </li>
-                       @endforeach
-                   </ul>
-                @endif
-                </div>
-                <div class="survey_result" style="display: none">
-                    result graphe
-                </div>
-            </div>
-            <div class="panel-footer">
-                <button type="button" class="btn btn-primary btn-sm vote">Vote</button>
-                <a href="#" id="view-result">View Result</a>
-                <a href="#" id="view-vote" style="display: none">Back to vote</a>
-            </div>
-        </form>
+        <div class="panel-body">
+            <span>Which Language you think there is more oportunity for Job?</span> 
+            <ul class="list-group" style="border:0px solid silver;margin-bottom: 0px; margin-left: 15px">
+                <li class="list-group-item" style="border:1px solid transparent; padding:0px">
+                    <div class="radio">
+                        <label><input type="radio" name="optionsRadios"> C#.NET</label>
+                    </div>
+                </li>
+                <li class="list-group-item" style="border:1px solid transparent; padding: 0px">
+                    <div class="radio">
+                        <label><input type="radio" name="optionsRadios"> Java</label>
+                    </div>
+                </li>
+                <li class="list-group-item" style="border:1px solid transparent; padding: 0px">
+                    <div class="radio">
+                        <label><input type="radio" name="optionsRadios"> PHP</label>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <div class="panel-footer">
+            <button type="button" class="btn btn-primary btn-sm">Vote</button>
+            <a href="#">View Result</a>
+        </div>
     </div>
 
 </div>

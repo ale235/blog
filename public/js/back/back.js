@@ -83,7 +83,7 @@ function lobibox(type, msg, options) {
         delay: delay,
         position: '' + position + '',
         sound: sound,
-        soundPath: base_url + 'plugings/back/lobibox/sounds/',
+        soundPath: base_url + 'plugings/lobibox/sounds/',
         delayIndicator: false,
         closeOnClick: true,
         width: width,

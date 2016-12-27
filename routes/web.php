@@ -18,6 +18,8 @@ Route::get('/about', function () {
     return view('frontend.about');
 });
 
+Route::post('/survey', 'SurveyController@vote');
+
 
 // Blog routes
 Route::get('/blog', 'BlogController@index');

@@ -389,3 +389,8 @@ ul.errors{
    font-weight: normal;
    font-size: 0.9em;
 }
+
+
+.lobibox-notify-wrapper{
+    z-index: 9999;
+}

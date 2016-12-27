@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use \App\Helpers;
 
 class BlogController extends Controller {
 
@@ -15,7 +17,13 @@ class BlogController extends Controller {
      */
     public function index() {
         $title = 'Blog';
-        return view('frontend.blog', compact('title'));
+        
+        $tags = DB::table('tag')->select('tag_id', 'tag_name', 'tag_slug')->get();
+        $survey = DB::table('survey')->where('active', 1)->orderBy('created_at', 'desc')->first();
+        $responses = DB::table('response')->where('survey_id', $survey->survey_id)->get();
+         
+        
+        return view('frontend.blog', compact('title', 'tags', 'survey', 'responses'));
     }
     
     
