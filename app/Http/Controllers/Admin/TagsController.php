@@ -72,8 +72,11 @@ class TagsController extends Controller {
         } 
         else {
             
+            $slug = str_slug($request['tag_name'], '-');
+            
             DB::table('tag')->insert([
-                'tag_name' => $request['tag_name'] 
+                'tag_name' => $request['tag_name'],
+                'tag_slug' => $slug 
             ]);
             
             return response()->json([
@@ -151,9 +154,13 @@ class TagsController extends Controller {
             ));
         } 
         else {
+            
+            $slug = str_slug($request['tag_name'], '-');
+            
             DB::table('tag')->where('tag_id', $id)
                     ->update([
                         'tag_name' => $request['tag_name'],
+                        'tag_slug' => $slug,
                         'updated_at' =>  Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
                     ]);
             return response()->json([
