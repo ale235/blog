@@ -46,7 +46,16 @@ $(function () {
         }
     });
 
-
+    /*
+     * 
+     */
+    $("#form-post #title").keyup(function () {
+        var str = $(this).val();
+        var trimmed = $.trim(str);
+        var slug = trimmed.replace(/[^a-z0-9-]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+        slug = slug.toLowerCase();
+        $("#slug").val(slug);
+    });
 
 
 

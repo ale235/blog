@@ -9,8 +9,9 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">New Post <a href="#" class="btn btn-default" role="button">Preview</a>
-            <a href="{{ url('admin/post') }}" style="float: right;font-size: 16px; margin-top:20px;">Back to Post</a>
+        <h1 class="page-header">New Post 
+            <a href="{{ url('admin/post') }}" class="btn btn-default" role="button" style="float: right">Back to Post</a>
+            <a href="#" class="btn btn-default" role="button" style="float: right; margin-right:10px">Preview</a>
         </h1>
     </div>
     <!-- /.col-lg-12 -->
@@ -37,7 +38,7 @@
         </div>
         @endif
 
-        <form role="form" method="POST" action="{{ url('/admin/post/create') }}">
+        <form role="form" method="POST" action="{{ url('/admin/post') }}" id="form-post">
             {{ csrf_field() }}    
             <div class="row form-group">
                 <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
@@ -50,6 +51,21 @@
                     @endif
                 </div>
             </div>
+
+            <div class="row form-group">
+                <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
+                    <label>Permanent link:</label><em>*</em><br>
+                    http://localhost:8000/blog/
+                    <input type="text" name="slug" id="slug" class="" value="{{ old('slug') ? old('slug'):@$slug }}" size="50">
+                    @if ($errors->has('title'))
+                    <span class="form-error">
+                        {{ $errors->first('title') }}
+                    </span>
+                    @endif
+                </div>
+            </div>
+
+
             <div class="row form-group">
                 <div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">
                     <label>Summary</label><em>*</em>
@@ -76,11 +92,9 @@
 
             <div class="row form-group">
                 <div class="col-md-3">
-                    <label>Status</label><em>*</em>
-                    <select id="active" name="active" class="form-control">
-                        <option value="1" {{ (old('active') == '1' ? "selected":"") }}>Active</option>
-                        <option value="0" {{ (old('active') == '0' ? "selected":"") }}>Inactive</option>
-                    </select>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="published" id="published" value="1">Published</label>
+                    </div>
                 </div>
             </div>
 
@@ -97,18 +111,107 @@
 @endsection
 
 @push('scripts')
+<script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+
+
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 
-<script type="text/javascript">
-$(function () {
-    $('#content0').summernote();
 
-    $('#content').summernote({
+<script src="{{asset('plugings/elfinder/js/elfinder.min.js')}}"></script>
+<script src="plugin/summernote-ext-elfinder/elfinder-callback.js"></script>
+
+
+<script src="{{asset('plugings/summernote/summernote-ext-elfinder.js')}}"></script>
+
+
+<script type="text/javascript">
+// https://github.com/semplon/summernote-ext-elfinder
+// https://github.com/summernote/summernote/issues/1203
+
+$(function () {
+    $('#content0').summernote({
         height: 300, // set editor height
         minHeight: null, // set minimum height of editor
         maxHeight: null, // set maximum height of editor
     });
-    
+
+    $('#content00').summernote({
+        height: 200,
+        tabsize: 2,
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['insert', ['elfinder']]
+        ]
+    });
+    $('#content').summernote({
+        height: 300,
+        toolbar: [
+            ['style', ['style']],
+            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video', 'hr', 'readmore']],
+            ['genixcms', ['elfinder']],
+            ['view', ['fullscreen', 'codeview']],
+            ['help', ['help']]
+        ],
+        onImageUpload: function (files, editor, welEditable) {
+            sendFile(files[0], editor, welEditable);
+        }
+    });
+
+
 });
+
+function elfinderDialog(){
+    var fm = $('<div/>').dialogelfinder({
+        url : '{{ url("/plugings/elfinder/php/connector.minimal.php") }}',
+        lang : 'en',
+        width : 840,
+        height: 450,
+        destroyOnClose : true,
+        getFileCallback : function(files, fm) {
+            console.log(files);
+            $('.editor').summernote('editor.insertImage',files.url);
+        },
+       commandsOptions : {
+            getfile : {
+                oncomplete : 'close',
+                folders : false
+            }
+        }
+
+    }).dialogelfinder('instance');
+}
+
+
+
+function elfinderDialog000() {
+    var fm = $('<div/>').dialogelfinder({
+        //url: 'https://path.to/your/connector.php', // change with the url of your connector
+        url: '{{ url("/plugings/elfinder/php/connector.php") }}',
+        lang: 'en',
+        width: 840,
+        height: 450,
+        destroyOnClose: true,
+        getFileCallback: function (files, fm) {
+            console.log(files);
+            $('.editor').summernote('editor.insertImage', files.url);
+        },
+        commandsOptions: {
+            getfile: {
+                oncomplete: 'close',
+                folders: false
+            }
+        }
+    }).dialogelfinder('instance');
+}
+
+
 </script>
 @endpush

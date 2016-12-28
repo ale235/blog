@@ -24,6 +24,11 @@ class PostController extends Controller {
      */
     public function create() {
         
+        if(!empty($_POST)){
+            print_r($_POST);
+            exit;
+        }
+        
         return view('backend.post.add');
     }
 
@@ -35,8 +40,10 @@ class PostController extends Controller {
      */
     public function store(Request $request) {
         
-        \App\Helpers::print_r($_POST); exit;
+       // \App\Helpers::print_r($_POST); exit;
         
+        
+        return redirect("admin/post/create");
     }
 
     /**
