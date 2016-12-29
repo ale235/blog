@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @push('css')
-
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 @endpush
 
 
@@ -111,49 +111,107 @@
 @endsection
 
 @push('scripts')
-<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
-<script type="text/javascript"> 
-var editor_config = {
-    //path_absolute: "/",
-    path_absolute: '{{ url("/") }}',
-    selector: "textarea[name=content]",
-    plugins: [
-        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-        "searchreplace wordcount visualblocks visualchars code fullscreen",
-        "insertdatetime media nonbreaking save table contextmenu directionality",
-        "emoticons template paste textcolor colorpicker textpattern"
-    ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-    relative_urls: false,
-    file_browser_callback: function (field_name, url, type, win) {
-        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-        var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
 
-        var cmsURL = editor_config.path_absolute + '/laravel-filemanager?field_name=' + field_name;
-        if (type == 'image') {
-            cmsURL = cmsURL + "&type=Images";
-        } else {
-            cmsURL = cmsURL + "&type=Files";
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+
+
+<script src="{{asset('plugings/elfinder/js/elfinder.min.js')}}"></script>
+<script src="plugin/summernote-ext-elfinder/elfinder-callback.js"></script>
+
+
+<script src="{{asset('plugings/summernote/summernote-ext-elfinder.js')}}"></script>
+
+
+<script type="text/javascript">
+// https://github.com/semplon/summernote-ext-elfinder
+// https://github.com/summernote/summernote/issues/1203
+
+$(function () {
+    $('#content0').summernote({
+        height: 300, // set editor height
+        minHeight: null, // set minimum height of editor
+        maxHeight: null, // set maximum height of editor
+    });
+
+    $('#content00').summernote({
+        height: 200,
+        tabsize: 2,
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['insert', ['elfinder']]
+        ]
+    });
+    $('#content').summernote({
+        height: 300,
+        toolbar: [
+            ['style', ['style']],
+            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video', 'hr', 'readmore']],
+            ['genixcms', ['elfinder']],
+            ['view', ['fullscreen', 'codeview']],
+            ['help', ['help']]
+        ],
+        onImageUpload: function (files, editor, welEditable) {
+            sendFile(files[0], editor, welEditable);
+        }
+    });
+
+
+});
+
+function elfinderDialog(){
+    var fm = $('<div/>').dialogelfinder({
+        url : '{{ url("/plugings/elfinder/php/connector.minimal.php") }}',
+        lang : 'en',
+        width : 840,
+        height: 450,
+        destroyOnClose : true,
+        getFileCallback : function(files, fm) {
+            console.log(files);
+            $('.editor').summernote('editor.insertImage',files.url);
+        },
+       commandsOptions : {
+            getfile : {
+                oncomplete : 'close',
+                folders : false
+            }
         }
 
-        tinyMCE.activeEditor.windowManager.open({
-            file: cmsURL,
-            title: 'Filemanager',
-            width: x * 0.8,
-            height: y * 0.8,
-            resizable: "yes",
-            close_previous: "no"
-        });
-    }
-};
-tinymce.init(editor_config);
+    }).dialogelfinder('instance');
+}
+
+
+
+function elfinderDialog000() {
+    var fm = $('<div/>').dialogelfinder({
+        //url: 'https://path.to/your/connector.php', // change with the url of your connector
+        url: '{{ url("/plugings/elfinder/php/connector.php") }}',
+        lang: 'en',
+        width: 840,
+        height: 450,
+        destroyOnClose: true,
+        getFileCallback: function (files, fm) {
+            console.log(files);
+            $('.editor').summernote('editor.insertImage', files.url);
+        },
+        commandsOptions: {
+            getfile: {
+                oncomplete: 'close',
+                folders: false
+            }
+        }
+    }).dialogelfinder('instance');
+}
+
 
 </script>
-
-<script src="{{ asset('/vendor/laravel-filemanager/js/lfm.js') }}"></script>
-<script>
-    $('#lfm').filemanager('image');
-</script>
-
 @endpush
