@@ -110,6 +110,12 @@
 </div>
 @endsection
 
+<style>
+    iframe .panel{
+        border-radius: 0px;
+    }
+</style>
+
 @push('scripts')
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
@@ -122,10 +128,13 @@ var editor_config = {
         "advlist autolink lists link image charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen",
         "insertdatetime media nonbreaking save table contextmenu directionality",
-        "emoticons template paste textcolor colorpicker textpattern"
+        "emoticons template paste textcolor colorpicker textpattern textcolor colorpicker"
     ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
     relative_urls: false,
+    color_picker_callback: function(callback, value) {
+        callback('#FF00FF');
+    },
     file_browser_callback: function (field_name, url, type, win) {
         var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
         var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
@@ -148,6 +157,13 @@ var editor_config = {
     }
 };
 tinymce.init(editor_config);
+
+//tinymce.init({
+//  selector: "textarea",  // change this value according to your HTML
+//  plugins: "textcolor colorpicker",
+//  toolbar: "forecolor backcolor"
+//});
+
 
 </script>
 
