@@ -20,7 +20,7 @@
 <!-- /.row -->
 <div class="row">
 
-    <div class="col-lg-8 form" style="">
+    <div class="col-lg-8 form" style="margin-bottom:60px">
 
         @if($errors->any()) 
         <ul class="errors alert alert-danger alert-dismissable">
@@ -69,7 +69,7 @@
             <div class="row form-group">
                 <div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">
                     <label>Summary</label><em>*</em>
-                    <textarea name="summary" id="summary" class="form-control" rows="4"></textarea>
+                    <textarea name="summary" id="summary" class="form-control textarea" rows="4"></textarea>
                     @if ($errors->has('summary'))
                     <span class="form-error">
                         {{ $errors->first('summary') }}
@@ -81,7 +81,7 @@
             <div class="row form-group-">
                 <div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">
                     <label>Content</label><em>*</em>
-                    <textarea name="content" id="content" class="form-control" rows="8"></textarea>  
+                    <textarea name="content" id="content" class="form-control textarea" rows="8"></textarea>  
                     @if ($errors->has('content'))
                     <span class="form-error">
                         {{ $errors->first('content') }}
@@ -110,27 +110,21 @@
 </div>
 @endsection
 
-<style>
-    iframe .panel{
-        border-radius: 0px;
-    }
-</style>
 
 @push('scripts')
 <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
 <script type="text/javascript"> 
-var editor_config = {
-    //path_absolute: "/",
+var editor_config_1 = {
     path_absolute: '{{ url("/") }}',
-    selector: "textarea[name=content]",
+    selector: "#summary",
+    height : "200",
     plugins: [
-        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-        "searchreplace wordcount visualblocks visualchars code fullscreen",
-        "insertdatetime media nonbreaking save table contextmenu directionality",
-        "emoticons template paste textcolor colorpicker textpattern textcolor colorpicker"
+        "advlist autolink lists link image charmap preview hr anchor wordcount visualblocks visualchars code",
+        "insertdatetime media nonbreaking textcolor colorpicker textpattern"
     ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | link image | preview",
+    menubar: false,
     relative_urls: false,
     color_picker_callback: function(callback, value) {
         callback('#FF00FF');
@@ -145,7 +139,43 @@ var editor_config = {
         } else {
             cmsURL = cmsURL + "&type=Files";
         }
+        tinyMCE.activeEditor.windowManager.open({
+            file: cmsURL,
+            title: 'Filemanager',
+            width: x * 0.8,
+            height: y * 0.8,
+            resizable: "yes",
+            close_previous: "no"
+        });
+    }
+};    
+    
+var editor_config_2 = {
+    path_absolute: '{{ url("/") }}',
+    selector: "#content",
+    height : "450",
+    plugins: [
+        "advlist autolink lists link image charmap preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking table textcolor colorpicker textpattern"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify \n\
+              | bullist numlist outdent indent | searchreplace hr pagebreak | link image media | preview",
+    menubar: true,
+    relative_urls: false,
+    color_picker_callback: function(callback, value) {
+        callback('#FF00FF');
+    },
+    file_browser_callback: function (field_name, url, type, win) {
+        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+        var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
 
+        var cmsURL = editor_config.path_absolute + '/laravel-filemanager?field_name=' + field_name;
+        if (type == 'image') {
+            cmsURL = cmsURL + "&type=Images";
+        } else {
+            cmsURL = cmsURL + "&type=Files";
+        }
         tinyMCE.activeEditor.windowManager.open({
             file: cmsURL,
             title: 'Filemanager',
@@ -156,14 +186,9 @@ var editor_config = {
         });
     }
 };
-tinymce.init(editor_config);
 
-//tinymce.init({
-//  selector: "textarea",  // change this value according to your HTML
-//  plugins: "textcolor colorpicker",
-//  toolbar: "forecolor backcolor"
-//});
-
+tinymce.init(editor_config_1);
+tinymce.init(editor_config_2);
 
 </script>
 
@@ -173,3 +198,4 @@ tinymce.init(editor_config);
 </script>
 
 @endpush
+
