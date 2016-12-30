@@ -121,9 +121,9 @@ var editor_config_1 = {
     height : "200",
     plugins: [
         "advlist autolink lists link image charmap preview hr anchor wordcount visualblocks visualchars code",
-        "insertdatetime media nonbreaking textcolor colorpicker textpattern"
+        "insertdatetime media nonbreaking textcolor colorpicker textpattern code"
     ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | link image | preview",
+    toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | link image | code |  preview",
     menubar: false,
     relative_urls: false,
     color_picker_callback: function(callback, value) {
@@ -133,7 +133,7 @@ var editor_config_1 = {
         var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
         var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
 
-        var cmsURL = editor_config.path_absolute + '/laravel-filemanager?field_name=' + field_name;
+        var cmsURL = editor_config_1.path_absolute + '/laravel-filemanager?field_name=' + field_name;
         if (type == 'image') {
             cmsURL = cmsURL + "&type=Images";
         } else {
@@ -170,7 +170,7 @@ var editor_config_2 = {
         var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
         var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;
 
-        var cmsURL = editor_config.path_absolute + '/laravel-filemanager?field_name=' + field_name;
+        var cmsURL = editor_config_2.path_absolute + '/laravel-filemanager?field_name=' + field_name;
         if (type == 'image') {
             cmsURL = cmsURL + "&type=Images";
         } else {

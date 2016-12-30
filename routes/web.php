@@ -98,6 +98,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 
     //Post routes
     Route::get('/post', 'PostController@index');
+    Route::get('/post/getdata', 'PostController@getPostList');
+    Route::post('/post/{id}', 'PostController@publish');
+    Route::get('/post/{id}', 'PostController@show');
     
     Route::get('/post/create', 'PostController@create');
     Route::post('/post', 'PostController@store');

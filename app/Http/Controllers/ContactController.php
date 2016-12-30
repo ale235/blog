@@ -30,11 +30,16 @@ class ContactController extends Controller {
 
         $message = new \App\Models\Contact([
             'from_name' => $request['name'], 
+            
+            
+            
             'from_phone' => $request['phone'], 
             'from_email' => $request['email'], 
             'subject' => $request['subject'], 
             'message_text' => $request['message']
         ]);
+        
+        
         
         if (Auth::check()){
             $message['users_id'] = Auth::id();
