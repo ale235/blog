@@ -33,13 +33,13 @@ class PostController extends Controller {
 
         return Datatables::of($posts)
             ->addColumn('action', function ($post) {
-                $url_edit = url("/admin/post/edit/$post->post_id");
+                $url_edit = url("/admin/post/$post->post_id/edit");
                 return '<a href="'.$url_edit.'" class="btn btn-xs btn-primary">Edit</a>
                         <a href="#" route="post" rel="'.$post->post_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
             })
             ->editColumn('title',
-                '@if($seen==0) <strong><a href="{{url(\'/admin/post/show/\')}}/{{ $post_id }}">{{ $title }}</a></strong> '
-                    . '@else <a href="{{url(\'/admin/post/show/\')}}/{{ $post_id }}">{{ $title }}</a> @endif'
+                '@if($seen==0) <strong><a href="{{url(\'/admin/post/\')}}/{{ $post_id }}">{{ $title }}</a></strong> '
+                    . '@else <a href="{{url(\'/admin/post/\')}}/{{ $post_id }}">{{ $title }}</a> @endif'
             )
             ->editColumn('username', 
                 '<a href="{{url(\'/admin/users/edit/\')}}/{{ $users_id }}">{{ $username }}</a>'
@@ -82,8 +82,8 @@ class PostController extends Controller {
     public function create() {
         
         if(!empty($_POST)){
-            print_r($_POST);
-            exit;
+           // print_r($_POST);
+            //exit;
         }
         
        // echo Auth::id(); exit;
@@ -128,7 +128,8 @@ class PostController extends Controller {
         Session::flash('notif_type', 'success');
         Session::flash('notif', 'Post has been created!');
         
-        return redirect("admin/post/create");
+        //return redirect("admin/post/create");
+        return redirect("admin/post/$post->post_id/edit");
     }
 
     /**
@@ -138,7 +139,10 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
+        
+        $post = Post::findOrFail($id);
+        return view('backend.post.show', compact('post'));
+        
     }
 
     /**
@@ -148,7 +152,8 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        $post = Post::findOrFail($id);
+        return view('backend.post.edit', compact('post'));
     }
 
     /**
@@ -158,8 +163,27 @@ class PostController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id) {
-        //
+    public function update(PostRequest $request, $id) {
+        $post = Post::findOrFail($id);
+        
+        $post->update($request->all());
+        
+        if(!empty($request['slug'])){
+            $slug = str_slug($request['slug'], '-');
+            $post->where('post_id', $id)->update(
+                ['slug' => $slug]      
+            );
+        }
+        
+        $post->where('post_id', $id)->update([
+            'updated_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
+        ]);
+ 
+        Session::flash('notif_type', 'success');
+        Session::flash('notif', 'Post has been updated!');
+
+        return redirect("/admin/post/$id/edit");
+        
     }
 
     /**
@@ -169,7 +193,27 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+        
+        Session::flash('notif_type', 'success');
+        Session::flash('notif', 'Post has been deleted!');
+        
+        return redirect('/admin/post');
     }
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy_ajax($id) {
+        $post = Post::findOrFail($id);
+        $post->delete();
+         
+        return response()->json([
+            'type' => 'success',
+            'msg'  => 'Post has been deleted!'
+        ]);
+    }
 }

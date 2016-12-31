@@ -11,7 +11,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">New Post 
             <a href="{{ url('admin/post') }}" class="btn btn-default" role="button" style="float: right">Back to Post</a>
-            <a href="#" class="btn btn-default" role="button" style="float: right; margin-right:10px">Preview</a>
+            <button class="btn btn-default disabled" style="float: right; margin-right:10px">Preview</button>
         </h1>
     </div>
     <!-- /.col-lg-12 -->
@@ -43,7 +43,7 @@
             <div class="row form-group">
                 <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
                     <label>Title</label><em>*</em>
-                    <input type="text" name="title" id="title" class="form-control" value="{{ old('title') ? old('title'):@$title }}">
+                    <input type="text" name="title" id="title" class="form-control" value="{{ old('title') ? old('title'):@$post->title }}">
                     @if ($errors->has('title'))
                     <span class="form-error">
                         {{ $errors->first('title') }}
@@ -56,7 +56,7 @@
                 <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
                     <label>Permanent link:</label><em>*</em><br>
                     http://localhost:8000/blog/
-                    <input type="text" name="slug" id="slug" class="" value="{{ old('slug') ? old('slug'):@$slug }}" size="50">
+                    <input type="text" name="slug" id="slug" class="" value="{{ old('slug') ? old('slug'):@$post->slug }}" size="50">
                     @if ($errors->has('title'))
                     <span class="form-error">
                         {{ $errors->first('title') }}
@@ -69,7 +69,7 @@
             <div class="row form-group">
                 <div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">
                     <label>Summary</label><em>*</em>
-                    <textarea name="summary" id="summary" class="form-control textarea" rows="4"></textarea>
+                    <textarea name="summary" id="summary" class="form-control textarea" rows="4">{{ old('summary') ? old('summary'):@$post->summary }}</textarea>
                     @if ($errors->has('summary'))
                     <span class="form-error">
                         {{ $errors->first('summary') }}
@@ -81,7 +81,7 @@
             <div class="row form-group-">
                 <div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">
                     <label>Content</label><em>*</em>
-                    <textarea name="content" id="content" class="form-control textarea" rows="8"></textarea>  
+                    <textarea name="content" id="content" class="form-control textarea" rows="8">{{ old('content') ? old('content'):@$post->content }}</textarea>  
                     @if ($errors->has('content'))
                     <span class="form-error">
                         {{ $errors->first('content') }}

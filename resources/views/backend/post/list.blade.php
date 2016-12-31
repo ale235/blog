@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Posts
-           <a href="{{ url('admin/post/create') }}" style="float: right;font-size: 16px; margin-top:20px;">New Post</a>
+           <a href="{{ url('admin/post/create') }}" class="btn btn-default" role="button" style="float: right; margin-right:10px">New Post</a> 
         </h1>
     </div>
     <!-- /.col-lg-12 -->
@@ -61,7 +61,7 @@
                 {data: 'username'},
                 {data: 'created_at_us'},
                 {data: 'updated_at_us'},
-                {data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, width: '70px'}
+                {data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, width: '80px'}
             ]
         });
         

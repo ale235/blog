@@ -100,18 +100,21 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/post', 'PostController@index');
     Route::get('/post/getdata', 'PostController@getPostList');
     Route::post('/post/{id}', 'PostController@publish');
-    Route::get('/post/{id}', 'PostController@show');
-    
     Route::get('/post/create', 'PostController@create');
     Route::post('/post', 'PostController@store');
-    //Route::post('/post/create', 'PostController@store');
-    
     Route::get('/post/{id}', 'PostController@show');
     
+    
+    Route::get('/post/{id}', 'PostController@show');
     Route::get('/post/{id}/edit', 'PostController@edit');
+    
     Route::patch('/post/{id}', 'PostController@update');
     
-    Route::delete('/post/{id}', 'PostController@destroy');
+    Route::delete('/post/{id}', 'PostController@destroy_ajax');
+    Route::get('/post/{id}/delete', 'PostController@destroy');
+    
+    
+    
     
     
     //Message routes
