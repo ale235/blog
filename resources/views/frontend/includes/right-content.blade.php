@@ -84,7 +84,7 @@
             {{ csrf_field() }}  
             <div class="panel-body">
                 <div class="survey_response">
-                @if(!empty($tags))
+                @if(!empty($response))
                    <span>{{ $survey->question }}</span> 
                    <ul class="list-group" style="border:0px solid silver;margin-bottom: 0px; margin-left: 15px">
                        @foreach ($responses as $response)

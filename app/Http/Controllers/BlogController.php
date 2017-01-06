@@ -20,8 +20,11 @@ class BlogController extends Controller {
         
         $tags = DB::table('tag')->select('tag_id', 'tag_name', 'tag_slug')->get();
         $survey = DB::table('survey')->where('active', 1)->orderBy('created_at', 'desc')->first();
-        $responses = DB::table('response')->where('survey_id', $survey->survey_id)->get();
-         
+        $responses ='';
+        if(!empty($survey)){
+            $responses = DB::table('response')->where('survey_id', $survey->survey_id)->get();
+        }
+        
         
         return view('frontend.blog', compact('title', 'tags', 'survey', 'responses'));
     }
