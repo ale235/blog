@@ -127,7 +127,7 @@
                                    
                             <div class="row form-group">
                                 <div class="col-md-6">
-                                    <button class="btn btn-primary btn-block-" type="submit">Send</button>
+                                    <button class="btn btn-primary btn-block-" type="submit">Save</button>
                                 </div>
                             </div>
                         </div>

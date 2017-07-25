@@ -38,9 +38,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/profile', 'ProfileController@updateProfile');
     Route::get('/change_password', 'ProfileController@showPasswordForm');
     Route::post('/change_password', 'ProfileController@updatePassword');
-    
-    
-    
 });
 
 
@@ -84,21 +81,23 @@ Route::get('auth/twitter/callback', 'Auth\RegisterController@handleTwitterCallba
   |
  */
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
+//Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
+ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth']], function() {
+  
      
     //Dashboard routes
     Route::get('/', 'AdminController@index');
 
-    
     //Comments routes
     Route::get('/comments', function () {
         return view('backend.comments.list');
     });
     
-
     //Post routes
     Route::get('/post', 'PostController@index');
     Route::get('/post/getdata', 'PostController@getPostList');
+    
+    
     Route::post('/post/{id}', 'PostController@publish');
     Route::get('/post/create', 'PostController@create');
     Route::post('/post', 'PostController@store');
@@ -112,11 +111,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     
     Route::delete('/post/{id}', 'PostController@destroy_ajax');
     Route::get('/post/{id}/delete', 'PostController@destroy');
-    
-    
-    
-    
-    
+      
     //Message routes
     Route::get('/messages', 'ContactController@index');
     Route::get('/messages/getdata', 'ContactController@getMessage');
@@ -142,13 +137,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     
     //User routes
     Route::get('/users', 'UsersController@index');
-    Route::get('users/getdata', 'UsersController@getUsers');
+    Route::get('/users/getdata', 'UsersController@getUsers');
     Route::get('users/add', 'UsersController@ShowAddUserForm');
     Route::post('users/add', 'UsersController@addUser');
     Route::get('users/edit/{id}', 'UsersController@ShowEditUserForm');
     Route::post('users/edit/{id}', 'UsersController@EditUser');
     Route::delete('users/{id}', 'UsersController@deleteUser');
-    
+	 
     //Profile & password routes
     Route::get('/profile',   'ProfileController@index');
     Route::post('/profile',  'ProfileController@updateProfile');

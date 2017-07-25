@@ -5,14 +5,22 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+
 use Yajra\Datatables\Facades\Datatables;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Database\Query\Builder;
+use App\Models\User;
 use App\Helpers;
+use Carbon\Carbon;
+
+
 
 class UsersController extends Controller {
 
+    //use Datatables;
+    
     /**
      * Create a new controller instance.
      *
@@ -32,48 +40,19 @@ class UsersController extends Controller {
         return view('backend.users.list', compact('title'));
     }
 
-    /*
+    /**
      * 
-     */
-
-    /*
-     * Get the users List
-     */
-    public function getUsers0000() {
-        //$users = User::select(['users_id', 'username', 'email', 'created_at']);
-        $users = DB::table('users')->select(['users_id', 'username', 'email', 'created_at']);
-        //return Datatables::of($users)->make();
-
-        return Datatables::of($users)
-            ->addColumn('action', function ($user) {
-                $url_edit = url("/admin/users/edit/$user->users_id");
-                return '<a href="'.$url_edit.'" class="btn btn-xs btn-primary">Edit</a>
-                        <a href="#" tab="users" rel="'.$user->users_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
-            })
-            ->editColumn('users_id', 'ID: {{$users_id}}')
-            ->removeColumn('password')
-            ->make(true);    
-    }
-    
-    
-    /*
-     * https://www.sitepoint.com/deploy-website-using-laravel-git/
-     */
-    
-    public function getUsers() {    
-//        $users = DB::table('view_users')->select(['users_id', 'username', 'email', 'users_role_name', 'created_at_us', 'updated_at_us', 'users_status_id', 'users_status_name']);
-//        $users = DB::table('view_users')->select([
-//            'users_id', 'username as name', 'email', 'users_role_name as role_name', 
-//            'created_at_us as created_at', 'updated_at_us as updated_at', 'users_status_id', 'users_status_name as status_name']
-//        );
+     * @Get the users List
+     */ 
+    public function getUsers() {  
 
         $users = DB::table('view_users')->select([
             'users_id', 'username', 'email', 'users_role_name', 
             'created_at_us', 'updated_at_us', 'users_status_id', 'users_status_name']
-        );
-
+        )->orderBy('created_at','desc');
+        
         return Datatables::of($users)
-            ->addColumn('action', function ($user) {
+            ->addColumn('actions', function ($user) {
                 $url_edit = url("/admin/users/edit/$user->users_id");
                 return '<a href="'.$url_edit.'" class="btn btn-xs btn-primary">Edit</a>
                         <a href="#" route="users" rel="'.$user->users_id.'" class="btn btn-xs btn-danger dt-delete">Delete</a>';
@@ -83,8 +62,9 @@ class UsersController extends Controller {
                 '@if($users_status_id==1) <span class="label label-success">{{$users_status_name}}</span> @else <span class="label label-danger">{{$users_status_name}}</span> @endif'
             )
             ->removeColumn('password')
-            ->make(true);    
+            ->make(true);      
     }
+        
 
     /*
      * 
