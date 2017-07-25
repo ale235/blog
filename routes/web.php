@@ -84,7 +84,6 @@ Route::get('auth/twitter/callback', 'Auth\RegisterController@handleTwitterCallba
 //Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
  Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth']], function() {
   
-     
     //Dashboard routes
     Route::get('/', 'AdminController@index');
 

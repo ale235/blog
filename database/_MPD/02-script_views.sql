@@ -121,6 +121,37 @@ FROM
 );
 
 
+--
+-- 4- view_post
+--
+
+CREATE
+    /*[ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
+    [DEFINER = { user | CURRENT_USER }]
+    [SQL SECURITY { DEFINER | INVOKER }]*/
+    VIEW `view_post` 
+    AS
+(
+SELECT
+    `post`.`post_id`
+    , `post`.`title`
+    , `post`.`slug`
+    , `post`.`summary`
+    , `post`.`content`
+    , `post`.`seen`
+    , `post`.`published`
+    , `post`.`created_at`
+    , `post`.`updated_at`
+    , DATE_FORMAT(`post`.`created_at`, '%m/%d/%Y %H:%i:%s') AS `created_at_us`
+    , DATE_FORMAT(`post`.`updated_at`, '%m/%d/%Y %H:%i:%s') AS `updated_at_us`
+    , `post`.`users_id`
+    , `users`.`username`
+FROM
+    `post`
+    LEFT JOIN `users` 
+        ON (`post`.`users_id` = `users`.`users_id`)
+);
+
 
 
 
