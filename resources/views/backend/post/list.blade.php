@@ -63,9 +63,6 @@
                 {data: 'updated_at_us'},
                 {data: 'action', name: 'action', orderable: false, searchable: false, bSortable: false, width: '80px'}
             ]
-            
-           
-            
         });
         
         /*
