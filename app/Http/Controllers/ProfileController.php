@@ -22,8 +22,6 @@ class ProfileController extends Controller {
      * 
      */
     public function updateProfile() {
-
-        
         return redirect('/profile');
     }
 
@@ -41,8 +39,6 @@ class ProfileController extends Controller {
      * 
      */
     public function updatePassword() {
-       
-        
         return redirect('/change_password');
     }
 

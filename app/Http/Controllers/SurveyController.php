@@ -14,7 +14,6 @@ class SurveyController extends Controller {
      *
      */
     public function vote(Request $request) {
-        
         if (!Auth::check()){ 
             return response()->json([
                 'success' => false,
@@ -40,7 +39,6 @@ class SurveyController extends Controller {
         $is_vote = DB::table('view_users_survey')->where('users_id', $users_id)
                                            ->where('survey_id', $response->survey_id)
                                            ->first();
-        
                                    //print_r($is_vote);
         
         if(!empty($is_vote)){
@@ -50,8 +48,7 @@ class SurveyController extends Controller {
                 'msg'  => 'You already voted for this survey!'
             ], 200);
         }
-        
-        
+         
         DB::table('users_survey')->insert([
             'users_id' => $users_id,
             'response_id' => $response_id 

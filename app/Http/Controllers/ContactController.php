@@ -27,30 +27,23 @@ class ContactController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(ContactRequest $request) {
-
+        
         $message = new \App\Models\Contact([
             'from_name' => $request['name'], 
-            
-            
-            
             'from_phone' => $request['phone'], 
             'from_email' => $request['email'], 
             'subject' => $request['subject'], 
             'message_text' => $request['message']
         ]);
         
-        
-        
         if (Auth::check()){
             $message['users_id'] = Auth::id();
         }
-
+        
         $message->save();
 
         Session::flash('notif_type', 'success');
         Session::flash('notif', 'Thank You, we will reach out to you shortly!');
-        
         return redirect("/contact");
-        
     }
 }
