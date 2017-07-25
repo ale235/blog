@@ -25,7 +25,6 @@ class BlogController extends Controller {
             $responses = DB::table('response')->where('survey_id', $survey->survey_id)->get();
         }
         
-        
         return view('frontend.blog', compact('title', 'tags', 'survey', 'responses'));
     }
     
