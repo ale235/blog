@@ -45,10 +45,8 @@ class ContactController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
-        
+    public function show($id) {  
         $message = Contact::findOrFail($id);
-
         $users = '';
         if($message->users_id){
             $users = DB::table('users')->where('users_id', $message->users_id)->first();

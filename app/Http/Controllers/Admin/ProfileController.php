@@ -46,12 +46,9 @@ class ProfileController extends Controller {
             return back()->withErrors($validator)->withInput();
         } 
         else {
-            
             $user->update($request->all());
-            
             Session::flash('notif_type', 'success');
-            Session::flash('notif', 'Your profile has been updated!');
-            
+            Session::flash('notif', 'Your profile has been updated!'); 
             return redirect('admin/profile');
             //return view('backend.settings.profile', compact('user'));
         }
@@ -72,7 +69,6 @@ class ProfileController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function updatePassword(Request $request) {
-        
         $user = Auth::user();
         
         $rules = array(
