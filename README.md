@@ -1,6 +1,18 @@
 # laravel5.3-blog
 A nice blog system with laravel 5.3
 
+
+## Demo : 
+https://demo.halimlardjane.com/laravel-blog
+
+**The access infos:**
+
+Email address: admin@gmail.com
+
+Password: 1234
+
+
+
 ## Create Database with [MySQL Workbench](http://www.mysql.com/products/workbench/)
 
 ![alt tag](https://github.com/halimus/laravel5.3-blog/blob/master/public/images/mpd.png)
