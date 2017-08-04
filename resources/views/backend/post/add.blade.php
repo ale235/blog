@@ -9,7 +9,7 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">New Post 
+        <h1 class="page-header">New Post ytyt
             <a href="{{ url('admin/post') }}" class="btn btn-default" role="button" style="float: right">Back to Post</a>
             <button class="btn btn-default disabled" style="float: right; margin-right:10px">Preview</button>
         </h1>
