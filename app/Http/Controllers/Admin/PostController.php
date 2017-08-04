@@ -112,7 +112,7 @@ class PostController extends Controller {
             'updated_at' => Carbon::now(), //date('Y-m-d G:i:s') DB::raw('NOW()')
             'updated_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
         ]);
-
+        //dd($post);
         if (!empty($request['slug'])) {
             $slug = str_slug($request['slug'], '-');
         }

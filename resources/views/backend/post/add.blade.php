@@ -196,6 +196,8 @@ tinymce.init(editor_config_2);
 <script>
     $('#lfm').filemanager('image');
 </script>
-
+<script>
+    tinymce.init({forced_root_block : "",selector:'textarea'});
+</script>
 @endpush
 
