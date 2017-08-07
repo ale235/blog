@@ -18,7 +18,7 @@ Route::post('/survey', 'SurveyController@vote');
 
 // Blog routes
 Route::get('/blog', 'BlogController@index');
-Route::get('/post', 'BlogController@getPost');
+Route::get('/post/{id}', 'BlogController@getPost');
 
 // Contact routes
 Route::get('/contact', 'ContactController@index');

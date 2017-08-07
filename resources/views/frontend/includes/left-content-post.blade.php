@@ -4,7 +4,7 @@
         <h2><a href="{{ url('/post')}}">Title Blog 1</a></h2>
         <div class="row row-article">
             <div class="col-md-12">
-                {{$post->content}}
+                {{$title}}
             </div>
         </div>
         <div class="row row-info">

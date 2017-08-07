@@ -1,8 +1,8 @@
 <div class="col-lg-8 left-content">
 
-        @for ($i = 0; $i < 5; $i++)
-        <div class="col-md-12- blogShort">
-            <h2><a href="{{ url('/post')}}">Title Blog 1</a></h2>
+        @for ($i = 0; $i < 3; $i++)
+        <div class="col-md-12 blogShort">
+            <h2><a href="{{URL::action('BlogController@getPost',$post->post_id)}}">Title Blog 1</a></h2>
             <div class="row row-article">
                 <div class="col-md-12">
                     <img src="http://placehold.it/200x120" alt="post img" class="pull-left img-responsive img-thumbnail thumb margin10">

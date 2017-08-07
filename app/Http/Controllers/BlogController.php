@@ -35,8 +35,9 @@ class BlogController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPost() {
+    public function getPost($id) {
         $title = 'Blog | Post';
+        dd($id);
         return view('frontend.post', compact('title'));
     }
     
