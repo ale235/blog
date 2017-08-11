@@ -37,8 +37,9 @@ class BlogController extends Controller {
      */
     public function getPost($id) {
         $title = 'Blog | Post';
-        dd($id);
-        return view('frontend.post', compact('title'));
+        //dd($id);
+        $post = DB::table('post')->where('post_id', $id)->first();
+        return view('frontend.post', compact('post'));
     }
     
 }

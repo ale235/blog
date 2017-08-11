@@ -1,10 +1,10 @@
 <div class="col-lg-8 left-content" style="padding-bottom: 60px;">
 
     <div class="col-md-12- blogLong">
-        <h2><a href="{{ url('/post')}}">Title Blog 1</a></h2>
+        <h2><a href="{{ url('/post')}}"> {!! $post->title !!}</a></h2>
         <div class="row row-article">
             <div class="col-md-12">
-                {{$title}}
+                {!! $post->content !!}
             </div>
         </div>
         <div class="row row-info">
