@@ -20,13 +20,13 @@ class BlogController extends Controller {
         
         $tags = DB::table('tag')->select('tag_id', 'tag_name', 'tag_slug')->get();
         $survey = DB::table('survey')->where('active', 1)->orderBy('created_at', 'desc')->first();
-        $post = DB::table('post')->where('published', 1)->orderBy('created_at', 'desc')->first();
+        $posts = DB::table('post')->where('published', 1)->orderBy('created_at', 'asc')->get();
         $responses ='';
         if(!empty($survey)){
             $responses = DB::table('response')->where('survey_id', $survey->survey_id)->get();
         }
        // dd($survey);
-        return view('frontend.blog', compact('title', 'tags', 'survey', 'responses','post'));
+        return view('frontend.blog', compact('title', 'tags', 'survey', 'responses','posts'));
     }
     
     
