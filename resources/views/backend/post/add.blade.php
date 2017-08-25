@@ -38,7 +38,7 @@
         </div>
         @endif
 
-        <form role="form" method="POST" action="{{ url('/admin/post') }}" id="form-post">
+        <form role="form" method="POST" action="{{ url('/admin/post') }}" id="form-post" enctype="multipart/form-data">
             {{ csrf_field() }}    
             <div class="row form-group">
                 <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
@@ -47,6 +47,18 @@
                     @if ($errors->has('title'))
                     <span class="form-error">
                         {{ $errors->first('title') }}
+                    </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-9 {{ $errors->has('image') ? ' has-error' : '' }}">
+                    <label>Imagen</label><em>*</em>
+                    <input type="file" name="image" id="image" class="form-control" value="{{ old('image') ? old('image'):@$post->image }}">
+                    @if ($errors->has('image'))
+                        <span class="form-error">
+                        {{ $errors->first('image') }}
                     </span>
                     @endif
                 </div>

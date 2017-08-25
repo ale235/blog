@@ -122,6 +122,13 @@ class PostController extends Controller {
         } else
             $slug = str_slug($request['title'], '-');
         $post['slug'] = $slug;
+        if(!empty($request['image']))
+        {
+
+            $file=Input::file('image');
+            $file->move(public_path().'photos/entrada/', $file->getClientOriginalName());
+            $post['image'] = $file->getClientOriginalName();
+        }
 
         $post->save();
 
