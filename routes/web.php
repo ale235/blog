@@ -136,6 +136,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/parameters', function () {
         return view('backend.settings.parameters');
     });
+
+    Route::resource('comments', 'CommentsController');
     
 });
 

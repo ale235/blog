@@ -10,7 +10,7 @@
         <div class="row row-info">
             <div class="col-md-12">
                 <p>
-                    <i class="fa fa-user-o" aria-hidden="true"></i> by <a href="#">Maria</a> 
+                    <i class="fa fa-user-o" aria-hidden="true"></i> por <a href="#">{!! $post->username !!}</a>
                     | <i class="fa fa-calendar" aria-hidden="true"></i> Sept 17th, 2016
                     | <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">3 Comments</a>
                     | <i class="fa fa-file-text-o" aria-hidden="true"></i> 53 Views
@@ -25,12 +25,14 @@
     <!-- Blog Comments -->
     <!-- Comments Form -->
     <div class="well">
-        <h4>Leave a Comment:</h4>
-        <form role="form">
+        <h4>Comentá:</h4>
+        <form role="form" method="POST" action="{{ url('/admin/comments') }}" id="form-comment" enctype="multipart/form-data">
+            {{ csrf_field() }}
             <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" name="content" rows="3"></textarea>
+                <input type="hidden" name="post_id" value="{{$post->post_id}}" />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
 
@@ -38,31 +40,33 @@
     <hr>
     <!-- Posted Comments -->
     <!-- Comment -->
-    <div class="media">
-        <a class="pull-left" href="#">
-            <img class="media-object" src="http://placehold.it/64x64" alt="">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">Start Bootstrap
-                <small>August 25, 2014 at 9:30 PM</small>
-            </h4>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+    @foreach($comments as $comment)
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object" src="http://placehold.it/64x64" alt="">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">{{$comment->username}}
+                    <small>{{$comment->updated_at}}</small>
+                </h4>
+                {!! $comment->content !!}
+            </div>
         </div>
-    </div>
+    @endforeach
 
-    <!-- Comment -->
-    <div class="media" style="margin-top: 20px;">
-        <a class="pull-left" href="#">
-            <img class="media-object" src="http://placehold.it/64x64" alt="">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">Start Bootstrap
-                <small>August 25, 2014 at 9:30 PM</small>
-            </h4>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-        </div>
-    </div>
-    
+    {{--<!-- Comment -->--}}
+    {{--<div class="media" style="margin-top: 20px;">--}}
+        {{--<a class="pull-left" href="#">--}}
+            {{--<img class="media-object" src="http://placehold.it/64x64" alt="">--}}
+        {{--</a>--}}
+        {{--<div class="media-body">--}}
+            {{--<h4 class="media-heading">Start Bootstrap--}}
+                {{--<small>August 25, 2014 at 9:30 PM</small>--}}
+            {{--</h4>--}}
+            {{--Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.--}}
+        {{--</div>--}}
+    {{--</div>--}}
+    {{----}}
     
     
 
