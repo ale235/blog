@@ -110,7 +110,7 @@ class PostController extends Controller {
             'published' => $request['published'] ?: 0,
             'users_id' => Auth::id(),
             'updated_at' => Carbon::now(), //date('Y-m-d G:i:s') DB::raw('NOW()')
-            'updated_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
+            'created_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
         ]);
         //dd($post);
         if (!empty($request['slug'])) {

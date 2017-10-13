@@ -15,11 +15,11 @@
             <div class="row row-info">
                 <div class="col-md-12">
                     <p>
-                        <i class="fa fa-user-o" aria-hidden="true"></i> by <a href="#">{{$post->username}}</a>
-                        | <i class="fa fa-calendar" aria-hidden="true"></i> Sept 17th, 2016
-                        | <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">3 Comments</a>
-                        | <i class="fa fa-file-text-o" aria-hidden="true"></i> 53 Views
-                        | <i class="fa fa-share-alt-square" aria-hidden="true"></i> <a href="#">21 Shares</a>
+                        <i class="fa fa-user-o" aria-hidden="true"></i> por <a href="#">{{$post->username}}</a>
+                        | <i class="fa fa-calendar" aria-hidden="true"></i> {{ $post->updated_at }}
+                        {{--| <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">3 Comments</a>--}}
+                        {{--| <i class="fa fa-file-text-o" aria-hidden="true"></i> 53 Views--}}
+                        {{--| <i class="fa fa-share-alt-square" aria-hidden="true"></i> <a href="#">21 Shares</a>--}}
                     </p>
                 </div>
             </div>

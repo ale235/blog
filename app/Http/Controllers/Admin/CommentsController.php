@@ -42,34 +42,26 @@ class CommentsController extends Controller
     public function store(CommentsRequest $request)
     {
 
-//        $comments = new Comments([
-//            'content' => $request['content'],
-//            'summary' => $request['summary'],
-//            'content' => $request['content'],
-//            'seen' => 1,
-//            'published' => $request['published'] ?: 0,
-//            'users_id' => Auth::id(),
-//            'updated_at' => Carbon::now(), //date('Y-m-d G:i:s') DB::raw('NOW()')
-//            'updated_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
-//        ]);
-//        dd($request['post_id']);
-//        $comments = new Comments(
-//            [
-//          'content' => $request['content'],
-//          'seen' => 1,
-//          'created_at' => Carbon::now(), //date('Y-m-d G:i:s') DB::raw('NOW()')
-//          'updated_at' => Carbon::now(),  //date('Y-m-d G:i:s') DB::raw('NOW()')
-//          'post_id' => (int)$request['post_id'],
-//          'users_id' => Auth::id(),
-//            ]
-//        );
-        $comments = new Comments();
-        $comments->content= $request['content'];
-        $comments->seen = 1;
-        $comments->created_at = Carbon::now();
-        $comments->updated_at = Carbon::now();
-        $comments->post_id = $request['post_id'];
-        $comments->users_id= Auth::id();
+        $comments = new Comments(
+            [
+          'content' => $request['content'],
+          'seen' => 1,
+          'created_at' => Carbon::now(), //date('Y-m-d G:i:s') DB::raw('NOW()')
+          'updated_at' => Carbon::now(),  //date('Y-m-d G:i:s') DB::raw('NOW()')
+          'post_id' => (int)$request['post_id'],
+          'users_id' => Auth::id(),
+            ]
+        );
+
+        //region como es el new en verdad
+        //        $comments = new Comments();
+//        $comments->content= $request['content'];
+//        $comments->seen = 1;
+//        $comments->created_at = Carbon::now();
+//        $comments->updated_at = Carbon::now();
+//        $comments->post_id = $request['post_id'];
+//        $comments->users_id= Auth::id();
+        //endregion
 
         $comments->save();
         return redirect("post/$comments->post_id");

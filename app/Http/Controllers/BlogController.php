@@ -23,13 +23,13 @@ class BlogController extends Controller {
         $posts = DB::table('post as p')
             ->join('users as u', 'p.users_id', '=', 'u.users_id')
             ->where('p.published', 1)
-            ->orderBy('p.created_at', 'asc')
+            ->orderBy('p.created_at', 'desc')
             ->get();
+        //dd($posts);
         $responses ='';
         if(!empty($survey)){
             $responses = DB::table('response')->where('survey_id', $survey->survey_id)->get();
         }
-       // dd($survey);
         return view('frontend.blog', compact('title', 'tags', 'survey', 'responses','posts'));
     }
     
