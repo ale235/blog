@@ -5,9 +5,11 @@
             <h2><a href="{{URL::action('BlogController@getPost',$post->post_id)}}">{{$post->title}}</a></h2>
             <div class="row row-article">
                 <div class="col-md-12">
-                    <img src="/photos/thumbs/19022711_10155399076983276_701501609_o.jpg" alt="post img" class="pull-left img-responsive img-thumbnail thumb margin10">
-                    <article class="lala">
+                    <img src="/photos/entrada/{!! $post->image !!}" width="250px" height="250px"  align="left"  alt="post img" class="pull-left img-responsive img-thumbnail thumb margin10">
+                    <article>
+                        <div >
                             {!! $post->summary !!}
+                        </div>
                     </article>
                     <a href="{{URL::action('BlogController@getPost',$post->post_id)}}" class="btn btn-default" role="button">Leer más</a>
                 </div>

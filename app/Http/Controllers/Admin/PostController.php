@@ -101,7 +101,7 @@ class PostController extends Controller {
     public function store(PostRequest $request) {
         
         //\App\Helpers::print_r($_POST); exit;
-        
+
         $post = new Post([
             'title' => $request['title'],
             'summary' => $request['summary'],
@@ -112,7 +112,7 @@ class PostController extends Controller {
             'updated_at' => Carbon::now(), //date('Y-m-d G:i:s') DB::raw('NOW()')
             'created_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
         ]);
-        //dd($post);
+//        dd($request);
         if (!empty($request['slug'])) {
             $slug = str_slug($request['slug'], '-');
         }
@@ -122,11 +122,15 @@ class PostController extends Controller {
         } else
             $slug = str_slug($request['title'], '-');
         $post['slug'] = $slug;
+
+
+
         if(!empty($request['image']))
         {
 
-            $file=Input::file('image');
+            $file=$request->file('image');
             $file->move(public_path().'photos/entrada/', $file->getClientOriginalName());
+
             $post['image'] = $file->getClientOriginalName();
         }
 
