@@ -19,6 +19,6 @@ class Comments extends Model
      * @var array
      */
     protected $fillable = [
-        'content', 'seen', 'create_at', 'upload_at', 'post_id', 'users_id'
+        'content', 'seen', 'created_at', 'upload_at', 'post_id', 'users_id'
     ];
 }

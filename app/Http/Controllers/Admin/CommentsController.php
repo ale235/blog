@@ -21,7 +21,9 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'Admin | Post';
+        $comments = DB::table('comments')->get();
+        return view('backend.comments.list', compact('comments'));
     }
 
     /**

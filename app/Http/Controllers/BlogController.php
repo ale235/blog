@@ -50,6 +50,7 @@ class BlogController extends Controller {
         $comments = DB::table('comments as c')
             ->join('users as u','u.users_id','=','c.users_id')
             ->where('c.post_id','=', $id)
+            ->orderBy('c.updated_at','desc')
             ->get();
 
         return view('frontend.post', compact('post','comments'));

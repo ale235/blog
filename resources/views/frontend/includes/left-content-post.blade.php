@@ -32,6 +32,7 @@
                 <textarea class="form-control" name="content" rows="3"></textarea>
                 <input type="hidden" name="post_id" value="{{$post->post_id}}" />
             </div>
+            <div class="g-recaptcha" data-sitekey="6LemcjUUAAAAACI89PcMcN1V17n0cWN6wMOkI1yJ"></div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
@@ -67,10 +68,24 @@
         {{--</div>--}}
     {{--</div>--}}
     {{----}}
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.10&appId=581097305242558';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="5"></div>
     
     
 
 
 
 </div>
+@push('scripts')
+
+@endpush
 
