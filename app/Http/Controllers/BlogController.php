@@ -21,11 +21,12 @@ class BlogController extends Controller {
         $tags = DB::table('tag')->select('tag_id', 'tag_name', 'tag_slug')->get();
         $survey = DB::table('survey')->where('active', 1)->orderBy('created_at', 'desc')->first();
         $posts = DB::table('post as p')
+            ->select('p.post_id','p.title','u.username','p.content','p.updated_at','p.image','p.summary')
             ->join('users as u', 'p.users_id', '=', 'u.users_id')
             ->where('p.published', 1)
             ->orderBy('p.created_at', 'desc')
-            ->get();
-        //dd($posts);
+            ->paginate(4);
+      //  dd($posts);
         $responses ='';
         if(!empty($survey)){
             $responses = DB::table('response')->where('survey_id', $survey->survey_id)->get();

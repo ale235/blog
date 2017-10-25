@@ -27,7 +27,7 @@
             </div>
         </div>
         @endforeach
-    
+        {{$posts->render()}}
 
 
     {{--<div class="col-md-12- blogShort">--}}
@@ -100,14 +100,14 @@
         {{--</div>--}}
     {{--</div>--}}
 
-    <div class="row">   
-        <div class="col-md-12"> 
-            <ul class="pager">
-                <li class="previous"><a href="#">Previous</a></li>
-                <li class="next"><a href="#">Next</a></li>
-            </ul>
-        </div>
-    </div>
+    {{--<div class="row">   --}}
+        {{--<div class="col-md-12"> --}}
+            {{--<ul class="pager">--}}
+                {{--<li class="previous"><a href="#">Previous</a></li>--}}
+                {{--<li class="next"><a href="#">Next</a></li>--}}
+            {{--</ul>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
 </div>
 <script>
