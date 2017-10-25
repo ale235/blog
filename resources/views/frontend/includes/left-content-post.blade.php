@@ -24,36 +24,36 @@
     <hr>
     <!-- Blog Comments -->
     <!-- Comments Form -->
-    <div class="well">
-        <h4>Comentá:</h4>
-        <form role="form" method="POST" action="{{ url('/admin/comments') }}" id="form-comment" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <textarea class="form-control" name="content" rows="3"></textarea>
-                <input type="hidden" name="post_id" value="{{$post->post_id}}" />
-            </div>
-            <div class="g-recaptcha" data-sitekey="6LemcjUUAAAAACI89PcMcN1V17n0cWN6wMOkI1yJ"></div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-    </div>
+    {{--<div class="well">--}}
+        {{--<h4>Comentá:</h4>--}}
+        {{--<form role="form" method="POST" action="{{ url('/admin/comments') }}" id="form-comment" enctype="multipart/form-data">--}}
+            {{--{{ csrf_field() }}--}}
+            {{--<div class="form-group">--}}
+                {{--<textarea class="form-control" name="content" rows="3"></textarea>--}}
+                {{--<input type="hidden" name="post_id" value="{{$post->post_id}}" />--}}
+            {{--</div>--}}
+            {{--<div class="g-recaptcha" data-sitekey="6LemcjUUAAAAACI89PcMcN1V17n0cWN6wMOkI1yJ"></div>--}}
+            {{--<button type="submit" class="btn btn-primary">Enviar</button>--}}
+        {{--</form>--}}
+    {{--</div>--}}
 
     
-    <hr>
+    {{--<hr>--}}
     <!-- Posted Comments -->
     <!-- Comment -->
-    @foreach($comments as $comment)
-        <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="http://placehold.it/64x64" alt="">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">{{$comment->username}}
-                    <small>{{$comment->updated_at}}</small>
-                </h4>
-                {!! $comment->content !!}
-            </div>
-        </div>
-    @endforeach
+    {{--@foreach($comments as $comment)--}}
+        {{--<div class="media">--}}
+            {{--<a class="pull-left" href="#">--}}
+                {{--<img class="media-object" src="http://placehold.it/64x64" alt="">--}}
+            {{--</a>--}}
+            {{--<div class="media-body">--}}
+                {{--<h4 class="media-heading">{{$comment->username}}--}}
+                    {{--<small>{{$comment->updated_at}}</small>--}}
+                {{--</h4>--}}
+                {{--{!! $comment->content !!}--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--@endforeach--}}
 
     {{--<!-- Comment -->--}}
     {{--<div class="media" style="margin-top: 20px;">--}}
@@ -69,7 +69,7 @@
     {{--</div>--}}
     {{----}}
 
-    <div id="fb-root"></div>
+    <div class="well" id="fb-root"></div>
     <script>(function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
