@@ -3,8 +3,8 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Statistic
-            <a href="{{ url('admin/survey/') }}" style="float: right;font-size: 16px; margin-top:20px;">List Survey</a>
+        <h1 class="page-header">Estadística
+            <a href="{{ url('admin/survey/') }}" style="float: right;font-size: 16px; margin-top:20px;">Lista de Encuestas</a>
         </h1>
     </div>
     <!-- /.col-lg-12 -->

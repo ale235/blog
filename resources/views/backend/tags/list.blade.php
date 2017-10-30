@@ -8,8 +8,8 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Tags List
-            <a href="#" class="add_tag" style="float: right;font-size: 16px; margin-top:20px;">New Tag</a>
+        <h1 class="page-header">Lista de Tags
+            <a href="#" class="add_tag" style="float: right;font-size: 16px; margin-top:20px;">Nuevo Tag</a>
         </h1>
     </div>
     <!-- /.col-lg-12 -->

@@ -9,8 +9,8 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">New Post ytyt
-            <a href="{{ url('admin/post') }}" class="btn btn-default" role="button" style="float: right">Back to Post</a>
+        <h1 class="page-header">Nuevo post
+            <a href="{{ url('admin/post') }}" class="btn btn-default" role="button" style="float: right">Volver al Post</a>
             <button class="btn btn-default disabled" style="float: right; margin-right:10px">Preview</button>
         </h1>
     </div>
@@ -42,7 +42,7 @@
             {{ csrf_field() }}    
             <div class="row form-group">
                 <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
-                    <label>Title</label><em>*</em>
+                    <label>Título</label><em>*</em>
                     <input type="text" name="title" id="title" class="form-control" value="{{ old('title') ? old('title'):@$post->title }}">
                     @if ($errors->has('title'))
                     <span class="form-error">
@@ -66,7 +66,7 @@
 
             <div class="row form-group">
                 <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
-                    <label>Permanent link:</label><em>*</em><br>
+                    <label>Link:</label><em>*</em><br>
                     http://localhost:8000/blog/
                     <input type="text" name="slug" id="slug" class="" value="{{ old('slug') ? old('slug'):@$post->slug }}" size="50">
                     @if ($errors->has('title'))
@@ -80,7 +80,7 @@
 
             <div class="row form-group">
                 <div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">
-                    <label>Summary</label><em>*</em>
+                    <label>Resumen</label><em>*</em>
                     <textarea name="summary" id="summary" class="form-control textarea" rows="4">{{ old('summary') ? old('summary'):@$post->summary }}</textarea>
                     @if ($errors->has('summary'))
                     <span class="form-error">
@@ -92,7 +92,7 @@
 
             <div class="row form-group-">
                 <div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">
-                    <label>Content</label><em>*</em>
+                    <label>Contenido</label><em>*</em>
                     <textarea name="content" id="content" class="form-control textarea" rows="8">{{ old('content') ? old('content'):@$post->content }}</textarea>  
                     @if ($errors->has('content'))
                     <span class="form-error">
@@ -105,14 +105,14 @@
             <div class="row form-group">
                 <div class="col-md-3">
                     <div class="checkbox">
-                        <label><input type="checkbox" name="published" id="published" value="1">Published</label>
+                        <label><input type="checkbox" name="published" id="published" value="1">Publicar</label>
                     </div>
                 </div>
             </div>
 
             <div class="row form-group">
                 <div class="col-md-6">
-                    <button class="btn btn-primary btn-block-" type="submit">Save</button>
+                    <button class="btn btn-primary btn-block-" type="submit">Guardar</button>
                 </div>
             </div>
         </form>

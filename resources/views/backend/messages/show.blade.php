@@ -4,8 +4,8 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Show Message
-            <a href="{{ url('admin/messages') }}" style="float: right;font-size: 16px; margin-top:20px;">Back to Messages</a>
+            Mensaje
+            <a href="{{ url('admin/messages') }}" style="float: right;font-size: 16px; margin-top:20px;">Volver a mensajes</a>
         </h1>
     </div>
     <!-- /.col-lg-12 -->

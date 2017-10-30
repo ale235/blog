@@ -19,46 +19,46 @@
                 <a href="#"><i class="fa fa-file-text-o"></i> Posts<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ url('/admin/post/create') }}">New Post</a>
+                        <a href="{{ url('/admin/post/create') }}">Nuevo Post</a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin/post') }}">All Posts</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            <li>
-                <a href="{{ url('admin/comments') }}"><i class="fa fa-comments"></i> All Comments</a>
-            </li>
-            <li>
-                <a href="{{ url('admin/tags') }}"><i class="fa fa-list"></i> Tags List</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Surveys<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('/admin/survey/add') }}">New Survey</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/admin/survey') }}">All Surveys</a>
+                        <a href="{{ url('/admin/post') }}">Todos los Posts</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
             <li>
-                <a href="{{ url('/admin/messages') }}"><i class="fa fa-weixin"></i> All Messages</a>
+                <a href="{{ url('admin/comments') }}"><i class="fa fa-comments"></i> Todos los Comentarios</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i> Settings<span class="fa arrow"></span></a>
+                <a href="{{ url('admin/tags') }}"><i class="fa fa-list"></i>List de Tags (todavía en construcción)</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Encuestas (Todavía en construcción)<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ url('/admin/users/add') }}">New User</a>
+                        <a href="{{ url('/admin/survey/add') }}">Nueva Encuesta</a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin/users') }}">All Users</a>
+                        <a href="{{ url('/admin/survey') }}">Todas las Encuestas</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="{{ url('/admin/messages') }}"><i class="fa fa-weixin"></i> Todos los Mensajes (En construcción)</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-wrench fa-fw"></i> Configuración<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('/admin/users/add') }}">Nuevo Usuario</a>
                     </li>
                     <li>
-                        <a href="{{ url('/admin/parameters') }}">Parameters</a>
+                        <a href="{{ url('/admin/users') }}">Todos los Usuarios</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/admin/parameters') }}">Parámetros</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

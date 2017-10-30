@@ -7,8 +7,8 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Surveys
-            <a href="{{ url('admin/survey/add') }}" style="float: right;font-size: 16px; margin-top:20px;">New Survey</a>
+        <h1 class="page-header">Encuestas
+            <a href="{{ url('admin/survey/add') }}" style="float: right;font-size: 16px; margin-top:20px;">Nueva Encuesta</a>
         </h1>
     </div>
     <!-- /.col-lg-12 -->

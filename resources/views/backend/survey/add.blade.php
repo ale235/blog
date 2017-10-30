@@ -3,8 +3,8 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">New Survey
-            <a href="{{ url('admin/survey/') }}" style="float: right;font-size: 16px; margin-top:20px;">List Survey</a>
+        <h1 class="page-header">Nueva Encuesta
+            <a href="{{ url('admin/survey/') }}" style="float: right;font-size: 16px; margin-top:20px;">Lista de Encuestas</a>
         </h1>
     </div>
     <!-- /.col-lg-12 -->
@@ -45,7 +45,7 @@
             </div>
             <div class="row form-group">
                 <div class="col-lg-4 {{ $errors->has('response1') ? ' has-error' : '' }}">
-                    <label>Responses:</label><em>*</em>
+                    <label>Respuestas:</label><em>*</em>
                     <input type="text" name="response1"  class="form-control" value="">
                 </div>
             </div>
@@ -59,7 +59,7 @@
 
             <div class="row form-group" style="margin-top:20px; margin-bottom: 20px">
                 <div class="col-md-6">
-                    <button class="btn btn-sm btn-default" id="add-response" type="button"><i class="fa fa-plus" aria-hidden="true"></i> Add more response</button>
+                    <button class="btn btn-sm btn-default" id="add-response" type="button"><i class="fa fa-plus" aria-hidden="true"></i> Agregar más respuestas</button>
                 </div>
             </div>
 
@@ -67,15 +67,15 @@
                 <div class="col-md-4">
                     <label>Status</label><em>*</em>
                     <select id="active" name="active" class="form-control">
-                        <option value="1" {{ (old('active') == '1' ? "selected":"") }}>Active</option>
-                        <option value="0" {{ (old('active') == '0' ? "selected":"") }}>Inactive</option>
+                        <option value="1" {{ (old('active') == '1' ? "selected":"") }}>Activa</option>
+                        <option value="0" {{ (old('active') == '0' ? "selected":"") }}>Inactiva</option>
                     </select>
                 </div>
             </div>
 
             <div class="row form-group">
                 <div class="col-md-6">
-                    <button class="btn btn-primary btn-block-" type="submit">Save</button>
+                    <button class="btn btn-primary btn-block-" type="submit">Guardar</button>
                 </div>
             </div>
         </form>
