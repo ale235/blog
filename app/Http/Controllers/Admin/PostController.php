@@ -129,7 +129,7 @@ class PostController extends Controller {
         {
 
             $file=$request->file('image');
-            $file->move(public_path().'\photos\entrada', $file->getClientOriginalName());
+            $file->move(public_path().'/photos/entrada', $file->getClientOriginalName());
 
             $post['image'] = $file->getClientOriginalName();
         }
