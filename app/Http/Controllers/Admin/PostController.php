@@ -21,7 +21,8 @@ class PostController extends Controller {
      */
     public function index() {
         $title = 'Admin | Post';
-        return view('backend.post.list', compact('title'));
+        $posts = DB::table('view_post')->select(['post_id', 'title', 'published', 'seen', 'users_id', 'username', 'created_at_us', 'updated_at_us'])->paginate(30);
+        return view('backend.post.list', compact('title','posts'));
     }
 
     /**

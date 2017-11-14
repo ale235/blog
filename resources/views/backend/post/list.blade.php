@@ -15,25 +15,60 @@
 </div>
 
 <!-- /.row -->
+{{--<div class="row">--}}
+    {{----}}
+        {{--<div class="col-xs-12 table-responsive" id="example4">--}}
+        {{--<table class="stripe hover row-border- cell-border order-column table" id="table">--}}
+            {{--<thead>--}}
+                {{--<tr>--}}
+                    {{--<th>Id</th>--}}
+                    {{--<th>Post Title</th>--}}
+                    {{--<th>Published</th>--}}
+                    {{--<th>Created By</th>--}}
+                    {{--<th>Created At</th>--}}
+                    {{--<th>Updated At</th>--}}
+                    {{--<th>Action</th>--}}
+                {{--</tr>--}}
+            {{--</thead>--}}
+        {{--</table>--}}
+    {{--</div>--}}
+      {{----}}
+{{--</div>--}}
 <div class="row">
-    
-        <div class="col-xs-12 table-responsive" id="example4">
-        <table class="stripe hover row-border- cell-border order-column table" id="table">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+        <table class="table table-striped table-bordered table-condensed table-hover">
             <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Post Title</th>
-                    <th>Published</th>
-                    <th>Created By</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                    <th>Action</th>
-                </tr>
+            <th>Id</th>
+            <th>Post Title</th>
+            <th>Published</th>
+            <th>Created By</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Action</th>
             </thead>
+            @foreach($posts as $p)
+                <tr>
+                    <td>{{$p->post_id}}</td>
+                    <td>{{$p->title}}</td>
+                    <td>{{$p->published}}</td>
+                    <td>{{$p->username}}</td>
+                    <td>{{$p->created_at_us}}</td>
+                    <td>{{$p->updated_at_us}}</td>
+                    <td>
+                        {{--<a href="{{URL::action('ArticuloController@show',$art->idarticulo)}}"><button class="btn btn-success">Mostrar</button></a>--}}
+                        {{--<a href="{{URL::action('PostController@edit',$p->post_id)}}"><button class="btn btn-info">Editar</button></a>--}}
+                        <strong><a href="{{url('/admin/post/')}}/{{ $p->post_id }}/edit">{{ $title }}</a></strong>
+                        {{--<a href="{{URL::action('ArticuloController@cambiarEstadoArticulo',$art->idarticulo)}}"><button class="btn btn-warning">Cambiar estado</button></a>--}}
+                        {{--<a href="" data-target="#modal-delete-{{$art->idarticulo}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>--}}
+                    </td>
+                </tr>
+            @endforeach
         </table>
+        {!! $posts->render() !!}
+        {{--{!! $articulos->appends(['selectText' => $selectText, 'searchText' => $searchText, 'searchText2' => $searchText2])->render() !!}--}}
     </div>
-      
 </div>
+
 @endsection
 
 @push('scripts')
