@@ -165,6 +165,7 @@ class PostController extends Controller {
      */
     public function edit($id) {
         $post = Post::findOrFail($id);
+//        dd($post);
         return view('backend.post.edit', compact('post'));
     }
 
@@ -179,6 +180,15 @@ class PostController extends Controller {
         $post = Post::findOrFail($id);
 
         $post->update($request->all());
+
+//        if(!empty($request['image']))
+//        {
+//
+//            $file=$request->file('image');
+//            $file->move(public_path().'/photos/entrada', $file->getClientOriginalName());
+//
+//            $post['image'] = $file->getClientOriginalName();
+//        }
 
         if (!empty($request['slug'])) {
             $slug = str_slug($request['slug'], '-');

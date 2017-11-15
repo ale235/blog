@@ -39,7 +39,7 @@
         @endif
 
         
-        <form role="form" method="POST" action="{{ url('/admin/post/'.$post->post_id) }}" id="form-post">
+        <form role="form" method="POST" action="{{ url('/admin/post/'.$post->post_id) }}" id="form-post" enctype="multipart/form-data">
             <input name="_method" type="hidden" value="PATCH">
             
             {{ csrf_field() }}    
@@ -63,6 +63,18 @@
                     @if ($errors->has('title'))
                     <span class="form-error">
                         {{ $errors->first('title') }}
+                    </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-9 {{ $errors->has('image') ? ' has-error' : '' }}">
+                    <label>Imagen</label><em>*</em>
+                    <input type="file" name="image" id="image" class="form-control" value="{{ old('image') ? old('image'):@$post->image }}">
+                    @if ($errors->has('image'))
+                        <span class="form-error">
+                        {{ $errors->first('image') }}
                     </span>
                     @endif
                 </div>
@@ -203,6 +215,8 @@ tinymce.init(editor_config_2);
 <script>
     $('#lfm').filemanager('image');
 </script>
-
+<script>
+    tinymce.init({forced_root_block : "",selector:'textarea'});
+</script>
 @endpush
 
