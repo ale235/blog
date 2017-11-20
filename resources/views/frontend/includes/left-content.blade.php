@@ -5,7 +5,7 @@
             <h2><a href="{{URL::action('BlogController@getPost',$post->post_id)}}">{{$post->title}}</a></h2>
             <div class="row row-article">
                 <div class="col-md-12">
-                    <img src="/../../photos/entrada/{!! $post->image !!}" width="250px" height="250px"  align="left"  alt="post img" class="pull-left img-responsive img-thumbnail thumb margin10">
+                    {{--<img src="/../../photos/entrada/{!! $post->image !!}" width="250px" height="250px"  align="left"  alt="post img" class="pull-left img-responsive img-thumbnail thumb margin10">--}}
                     <article>
                         <div >
                             {!! $post->summary !!}
