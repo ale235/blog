@@ -111,11 +111,8 @@
             <div class="row form-group">
                 <div class="col-md-3">
                     <div class="checkbox">
-                        @if($post->published==1) 
-                            <label><input type="checkbox" name="published" id="published" value="1" checked>Published</label>
-                         @else 
-                            <label><input type="checkbox" name="published" id="published" value="1" checked>Published</label>
-                        @endif
+                        <input type="hidden" name="published" value="0">
+                        <input type="checkbox" name="published" value="1" checked>
                     </div>
                 </div>
             </div>
