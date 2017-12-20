@@ -136,6 +136,7 @@ SELECT
     `post`.`post_id`
     , `post`.`title`
     , `post`.`slug`
+	, `post`.`description`
     , `post`.`summary`
     , `post`.`content`
     , `post`.`seen`

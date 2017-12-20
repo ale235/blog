@@ -18,21 +18,21 @@
                     <h2 class="my-4">El Staff</h2>
                 </div>
                 <div class="col-lg-4 col-sm-6 text-center mb-4">
-                    <img class="rounded-circle img-fluid d-block mx-auto" width="200px" height="200px" src="/images/Santi.jpg"  alt="">
-                    <h3>Santiago Toller Achával
-                        {{--<small>Santiago Toller Achával</small>--}}
-                    </h3>
-                    <p>Oriundo de Federación pero estudiando Bioquímica en Santa Fe. Como me crie en el campo, siento que soy un intermedio entre sus costumbres y el ritmo de vida y pensar de la ciudad.  Me identifico fácilmente por portar un mate adonde quiera que vaya a estar más de una hora. Me gusta la música en casi todos sus géneros, los juegos de pc, el cine, las series, los viajes en el tiempo y la astrofísica . Soy de informarme de básicamente todo a través de Internet y de analizar en detalle las cosas antes de tomar una decisión o emitir opinión firme.</p>
-                </div>
-                <div class="col-lg-4 col-sm-6 text-center mb-4">
                     <img class="rounded-circle img-fluid d-block mx-auto" width="200px" height="200px" src="/images/Ale.jpg" alt="">
                     <h3>Alejandro Colautti
                         <small>ale235</small>
                     </h3>
                     <p>Santafesino muy orgulloso. Mis estudios primarios y secundarios fueron en la Dante Alighieri, donde conocí gente que afortunadamente sigo viendo al día de hoy.
-                    También muy orgulloso de haber estudiado en la UTN y muy contento donde trabajo hoy. Amante de la cultura Japonesa más que nada. Me encanta leer y ver series.
-                    Me gusta escribir pero me cuesta ponerme a hacerlo frecuentemente. Tuve varios blogs y espero que este sea el cimiento de uno muy bueno.
+                        También muy orgulloso de haber estudiado en la UTN y muy contento donde trabajo hoy. Amante de la cultura Japonesa más que nada. Me encanta leer y ver series.
+                        Me gusta escribir pero me cuesta ponerme a hacerlo frecuentemente. Tuve varios blogs y espero que este sea el cimiento de uno muy bueno.
                     </p>
+                </div>
+                <div class="col-lg-4 col-sm-6 text-center mb-4">
+                    <img class="rounded-circle img-fluid d-block mx-auto" width="200px" height="200px" src="/images/Santi.jpg"  alt="">
+                    <h3>Santiago Toller Achával
+                        {{--<small>Santiago Toller Achával</small>--}}
+                    </h3>
+                    <p>Oriundo de Federación pero estudiando Bioquímica en Santa Fe. Como me crie en el campo, siento que soy un intermedio entre sus costumbres y el ritmo de vida y pensar de la ciudad.  Me identifico fácilmente por portar un mate adonde quiera que vaya a estar más de una hora. Me gusta la música en casi todos sus géneros, los juegos de pc, el cine, las series, los viajes en el tiempo y la astrofísica . Soy de informarme de básicamente todo a través de Internet y de analizar en detalle las cosas antes de tomar una decisión o emitir opinión firme.</p>
                 </div>
                 <div class="col-lg-4 col-sm-6 text-center mb-4">
                     <img class="rounded-circle img-fluid d-block mx-auto" width="200px" height="200px" src="/images/Chancho.jpg"  alt="">

@@ -82,17 +82,17 @@
 
 
 
-            <div class="row form-group">
-                <div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">
-                    <label>Resumen</label><em>*</em>
-                    <textarea name="summary" id="summary" cols="30" class="form-control textarea" rows="4">{{ old('summary') ? old('summary'):@$post->summary }}</textarea>
-                    @if ($errors->has('summary'))
-                        <span class="form-error">
-                        {{ $errors->first('summary') }}
-                    </span>
-                    @endif
-                </div>
-            </div>
+            {{--<div class="row form-group">--}}
+                {{--<div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">--}}
+                    {{--<label>Resumen</label><em>*</em>--}}
+                    {{--<textarea name="summary" id="summary" cols="30" class="form-control textarea" rows="4">{{ old('summary') ? old('summary'):@$post->summary }}</textarea>--}}
+                    {{--@if ($errors->has('summary'))--}}
+                        {{--<span class="form-error">--}}
+                        {{--{{ $errors->first('summary') }}--}}
+                    {{--</span>--}}
+                    {{--@endif--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
             <div class="row form-group-">
                 <div class="col-md-12 {{ $errors->has('content') ? ' has-error' : '' }}">
@@ -131,104 +131,19 @@
 
 
 @push('scripts')
-<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-
-<script type="text/javascript"> 
-{{--var editor_config_1 = {--}}
-    {{--path_absolute: '{{ url("/") }}',--}}
-    {{--selector: "#summary",--}}
-    {{--height : "200",--}}
-    {{--plugins: [--}}
-        {{--"advlist autolink lists link image charmap preview hr anchor wordcount visualblocks visualchars code",--}}
-        {{--"insertdatetime media nonbreaking textcolor colorpicker textpattern code"--}}
-    {{--],--}}
-    {{--toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify | link image | code |  preview",--}}
-    {{--menubar: false,--}}
-    {{--relative_urls: false,--}}
-    {{--color_picker_callback: function(callback, value) {--}}
-        {{--callback('#FF00FF');--}}
-    {{--},--}}
-    {{--file_browser_callback: function (field_name, url, type, win) {--}}
-        {{--var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;--}}
-        {{--var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;--}}
-
-        {{--var cmsURL = editor_config_1.path_absolute + '/laravel-filemanager?field_name=' + field_name;--}}
-        {{--if (type == 'image') {--}}
-            {{--cmsURL = cmsURL + "&type=Images";--}}
-        {{--} else {--}}
-            {{--cmsURL = cmsURL + "&type=Files";--}}
-        {{--}--}}
-        {{--tinyMCE.activeEditor.windowManager.open({--}}
-            {{--file: cmsURL,--}}
-            {{--title: 'Filemanager',--}}
-            {{--width: x * 0.8,--}}
-            {{--height: y * 0.8,--}}
-            {{--resizable: "yes",--}}
-            {{--close_previous: "no"--}}
-        {{--});--}}
-    {{--}--}}
-{{--};    --}}
-    {{----}}
-{{--var editor_config_2 = {--}}
-    {{--path_absolute: '{{ url("/") }}',--}}
-    {{--selector: "#content",--}}
-    {{--height : "450",--}}
-    {{--plugins: [--}}
-        {{--"advlist autolink lists link image charmap preview hr anchor pagebreak",--}}
-        {{--"searchreplace wordcount visualblocks visualchars code fullscreen",--}}
-        {{--"insertdatetime media nonbreaking table textcolor colorpicker textpattern"--}}
-    {{--],--}}
-    {{--toolbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | alignleft aligncenter alignright alignjustify \n\--}}
-              {{--| bullist numlist outdent indent | searchreplace hr pagebreak | link image media | preview",--}}
-    {{--menubar: true,--}}
-    {{--relative_urls: false,--}}
-    {{--color_picker_callback: function(callback, value) {--}}
-        {{--callback('#FF00FF');--}}
-    {{--},--}}
-    {{--file_browser_callback: function (field_name, url, type, win) {--}}
-        {{--var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;--}}
-        {{--var y = window.innerHeight || document.documentElement.clientHeight || document.getElementsByTagName('body')[0].clientHeight;--}}
-
-        {{--var cmsURL = editor_config_2.path_absolute + '/laravel-filemanager?field_name=' + field_name;--}}
-        {{--if (type == 'image') {--}}
-            {{--cmsURL = cmsURL + "&type=Images";--}}
-        {{--} else {--}}
-            {{--cmsURL = cmsURL + "&type=Files";--}}
-        {{--}--}}
-        {{--tinyMCE.activeEditor.windowManager.open({--}}
-            {{--file: cmsURL,--}}
-            {{--title: 'Filemanager',--}}
-            {{--width: x * 0.8,--}}
-            {{--height: y * 0.8,--}}
-            {{--resizable: "yes",--}}
-            {{--close_previous: "no"--}}
-        {{--});--}}
-    {{--}--}}
-{{--};--}}
-
-{{--tinymce.init(editor_config_1);--}}
-{{--tinymce.init(editor_config_2);--}}
-
-</script>
-
-<script src="{{ asset('/vendor/laravel-filemanager/js/lfm.js') }}"></script>
-<script>
-    $('#lfm').filemanager('content');
-    $('#lfm').filemanager('summary');
-</script>
 <script>
 //    tinymce.init({forced_root_block : "",selector:'textarea'});
 </script>
 
 <script src="{{url('ckeditor/ckeditor.js')}}"></script>
-<script>
-    var ckview = document.getElementById("summary");
-    CKEDITOR.replace(ckview,{
-        language:'en-gb',
-        filebrowserImageBrowseUrl: '{{ url("/") }}' + '/laravel-filemanager?type=Images',
-        filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'
-    });
-</script>
+{{--<script>--}}
+    {{--var ckview = document.getElementById("summary");--}}
+    {{--CKEDITOR.replace(ckview,{--}}
+        {{--language:'en-gb',--}}
+        {{--filebrowserImageBrowseUrl: '{{ url("/") }}' + '/laravel-filemanager?type=Images',--}}
+        {{--filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'--}}
+    {{--});--}}
+{{--</script>--}}
 <script>
     var ckview = document.getElementById("content");
     CKEDITOR.replace(ckview,{

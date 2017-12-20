@@ -94,6 +94,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `post_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NOT NULL,
   `slug` VARCHAR(255) NOT NULL,
+  `description` TEXT NOT NULL,
   `summary` TEXT NOT NULL,
   `content` TEXT NOT NULL,
   `seen` TINYINT(1) NOT NULL DEFAULT 0,

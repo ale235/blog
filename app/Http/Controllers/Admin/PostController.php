@@ -113,6 +113,14 @@ class PostController extends Controller {
             'updated_at' => Carbon::now(), //date('Y-m-d G:i:s') DB::raw('NOW()')
             'created_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
         ]);
+
+        $porciones = explode("<hr />", $post->content);
+        $post->summary = $porciones[0];
+        $nada = strip_tags($porciones[0]);
+        $cadena = trim($nada, "[\n|\r|\n\r]");
+        $post->description = $cadena;
+
+
 //        dd($request);
         if (!empty($request['slug'])) {
             $slug = str_slug($request['slug'], '-');
@@ -189,6 +197,12 @@ class PostController extends Controller {
 //
 //            $post['image'] = $file->getClientOriginalName();
 //        }
+        $porciones = explode("<hr />", $post->content);
+        $post->summary = $porciones[0];
+        $nada = strip_tags($porciones[0]);
+        $cadena = trim($nada, "[\n|\r|\n\r]");
+        $post->description = $cadena;
+        $post->update();
 
         if (!empty($request['slug'])) {
             $slug = str_slug($request['slug'], '-');

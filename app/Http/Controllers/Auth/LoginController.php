@@ -27,8 +27,8 @@ use AuthenticatesUsers;
      *
      * @var string
      */
-    protected $redirectTo = 'blog';
-    protected $redirectAfterLogout = 'blog';
+    protected $redirectTo = '/';
+    protected $redirectAfterLogout = '/';
 
     /**
      * Create a new controller instance.

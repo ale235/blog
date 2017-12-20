@@ -1,5 +1,6 @@
 @extends('frontend.layouts.master')
-@section('descripcion', $post->content)
+@section('descripcion', $post->description)
+@section('titulo', $post->title)
 @section('content')
 <div id="page-content" class="container" style="border: 0px solid red;">
     <div class="row">

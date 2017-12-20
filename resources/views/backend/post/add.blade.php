@@ -78,23 +78,23 @@
             </div>
 
 
-            <div class="row form-group">
-                <div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">
-                    <label>Resumen</label><em>*</em>
-                    <textarea name="summary" id="summary" cols="30" class="form-control textarea" rows="6">{{ old('summary') ? old('summary'):@$post->summary }}</textarea>
-                    @if ($errors->has('summary'))
-                    <span class="form-error">
-                        {{ $errors->first('summary') }}
-                    </span>
-                    @endif
-                </div>
-            </div>
+            {{--<div class="row form-group">--}}
+                {{--<div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">--}}
+                    {{--<label>Resumen</label><em>*</em>--}}
+                    {{--<textarea name="summary" id="summary" cols="30" class="form-control textarea" rows="6">{{ old('summary') ? old('summary'):@$post->summary }}</textarea>--}}
+                    {{--@if ($errors->has('summary'))--}}
+                    {{--<span class="form-error">--}}
+                        {{--{{ $errors->first('summary') }}--}}
+                    {{--</span>--}}
+                    {{--@endif--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
             <div class="row form-group-">
                 <div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">
                     <label>Contenido</label><em>*</em>
                     {{--<textarea name="content" id="content" class="form-control textarea" rows="8">{{ old('content') ? old('content'):@$post->content }}</textarea>--}}
-                    <textarea name="content" id="content" cols="30" class="form-control textarea" rows="10">{{ old('content') ? old('content'):@$post->content }}</textarea>
+                    <textarea name="content" id="content" cols="30" class="form-control textarea" rows="40">{{ old('content') ? old('content'):@$post->content }}</textarea>
                 @if ($errors->has('content'))
                     <span class="form-error">
                         {{ $errors->first('content') }}
@@ -126,14 +126,14 @@
 
 @push('scripts')
 <script src="{{url('ckeditor/ckeditor.js')}}"></script>
-<script>
-    var ckview = document.getElementById("summary");
-    CKEDITOR.replace(ckview,{
-        language:'en-gb',
-        filebrowserImageBrowseUrl: '{{ url("/") }}' + '/laravel-filemanager?type=Images',
-        filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'
-    });
-</script>
+{{--<script>--}}
+    {{--var ckview = document.getElementById("summary");--}}
+    {{--CKEDITOR.replace(ckview,{--}}
+        {{--language:'en-gb',--}}
+        {{--filebrowserImageBrowseUrl: '{{ url("/") }}' + '/laravel-filemanager?type=Images',--}}
+        {{--filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'--}}
+    {{--});--}}
+{{--</script>--}}
 <script>
     var ckview = document.getElementById("content");
     CKEDITOR.replace(ckview,{
