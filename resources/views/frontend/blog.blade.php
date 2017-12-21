@@ -1,6 +1,9 @@
 @extends('frontend.layouts.master')
 
-@section('descripcion', 'artists begging with')
+@section('titulo',  config('app.name', 'Laravel'))
+@section('descripcion')
+{{config('app.name', 'Laravel')}} es un blog en el que vas a poder encontrar opiniones de muchas áreas, desde Entretenimiento, Cine, Política hasta Reflexiones y opiniones personales. ¡Pasate!
+@endsection
 
 
 @section('content')

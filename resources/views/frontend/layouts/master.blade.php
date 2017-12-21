@@ -11,7 +11,7 @@
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>@yield('titulo') : {{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('titulo')</title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
