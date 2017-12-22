@@ -56,5 +56,6 @@
         <script>var base_url ="{{ asset('/') }}";</script>
         <script src="{{ asset('js/front/config.js') }}"></script>
         <script src="{{ asset('js/front/front.js') }}"></script>
+        <script id="dsq-count-scr" src="https://mates-y-papeles.disqus.com/count.js" async></script>
     </body>
 </html>
