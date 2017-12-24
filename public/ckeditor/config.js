@@ -9,4 +9,5 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
     config.font_defaultLabel = 'Arial';
     config.fontSize_defaultLabel = '16px';
+    config.extraPlugins = 'youtube';
 };
