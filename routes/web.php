@@ -12,6 +12,9 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('frontend.about');
 });
+Route::get('/alejandrocolautti', function () {
+    return view('frontend.alejandrocolautti');
+});
 
 Route::post('/survey', 'SurveyController@vote');
 
