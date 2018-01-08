@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+
+        <link rel="stylesheet" href="{{ asset('/ckeditor/plugins/spoiler/spoiler.css') }}">
         
         <link href="{{asset('plugings/lobibox/css/lobibox.min.css')}}" rel="stylesheet">
 
@@ -57,5 +59,6 @@
         <script src="{{ asset('js/front/config.js') }}"></script>
         <script src="{{ asset('js/front/front.js') }}"></script>
         <script id="dsq-count-scr" src="https://mates-y-papeles.disqus.com/count.js" async></script>
+        <script src="{{asset('/ckeditor/plugins/spoiler/spoiler.js')}}"></script>
     </body>
 </html>

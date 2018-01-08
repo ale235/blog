@@ -30,6 +30,7 @@
         <!-- Scripts -->
        
         <link href="{{ asset('/css/back/back.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('/ckeditor/plugins/spoiler/spoiler.css') }}">
         @stack('css')
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
