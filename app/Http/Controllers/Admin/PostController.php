@@ -132,13 +132,12 @@ class PostController extends Controller {
             $data = base64_decode($data);
 
             $image_name= time().$k.'.png';
-            $path =  URL::to('/') .'/uploads/'. $image_name;
+            $path =  public_path() .'/uploads/'. $image_name;
             $base_path = $path;
             $base_path_mod = str_replace('\\', '/', $base_path);
-            //dd($base_path_mod);
-            file_put_contents($base_path_mod, $data);
+            file_put_contents($base_path, $data);
             $img->removeattribute('src');
-            $img->setattribute('src',$base_path_mod);
+            $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
         }
 
         $detail = $dom->savehtml();
