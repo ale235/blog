@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Facades\Datatables;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\URL;
 
 class PostController extends Controller {
 
@@ -114,13 +115,6 @@ class PostController extends Controller {
             'created_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
         ]);
 
-        $porciones = explode("<hr />", $post->content);
-        $post->summary = $porciones[0];
-        $nada = strip_tags($porciones[0]);
-        $cadena = trim($nada, "[\n|\r|\n\r]");
-        $post->description = $cadena;
-
-
         $detail=$request['content'];
 
         $dom = new \domdocument();
@@ -138,18 +132,22 @@ class PostController extends Controller {
             $data = base64_decode($data);
 
             $image_name= time().$k.'.png';
-            $path = public_path() .'/uploads/'. $image_name;
-
-            file_put_contents($path, $data);
-            dd($image_name);
+            $path =  URL::to('/') .'/uploads/'. $image_name;
+            $base_path = $path;
+            $base_path_mod = str_replace('\\', '/', $base_path);
+            //dd($base_path_mod);
+            file_put_contents($base_path_mod, $data);
             $img->removeattribute('src');
-            $img->setattribute('src', $image_name);
+            $img->setattribute('src',$base_path_mod);
         }
 
         $detail = $dom->savehtml();
-        $summernote = new Summernote;
-        $summernote->content = $detail;
-        $summernote->save();
+
+        $porciones = explode("<hr />", $detail);
+        $post->summary = $porciones[0];
+        $nada = strip_tags($porciones[0]);
+        $cadena = trim($nada, "[\n|\r|\n\r]");
+        $post->description = $cadena;
 
 
 //        dd($request);
