@@ -142,23 +142,27 @@
         {{--filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'--}}
     {{--});--}}
 {{--</script>--}}
-<link href="{{ asset('summernote/summernote.css')}}" rel="stylesheet" type="text/css" />
-<script src="{{ asset('summernote/summernote.js')}}"></script>
+<link href="{{ url('public/summernote/summernote.css')}}" rel="stylesheet" type="text/css" />
+<script src="{{ url('public/summernote/summernote.js')}}"></script>
 <script>
     $(document).ready(function() {
         $('#content').summernote({
-            height: 200,
+            lang: 'es-ES',
             toolbar: [
                 ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['font', ['strikethrough', 'superscript', 'subscript','fontname']],
                 ['fontsize', ['fontsize']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['height', ['height']],
-                ['insert', ['picture','video']],
-            ]
+                ['insert', ['picture','video','hr']],
+                ['view', ['fullscreen', 'codeview']],
+            ],
+            height:350,
         });
+        $('#content').summernote('fontSize', 14);
     });
 </script>
+
 @endpush
 

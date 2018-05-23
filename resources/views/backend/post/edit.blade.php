@@ -135,7 +135,7 @@
 //    tinymce.init({forced_root_block : "",selector:'textarea'});
 </script>
 
-<script src="{{url('ckeditor/ckeditor.js')}}"></script>
+{{--<script src="{{url('ckeditor/ckeditor.js')}}"></script>--}}
 {{--<script>--}}
     {{--var ckview = document.getElementById("summary");--}}
     {{--CKEDITOR.replace(ckview,{--}}
@@ -144,12 +144,33 @@
         {{--filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'--}}
     {{--});--}}
 {{--</script>--}}
+{{--<script>--}}
+    {{--var ckview = document.getElementById("content");--}}
+    {{--CKEDITOR.replace(ckview,{--}}
+        {{--language:'en-gb',--}}
+        {{--filebrowserImageBrowseUrl: '{{ url("/") }}' + '/laravel-filemanager?type=Images',--}}
+        {{--filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'--}}
+    {{--});--}}
+{{--</script>--}}
+<link href="{{ url('public/summernote/summernote.css')}}" rel="stylesheet" type="text/css" />
+<script src="{{ url('public/summernote/summernote.js')}}"></script>
 <script>
-    var ckview = document.getElementById("content");
-    CKEDITOR.replace(ckview,{
-        language:'en-gb',
-        filebrowserImageBrowseUrl: '{{ url("/") }}' + '/laravel-filemanager?type=Images',
-        filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'
+    $(document).ready(function() {
+        $('#content').summernote({
+            lang: 'es-ES',
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript','fontname']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['insert', ['picture','video','hr']],
+                ['view', ['fullscreen', 'codeview']],
+            ],
+            height:350,
+        });
+        $('#content').summernote('fontSize', 14);
     });
 </script>
 @endpush

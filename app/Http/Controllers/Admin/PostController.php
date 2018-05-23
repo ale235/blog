@@ -118,7 +118,8 @@ class PostController extends Controller {
         $detail=$request['content'];
 
         $dom = new \domdocument();
-        $dom->loadHtml($detail, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $dom->encoding = 'utf-8';
+        $dom->loadHtml(utf8_decode( $detail ));
 
         $images = $dom->getelementsbytagname('img');
 
@@ -137,12 +138,13 @@ class PostController extends Controller {
             $base_path_mod = str_replace('\\', '/', $base_path);
             file_put_contents($base_path, $data);
             $img->removeattribute('src');
-            $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
+            $img->setattribute('src', URL::to('/') .'/public/uploads/'. $image_name);
         }
 
         $detail = $dom->savehtml();
-
-        $porciones = explode("<hr />", $detail);
+//        dd($detail);
+        $porciones = explode("<hr>", $detail);
+        $post->content = $detail;
         $post->summary = $porciones[0];
         $nada = strip_tags($porciones[0]);
         $cadena = trim($nada, "[\n|\r|\n\r]");
