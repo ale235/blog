@@ -103,7 +103,6 @@ class PostController extends Controller {
     public function store(PostRequest $request) {
         
         //\App\Helpers::print_r($_POST); exit;
-
         $post = new Post([
             'title' => $request['title'],
             'summary' => $request['summary'],
@@ -118,11 +117,8 @@ class PostController extends Controller {
         $detail=$request['content'];
 
         $dom = new \domdocument();
-        $dom->encoding = 'utf-8';
-        $dom->loadHtml(utf8_decode( $detail ));
-
+        $dom->loadHTML(mb_convert_encoding($detail, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $images = $dom->getelementsbytagname('img');
-
 
         foreach($images as $k => $img){
             $data = $img->getattribute('src');
@@ -135,14 +131,13 @@ class PostController extends Controller {
             $image_name= time().$k.'.png';
             $path =  public_path() .'/uploads/'. $image_name;
             $base_path = $path;
-            $base_path_mod = str_replace('\\', '/', $base_path);
+            str_replace('\\', '/', $base_path);
             file_put_contents($base_path, $data);
             $img->removeattribute('src');
-            $img->setattribute('src', URL::to('/') .'/public/uploads/'. $image_name);
+            $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
         }
 
         $detail = $dom->savehtml();
-//        dd($detail);
         $porciones = explode("<hr>", $detail);
         $post->content = $detail;
         $post->summary = $porciones[0];
@@ -161,17 +156,6 @@ class PostController extends Controller {
         } else
             $slug = str_slug($request['title'], '-');
         $post['slug'] = $slug;
-
-
-
-        if(!empty($request['image']))
-        {
-
-            $file=$request->file('image');
-            $file->move(public_path().'/photos/entrada', $file->getClientOriginalName());
-
-            $post['image'] = $file->getClientOriginalName();
-        }
 
         $post->save();
 
