@@ -200,35 +200,53 @@ class PostController extends Controller {
      */
     public function update(PostRequest $request, $id) {
         $post = Post::findOrFail($id);
+        $post->title = $request['title'];
+        $post->slug = $request['slug'];
+        //dd($request);
+        $detail=$request['content'];
 
-        $post->update($request->all());
+        $dom = new \domdocument();
 
-//        if(!empty($request['image']))
-//        {
-//
-//            $file=$request->file('image');
-//            $file->move(public_path().'/photos/entrada', $file->getClientOriginalName());
-//
-//            $post['image'] = $file->getClientOriginalName();
-//        }
-        $porciones = explode("<hr />", $post->content);
+        $dom->loadHTML(mb_convert_encoding($detail, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+
+        $images = $dom->getelementsbytagname('img');
+
+        dd($images);
+        if($request->hasFile('files')){
+            foreach($images as $k => $img){
+                $data = $img->getattribute('src');
+
+                list($type, $data) = explode(';', $data);
+                list(, $data)      = explode(',', $data);
+
+                $data = base64_decode($data);
+
+                $image_name= time().$k.'.png';
+                $path =  public_path() .'/uploads/'. $image_name;
+                $base_path = $path;
+                str_replace('\\', '/', $base_path);
+
+
+                file_put_contents($base_path, $data);
+                $img->removeattribute('src');
+                $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
+            }
+        }
+
+
+        $detail = $dom->savehtml();
+        $porciones = explode("<hr>", $detail);
+        $post->content = $detail;
         $post->summary = $porciones[0];
         $nada = strip_tags($porciones[0]);
         $cadena = trim($nada, "[\n|\r|\n\r]");
         $post->description = $cadena;
-        $post->update();
 
-        if (!empty($request['slug'])) {
-            $slug = str_slug($request['slug'], '-');
-            $post->where('post_id', $id)->update(
-                    ['slug' => $slug]
-            );
-        }
 
         $post->where('post_id', $id)->update([
             'updated_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
         ]);
-
+        $post->update();
         Session::flash('notif_type', 'success');
         Session::flash('notif', 'Post has been updated!');
 

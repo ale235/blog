@@ -152,8 +152,8 @@
         {{--filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'--}}
     {{--});--}}
 {{--</script>--}}
-<link href="{{ url('public/summernote/summernote.css')}}" rel="stylesheet" type="text/css" />
-<script src="{{ url('public/summernote/summernote.js')}}"></script>
+<link href="{{ asset('summernote/summernote.css')}}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('summernote/summernote.js')}}"></script>
 <script>
     $(document).ready(function() {
         $('#content').summernote({
