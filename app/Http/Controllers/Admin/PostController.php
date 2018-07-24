@@ -117,14 +117,14 @@ class PostController extends Controller {
         $detail=$request['content'];
 
         $dom = new \domdocument();
+        libxml_use_internal_errors(true);
         $dom->loadHTML(mb_convert_encoding($detail, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $images = $dom->getelementsbytagname('img');
 
         foreach($images as $k => $img){
             $data = $img->getattribute('src');
-
-            list($type, $data) = explode(';', $data);
-            list(, $data)      = explode(',', $data);
+            list($type, $data) = array_pad(explode(';', $data),2,null);
+            list(, $data)      = array_pad(explode(',', $data),2,null);
 
             $data = base64_decode($data);
 
@@ -211,25 +211,28 @@ class PostController extends Controller {
 
         $images = $dom->getelementsbytagname('img');
 
-        dd($images);
+
         if($request->hasFile('files')){
             foreach($images as $k => $img){
                 $data = $img->getattribute('src');
-
-                list($type, $data) = explode(';', $data);
-                list(, $data)      = explode(',', $data);
-
-                $data = base64_decode($data);
-
-                $image_name= time().$k.'.png';
-                $path =  public_path() .'/uploads/'. $image_name;
-                $base_path = $path;
-                str_replace('\\', '/', $base_path);
+                // Supongo que la cantidad de caracteres de un base 64 va a ser mayor que la ruta de si existe la imagen
+                if(strlen($data)>1000){
+                    list($type, $data) = array_pad(explode(';', $data),2,null);
+                    list(, $data)      = array_pad(explode(',', $data),2,null);
 
 
-                file_put_contents($base_path, $data);
-                $img->removeattribute('src');
-                $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
+                    $data = base64_decode($data);
+
+                    $image_name= time().$k.'.png';
+                    $path =  public_path() .'/uploads/'. $image_name;
+                    $base_path = $path;
+                    str_replace('\\', '/', $base_path);
+
+
+                    file_put_contents($base_path, $data);
+                    $img->removeattribute('src');
+                    $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
+                }
             }
         }
 

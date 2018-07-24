@@ -26,7 +26,6 @@ class BlogController extends Controller {
             ->where('p.published', 1)
             ->orderBy('p.created_at', 'desc')
             ->paginate(4);
-      //  dd($posts);
         $responses ='';
         if(!empty($survey)){
             $responses = DB::table('response')->where('survey_id', $survey->survey_id)->get();
