@@ -1,127 +1,41 @@
-<div class="col-lg-8 left-content">
-
-        @foreach ($posts as $post)
-        <div class="col-md-12 blogShort">
-            <h2><a href="{{URL::action('BlogController@getPost',$post->post_id)}}">{{$post->title}}</a></h2>
-            <div class="row row-article">
-                <div class="col-md-12">
-                    {{--<img src="/../../photos/entrada/{!! $post->image !!}" width="250px" height="250px"  align="left"  alt="post img" class="pull-left img-responsive img-thumbnail thumb margin10">--}}
-                    <article>
-                        <div >
-                            {!! $post->summary !!}
-                        </div>
-                    </article>
-                    <a href="{{URL::action('BlogController@getPost',$post->post_id)}}" class="btn btn-default" role="button">Leer más</a>
-                </div>
-            </div>
-            <div class="row row-info">
-                <div class="col-md-12">
-                    <p>
-                        <i class="fa fa-user-o" aria-hidden="true"></i> por <a href="#">{{$post->username}}</a>
-                        | <i class="fa fa-calendar" aria-hidden="true"></i> {{ $post->updated_at }}
-                        {{--| <i class="fa fa-comment" aria-hidden="true"></i> <a href="#"><span class="fb-comments-count" data-href="https://www.matesypapeles.com.ar/blog/{{$post->post_id}}"></span> Comentarios</a>--}}
-                        {{--<script>(function(d, s, id) {--}}
-                                {{--var js, fjs = d.getElementsByTagName(s)[0];--}}
-                                {{--if (d.getElementById(id)) return;--}}
-                                {{--js = d.createElement(s); js.id = id;--}}
-                                {{--js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.10&appId=581097305242558';--}}
-                                {{--fjs.parentNode.insertBefore(js, fjs);--}}
-                            {{--}(document, 'script', 'facebook-jssdk'));--}}
-                        {{--</script>--}}
-                        | <i class="disqus-comment-count" data-disqus-url="{{URL::action('BlogController@getPost',$post->post_id)}}" aria-hidden="true"></i>
-                    {{--<span class="disqus-comment-count" data-disqus-url="{{URL::action('BlogController@getPost',$post->post_id)}}">First article</span>--}}
-                    <script id="dsq-count-scr" src="https://mates-y-papeles.disqus.com/count.js" async></script>
-                    {{--| <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">3 Comments</a>--}}
-                        {{--| <i class="fa fa-file-text-o" aria-hidden="true"></i> 53 Views--}}
-                        {{--| <i class="fa fa-share-alt-square" aria-hidden="true"></i> <a href="#">21 Shares</a>--}}
-                    </p>
-                </div>
-            </div>
-        </div>
-        @endforeach
-        {{$posts->render()}}
-
-
-    {{--<div class="col-md-12- blogShort">--}}
-        {{--<h2><a href="">Title Blog 2 long title for more words</a></h2>--}}
-        {{--<div class="row row-article">--}}
-            {{--<div class="col-md-12">--}}
-                {{--<img src="http://placehold.it/200x120" alt="post img" class="pull-left img-responsive img-thumbnail thumb margin10">--}}
-                {{--<article>--}}
-                    {{--<p>--}}
-                        {{--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text--}}
-                        {{--ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only --}}
-                        {{--five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release--}}
-                        {{--of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of--}}
-                        {{--Lorem Ipsum. --}}
-                        {{--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text--}}
-                        {{--ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only --}}
-                        {{--five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release--}}
-                        {{--of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of--}}
-                        {{--Lorem Ipsum. --}}
-                    {{--</p>--}}
-                {{--</article>--}}
-                {{--<a href="#" class="btn btn-default" role="button">READ MORE</a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="row row-info">--}}
-            {{--<div class="col-md-12">--}}
-                {{--<p>--}}
-                    {{--<i class="fa fa-user-o" aria-hidden="true"></i> by <a href="#">Mike</a> --}}
-                    {{--| <i class="fa fa-calendar" aria-hidden="true"></i> Sept 12th, 2016--}}
-                    {{--| <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">45 Comments</a>--}}
-                    {{--| <i class="fa fa-file-text-o" aria-hidden="true"></i> 458 Views--}}
-                    {{--| <i class="fa fa-share-alt-square" aria-hidden="true"></i> <a href="#">218 Shares</a>--}}
-                {{--</p>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
-    {{--<div class="col-md-12- blogShort">--}}
-        {{--<h2><a href="">Title Blog 3</a></h2>--}}
-        {{--<div class="row row-article">--}}
-            {{--<div class="col-md-12">--}}
-                {{--<img src="http://placehold.it/200x120" alt="post img" class="pull-left img-responsive img-thumbnail thumb margin10">--}}
-                {{--<article>--}}
-                    {{--<p>--}}
-                        {{--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text--}}
-                        {{--ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only --}}
-                        {{--five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release--}}
-                        {{--of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of--}}
-                        {{--Lorem Ipsum. --}}
-                        {{--Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text--}}
-                        {{--ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only --}}
-                        {{--five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release--}}
-                        {{--of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of--}}
-                        {{--Lorem Ipsum. --}}
-                    {{--</p>--}}
-                {{--</article>--}}
-                {{--<a href="#" class="btn btn-default" role="button">READ MORE</a>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="row row-info">--}}
-            {{--<div class="col-md-12">--}}
-                {{--<p>--}}
-                    {{--<i class="fa fa-user-o" aria-hidden="true"></i> by <a href="#">Alberto</a> --}}
-                    {{--| <i class="fa fa-calendar" aria-hidden="true"></i> Sept 12th, 2016--}}
-                    {{--| <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">14 Comments</a>--}}
-                    {{--| <i class="fa fa-file-text-o" aria-hidden="true"></i> 21 Views--}}
-                    {{--| <i class="fa fa-share-alt-square" aria-hidden="true"></i> <a href="#">4 Shares</a>--}}
-                {{--</p>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
-    {{--<div class="row">   --}}
-        {{--<div class="col-md-12"> --}}
-            {{--<ul class="pager">--}}
-                {{--<li class="previous"><a href="#">Previous</a></li>--}}
-                {{--<li class="next"><a href="#">Next</a></li>--}}
-            {{--</ul>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
+<div class="left-content">
+  @foreach ($posts as $post)
+    <div class="col-md-12 blogShort">
+      <h2><a href="{{URL::action('BlogController@getPost',$post->post_id)}}">{{$post->title}}</a></h2>
+      <div class="row row-article">
+          <div class="col-md-12">
+              <article>
+                  <div >
+                      {!! $post->summary !!}
+                  </div>
+              </article>
+              <a href="{{URL::action('BlogController@getPost',$post->post_id)}}" class="btn btn-default" role="button">Leer más</a>
+          </div>
+      </div>
+      <div class="row row-info">
+          <div class="col-md-12">
+              <p>
+                  <i class="fa fa-user-o" aria-hidden="true"></i> por <a href="#">{{$post->username}}</a>
+                  | <i class="fa fa-calendar" aria-hidden="true"></i> {{ $post->updated_at }}
+                  {{--| <i class="fa fa-comment" aria-hidden="true"></i> <a href="#"><span class="fb-comments-count" data-href="https://www.matesypapeles.com.ar/blog/{{$post->post_id}}"></span> Comentarios</a>--}}
+                  {{--<script>(function(d, s, id) {--}}
+                          {{--var js, fjs = d.getElementsByTagName(s)[0];--}}
+                          {{--if (d.getElementById(id)) return;--}}
+                          {{--js = d.createElement(s); js.id = id;--}}
+                          {{--js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.10&appId=581097305242558';--}}
+                          {{--fjs.parentNode.insertBefore(js, fjs);--}}
+                      {{--}(document, 'script', 'facebook-jssdk'));--}}
+                  {{--</script>--}}
+                  | <i class="disqus-comment-count" data-disqus-url="{{URL::action('BlogController@getPost',$post->post_id)}}" aria-hidden="true"></i>
+              {{--<span class="disqus-comment-count" data-disqus-url="{{URL::action('BlogController@getPost',$post->post_id)}}">First article</span>--}}
+              <script id="dsq-count-scr" src="https://mates-y-papeles.disqus.com/count.js" async></script>
+              {{--| <i class="fa fa-comment" aria-hidden="true"></i> <a href="#">3 Comments</a>--}}
+                  {{--| <i class="fa fa-file-text-o" aria-hidden="true"></i> 53 Views--}}
+                  {{--| <i class="fa fa-share-alt-square" aria-hidden="true"></i> <a href="#">21 Shares</a>--}}
+              </p>
+          </div>
+      </div>
+  </div>
+  @endforeach
+  {{$posts->render()}}
 </div>
-<script>
-
-</script>

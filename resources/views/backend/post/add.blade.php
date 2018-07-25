@@ -135,7 +135,7 @@
             ],
             height:350,
         });
-        $('#content').summernote('fontSize', 14);
+//        $('#content').summernote('fontSize', 14);
     });
 </script>
 

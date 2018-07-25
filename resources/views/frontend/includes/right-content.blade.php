@@ -1,4 +1,4 @@
-<div class="col-lg-4">
+<div class="">
 
     <div class="panel panel-default panel-custom1">
         <div class="panel-heading">

@@ -1,11 +1,15 @@
-<div class="col-lg-8 left-content" style="padding-bottom: 60px;">
+<div class="left-content">
 
-    <div class="col-md-12- blogLong">
+    <div class="col-md-12 blogLong">
         <h2><a href="{{ url('/post')}}/{{$post->post_id }}"> {!! $post->title !!}</a></h2>
         <div class="row row-article">
-            <div class="col-md-12">
-                {!! $post->content !!}
-            </div>
+                <div class="col-md-12">
+                    <article>
+                        <div>
+                            {!! $post->content !!}
+                        </div>
+                    </article>
+                </div>
         </div>
         <div class="row row-info">
             <div class="col-md-12">

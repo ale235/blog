@@ -135,10 +135,12 @@ class PostController extends Controller {
             file_put_contents($base_path, $data);
             $img->removeattribute('src');
             $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
+            $img->setattribute('class', 'img-responsive');
         }
 
         $detail = $dom->savehtml();
         $porciones = explode("<hr>", $detail);
+//        dd($porciones);
         $post->content = $detail;
         $post->summary = $porciones[0];
         $nada = strip_tags($porciones[0]);
@@ -206,7 +208,7 @@ class PostController extends Controller {
         $detail=$request['content'];
 
         $dom = new \domdocument();
-
+        libxml_use_internal_errors(true);
         $dom->loadHTML(mb_convert_encoding($detail, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
         $images = $dom->getelementsbytagname('img');
@@ -232,6 +234,7 @@ class PostController extends Controller {
                     file_put_contents($base_path, $data);
                     $img->removeattribute('src');
                     $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
+                    $img->setattribute('class', 'img-responsive');
                 }
             }
         }
