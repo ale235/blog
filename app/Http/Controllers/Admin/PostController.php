@@ -22,7 +22,12 @@ class PostController extends Controller {
      */
     public function index() {
         $title = 'Admin | Post';
-        $posts = DB::table('view_post')->select(['post_id', 'title', 'published', 'seen', 'users_id', 'username', 'created_at_us', 'updated_at_us'])->paginate(30);
+//        $posts = DB::table('view_post')->select(['post_id', 'title', 'published', 'seen', 'users_id', 'username', 'created_at_us', 'updated_at_us'])->paginate(30);
+        $posts = DB::table('post as p')
+            ->join('users as u','p.users_id','=','u.users_id')
+            ->select(['p.post_id', 'p.title', 'p.published', 'p.seen', 'p.users_id', 'u.username', 'p.created_at', 'p.updated_at'])
+            ->orderBy('p.post_id','desc')
+            ->paginate(30);
         return view('backend.post.list', compact('title','posts'));
     }
 

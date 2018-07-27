@@ -10,8 +10,8 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Edit Post 
-            <a href="{{ url('admin/post') }}" class="btn btn-default" role="button" style="float: right">Back to Post</a>
-            <a href="{{ url('admin/post/'.@$post->post_id) }}" class="btn btn-default" role="button" style="float: right; margin-right:10px">Preview</a>
+            <a href="{{ url('admin/post') }}" class="btn btn-default" role="button" style="float: right">Volver al post</a>
+            <a href="{{ url('admin/post/'.@$post->post_id) }}" class="btn btn-default" role="button" style="float: right; margin-right:10px">Previsualizar</a>
         </h1>
     </div>
     <!-- /.col-lg-12 -->
@@ -45,7 +45,7 @@
             {{ csrf_field() }}    
             <div class="row form-group">
                 <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
-                    <label>Title</label><em>*</em>
+                    <label>Título</label><em>*</em>
                     <input type="text" name="title" id="title" class="form-control" value="{{ old('title') ? old('title'):@$post->title }}">
                     @if ($errors->has('title'))
                     <span class="form-error">
@@ -57,8 +57,7 @@
 
             <div class="row form-group">
                 <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
-                    <label>Permanent link:</label><em>*</em><br>
-                    http://localhost:8000/blog/
+                    <label>URL</label><em>*</em><br>
                     <input type="text" name="slug" id="slug" class="" value="{{ old('slug') ? old('slug'):@$post->slug }}" size="50">
                     @if ($errors->has('title'))
                     <span class="form-error">
@@ -68,33 +67,7 @@
                 </div>
             </div>
 
-            {{--<div class="row form-group">--}}
-                {{--<div class="col-md-9 {{ $errors->has('image') ? ' has-error' : '' }}">--}}
-                    {{--<label>Imagen</label><em>*</em>--}}
-                    {{--<input type="file" name="image" id="image" class="form-control" value="{{ old('image') ? old('image'):@$post->image }}">--}}
-                    {{--@if ($errors->has('image'))--}}
-                        {{--<span class="form-error">--}}
-                        {{--{{ $errors->first('image') }}--}}
-                    {{--</span>--}}
-                    {{--@endif--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
-
-
-            {{--<div class="row form-group">--}}
-                {{--<div class="col-md-12 {{ $errors->has('summary') ? ' has-error' : '' }}">--}}
-                    {{--<label>Resumen</label><em>*</em>--}}
-                    {{--<textarea name="summary" id="summary" cols="30" class="form-control textarea" rows="4">{{ old('summary') ? old('summary'):@$post->summary }}</textarea>--}}
-                    {{--@if ($errors->has('summary'))--}}
-                        {{--<span class="form-error">--}}
-                        {{--{{ $errors->first('summary') }}--}}
-                    {{--</span>--}}
-                    {{--@endif--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
-            <div class="row form-group-">
+            <div class="row form-group">
                 <div class="col-md-12 {{ $errors->has('content') ? ' has-error' : '' }}">
                     <label>Contenido</label><em>*</em>
                     {{--<textarea name="content" id="content" class="form-control textarea" rows="8">{{ old('content') ? old('content'):@$post->content }}</textarea>--}}
@@ -107,19 +80,15 @@
                 </div>
             </div>
 
-
             <div class="row form-group">
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <div class="checkbox">
                         <input type="hidden" name="published" value="0">
-                        <input type="checkbox" name="published" value="1" checked>
+                        <input type="checkbox" name="published" value="1" checked> Publicado
                     </div>
                 </div>
-            </div>
-
-            <div class="row form-group">
-                <div class="col-md-6">
-                    <button class="btn btn-primary btn-block-" type="submit">Save</button>
+                <div class="col-md-12">
+                    <button class="btn btn-primary pull-left" type="submit">Editar</button>
                 </div>
             </div>
         </form>

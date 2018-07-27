@@ -27,16 +27,16 @@
             <li><a href="{{ url('/admin')}}">Administración</a></li>
             @endif
         </ul>
-        <div class="col-sm-4 col-md-4" style="border: 1px solid red--">
-            <form class="navbar-form" role="search">
-                <div class="input-group col-md-12" style="border: 1px solid black-">
-                    <input type="text" class="form-control" placeholder="Buscar" name="search" id="search">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-                    </span>
-                </div>
-            </form>
-        </div>
+        {{--<div class="col-sm-4 col-md-4" style="border: 1px solid red--">--}}
+            {{--<form class="navbar-form" role="search">--}}
+                {{--<div class="input-group col-md-12" style="border: 1px solid black-">--}}
+                    {{--<input type="text" class="form-control" placeholder="Buscar" name="search" id="search">--}}
+                    {{--<span class="input-group-btn">--}}
+                        {{--<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>--}}
+                    {{--</span>--}}
+                {{--</div>--}}
+            {{--</form>--}}
+        {{--</div>--}}
         <ul class="nav navbar-nav navbar-right"> 
             @if (Auth::guest())
                 {{--<li><a href="{{ url('/register') }}">Register</a></li>--}}
