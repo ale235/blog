@@ -62,7 +62,7 @@
         <a href="#"><i class="fa fa-linkedin"></i></a>
         <a href="#"><i class="fa fa-facebook"></i></a>
         <p>
-            <button class="buttona">Curriculum Vitae</button>
+            <a href="{{asset('/alejandrocolautti')}}"><button class="buttona">Curriculum Vitae</button></a>
         </p>
     </div>
 
