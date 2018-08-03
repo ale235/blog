@@ -5,26 +5,26 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="@yield('descripcion')" />
-
-        <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
-        <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
-
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>@yield('titulo')</title>
 
-        <!-- CSS -->
+        <!-- SEO -->
+        <title>@yield('titulo')</title>
+        @yield('auth-style')
+        <!-- Twitter Card data -->
+        @yield('twitter-card')
+
+        <!-- CSS --><!-- Styles -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 
         <link rel="stylesheet" href="{{ asset('/ckeditor/plugins/spoiler/spoiler.css') }}">
-        
-        <link href="{{asset('plugings/lobibox/css/lobibox.min.css')}}" rel="stylesheet">
 
-        <!-- Styles -->
+        <link href="{{asset('plugings/lobibox/css/lobibox.min.css')}}" rel="stylesheet">
         <link href="{{ asset('css/front/front.css') }}" rel="stylesheet">
-        @yield('auth-style')
+        <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
 
         <!-- Scripts -->
         <script>window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?></script>

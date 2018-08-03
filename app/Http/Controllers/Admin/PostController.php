@@ -110,7 +110,7 @@ class PostController extends Controller {
         //\App\Helpers::print_r($_POST); exit;
         $post = new Post([
             'title' => $request['title'],
-            'summary' => $request['summary'],
+            'summary' => '',
             'content' => $request['content'],
             'seen' => 1,
             'published' => $request['published'] ?: 0,
@@ -118,7 +118,7 @@ class PostController extends Controller {
             'updated_at' => Carbon::now(), //date('Y-m-d G:i:s') DB::raw('NOW()')
             'created_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
         ]);
-
+        $post->save();
         $detail=$request['content'];
 
         $dom = new \domdocument();
@@ -130,7 +130,7 @@ class PostController extends Controller {
             $data = $img->getattribute('src');
             list($type, $data) = array_pad(explode(';', $data),2,null);
             list(, $data)      = array_pad(explode(',', $data),2,null);
-
+            //dd($post);
             $data = base64_decode($data);
 
             $image_name= time().$k.'.png';
@@ -149,7 +149,9 @@ class PostController extends Controller {
         $post->content = $detail;
         $post->summary = $porciones[0];
         $nada = strip_tags($porciones[0]);
-        $cadena = trim($nada, "[\n|\r|\n\r]");
+        $cortado = substr(trim($nada, "[\n|\r|\n\r]"),0,152);
+        $cortado = str_replace ( '&nbsp;' , ' ' , $cortado);
+        $cadena = $cortado . '...';
         $post->description = $cadena;
 
 
