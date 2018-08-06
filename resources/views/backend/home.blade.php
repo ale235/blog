@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-
+{{--@section('descripcion', $description)--}}
 @section('content')
 <div class="row">
     <div class="col-lg-12">
