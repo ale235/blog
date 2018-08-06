@@ -1,7 +1,7 @@
 <div class="left-content">
 
     <div class="col-md-12 blogLong">
-        <h2><a href="{{ url('/post')}}/{{$post->post_id }}"> {!! $post->title !!}</a></h2>
+        <h2><a href="{{ url('/post')}}/{{$post->slug }}"> {!! $post->title !!}</a></h2>
         <div class="row row-article">
                 <div class="col-md-12">
                     <article>

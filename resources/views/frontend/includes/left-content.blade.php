@@ -1,7 +1,7 @@
 <div class="left-content">
   @foreach ($posts as $post)
     <div class="col-md-12 blogShort">
-      <h2><a href="{{URL::action('BlogController@getPost',$post->post_id)}}">{{$post->title}}</a></h2>
+      <h2><a href="{{ url('/')}}/{{$post->slug }}">{{$post->title}}</a></h2>
       <div class="row row-article">
           <div class="col-md-12">
               <article>
@@ -9,7 +9,7 @@
                       {!! $post->summary !!}
                   </div>
               </article>
-              <a href="{{URL::action('BlogController@getPost',$post->post_id)}}" class="btn btn-default" role="button">Leer más</a>
+              <a href="{{ url('/')}}/{{$post->slug }}" class="btn btn-default" role="button">Leer más</a>
           </div>
       </div>
       <div class="row row-info">

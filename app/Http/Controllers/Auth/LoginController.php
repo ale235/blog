@@ -45,8 +45,9 @@ use AuthenticatesUsers;
      * @return \Illuminate\Http\Response
      */
     public function showLoginForm() {
-        $title = 'LoginForm';
-        return view('frontend.auth.login', compact('title'));
+        $description = 'LoginForm';
+//        dd();
+        return view('frontend.auth.login', compact('description'));
     }
 
     /**
