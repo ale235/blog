@@ -6,23 +6,26 @@
   |--------------------------------------------------------------------------
  */
 
-Route::get('/', function () {
-    return view('frontend.layouts.master');
-});
+//Route::get('/', function () {
+//    return view('frontend.layouts.master');
+//});
+Route::get('/', 'BlogController@index');
+
 Route::get('/about', function () {
     return view('frontend.about');
 });
+
 Route::get('/alejandrocolautti', function () {
     return view('frontend.alejandrocolautti');
 });
 
 Route::post('/survey', 'SurveyController@vote');
 
-
 // Blog routes
-Route::get('/', 'BlogController@index');
+Route::get('/admin', 'AdminController@index');
+Route::get('/login', 'LoginController@showLoginForm');
+Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/{slug}', 'BlogController@getPost');
-
 // Contact routes
 Route::get('/contact', 'ContactController@index');
 Route::post('/contact', 'ContactController@store');
@@ -45,7 +48,7 @@ Route::group(['middleware' => 'auth'], function () {
  */
 
 Auth::routes();
-Route::get('/logout', 'Auth\LoginController@logout');
+
 Route::get('/register/confirm', function () {
     return view('frontend.auth.confirm');
 });

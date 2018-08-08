@@ -23,7 +23,7 @@ class AdminController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        dd();
+//        dd();
         $title = 'Admin';
         $nbr_post = DB::table('post')->count();
         $nbr_comments = DB::table('comments')->where('seen', '<>', 1)->count();

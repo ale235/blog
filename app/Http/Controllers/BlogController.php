@@ -17,7 +17,7 @@ class BlogController extends Controller {
      */
     public function index() {
         $title = 'Blog';
-        
+
         $tags = DB::table('tag')->select('tag_id', 'tag_name', 'tag_slug')->get();
         $survey = DB::table('survey')->where('active', 1)->orderBy('created_at', 'desc')->first();
         $posts = DB::table('post as p')
@@ -40,7 +40,6 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function getPost($slug) {
-        $title = 'Blog | Post';
         $post = DB::table('post as p')
             ->join('users as u', 'p.users_id', '=', 'u.users_id')
             ->where('p.slug', $slug)
