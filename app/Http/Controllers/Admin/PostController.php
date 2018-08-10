@@ -106,7 +106,7 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(PostRequest $request) {
-        
+        ini_set('memory_limit','160M');
         //\App\Helpers::print_r($_POST); exit;
         $post = new Post([
             'title' => $request['title'],
@@ -118,6 +118,15 @@ class PostController extends Controller {
             'updated_at' => Carbon::now(), //date('Y-m-d G:i:s') DB::raw('NOW()')
             'created_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
         ]);
+        if (!empty($request['slug'])) {
+            $slug = str_slug($request['slug'], '-');
+        }
+
+        if (!empty($request['slug'])) {
+            $slug = str_slug($request['slug'], '-');
+        } else
+            $slug = str_slug($request['title'], '-');
+        $post['slug'] = $slug;
         $post->save();
         $detail=$request['content'];
 
@@ -133,7 +142,13 @@ class PostController extends Controller {
             //dd($post);
             $data = base64_decode($data);
 
-            $image_name= time().$k.'.png';
+            if($k == 0){
+                $image_name= $post->slug . '.png';
+            }
+            else{
+                $image_name= $post->slug . '-' . $k . '.png';
+            }
+
             $path =  public_path() .'/uploads/'. $image_name;
             $base_path = $path;
             str_replace('\\', '/', $base_path);
@@ -141,6 +156,7 @@ class PostController extends Controller {
             $img->removeattribute('src');
             $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
             $img->setattribute('class', 'img-responsive');
+            $img->setattribute('alt', $image_name);
         }
 
         $detail = $dom->savehtml();
@@ -156,15 +172,6 @@ class PostController extends Controller {
 
 
 //        dd($request);
-        if (!empty($request['slug'])) {
-            $slug = str_slug($request['slug'], '-');
-        }
-
-        if (!empty($request['slug'])) {
-            $slug = str_slug($request['slug'], '-');
-        } else
-            $slug = str_slug($request['title'], '-');
-        $post['slug'] = $slug;
 
         $post->save();
 
@@ -232,7 +239,13 @@ class PostController extends Controller {
 
                     $data = base64_decode($data);
 
-                    $image_name= time().$k.'.png';
+                    if($k == 0){
+                        $image_name= $post->slug . '.png';
+                    }
+                    else{
+                        $image_name= $post->slug . '-' . $k . '.png';
+                    }
+
                     $path =  public_path() .'/uploads/'. $image_name;
                     $base_path = $path;
                     str_replace('\\', '/', $base_path);
@@ -242,6 +255,7 @@ class PostController extends Controller {
                     $img->removeattribute('src');
                     $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
                     $img->setattribute('class', 'img-responsive');
+                    $img->setattribute('alt', $image_name);
                 }
             }
         }
