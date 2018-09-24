@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <div class="row mobile-social-share">
                     <div class="col-md-9">
-                        <h3>Share this content</h3>
+                        <h3>¡Compartí este post en cualquiera de tus redes sociales, ¡Gracias! :D</h3>
                     </div>
                     <div id="socialHolder" class="col-md-3">
                         <div id="socialShare" class="btn-group share-group">
@@ -36,35 +36,36 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a data-original-title="Twitter" rel="tooltip"  href="#" class="btn btn-twitter" data-placement="left">
+                                    <a data-original-title="Twitter" rel="tooltip"  href="https://twitter.com/intent/tweet?text={{$post->title}}: {{url('/')}}/{{$post->slug}} via @alecolautti"
+                                       data-size="large" class="btn btn-twitter" data-placement="left">
                                         <i class="fa fa-twitter"></i>
                                     </a>
                                 </li>
-                                <li>
-                                    <a data-original-title="Facebook" rel="tooltip"  href="#" class="btn btn-facebook" data-placement="left">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-original-title="Google+" rel="tooltip"  href="#" class="btn btn-google" data-placement="left">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-original-title="LinkedIn" rel="tooltip"  href="#" class="btn btn-linkedin" data-placement="left">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a data-original-title="Pinterest" rel="tooltip"  class="btn btn-pinterest" data-placement="left">
-                                        <i class="fa fa-pinterest"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a  data-original-title="Email" rel="tooltip" class="btn btn-mail" data-placement="left">
-                                        <i class="fa fa-envelope"></i>
-                                    </a>
-                                </li>
+                                {{--<li>--}}
+                                    {{--<a data-original-title="Facebook" rel="tooltip"  href="#" class="btn btn-facebook" data-placement="left">--}}
+                                        {{--<i class="fa fa-facebook"></i>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a data-original-title="Google+" rel="tooltip"  href="#" class="btn btn-google" data-placement="left">--}}
+                                        {{--<i class="fa fa-google-plus"></i>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a data-original-title="LinkedIn" rel="tooltip"  href="#" class="btn btn-linkedin" data-placement="left">--}}
+                                        {{--<i class="fa fa-linkedin"></i>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a data-original-title="Pinterest" rel="tooltip"  class="btn btn-pinterest" data-placement="left">--}}
+                                        {{--<i class="fa fa-pinterest"></i>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                                {{--<li>--}}
+                                    {{--<a  data-original-title="Email" rel="tooltip" class="btn btn-mail" data-placement="left">--}}
+                                        {{--<i class="fa fa-envelope"></i>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
                             </ul>
                         </div>
                     </div>
