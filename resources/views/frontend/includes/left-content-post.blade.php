@@ -154,12 +154,12 @@
         margin: 50px 0;
     }
 
-    body {
-        color: #777777;
-        font-family: "Lato","Helvetica Neue","Arial","Helvetica",sans-serif;
-        font-size: 13px;
-        line-height: 19.5px;
-    }
+    /*body {*/
+        /*color: #777777;*/
+        /*font-family: "Lato","Helvetica Neue","Arial","Helvetica",sans-serif;*/
+        /*font-size: 13px;*/
+        /*line-height: 19.5px;*/
+    /*}*/
 
 
     .mobile-social-share h3 {
