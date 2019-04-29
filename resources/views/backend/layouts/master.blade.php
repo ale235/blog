@@ -12,15 +12,12 @@
 
         <!-- Bootstrap Core CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        
+
         <!-- MetisMenu CSS -->
         <link href="{{ asset('/plugings/back/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="{{ asset('/css/back/sb-admin-2.css') }}" rel="stylesheet">
-
-        <!-- Morris Charts CSS -->
-        <link href="{{ asset('/plugings/back/morrisjs/morris.css') }}" rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -28,9 +25,8 @@
         <link href="{{asset('plugings/lobibox/css/lobibox.min.css')}}" rel="stylesheet">
               
         <!-- Scripts -->
-       
+
         <link href="{{ asset('/css/back/back.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('/ckeditor/plugins/spoiler/spoiler.css') }}">
         @stack('css')
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -66,7 +62,7 @@
         <script src="{{ asset('/js/back/config.js') }}"></script>
         <script>var base_url ="{{ asset('/') }}";</script>
         <script src="{{ asset('/js/back/back.js') }}"></script>
-        
+
         @stack('scripts')
         
        

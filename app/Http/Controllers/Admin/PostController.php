@@ -105,7 +105,9 @@ class PostController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request) {
+    public function store(Request $request) {
+
+        dd($request);
         ini_set('memory_limit','160M');
         //\App\Helpers::print_r($_POST); exit;
         $post = new Post([

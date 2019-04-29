@@ -100,43 +100,9 @@
 
 
 @push('scripts')
-{{--<script src="{{url('ckeditor/ckeditor.js')}}"></script>--}}
-{{--<script>--}}
-    {{--var ckview = document.getElementById("summary");--}}
-    {{--CKEDITOR.replace(ckview,{--}}
-        {{--language:'en-gb',--}}
-        {{--filebrowserImageBrowseUrl: '{{ url("/") }}' + '/laravel-filemanager?type=Images',--}}
-        {{--filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'--}}
-    {{--});--}}
-{{--</script>--}}
-{{--<script>--}}
-    {{--var ckview = document.getElementById("content");--}}
-    {{--CKEDITOR.replace(ckview,{--}}
-        {{--language:'en-gb',--}}
-        {{--filebrowserImageBrowseUrl: '{{ url("/") }}' + '/laravel-filemanager?type=Images',--}}
-        {{--filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'--}}
-    {{--});--}}
-{{--</script>--}}
-<link href="{{ asset('summernote/summernote.css')}}" rel="stylesheet" type="text/css" />
-<script src="{{ asset('summernote/summernote.js')}}"></script>
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $('#content').summernote({
-            lang: 'es-ES',
-            toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript','fontname']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['height', ['height']],
-                ['insert', ['picture','video','hr']],
-                ['view', ['fullscreen', 'codeview']],
-            ],
-            height:350,
-        });
-//        $('#content').summernote('fontSize', 14);
-    });
+    CKEDITOR.replace( 'content' );
 </script>
 
 @endpush
