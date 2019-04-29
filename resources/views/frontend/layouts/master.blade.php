@@ -42,7 +42,12 @@
             @include('frontend.includes.navbar')
 
             <div id="wrapper">
-                <div id="page-content-wrapper">
+                <div id="page-content-wrapper" style="
+                background: url('../../img/fondojaja.png');
+                background-position: center;
+                /*background-size: cover;*/
+                background-repeat: repeat;
+                background-attachment: scroll;">
                     @yield('content')
                 </div>
             </div>

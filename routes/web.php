@@ -6,10 +6,24 @@
   |--------------------------------------------------------------------------
  */
 
-//Route::get('/', function () {
-//    return view('frontend.layouts.master');
-//});
-Route::get('/', 'BlogController@index');
+use Illuminate\Support\Facades\DB;
+
+Route::get('/', function () {
+    $post = DB::table('post as p')
+        ->select('p.post_id','p.title','u.username','p.content','p.updated_at','p.image','p.summary','p.slug','p.created_at','p.description')
+        ->join('users as u', 'p.users_id', '=', 'u.users_id')
+        ->where('p.published', 1)
+        ->orderBy('p.created_at', 'desc')
+        ->first();
+    return view('frontend.welcome', ['post' => $post]);
+});
+
+Route::get('/principal', function () {
+
+    return view('frontend.principal');
+});
+
+Route::get('/blog', 'BlogController@index');
 
 Route::get('/about', function () {
     return view('frontend.about');
