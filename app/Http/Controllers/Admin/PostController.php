@@ -107,69 +107,37 @@ class PostController extends Controller {
      */
     public function store(Request $request) {
 
-        dd($request);
-        ini_set('memory_limit','160M');
-        //\App\Helpers::print_r($_POST); exit;
+//        dd($request);
+
         $post = new Post([
             'title' => $request['title'],
             'summary' => '',
             'content' => $request['content'],
             'seen' => 1,
+            'categoria_id' => 1,
             'published' => $request['published'] ?: 0,
             'users_id' => Auth::id(),
             'updated_at' => Carbon::now(), //date('Y-m-d G:i:s') DB::raw('NOW()')
             'created_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
         ]);
-        if (!empty($request['slug'])) {
-            $slug = str_slug($request['slug'], '-');
-        }
 
         if (!empty($request['slug'])) {
             $slug = str_slug($request['slug'], '-');
         } else
             $slug = str_slug($request['title'], '-');
+
         $post['slug'] = $slug;
         $post->save();
         $detail=$request['content'];
 
-        $dom = new \domdocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML(mb_convert_encoding($detail, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        $images = $dom->getelementsbytagname('img');
-
-        foreach($images as $k => $img){
-            $data = $img->getattribute('src');
-            list($type, $data) = array_pad(explode(';', $data),2,null);
-            list(, $data)      = array_pad(explode(',', $data),2,null);
-            //dd($post);
-            $data = base64_decode($data);
-
-            if($k == 0){
-                $image_name= $post->slug . '.png';
-            }
-            else{
-                $image_name= $post->slug . '-' . $k . '.png';
-            }
-
-            $path =  public_path() .'/uploads/'. $image_name;
-            $base_path = $path;
-            str_replace('\\', '/', $base_path);
-            file_put_contents($base_path, $data);
-            $img->removeattribute('src');
-            $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
-            $img->setattribute('class', 'img-responsive');
-            $img->setattribute('alt', $image_name);
-        }
-
-        $detail = $dom->savehtml();
         $porciones = explode("<hr>", $detail);
-//        dd($porciones);
         $post->content = $detail;
         $post->summary = $porciones[0];
         $nada = strip_tags($porciones[0]);
         $cortado = substr(trim($nada, "[\n|\r|\n\r]"),0,152);
         $cortado = str_replace ( '&nbsp;' , ' ' , $cortado);
         $cadena = $cortado . '...';
+
         $post->description = $cadena;
 
 
@@ -217,53 +185,14 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(PostRequest $request, $id) {
+
+        //dd($request,$id);
         $post = Post::findOrFail($id);
         $post->title = $request['title'];
         $post->slug = $request['slug'];
         //dd($request);
         $detail=$request['content'];
 
-        $dom = new \domdocument();
-        libxml_use_internal_errors(true);
-        $dom->loadHTML(mb_convert_encoding($detail, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-
-        $images = $dom->getelementsbytagname('img');
-
-
-        if($request->hasFile('files')){
-            foreach($images as $k => $img){
-                $data = $img->getattribute('src');
-                // Supongo que la cantidad de caracteres de un base 64 va a ser mayor que la ruta de si existe la imagen
-                if(strlen($data)>1000){
-                    list($type, $data) = array_pad(explode(';', $data),2,null);
-                    list(, $data)      = array_pad(explode(',', $data),2,null);
-
-
-                    $data = base64_decode($data);
-
-                    if($k == 0){
-                        $image_name= $post->slug . '.png';
-                    }
-                    else{
-                        $image_name= $post->slug . '-' . $k . '.png';
-                    }
-
-                    $path =  public_path() .'/uploads/'. $image_name;
-                    $base_path = $path;
-                    str_replace('\\', '/', $base_path);
-
-
-                    file_put_contents($base_path, $data);
-                    $img->removeattribute('src');
-                    $img->setattribute('src', URL::to('/') .'/uploads/'. $image_name);
-                    $img->setattribute('class', 'img-responsive');
-                    $img->setattribute('alt', $image_name);
-                }
-            }
-        }
-
-
-        $detail = $dom->savehtml();
         $porciones = explode("<hr>", $detail);
         $post->content = $detail;
         $post->summary = $porciones[0];

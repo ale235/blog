@@ -100,46 +100,63 @@
 
 
 @push('scripts')
-<script>
-//    tinymce.init({forced_root_block : "",selector:'textarea'});
-</script>
 
-{{--<script src="{{url('ckeditor/ckeditor.js')}}"></script>--}}
-{{--<script>--}}
-    {{--var ckview = document.getElementById("summary");--}}
-    {{--CKEDITOR.replace(ckview,{--}}
-        {{--language:'en-gb',--}}
-        {{--filebrowserImageBrowseUrl: '{{ url("/") }}' + '/laravel-filemanager?type=Images',--}}
-        {{--filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'--}}
-    {{--});--}}
-{{--</script>--}}
-{{--<script>--}}
-    {{--var ckview = document.getElementById("content");--}}
-    {{--CKEDITOR.replace(ckview,{--}}
-        {{--language:'en-gb',--}}
-        {{--filebrowserImageBrowseUrl: '{{ url("/") }}' + '/laravel-filemanager?type=Images',--}}
-        {{--filebrowserBrowserUrl: '{{ url("/") }}' + '/laravel-filemanager?type=files'--}}
-    {{--});--}}
-{{--</script>--}}
-<link href="{{ asset('summernote/summernote.css')}}" rel="stylesheet" type="text/css" />
-<script src="{{ asset('summernote/summernote.js')}}"></script>
+<link href="{{ asset('summernote/summernote.css') }}" rel="stylesheet">
+<script src="{{ asset('summernote/summernote.js') }}"></script>
+
 <script>
-    $(document).ready(function() {
+    $(document).ready(function(){
+
+        // Define function to open filemanager window
+        var lfm = function(options, cb) {
+            var route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
+            window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=900,height=600');
+            window.SetUrl = cb;
+        };
+
+        // Define LFM summernote button
+        var LFMButton = function(context) {
+            var ui = $.summernote.ui;
+            var button = ui.button({
+                contents: '<i class="note-icon-picture"></i> ',
+                tooltip: 'Insert image with filemanager',
+                click: function() {
+
+                    lfm({type: 'image', prefix: '/laravel-filemanager'}, function(lfmItems, path) {
+
+                        context.invoke('insertImage', lfmItems);
+
+                    });
+
+                }
+            });
+            return button.render();
+        };
+
+        // Initialize summernote with LFM button in the popover button group
+        // Please note that you can add this button to any other button group you'd like
         $('#content').summernote({
-            lang: 'es-ES',
+            oninit: function() {
+                $('.note-editable').addClass('yourFrontendContentClass');
+            },
+            height: 300,
             toolbar: [
+                ['popovers', ['lfm']],
                 ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript','fontname']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
                 ['fontsize', ['fontsize']],
                 ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['height', ['height']],
-                ['insert', ['picture','video','hr']],
-                ['view', ['fullscreen', 'codeview']],
+                ['insert', ['link','hr']]
+
             ],
-            height:350,
-        });
-//        $('#content').summernote('fontSize', 14);
+            buttons: {
+                lfm: LFMButton
+            }
+        })
+
+
     });
 </script>
 @endpush

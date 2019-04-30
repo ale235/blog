@@ -36,10 +36,11 @@ Route::get('/alejandrocolautti', function () {
 Route::post('/survey', 'SurveyController@vote');
 
 // Blog routes
+Route::get('/post/{slug}', 'BlogController@getPost');
 Route::get('/admin', 'AdminController@index');
 Route::get('/login', 'LoginController@showLoginForm');
 Route::get('/logout', 'Auth\LoginController@logout');
-Route::get('/{slug}', 'BlogController@getPost');
+
 // Contact routes
 Route::get('/contact', 'ContactController@index');
 Route::post('/contact', 'ContactController@store');

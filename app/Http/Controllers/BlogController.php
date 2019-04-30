@@ -41,6 +41,7 @@ class BlogController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function getPost($slug) {
+
         $post = DB::table('post as p')
             ->join('users as u', 'p.users_id', '=', 'u.users_id')
             ->where('p.slug', $slug)

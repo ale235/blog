@@ -32,7 +32,7 @@
 @include('frontend.includes.miembros')
 
 <!-- Portfolio Section -->
-
+@include('frontend.includes.portfolio')
 
 {{--<!-- Call to Action Section -->--}}
 {{--<section class="page-section bg-dark text-white">--}}
