@@ -97,6 +97,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/comments', function () {
         return view('backend.comments.list');
     });
+
+    //Single Page routes
+    Route::get('/singlepage', function () {
+        return view('backend.singlepage.index');
+    });
     
     //Post routes
     Route::get('/post', 'PostController@index');
