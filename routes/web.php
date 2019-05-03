@@ -102,6 +102,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage', function () {
         return view('backend.singlepage.index');
     });
+    Route::get('/singlepage/header', 'SinglePageController@header');
+    Route::post('/singlepage/header/headerestilouno', 'SinglePageController@headerestilouno');
     
     //Post routes
     Route::get('/post', 'PostController@index');

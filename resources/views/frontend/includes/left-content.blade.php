@@ -17,7 +17,7 @@
               <p>
                   <i class="fa fa-user-o" aria-hidden="true"></i> por <a href="#">{{$post->username}}</a>
                   | <i class="fa fa-calendar" aria-hidden="true"></i> {{ $post->updated_at }}
-                  | <i class="disqus-comment-count" data-disqus-url="{{URL::action('BlogController@getPost',$post->post_id)}}" aria-hidden="true"></i>
+                  | <i class="disqus-comment-count" data-disqus-url="{{URL::action('BlogController@getPost',$post->id)}}" aria-hidden="true"></i>
               {{--<span class="disqus-comment-count" data-disqus-url="{{URL::action('BlogController@getPost',$post->post_id)}}">First article</span>--}}
               {{--<script id="dsq-count-scr" src="https://mates-y-papeles.disqus.com/count.js" async></script>--}}
               </p>

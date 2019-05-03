@@ -4,12 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model {
-    /*
-     * 
-     */
-
-    protected $table = 'posts';
+class UserStatus extends Model
+{
+    protected $table = 'users_status';
     protected $primaryKey = 'id';
 
     /**
@@ -18,7 +15,8 @@ class Post extends Model {
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'descripcion', 'summary', 'content', 'published', 'seen', 'image', 'user_id', 'created_at', 'updated_at'
+        'user_status_name'
     ];
 
+    public $timestamps = true;
 }

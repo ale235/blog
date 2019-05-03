@@ -41,7 +41,7 @@
                         <i class="fa fa-comments fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">{{ $nbr_comments }}</div>
+                        {{--<div class="huge">{{ $nbr_comments }}</div>--}}
                         <div>New Comments!</div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                         <i class="fa fa-bar-chart fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">{{ $nbr_survey }}</div>
+                        {{--<div class="huge">{{ $nbr_survey }}</div>--}}
                         <div>New Surveys</div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                         <i class="fa fa-weixin fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">{{ $nbr_message }}</div>
+                        {{--<div class="huge">{{ $nbr_message }}</div>--}}
                         <div>New Messages</div>
                     </div>
                 </div>

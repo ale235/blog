@@ -15,15 +15,10 @@ class AdminMiddleware {
      */
     public function handle($request, Closure $next) {
 
-        //print_r(\Auth::user()); 
-        //echo \Auth::user()->users_role_id;
-        //exit;
-        
-        if (\Auth::user()->users_role_id == 1) {
+        if (\Auth::user()->user_role_id == 1) {
             return $next($request);
         }
-        
-        //return redirect()->guest('/');
+
         return response()->view('errors.403', [], 403);
     }
 

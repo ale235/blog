@@ -23,14 +23,11 @@ class AdminController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-//        dd();
         $title = 'Admin';
-        $nbr_post = DB::table('post')->count();
-        $nbr_comments = DB::table('comments')->where('seen', '<>', 1)->count();
-        $nbr_survey = DB::table('users_survey')->where('seen', '<>', 1)->count();
-        $nbr_message = DB::table('message')->where('seen', '<>', 1)->count();
+        $nbr_post = DB::table('posts')->count();
 
-        return view('backend.home', compact('title', 'nbr_post', 'nbr_comments', 'nbr_survey', 'nbr_message'));
+
+        return view('backend.home', compact('title', 'nbr_post'));
        
     }
 

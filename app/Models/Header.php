@@ -4,12 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model {
-    /*
-     * 
-     */
-
-    protected $table = 'posts';
+class Header extends Model
+{
+    protected $table = 'headers';
     protected $primaryKey = 'id';
 
     /**
@@ -18,7 +15,8 @@ class Post extends Model {
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'descripcion', 'summary', 'content', 'published', 'seen', 'image', 'user_id', 'created_at', 'updated_at'
+        'image_path', 'text_title', 'text_subtitle', 'style_type'
     ];
 
+    public $timestamps = true;
 }

@@ -47,7 +47,7 @@ use AuthenticatesUsers;
     public function showLoginForm() {
         $description = 'LoginForm';
 //        dd();
-        return view('frontend.auth.login', compact('description'));
+        return view('frontend.auth.login', compact('descripcion'));
     }
 
     /**
@@ -58,7 +58,7 @@ use AuthenticatesUsers;
     public function login0(Request $request) {
         $email    = $request['email'];
         $password = $request['password'];
-        if (Auth::attempt(['email' => $email, 'password' => $password, 'users_status_id' => 1])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'user_status_id' => 1])) {
             return redirect()->intended($this->redirectTo);
         } 
         else {
@@ -86,11 +86,11 @@ use AuthenticatesUsers;
         
         if (Auth::validate($credentials)) {
             $user = Auth::getLastAttempted();
-            if ($user->users_status_id ==1) {
+            if ($user->user_status_id ==1) {
                 Auth::login($user);
                 return redirect()->intended($this->redirectTo); 
             } 
-            elseif($user->users_status_id ==2) {
+            elseif($user->user_status_id ==2) {
                 return back()->withErrors(array('Account not active!'))->withInput();
             }
             else{

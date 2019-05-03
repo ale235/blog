@@ -1,8 +1,8 @@
 <header class="masthead">
     <div class="container h-100">
         <div class="row h-100 align-items-center justify-content-center text-center">
-            <div class="col-lg-10  align-self-end">
-                <img src="../../img/welcome.png" width="50%">
+            <div class="col-lg-10">
+                <img src="{{asset('/img/welcome.png')}}">
             </div>
 
             {{--<div class="col-lg-10 align-self-end">--}}

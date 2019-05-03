@@ -14,8 +14,8 @@ class User extends Authenticatable {
      */
 
     protected $table = 'users';
-    protected $primaryKey = 'users_id';
-    //public $timestamps = false;
+    protected $primaryKey = 'id';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -23,7 +23,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $fillable = [
-        'username', 'phone', 'email', 'password', 'users_status_id', 'users_role_id', 'facebook_id', 'google_id', 'avatar'
+        'username', 'email', 'password', 'remember_token', 'users_status_id', 'users_role_id', 'facebook', 'instagram', 'twitter', 'avatar'
     ];
 
     /**
@@ -31,8 +31,4 @@ class User extends Authenticatable {
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
 }
