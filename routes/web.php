@@ -6,16 +6,18 @@
   |--------------------------------------------------------------------------
  */
 
+use App\Models\Header;
 use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
-    $post = DB::table('post as p')
-        ->select('p.post_id','p.title','u.username','p.content','p.updated_at','p.image','p.summary','p.slug','p.created_at','p.description')
-        ->join('users as u', 'p.users_id', '=', 'u.users_id')
+    $post = DB::table('posts as p')
+        ->select('p.id','p.title','u.username','p.content','p.updated_at','p.summary','p.slug','p.created_at','p.descripcion')
+        ->join('users as u', 'p.user_id', '=', 'u.id')
         ->where('p.published', 1)
         ->orderBy('p.created_at', 'desc')
         ->first();
-    return view('frontend.welcome', ['post' => $post]);
+    $header = Header::first();
+    return view('frontend.welcome', ['post' => $post,'header' => $header]);
 });
 
 Route::get('/principal', function () {
