@@ -6,6 +6,7 @@
   |--------------------------------------------------------------------------
  */
 
+use App\Models\Galeria;
 use App\Models\Header;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,13 @@ Route::get('/', function () {
         ->orderBy('p.created_at', 'desc')
         ->first();
     $header = Header::first();
-    return view('frontend.welcome', ['post' => $post,'header' => $header]);
+    $galerias = DB::table('galerias as g')
+                ->where('g.estado',1)
+                ->take(6)
+                ->get();
+
+//    dd($galerias);
+    return view('frontend.welcome', ['post' => $post,'header' => $header, 'galerias' => $galerias]);
 });
 
 Route::get('/principal', function () {
@@ -106,6 +113,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     });
     Route::get('/singlepage/header', 'SinglePageController@header');
     Route::post('/singlepage/header/headerestilouno', 'SinglePageController@headerestilouno');
+    Route::post('/singlepage/header/headerestilodos', 'SinglePageController@headerestilodos');
     
     //Post routes
     Route::get('/post', 'PostController@index');

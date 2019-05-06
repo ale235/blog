@@ -6,6 +6,7 @@ use App\Models\Header;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class SinglePageController extends Controller {
 
@@ -52,6 +53,18 @@ class SinglePageController extends Controller {
         ]);
 
         return view('backend.singlepage.header');
+
+    }
+
+    public function headerestilodos(Request $request) {
+        Header::create([
+            'image_path' => $request->get('filepath2'),
+            'text_title' => $request->get('title_text'),
+            'text_subtitle' => $request->get('subtitle_text'),
+            'style_type' => 0
+        ]);
+
+        return Redirect::to('backend/singlepage/header');
 
     }
 
