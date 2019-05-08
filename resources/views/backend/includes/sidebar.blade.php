@@ -28,6 +28,21 @@
                 <!-- /.nav-second-level -->
             </li>
             <li>
+                <a href="{{ url('/admin/singlepage/index') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Single Page Admin<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('/admin/singlepage/header') }}">Header</a>
+                    </li>
+                    {{--<li>--}}
+                    {{--<a href="{{ url('/admin/survey') }}">Todas las Encuestas</a>--}}
+                    {{--</li>--}}
+                    <li>
+                        <a href="{{ url('/admin/singlepage/galeria') }}">Galeria</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
                 <a href="{{ url('admin/comments') }}"><i class="fa fa-comments"></i> Todos los Comentarios</a>
             </li>
             <li>
@@ -63,18 +78,7 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            <li>
-                <a href="{{ url('/admin/singlepage/index') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Single Page Admin<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('/admin/singlepage/header') }}">Header</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/admin/survey') }}">Todas las Encuestas</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
+
             
         </ul>
     </div>

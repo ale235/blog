@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Galeria;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class GaleriaController extends Controller
@@ -14,7 +15,9 @@ class GaleriaController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'Galeria';
+        dd("da");
+        return view('backend.singlepage.galeria.index', ['title' => $title]);
     }
 
     /**

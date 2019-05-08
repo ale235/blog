@@ -111,9 +111,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage', function () {
         return view('backend.singlepage.index');
     });
+
     Route::get('/singlepage/header', 'SinglePageController@header');
     Route::post('/singlepage/header/headerestilouno', 'SinglePageController@headerestilouno');
     Route::post('/singlepage/header/headerestilodos', 'SinglePageController@headerestilodos');
+
+    //Galeria Routes
+    Route::get('/singlepage/galeria', 'GaleriaController@index');
     
     //Post routes
     Route::get('/post', 'PostController@index');
