@@ -15,7 +15,7 @@ class GaleriaImagen extends Model
      * @var array
      */
     protected $fillable = [
-        'galeria_id', 'image_path', 'slug', 'orden', 'estado'
+        'galeria_id','titulo', 'image_path', 'slug', 'orden', 'estado'
     ];
 
     public $timestamps = true;

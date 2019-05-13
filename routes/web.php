@@ -20,7 +20,7 @@ Route::get('/', function () {
     $header = Header::first();
     $galerias = DB::table('galerias as g')
                 ->where('g.estado',1)
-                ->take(6)
+                ->take(8)
                 ->get();
 
 //    dd($galerias);
@@ -30,6 +30,17 @@ Route::get('/', function () {
 Route::get('/principal', function () {
 
     return view('frontend.principal');
+});
+
+Route::get('/galeria/{slug}', function ($d) {
+//    dd($d);
+    $galeria = DB::table('galerias as g')
+                ->where('slug','=',$d)
+                ->first();
+    $galeriaimagen = DB::table('galeria_imagens')
+                        ->where('galeria_id','=',$galeria->id)
+                        ->get();
+    return view('frontend.includes.galeria.index',['galeria' => $galeria, 'galeriaimagen' => $galeriaimagen]);
 });
 
 Route::get('/blog', 'BlogController@index');
@@ -118,6 +129,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 
     //Galeria Routes
     Route::get('/singlepage/galeria', 'GaleriaController@index');
+    Route::get('/singlepage/galeria/create', 'GaleriaController@create');
+    Route::post('/singlepage/galeria/store', 'GaleriaController@store');
     
     //Post routes
     Route::get('/post', 'PostController@index');

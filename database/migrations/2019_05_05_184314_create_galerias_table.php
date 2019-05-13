@@ -16,7 +16,10 @@ class CreateGaleriasTable extends Migration
         Schema::create('galerias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image_path');
-            $table->string('nombre');
+            $table->string('titulo');
+            $table->string('lugar');
+            $table->string('anio');
+            $table->string('resenia');
             $table->string('slug');
             $table->integer('orden');
             $table->integer('estado');
