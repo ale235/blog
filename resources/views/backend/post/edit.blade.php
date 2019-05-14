@@ -11,7 +11,7 @@
     <div class="col-lg-12">
         <h1 class="page-header">Edit Post 
             <a href="{{ url('admin/post') }}" class="btn btn-default" role="button" style="float: right">Volver al post</a>
-            <a href="{{ url('admin/post/'.@$post->post_id) }}" class="btn btn-default" role="button" style="float: right; margin-right:10px">Previsualizar</a>
+            <a href="{{ url('admin/post/'.@$post->id) }}" class="btn btn-default" role="button" style="float: right; margin-right:10px">Previsualizar</a>
         </h1>
     </div>
     <!-- /.col-lg-12 -->
@@ -39,7 +39,7 @@
         @endif
 
         
-        <form role="form" method="POST" action="{{ url('/admin/post/'.$post->post_id) }}" id="form-post" enctype="multipart/form-data">
+        <form role="form" method="POST" action="{{ url('/admin/post/'.$post->id) }}" id="form-post" enctype="multipart/form-data">
             <input name="_method" type="hidden" value="PATCH">
             
             {{ csrf_field() }}    

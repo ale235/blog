@@ -23,10 +23,10 @@ class PostController extends Controller {
     public function index() {
         $title = 'Admin | Post';
 //        $posts = DB::table('view_post')->select(['post_id', 'title', 'published', 'seen', 'users_id', 'username', 'created_at_us', 'updated_at_us'])->paginate(30);
-        $posts = DB::table('post as p')
-            ->join('users as u','p.users_id','=','u.users_id')
-            ->select(['p.post_id', 'p.title', 'p.published', 'p.seen', 'p.users_id', 'u.username', 'p.created_at', 'p.updated_at'])
-            ->orderBy('p.post_id','desc')
+        $posts = DB::table('posts as p')
+            ->join('users as u','p.user_id','=','u.id')
+            ->select(['p.id as post_id', 'p.title', 'p.published', 'p.seen', 'p.user_id', 'u.username', 'p.created_at', 'p.updated_at'])
+            ->orderBy('p.id','desc')
             ->paginate(30);
         return view('backend.post.list', compact('title','posts'));
     }
@@ -108,15 +108,15 @@ class PostController extends Controller {
     public function store(Request $request) {
 
 //        dd($request);
-
+//        dd($request);
         $post = new Post([
             'title' => $request['title'],
             'summary' => '',
-            'content' => $request['content'],
+            'content' => $request->get('content'),
             'seen' => 1,
             'categoria_id' => 1,
             'published' => $request['published'] ?: 0,
-            'users_id' => Auth::id(),
+            'user_id' => Auth::id(),
             'updated_at' => Carbon::now(), //date('Y-m-d G:i:s') DB::raw('NOW()')
             'created_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
         ]);
@@ -127,29 +127,24 @@ class PostController extends Controller {
             $slug = str_slug($request['title'], '-');
 
         $post['slug'] = $slug;
-        $post->save();
         $detail=$request['content'];
 
         $porciones = explode("<hr>", $detail);
-        $post->content = $detail;
         $post->summary = $porciones[0];
         $nada = strip_tags($porciones[0]);
         $cortado = substr(trim($nada, "[\n|\r|\n\r]"),0,152);
         $cortado = str_replace ( '&nbsp;' , ' ' , $cortado);
         $cadena = $cortado . '...';
 
-        $post->description = $cadena;
-
-
-//        dd($request);
-
+        $post->descripcion = $cadena;
+//        dd($post->content);
         $post->save();
 
         Session::flash('notif_type', 'success');
         Session::flash('notif', 'Post has been created!');
 
         //return redirect("admin/post/create");
-        return redirect("admin/post/$post->post_id/edit");
+        return redirect("admin/post/$post->id/edit");
     }
 
     /**
@@ -186,22 +181,22 @@ class PostController extends Controller {
      */
     public function update(PostRequest $request, $id) {
 
-        //dd($request,$id);
+//        dd($request,$id);
         $post = Post::findOrFail($id);
         $post->title = $request['title'];
         $post->slug = $request['slug'];
         //dd($request);
-        $detail=$request['content'];
+        $detail=$request->get('content');
 
         $porciones = explode("<hr>", $detail);
         $post->content = $detail;
         $post->summary = $porciones[0];
         $nada = strip_tags($porciones[0]);
         $cadena = trim($nada, "[\n|\r|\n\r]");
-        $post->description = $cadena;
+        $post->descripcion = $cadena;
 
 
-        $post->where('post_id', $id)->update([
+        $post->where('id', $id)->update([
             'updated_at' => Carbon::now()  //date('Y-m-d G:i:s') DB::raw('NOW()')
         ]);
         $post->update();

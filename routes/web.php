@@ -11,12 +11,12 @@ use App\Models\Header;
 use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
-    $post = DB::table('posts as p')
-        ->select('p.id','p.title','u.username','p.content','p.updated_at','p.summary','p.slug','p.created_at','p.descripcion')
+    $posts = DB::table('posts as p')
+        ->select('p.id','p.title','u.username','p.content','p.updated_at','p.summary','p.slug','p.created_at','p.descripcion','u.avatar')
         ->join('users as u', 'p.user_id', '=', 'u.id')
         ->where('p.published', 1)
         ->orderBy('p.created_at', 'desc')
-        ->first();
+        ->paginate(3);
     $header = Header::first();
     $galerias = DB::table('galerias as g')
                 ->where('g.estado',1)
@@ -24,7 +24,7 @@ Route::get('/', function () {
                 ->get();
 
 //    dd($galerias);
-    return view('frontend.welcome', ['post' => $post,'header' => $header, 'galerias' => $galerias]);
+    return view('frontend.welcome', ['posts' => $posts,'header' => $header, 'galerias' => $galerias]);
 });
 
 Route::get('/principal', function () {
