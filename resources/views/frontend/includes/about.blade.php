@@ -1,59 +1,10 @@
-<section class="page-section  bg-primary" id="resenias">
+<section class="page-section  bg-primary" id="resenias" style="
+                background: url('../../img/fondojaja.png');
+                background-position: center;
+                /*background-size: cover;*/
+                background-repeat: repeat;
+                background-attachment: scroll;">
     <div class="container">
-        {{--<div class="row justify-content-center" style="margin: -75px;">--}}
-        {{--<div class="col-lg-10" style="padding: 100px;">--}}
-        {{--<div class="blog-card"  style="font-family: 'Sigmar One', cursive;">--}}
-        {{--<div class="meta">--}}
-        {{--<div class="photo" style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg)"></div>--}}
-        {{--<ul class="details">--}}
-        {{--<li class="author"><a href="#">{{$post->username}}</a></li>--}}
-        {{--<li class="date">Aug. 24, 2015</li>--}}
-        {{--<li class="tags">--}}
-        {{--<ul>--}}
-        {{--<li><a href="#">Learn</a></li>--}}
-        {{--<li><a href="#">Code</a></li>--}}
-        {{--<li><a href="#">HTML</a></li>--}}
-        {{--<li><a href="#">CSS</a></li>--}}
-        {{--</ul>--}}
-        {{--</li>--}}
-        {{--</ul>--}}
-        {{--</div>--}}
-        {{--<div class="description">--}}
-        {{--<h1  style="font-family: 'Sigmar One', cursive;">{{$post->title}}</h1>--}}
-        {{--<h2>Opening a door to the future</h2>--}}
-        {{--<p> {{$post->description}}</p>--}}
-        {{--<p class="read-more">--}}
-        {{--<a href="#" style="color: #0b0b0b">Leer más</a>--}}
-        {{--</p>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="blog-card alt">--}}
-        {{--<div class="meta">--}}
-        {{--<div class="photo" style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-2.jpg)"></div>--}}
-        {{--<ul class="details">--}}
-        {{--<li class="author"><a href="#">Jane Doe</a></li>--}}
-        {{--<li class="date">July. 15, 2015</li>--}}
-        {{--<li class="tags">--}}
-        {{--<ul>--}}
-        {{--<li><a href="#">Learn</a></li>--}}
-        {{--<li><a href="#">Code</a></li>--}}
-        {{--<li><a href="#">JavaScript</a></li>--}}
-        {{--</ul>--}}
-        {{--</li>--}}
-        {{--</ul>--}}
-        {{--</div>--}}
-        {{--<div class="description">--}}
-        {{--<h1>Mastering the Language</h1>--}}
-        {{--<h2>Java is not the same as JavaScript</h2>--}}
-        {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>--}}
-        {{--<p class="read-more">--}}
-        {{--<a href="#">Read More</a>--}}
-        {{--</p>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-
-        {{--</div>--}}
         <div class="row">
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
