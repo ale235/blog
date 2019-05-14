@@ -22,17 +22,31 @@
 <!-- Masthead -->
 @include('frontend.includes.masthead')
 
-<!-- Services Section -->
-@include('frontend.includes.servicios')
+<!-- Members Section -->
+@include('frontend.includes.miembros')
 
 <!-- About Section -->
 @include('frontend.includes.about')
 
-<!-- Members Section -->
-@include('frontend.includes.miembros')
-
 <!-- Portfolio Section -->
 @include('frontend.includes.portfolio')
+
+
+<!-- Services Section -->
+@include('frontend.includes.sponsors')
+
+
+<!-- Contact Section -->
+@include('frontend.includes.contacto')
+
+<!-- Call to Action Section -->
+<section class="page-section">
+    <div class="container text-center">
+        <h2 class="mb-4">Avales</h2>
+        <hr class="divider my-4">
+        <p class="text-muted mb-5">Por el aval o Imagen (A defninir)</p>
+    </div>
+</section>
 
 {{--<!-- Call to Action Section -->--}}
 {{--<section class="page-section bg-dark text-white">--}}
@@ -42,11 +56,11 @@
     {{--</div>--}}
 {{--</section>--}}
 
-<!-- Contact Section -->
-@include('frontend.includes.contacto')
+{{--<!-- Contact Section -->--}}
+{{--@include('frontend.includes.contacto')--}}
 
-<!-- Footer -->
-@include('frontend.includes.footerlanding')
+{{--<!-- Footer -->--}}
+{{--@include('frontend.includes.footerlanding')--}}
 
 @include('frontend.includes.js')
 

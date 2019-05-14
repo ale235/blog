@@ -5,6 +5,12 @@
                 background-repeat: repeat;
                 background-attachment: scroll;">
     <div class="container">
+        <div class="row justify-content-center" style="margin-top: -50px;">
+            <div class="col-lg-8 text-center">
+                <h2 class="mt-0">Blog y Reseñas</h2>
+                <hr class="divider my-4">
+                </div>
+        </div>
         <div class="row">
             @foreach($posts as $post)
                 <div class="col-md-4 mb-5">
