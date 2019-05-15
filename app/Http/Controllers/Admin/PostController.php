@@ -108,7 +108,7 @@ class PostController extends Controller {
     public function store(Request $request) {
 
 //        dd($request);
-//        dd($request);
+        //dd($request);
         $post = new Post([
             'title' => $request['title'],
             'summary' => '',
@@ -127,9 +127,11 @@ class PostController extends Controller {
             $slug = str_slug($request['title'], '-');
 
         $post['slug'] = $slug;
-        $detail=$request['content'];
 
+        $detail=$request->get('content');
+//        dd($detail);
         $porciones = explode("<hr>", $detail);
+//        dd($porciones);
         $post->summary = $porciones[0];
         $nada = strip_tags($porciones[0]);
         $cortado = substr(trim($nada, "[\n|\r|\n\r]"),0,152);

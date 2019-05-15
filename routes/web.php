@@ -20,7 +20,8 @@ Route::get('/', function () {
     $header = Header::first();
     $galerias = DB::table('galerias as g')
                 ->where('g.estado',1)
-                ->take(8)
+                ->orderBy('g.created_at','desc')
+                ->take(6)
                 ->get();
 
 //    dd($galerias);

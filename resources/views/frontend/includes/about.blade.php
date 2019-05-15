@@ -14,7 +14,7 @@
         <div class="row">
             @foreach($posts as $post)
                 <div class="col-md-4 mb-5">
-                    <div class="card h-100">
+                    <div class="card h-100" style="background: rgba(255, 255, 255, 0.5);">
                         <div class="card-body">
                             <h2 class="card-title" style="text-align: center">{{$post->title}}</h2>
                             <div class="row">
