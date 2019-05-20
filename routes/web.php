@@ -23,9 +23,14 @@ Route::get('/', function () {
                 ->orderBy('g.created_at','desc')
                 ->take(6)
                 ->get();
+    $standsyartistas = DB::table('standsyartistas as s')
+//        ->where('g.estado',1)
+        ->orderBy('s.created_at','desc')
+        ->take(12)
+        ->get();
 
 //    dd($galerias);
-    return view('frontend.welcome', ['posts' => $posts,'header' => $header, 'galerias' => $galerias]);
+    return view('frontend.welcome', ['posts' => $posts,'header' => $header, 'galerias' => $galerias, 'standsyartistas' => $standsyartistas]);
 });
 
 Route::get('/principal', function () {
@@ -132,6 +137,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/galeria', 'GaleriaController@index');
     Route::get('/singlepage/galeria/create', 'GaleriaController@create');
     Route::post('/singlepage/galeria/store', 'GaleriaController@store');
+
+    //Stand y Artistas Routes
+    Route::get('/singlepage/standsyartista', 'StandsYArtistasController@index');
+    Route::get('/singlepage/standsyartista/create', 'StandsYArtistasController@create');
+    Route::post('/singlepage/standsyartista/store', 'StandsYArtistasController@store');
     
     //Post routes
     Route::get('/post', 'PostController@index');

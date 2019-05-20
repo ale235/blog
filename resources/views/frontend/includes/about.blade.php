@@ -27,7 +27,15 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-primary btn-sm">Leer más...</a>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-primary btn-sm">Leer más...</a>
+                                </div>
+                                    <small class="text-muted">Escrito por : {{$post->username}}</small>
+                            </div>
+                            {{--<a href="#" class="btn btn-primary btn-sm">Leer más...</a> |--}}
+                            {{--<a><p>Escrito por: Ema</p></a> |--}}
+                            {{--<a href="#" class="btn btn-primary btn-sm">Leer más...</a>--}}
                         </div>
                     </div>
                 </div>

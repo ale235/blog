@@ -39,6 +39,9 @@
                     <li>
                         <a href="{{ url('/admin/singlepage/galeria') }}">Galeria</a>
                     </li>
+                    <li>
+                        <a href="{{ url('/admin/singlepage/standsyartista') }}">Stands y Artistas</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
