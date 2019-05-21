@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StandsYArtista extends Model
+class Aval extends Model
 {
-    protected $table = 'standsyartistas';
+    protected $table = 'avales';
     protected $primaryKey = 'id';
 
     /**

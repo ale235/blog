@@ -7,7 +7,7 @@ use App\Models\Galeria;
 use App\Models\GaleriaImagen;
 use Illuminate\Http\Request;
 
-class StandsYArtistasController extends Controller
+class MiembrosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class StandsYArtistasController extends Controller
      */
     public function index()
     {
-        $title = 'Stands y Artistas';
-        return view('backend.singlepage.standsyartista.index', ['title' => $title]);
+        $title = 'Miembros';
+        return view('backend.singlepage.miembro.index', ['title' => $title]);
     }
 
     /**
@@ -27,8 +27,8 @@ class StandsYArtistasController extends Controller
      */
     public function create()
     {
-        $title = 'Stands y Artistas';
-        return view('backend.singlepage.standsyartista.create', ['title' => $title]);
+        $title = 'Miembros';
+        return view('backend.singlepage.miembro.create', ['title' => $title]);
     }
 
     /**
