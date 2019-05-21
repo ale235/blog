@@ -47,17 +47,30 @@
         </div>
         <div class="row">
             <!-- Team Member 1 -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card border-0 shadow">
                     <img src="https://source.unsplash.com/TMgQMXoglsM/500x350" class="card-img-top" alt="...">
                     <div class="card-body text-center">
-                        <h5 class="card-title mb-0">Team Member</h5>
-                        <div class="card-text text-black-50">Web Developer</div>
+                        <h5 class="card-title mb-0">Andy Stark</h5>
+                        <hr class="divider my-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card-text text-black-50">Técnica Superior en Artes Visuales con especialidad en Pintura</div>
+                                <hr class="divider my-4">
+                                <div class="card-text text-black-50">Ilustradora Digital y Tradicional Freelancer</div>
+                                <div class="card-text text-black-50">Cosplayer & Cosmaker</div>
+                                <div class="card-text text-black-50">Estudiante de Locución</div>
+                                <hr class="divider my-4">
+                                <div class="card-text text-black-50">Árbitro Voluntario de la Asociación Argentina de Deportes Electrónicos</div>
+                                <hr class="divider my-4">
+                                <div class="card-text text-black-50">Amante del cine, los videojuegos, comics, anime y Dungeon&Dragons</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <!-- Team Member 2 -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card border-0 shadow">
                     <img src="https://source.unsplash.com/9UVmlIb0wJU/500x350" class="card-img-top" alt="...">
                     <div class="card-body text-center">
@@ -67,7 +80,7 @@
                 </div>
             </div>
             <!-- Team Member 3 -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card border-0 shadow">
                     <img src="https://source.unsplash.com/sNut2MqSmds/500x350" class="card-img-top" alt="...">
                     <div class="card-body text-center">
@@ -76,16 +89,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Team Member 4 -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-0 shadow">
-                    <img src="https://source.unsplash.com/ZI6p3i9SbVU/500x350" class="card-img-top" alt="...">
-                    <div class="card-body text-center">
-                        <h5 class="card-title mb-0">Team Member</h5>
-                        <div class="card-text text-black-50">Web Developer</div>
-                    </div>
-                </div>
-            </div>
+
         </div>
         <!-- /.row -->
 
