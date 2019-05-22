@@ -142,6 +142,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/standsyartista', 'StandsYArtistasController@index');
     Route::get('/singlepage/standsyartista/create', 'StandsYArtistasController@create');
     Route::post('/singlepage/standsyartista/store', 'StandsYArtistasController@store');
+    Route::get('/ordenarStandsYArtistas', 'StandsYArtistas@ordenarStandsYArtistas')->name('ordenarStandsYArtistas');
+    Route::get('/cambiarEstadoStandsYArtistas', 'StandsYArtistas@cambiarEstadoStandsYArtistas')->name('cambiarEstadoStandsYArtistas');
     
     //Post routes
     Route::get('/post', 'PostController@index');

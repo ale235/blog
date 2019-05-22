@@ -18,7 +18,8 @@ class StandsYArtistasController extends Controller
     public function index()
     {
         $title = 'Stands y Artistas';
-        return view('backend.singlepage.standsyartista.index', ['title' => $title]);
+        $standsYartistas = StandsYArtista::all();
+        return view('backend.singlepage.standsyartista.index', ['standsyartistas' =>$standsYartistas, 'title' => $title]);
     }
 
     /**
@@ -99,5 +100,24 @@ class StandsYArtistasController extends Controller
     public function destroy(Galeria $galeria)
     {
         //
+    }
+
+    public function ordenarServicios(Request $request)
+    {
+        $servicios = Servicios::find($request->id);
+        $servicios->orden = $request->orden;
+        $servicios->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
+    }
+    public function cambiarEstadoServicios(Request $request)
+    {
+        $servicios = Servicios::find($request->id);
+        $servicios->estado = $request->estado;
+        $servicios->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
     }
 }
