@@ -14,7 +14,12 @@
                         <img src="{{asset($standsyartista->image_path)}}" class="card-img-top" alt="...">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-0">{{$standsyartista->nombre}}</h5>
-                            <div class="card-text text-black-50">Web Developer</div>
+                            {{--<div class="card-text text-black-50">Web Developer</div>--}}
+                        </div>
+                        <div class="col-md-12" style="text-align: center; padding: 0px 0px 20px">
+                            <a href="#" class="fa fa-facebook" style="padding: 9px 10px 7px 10px;width: 50px;font-size: 30px;"></a>
+                            <a href="#" class="fa fa-instagram" style="padding: 9px 10px 7px 10px;width: 50px;font-size: 30px;"></a>
+                            <a href="#" class="fa fa-twitter" style="padding: 9px 10px 7px 10px;width: 50px;font-size: 30px;"></a>
                         </div>
                     </div>
                 </div>
@@ -23,6 +28,10 @@
             </div>
         </div>
 </section>
+
+<style>
+
+</style>
 
 {{--<!-- Team Member 4 -->--}}
 {{--<div class="col-xl-3 col-md-6 mb-4">--}}

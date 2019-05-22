@@ -51,13 +51,13 @@
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
+                            <div class="col-md-9 {{ $errors->has('slug') ? ' has-error' : '' }}">
                                 <label>Link a su web:</label><em>*</em><br>
                                 http://
                                 <input type="text" name="slug" id="slug" class="" value="{{ old('slug')}}" size="50">
-                                @if ($errors->has('title'))
+                                @if ($errors->has('slug'))
                                     <span class="form-error">
-                                    {{ $errors->first('title') }}
+                                    {{ $errors->first('slug') }}
                                     </span>
                                 @endif
                             </div>
@@ -67,7 +67,7 @@
                             <div class="col-md-9 {{ $errors->has('facebook') ? ' has-error' : '' }}">
                                 <label>Link a su face:</label><em>*</em><br>
                                 http://www.facebook.com/
-                                <input type="text" name="slug" id="slug" class="" value="{{ old('facebook')}}" size="50">
+                                <input type="text" name="facebook" id="facebook" class="" value="{{ old('facebook')}}" size="50">
                                 @if ($errors->has('facebook'))
                                     <span class="form-error">
                                     {{ $errors->first('facebook') }}
@@ -80,7 +80,7 @@
                             <div class="col-md-9 {{ $errors->has('instagram') ? ' has-error' : '' }}">
                                 <label>Link a su insta:</label><em>*</em><br>
                                 http://www.instagram.com/
-                                <input type="text" name="slug" id="slug" class="" value="{{ old('instagram')}}" size="50">
+                                <input type="text" name="instagram" id="instagram" class="" value="{{ old('instagram')}}" size="50">
                                 @if ($errors->has('instagram'))
                                     <span class="form-error">
                                     {{ $errors->first('instagram') }}

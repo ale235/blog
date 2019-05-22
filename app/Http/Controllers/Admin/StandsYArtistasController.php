@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Galeria;
 use App\Models\GaleriaImagen;
+use App\Models\StandsYArtista;
 use Illuminate\Http\Request;
 
 class StandsYArtistasController extends Controller
@@ -39,33 +40,19 @@ class StandsYArtistasController extends Controller
      */
     public function store(Request $request)
     {
-        $galeria = new Galeria([
-            'titulo' => $request->get('title'),
+        $galeria = new StandsYArtista([
+            'nombre' => $request->get('title'),
             'image_path' => $request->get('imgportada'),
-            'lugar' => $request->get('lugar'),
-            'anio' =>  $request->get('anio'),
-            'resenia' => $request->get('content'),
-            'slug' => $request->get('slug'),
-            'orden' => (Galeria::all()->count() + 1),
+            'instagram' =>  $request->get('instagram'),
+            'facebook' => $request->get('facebook'),
+            'slug' => $request->get('title'),
+            'orden' => (StandsYArtista::all()->count() + 1),
             'estado' => 1,
         ]);
+//        dd($request,$galeria);
         $galeria->save();
 
-        $count = 1;
-        foreach ($request->files->all()['imggaleria'] as $img){
-//            dd(url('/photos/shares').'/galeria/'.trim($request->get('titulo')).'/'.trim($request->get('titulo').'-'.$count));
-//            dd(public_path('photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count));
-            $galeriaimagen = new GaleriaImagen([
-                'galeria_id' => $galeria->id,
-                'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
-                'image_path' => url('/photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count.'.jpg')
-            ]);
-            $img->move(public_path('/photos/shares/galeria/').trim($request->get('title')), trim($request->get('title').'-'.$count).'.jpg');
-            $count++;
-            $galeriaimagen->save();
-        }
-
-        return view('backend.singlepage.galeria.create',['title' => 'lala']);
+        return view('backend.singlepage.standsyartista.create',['title' => 'Stands y Artistas']);
 
     }
 

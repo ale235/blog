@@ -15,7 +15,7 @@ class StandsYArtista extends Model
      * @var array
      */
     protected $fillable = [
-        'image_path', 'titulo', 'slug', 'orden', 'estado','lugar', 'resenia', 'anio'
+        'image_path', 'nombre', 'slug', 'orden', 'estado','instagram', 'facebook'
     ];
 
     public $timestamps = true;
