@@ -102,20 +102,21 @@ class StandsYArtistasController extends Controller
         //
     }
 
-    public function ordenarServicios(Request $request)
+    public function ordenarStandsYArtistas(Request $request)
     {
-        $servicios = Servicios::find($request->id);
-        $servicios->orden = $request->orden;
-        $servicios->update();
+        dd($request);
+        $sya = StandsYArtista::find($request->id);
+        $sya->orden = $request->orden;
+        $sya->update();
 //        $data = $request->all(); // This will get all the request data.
 //        var_dump($data);
 //        dd($data); // This will dump and die
     }
-    public function cambiarEstadoServicios(Request $request)
+    public function cambiarEstadoStandsYArtistas(Request $request)
     {
-        $servicios = Servicios::find($request->id);
-        $servicios->estado = $request->estado;
-        $servicios->update();
+        $sya = StandsYArtista::find($request->id);
+        $sya->estado = $request->estado;
+        $sya->update();
 //        $data = $request->all(); // This will get all the request data.
 //        var_dump($data);
 //        dd($data); // This will dump and die
