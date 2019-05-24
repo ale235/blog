@@ -15,7 +15,7 @@ class Miembro extends Model
      * @var array
      */
     protected $fillable = [
-        'image_path', 'titulo', 'slug', 'orden', 'estado','lugar', 'resenia', 'anio'
+        'image_path', 'nombre', 'slug','texto_uno','texto_dos', 'orden', 'estado','instagram', 'facebook', 'twitter'
     ];
 
     public $timestamps = true;

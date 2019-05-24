@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Galeria;
 use App\Models\GaleriaImagen;
+use App\Models\Miembro;
 use Illuminate\Http\Request;
 
 class MiembrosController extends Controller
@@ -17,7 +18,8 @@ class MiembrosController extends Controller
     public function index()
     {
         $title = 'Miembros';
-        return view('backend.singlepage.miembro.index', ['title' => $title]);
+        $miembros = Miembro::all();
+        return view('backend.singlepage.miembro.index', ['title' => $title, 'miembros' => $miembros]);
     }
 
     /**
@@ -39,33 +41,21 @@ class MiembrosController extends Controller
      */
     public function store(Request $request)
     {
-        $galeria = new Galeria([
+        $miembro = new Miembro([
             'titulo' => $request->get('title'),
             'image_path' => $request->get('imgportada'),
-            'lugar' => $request->get('lugar'),
-            'anio' =>  $request->get('anio'),
-            'resenia' => $request->get('content'),
+            'twitter' => $request->get('twitter'),
+            'texto_uno' => $request->get('text_uno'),
+            'texto_dos' => $request->get('texto_dos'),
+            'facebook' =>  $request->get('facebook'),
+            'instagram' => $request->get('instagram'),
             'slug' => $request->get('slug'),
-            'orden' => (Galeria::all()->count() + 1),
+            'orden' => (Miembro::all()->count() + 1),
             'estado' => 1,
         ]);
-        $galeria->save();
+        $miembro->save();
 
-        $count = 1;
-        foreach ($request->files->all()['imggaleria'] as $img){
-//            dd(url('/photos/shares').'/galeria/'.trim($request->get('titulo')).'/'.trim($request->get('titulo').'-'.$count));
-//            dd(public_path('photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count));
-            $galeriaimagen = new GaleriaImagen([
-                'galeria_id' => $galeria->id,
-                'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
-                'image_path' => url('/photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count.'.jpg')
-            ]);
-            $img->move(public_path('/photos/shares/galeria/').trim($request->get('title')), trim($request->get('title').'-'.$count).'.jpg');
-            $count++;
-            $galeriaimagen->save();
-        }
-
-        return view('backend.singlepage.galeria.create',['title' => 'lala']);
+        return view('backend.singlepage.miembro.create',['title' => 'lala']);
 
     }
 
@@ -112,5 +102,25 @@ class MiembrosController extends Controller
     public function destroy(Galeria $galeria)
     {
         //
+    }
+
+    public function ordenarMiembros(Request $request)
+    {
+
+        $miembro = Miembro::find($request->id);
+        $miembro->orden = $request->orden;
+        $miembro->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
+    }
+    public function cambiarEstadoMiembros(Request $request)
+    {
+        $miembro = Miembro::find($request->id);
+        $miembro->estado = $request->estado;
+        $miembro->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
     }
 }

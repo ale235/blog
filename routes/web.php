@@ -33,8 +33,13 @@ Route::get('/', function () {
         ->orderBy('s.orden','asc')
         ->get();
 
+    $miembros = DB::table('miembros as m')
+        ->where('m.estado',1)
+        ->orderBy('m.orden','asc')
+        ->get();
+
 //    dd($galerias);
-    return view('frontend.welcome', ['posts' => $posts,'header' => $header, 'galerias' => $galerias, 'standsyartistas' => $standsyartistas, 'sponsors' => $sponsors]);
+    return view('frontend.welcome', ['posts' => $posts,'header' => $header, 'galerias' => $galerias, 'standsyartistas' => $standsyartistas, 'sponsors' => $sponsors, 'miembros' => $miembros]);
 });
 
 Route::get('/principal', function () {
@@ -155,6 +160,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::post('/singlepage/sponsor/store', 'SponsorsController@store');
     Route::get('/singlepage/sponsor/ordenarSponsors', 'SponsorsController@ordenarSponsors')->name('ordenarSponsors');
     Route::get('/singlepage/sponsor/cambiarEstadoSponsors', 'SponsorsController@cambiarEstadoSponsors')->name('cambiarEstadoSponsors');
+
+    //Miembros Routes
+    Route::get('/singlepage/miembro', 'MiembrosController@index');
+    Route::get('/singlepage/miembro/create', 'MiembrosController@create');
+    Route::post('/singlepage/miembro/store', 'MiembrosController@store');
+    Route::get('/singlepage/miembro/ordenarMiembros', 'MiembrosController@ordenarMiembros')->name('ordenarMiembros');
+    Route::get('/singlepage/miembro/cambiarEstadoMiembros', 'MiembrosController@cambiarEstadoMiembros')->name('cambiarEstadoMiembros');
     
     //Post routes
     Route::get('/post', 'PostController@index');

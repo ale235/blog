@@ -45,7 +45,7 @@ class SponsorsController extends Controller
             'nombre' => $request->get('title'),
             'image_path' => $request->get('imgportada'),
             'slug' => $request->get('slug'),
-            'orden' => (Galeria::all()->count() + 1),
+            'orden' => (Sponsor::all()->count() + 1),
             'estado' => 1,
         ]);
         $sponsor->save();
