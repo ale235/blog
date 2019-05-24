@@ -13,7 +13,15 @@ class CreateSponsorsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('sponsors', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('image_path');
+            $table->string('nombre');
+            $table->string('slug');
+            $table->integer('orden');
+            $table->integer('estado');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +31,6 @@ class CreateSponsorsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sponsors');
     }
 }

@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Galeria;
 use App\Models\GaleriaImagen;
+use App\Models\Sponsor;
 use Illuminate\Http\Request;
 
-class Sponsors extends Controller
+class SponsorsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,8 @@ class Sponsors extends Controller
     public function index()
     {
         $title = 'Sponsors';
-        return view('backend.singlepage.sponsor.index', ['title' => $title]);
+        $sponsors = Sponsor::all();
+        return view('backend.singlepage.sponsor.index', ['title' => $title, 'sponsors' => $sponsors]);
     }
 
     /**
@@ -28,7 +30,7 @@ class Sponsors extends Controller
     public function create()
     {
         $title = 'Sponsors';
-        return view('backend.singlepage.sponser.create', ['title' => $title]);
+        return view('backend.singlepage.sponsor.create', ['title' => $title]);
     }
 
     /**
@@ -39,33 +41,17 @@ class Sponsors extends Controller
      */
     public function store(Request $request)
     {
-        $galeria = new Galeria([
-            'titulo' => $request->get('title'),
+        $sponsor = new Sponsor([
+            'nombre' => $request->get('title'),
             'image_path' => $request->get('imgportada'),
-            'lugar' => $request->get('lugar'),
-            'anio' =>  $request->get('anio'),
-            'resenia' => $request->get('content'),
             'slug' => $request->get('slug'),
             'orden' => (Galeria::all()->count() + 1),
             'estado' => 1,
         ]);
-        $galeria->save();
+        $sponsor->save();
 
-        $count = 1;
-        foreach ($request->files->all()['imggaleria'] as $img){
-//            dd(url('/photos/shares').'/galeria/'.trim($request->get('titulo')).'/'.trim($request->get('titulo').'-'.$count));
-//            dd(public_path('photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count));
-            $galeriaimagen = new GaleriaImagen([
-                'galeria_id' => $galeria->id,
-                'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
-                'image_path' => url('/photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count.'.jpg')
-            ]);
-            $img->move(public_path('/photos/shares/galeria/').trim($request->get('title')), trim($request->get('title').'-'.$count).'.jpg');
-            $count++;
-            $galeriaimagen->save();
-        }
 
-        return view('backend.singlepage.galeria.create',['title' => 'lala']);
+        return view('backend.singlepage.sponsor.create',['title' => 'Sponsors']);
 
     }
 
@@ -112,5 +98,25 @@ class Sponsors extends Controller
     public function destroy(Galeria $galeria)
     {
         //
+    }
+
+    public function ordenarSponsors(Request $request)
+    {
+
+        $sponsor = Sponsor::find($request->id);
+        $sponsor->orden = $request->orden;
+        $sponsor->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
+    }
+    public function cambiarEstadoSponsors(Request $request)
+    {
+        $sponsor = Sponsor::find($request->id);
+        $sponsor->estado = $request->estado;
+        $sponsor->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
     }
 }

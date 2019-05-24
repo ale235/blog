@@ -16,7 +16,7 @@
                             <th>Nombre</th>
                             <th>Orden</th>
                             <th>Estado</th>
-                            <th>Opciones</th>
+                            {{--<th>Opciones</th>--}}
                         </tr>
                         </thead>
                         <tbody>
@@ -38,13 +38,13 @@
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
-                                {{--<td>--}}
-                                    {{--<div class="btn-group" style="display: inline-block;">--}}
-                                        {{--<a href="slider/{{$slider->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>--}}
-                                        {{--<a href="slider/{{$slider->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>--}}
-                                        {{--<a href="" data-toggle="modal" data-target="#modal-delete-{{$slider->id}}" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>--}}
-                                    {{--</div>--}}
-                                {{--</td>--}}
+                                        {{--<td>--}}
+                                            {{--<div class="btn-group" style="display: inline-block;">--}}
+                                                {{--<a href="slider/{{$slider->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>--}}
+                                                {{--<a href="slider/{{$slider->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>--}}
+                                                {{--<a href="" data-toggle="modal" data-target="#modal-delete-{{$slider->id}}" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>--}}
+                                            {{--</div>--}}
+                                        {{--</td>--}}
                             </tr>
 {{--                            @include('backend.slider.modal')--}}
                         @endforeach
@@ -54,7 +54,7 @@
             {{--{!! $servicios->render() !!}--}}
             <!-- /.box-body -->
                 <div class="box-footer">
-                    <a  href="{{url('/admin/ourworks/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Servicio</button></a>
+                    <a  href="{{url('/admin/singlepage/standsyartista/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Stand y/o Artista</button></a>
                 </div>
             </div>
             <!-- /.box -->

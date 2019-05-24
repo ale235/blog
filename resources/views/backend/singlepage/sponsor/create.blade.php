@@ -11,7 +11,7 @@
     <div class="row">
             <div class="col-12 col-md-12">
                 <div class="col-md-12">
-                    <form action="{{ url('/admin/singlepage/standsyartista/store') }}" id="form-galery" enctype="multipart/form-data" method="post">
+                    <form action="{{ url('/admin/singlepage/sponsor/store') }}" id="form-galery" enctype="multipart/form-data" method="post">
                         {{ csrf_field() }}
                         {{--Foto principal: recomendado 860 x 480px<br>--}}
                         {{--<input name="photo" type="file">--}}
@@ -25,7 +25,7 @@
 
                         <div class="row form-group">
                             <div class="col-md-12 {{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label>Nombre del Stand y/o Artista</label><em>*</em>
+                                <label>Nombre del Sponsor</label><em>*</em>
                                 <input type="text" name="title" id="title" class="form-control" value="{{ old('title')}}">
                                 @if ($errors->has('title'))
                                     <span class="form-error">
@@ -37,53 +37,27 @@
 
                         <div class="row form-group">
                             <div class="col-md-12 {{ $errors->has('imgportada') ? ' has-error' : '' }}">
-                                <label>Imagen principal</label><em>*</em>
+                                <label>Imagen principal: Tamaño recomendado 500px x 350px</label><em>*</em>
                                 <div class="input-group">
                                     <span class="input-group-btn">
                                     <a id="imgportada" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
                                         <i class="fa fa-picture-o"></i> Elegí
                                     </a>
                                     </span>
-                                    <input id="thumbnail" class="form-control" type="text" name="imgportada">
+                                    <input id="thumbnail" class="form-control" type="text" name="imgportada" onchange="GetFileSize()">
                                 </div>
                             </div>
                             <img id="holder" style="margin-top:15px;max-height:100px;">
                         </div>
 
                         <div class="row form-group">
-                            <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
+                            <div class="col-md-9 {{ $errors->has('slug') ? ' has-error' : '' }}">
                                 <label>Link a su web:</label><em>*</em><br>
                                 http://
                                 <input type="text" name="slug" id="slug" class="" value="{{ old('slug')}}" size="50">
-                                @if ($errors->has('title'))
+                                @if ($errors->has('slug'))
                                     <span class="form-error">
-                                    {{ $errors->first('title') }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <div class="col-md-9 {{ $errors->has('facebook') ? ' has-error' : '' }}">
-                                <label>Link a su face:</label><em>*</em><br>
-                                http://www.facebook.com/
-                                <input type="text" name="slug" id="slug" class="" value="{{ old('facebook')}}" size="50">
-                                @if ($errors->has('facebook'))
-                                    <span class="form-error">
-                                    {{ $errors->first('facebook') }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <div class="col-md-9 {{ $errors->has('instagram') ? ' has-error' : '' }}">
-                                <label>Link a su insta:</label><em>*</em><br>
-                                http://www.instagram.com/
-                                <input type="text" name="slug" id="slug" class="" value="{{ old('instagram')}}" size="50">
-                                @if ($errors->has('instagram'))
-                                    <span class="form-error">
-                                    {{ $errors->first('instagram') }}
+                                    {{ $errors->first('slug') }}
                                     </span>
                                 @endif
                             </div>

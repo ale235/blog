@@ -42,6 +42,9 @@
                     <li>
                         <a href="{{ url('/admin/singlepage/standsyartista') }}">Stands y Artistas</a>
                     </li>
+                    <li>
+                        <a href="{{ url('/admin/singlepage/sponsor') }}">Sponsors</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>

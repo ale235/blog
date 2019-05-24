@@ -6,47 +6,19 @@
                     <hr class="divider my-4">
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 <!-- Team Member 1 -->
+                @foreach($sponsors as $sponsor)
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-0 shadow">
-                        <img src="https://gbievents.com/userfiles/news/.thumbnail/56fcf4e976851-coca-cola.jpg" class="card-img-top" alt="...">
+                        <img src="{{asset($sponsor->image_path)}}" class="card-img-top" alt="...">
                         <div class="card-body text-center">
-                            <h5 class="card-title mb-0">Coca-Cola</h5>
+                            <h5 class="card-title mb-0"><a href="{{url($sponsor->slug)}}">{{$sponsor->nombre}}</a></h5>
                             {{--<div class="card-text text-black-50">Web Developer</div>--}}
                         </div>
                     </div>
                 </div>
-                <!-- Team Member 2 -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-0 shadow">
-                        <img src="https://gbievents.com/userfiles/news/.thumbnail/56fcf4e976851-coca-cola.jpg" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                            <h5 class="card-title mb-0">Team Member</h5>
-                            <div class="card-text text-black-50">Web Developer</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Team Member 3 -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-0 shadow">
-                        <img src="https://gbievents.com/userfiles/news/.thumbnail/56fcf4e976851-coca-cola.jpg" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                            <h5 class="card-title mb-0">Team Member</h5>
-                            <div class="card-text text-black-50">Web Developer</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Team Member 4 -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-0 shadow">
-                        <img src="https://gbievents.com/userfiles/news/.thumbnail/56fcf4e976851-coca-cola.jpg" class="card-img-top" alt="...">
-                        <div class="card-body text-center">
-                            <h5 class="card-title mb-0">Team Member</h5>
-                            <div class="card-text text-black-50">Web Developer</div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
 </section>

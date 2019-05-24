@@ -104,7 +104,7 @@ class StandsYArtistasController extends Controller
 
     public function ordenarStandsYArtistas(Request $request)
     {
-        dd($request);
+
         $sya = StandsYArtista::find($request->id);
         $sya->orden = $request->orden;
         $sya->update();
