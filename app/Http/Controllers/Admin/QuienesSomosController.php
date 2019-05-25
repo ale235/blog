@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Aval;
 use App\Models\Galeria;
-use App\Models\GaleriaImagen;
+use App\Models\QuienesSomo;
 use Illuminate\Http\Request;
 
-class AvalesController extends Controller
+class QuienesSomosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class AvalesController extends Controller
      */
     public function index()
     {
-        $title = 'Avales';
-        $avales = Aval::all();
-        return view('backend.singlepage.aval.index', ['title' => $title, 'avales' => $avales]);
+        $title = 'Quienes Somos';
+        $quienessomos = QuienesSomo::all();
+        return view('backend.singlepage.quienessomo.index', ['title' => $title, 'quienessomos' => $quienessomos]);
     }
 
     /**
@@ -29,8 +29,8 @@ class AvalesController extends Controller
      */
     public function create()
     {
-        $title = 'Avales';
-        return view('backend.singlepage.aval.create', ['title' => $title]);
+        $title = 'Quienes Somos';
+        return view('backend.singlepage.quienessomo.create', ['title' => $title]);
     }
 
     /**
@@ -41,15 +41,15 @@ class AvalesController extends Controller
      */
     public function store(Request $request)
     {
-        $aval = new Aval([
+        $quienessomo = new QuienesSomo([
             'image_path' => $request->get('imgportada'),
             'texto_uno' => $request->get('title'),
             'orden' => (Aval::all()->count() + 1),
             'estado' => 1,
         ]);
-        $aval->save();
+        $quienessomo->save();
 
-        return view('backend.singlepage.aval.create',['title' => 'lala']);
+        return view('backend.singlepage.quienessomo.create',['title' => 'lala']);
 
     }
 
@@ -98,23 +98,17 @@ class AvalesController extends Controller
         //
     }
 
-    public function ordenarAvales(Request $request)
+    public function ordenarQuienesSomos(Request $request)
     {
 
-        $aval = Aval::find($request->id);
-        $aval->orden = $request->orden;
-        $aval->update();
-//        $data = $request->all(); // This will get all the request data.
-//        var_dump($data);
-//        dd($data); // This will dump and die
+        $quienessomo = QuienesSomo::find($request->id);
+        $quienessomo->orden = $request->orden;
+        $quienessomo->update();
     }
-    public function cambiarEstadoAvales(Request $request)
+    public function cambiarEstadoQuienesSomos(Request $request)
     {
-        $aval = Aval::find($request->id);
-        $aval->estado = $request->estado;
-        $aval->update();
-//        $data = $request->all(); // This will get all the request data.
-//        var_dump($data);
-//        dd($data); // This will dump and die
+        $quienessomo = QuienesSomo::find($request->id);
+        $quienessomo->estado = $request->estado;
+        $quienessomo->update();
     }
 }

@@ -14,7 +14,12 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" style="
+                background: url('../../img/fondojaja.png');
+                background-position: center;
+                /*background-size: cover;*/
+                background-repeat: repeat;
+                background-attachment: scroll;">
 
 <!-- Navigation -->
 @include('frontend.includes.navbar')

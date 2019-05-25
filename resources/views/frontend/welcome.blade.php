@@ -25,15 +25,20 @@
 <section class="page-section" id="quienessomos">
     <div class="row justify-content-center" style="margin-top: -50px;">
     <div class="col-lg-8 text-center">
-        <h2 class="mt-0">Quienes somos</h2>
+        <h2 class="mt-0">¿Quienes somos?</h2>
         <hr class="divider my-4">
     </div>
     <div class="container text-center">
-        <img src="{{asset('img/JAJAlogopeque.png')}}" style="float: left;"/>
-        <p class="text-muted mb-5" style="text-align: justify; font-size: large">J.A.J.A. es una organización productora de eventos culturales, cuya temática intenta englobar toda expresión artística juvenil, relacionada a la cultura freak global, con el objetivo de canalizar esta cultura, a través de diversas producciones artísticas.
-            Entre las expresiones artísticas que reúne se encuentran, baile, canto, escultura, maquillaje, dibujo, arte digital, pintura, composición, producción local, cosplay, diseño de moda, ropa, imagen, fotografía, animación, videojuegos, entre otras.
-            Las temáticas que incluye este movimiento son el comic, manga, historieta, anime, ciencia ficción, música, kpop, videojuegos, cine, televisión, series, etc.
-        </p>
+        <div class="row justify-content-center">
+            @foreach($quienessomos as $quienessomo)
+            <div class="col-xl-12 col-md-12 mb-12">
+                <img src="{{asset($quienessomo->image_path)}}" style="float: left;"/>
+                <p class="text-muted mb-5" style="text-align: justify; font-size: large">
+                    {{$quienessomo->texto_uno}}
+                </p>
+            </div>
+            @endforeach
+        </div>
     </div>
 </div>
 </section>
@@ -112,14 +117,30 @@
 
 
 <!-- Call to Action Section -->
-<section class="page-section">
-    <div class="container text-center">
-        <h2 class="mb-4">Avales</h2>
-        <hr class="divider my-4">
-        <p class="text-muted mb-5">Por el aval o Imagen (A defninir)</p>
+<section class="page-section" id="avales">
+    <div class="container">
+        <div class="row justify-content-center" style="margin-top: -50px;">
+            <div class="col-lg-8 text-center">
+                <h2 class="mt-0">Avales</h2>
+                <hr class="divider my-4">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <!-- Team Member 1 -->
+            @foreach($avales as $key => $aval)
+                <div class="container text-center">
+                    <a href="{{url($aval->image_path)}}">
+                        <img src="{{asset($aval->image_path)}}" class="thumbnail" width="10%" />
+                    </a>
+                    <br><br>
+                    <p class="text-muted mb-5" style="text-align: center; font-size: large">
+                        {{$aval->texto_uno}}
+                    </p>
+                </div>
+            @endforeach
+        </div>
     </div>
 </section>
-
 {{--<!-- Call to Action Section -->--}}
 {{--<section class="page-section bg-dark text-white">--}}
     {{--<div class="container text-center">--}}

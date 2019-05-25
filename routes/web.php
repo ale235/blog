@@ -38,8 +38,18 @@ Route::get('/', function () {
         ->orderBy('m.orden','asc')
         ->get();
 
+    $avales = DB::table('avales as a')
+        ->where('a.estado',1)
+        ->orderBy('a.orden','asc')
+        ->get();
+
+    $quienessomos = DB::table('quienessomos as q')
+        ->where('q.estado',1)
+        ->orderBy('q.orden','asc')
+        ->get();
+
 //    dd($galerias);
-    return view('frontend.welcome', ['posts' => $posts,'header' => $header, 'galerias' => $galerias, 'standsyartistas' => $standsyartistas, 'sponsors' => $sponsors, 'miembros' => $miembros]);
+    return view('frontend.welcome', ['posts' => $posts,'header' => $header, 'galerias' => $galerias, 'standsyartistas' => $standsyartistas, 'sponsors' => $sponsors, 'miembros' => $miembros, 'avales' => $avales, 'quienessomos' => $quienessomos]);
 });
 
 Route::get('/principal', function () {
@@ -146,6 +156,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/galeria', 'GaleriaController@index');
     Route::get('/singlepage/galeria/create', 'GaleriaController@create');
     Route::post('/singlepage/galeria/store', 'GaleriaController@store');
+    Route::get('/singlepage/galeria/ordenarGalerias', 'GaleriasController@ordenarGalerias')->name('ordenarGalerias');
+    Route::get('/singlepage/galeria/cambiarEstadoGalerias', 'GaleriasController@cambiarEstadoGalerias')->name('cambiarEstadoGalerias');
+
 
     //Stand y Artistas Routes
     Route::get('/singlepage/standsyartista', 'StandsYArtistasController@index');
@@ -167,7 +180,23 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::post('/singlepage/miembro/store', 'MiembrosController@store');
     Route::get('/singlepage/miembro/ordenarMiembros', 'MiembrosController@ordenarMiembros')->name('ordenarMiembros');
     Route::get('/singlepage/miembro/cambiarEstadoMiembros', 'MiembrosController@cambiarEstadoMiembros')->name('cambiarEstadoMiembros');
-    
+
+    //Avales Routes
+    Route::get('/singlepage/aval', 'AvalesController@index');
+    Route::get('/singlepage/aval/create', 'AvalesController@create');
+    Route::post('/singlepage/aval/store', 'AvalesController@store');
+    Route::get('/singlepage/aval/ordenarAvales', 'AvalesController@ordenarAvales')->name('ordenarAvales');
+    Route::get('/singlepage/aval/cambiarEstadoAvales', 'AvalesController@cambiarEstadoAvales')->name('cambiarEstadoAvales');
+
+    //Avales Routes
+    Route::get('/singlepage/quienessomo', 'QuienesSomosController@index');
+    Route::get('/singlepage/quienessomo/create', 'QuienesSomosController@create');
+    Route::post('/singlepage/quienessomo/store', 'QuienesSomosController@store');
+    Route::get('/singlepage/quienessomo/ordenarQuienesSomos', 'QuienesSomosController@ordenarQuienesSomos')->name('ordenarQuienesSomos');
+    Route::get('/singlepage/quienessomo/cambiarEstadoQuienesSomos', 'QuienesSomosController@cambiarEstadoQuienesSomos')->name('cambiarEstadoQuienesSomos');
+
+
+
     //Post routes
     Route::get('/post', 'PostController@index');
     Route::get('/post/getdata', 'PostController@getPostList');

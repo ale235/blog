@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
          $this->call(StandsYArtistasTableSeeder::class);
          $this->call(SponsorsTableSeeder::class);
          $this->call(MiembrosTableSeeder::class);
+         $this->call(AvalesTableSeeder::class);
+         $this->call(QuienesSomosTableSeeder::class);
     }
 }

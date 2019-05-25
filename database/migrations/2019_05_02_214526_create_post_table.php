@@ -18,8 +18,8 @@ class CreatePostTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->string('descripcion');
-            $table->string('summary');
-            $table->string('content');
+            $table->longText('summary');
+            $table->longText('content');
             $table->string('seen');
             $table->string('published');
             $table->unsignedInteger('user_id');

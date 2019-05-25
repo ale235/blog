@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAvalesTable extends Migration
+class CreateQuienessomosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateAvalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('avales', function (Blueprint $table) {
+        Schema::create('quienessomos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image_path');
-            $table->string('texto_uno');
+            $table->longText('texto_uno');
             $table->integer('orden');
             $table->integer('estado');
             $table->timestamps();
@@ -30,6 +30,6 @@ class CreateAvalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avales');
+        Schema::dropIfExists('quienessomos');
     }
 }

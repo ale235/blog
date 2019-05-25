@@ -20,21 +20,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($galerias as $galeria)
+                        @foreach($quienessomos as $quienessomo)
                             <tr style="
                                 overflow: hidden;
                                 text-overflow: ellipsis;">
-                                <td>{{$galeria->id}}</td>
-                                <td>{{$galeria->nombre}}</td>
+                                <td>{{$quienessomo->id}}</td>
+                                <td>{{$quienessomo->nombre}}</td>
                                 {{--<td>--}}
                                 {{--<div>--}}
                                 {{--<img src="{{ asset('imagenes/slider')}}/{{$slider->imagen}}" class="img-thumbnail" alt="{{$slider->titulo}}">--}}
                                 {{--</div>--}}
                                 {{--</td>--}}
-                                <td class="index">{{$galeria->orden}}</td>
+                                <td class="index">{{$quienessomo->orden}}</td>
                                 <td>
                                     <label class="switch">
-                                        <input class="estado" type="checkbox" @if($galeria->estado) checked @endif>
+                                        <input class="estado" type="checkbox" @if($quienessomo->estado) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
@@ -54,7 +54,7 @@
             {{--{!! $servicios->render() !!}--}}
             <!-- /.box-body -->
                 <div class="box-footer">
-                    <a  href="{{url('/admin/singlepage/galeria/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Galería</button></a>
+                    <a  href="{{url('/admin/singlepage/quienessomo/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar ¿Quienes Somos?</button></a>
                 </div>
             </div>
             <!-- /.box -->
@@ -79,7 +79,7 @@
                 var orden = i + 1;
                 $.ajax({
                     type: 'get', // Type of response and matches what we said in the route
-                    url: '{{ route('ordenarGalerias') }}', // This is the url we gave in the route
+                    url: '{{ route('ordenarQuienesSomos') }}', // This is the url we gave in the route
                     data: {'id' : id, 'orden' : orden}, // a JSON object to send back
                     success: function(response){ // What to do if we succeed
                         console.log(response);
@@ -104,7 +104,7 @@
             var id = parseInt($($(this).parent().parent().parent().find('td')[0]).text());
             $.ajax({
                 type: 'get', // Type of response and matches what we said in the route
-                url: '{{ route('cambiarEstadoGalerias') }}', // This is the url we gave in the route
+                url: '{{ route('cambiarEstadoQuienesSomos') }}', // This is the url we gave in the route
                 data: {'id' : id, 'estado' : 1}, // a JSON object to send back
                 success: function(response){ // What to do if we succeed
                     console.log(response);
@@ -118,7 +118,7 @@
             var id = parseInt($($(this).parent().parent().parent().find('td')[0]).text());
             $.ajax({
                 type: 'get', // Type of response and matches what we said in the route
-                url: '{{ route('cambiarEstadoGalerias') }}', // This is the url we gave in the route
+                url: '{{ route('cambiarEstadoQuienesSomos') }}', // This is the url we gave in the route
                 data: {'id' : id, 'estado' : 0}, // a JSON object to send back
                 success: function(response){ // What to do if we succeed
                     console.log(response);

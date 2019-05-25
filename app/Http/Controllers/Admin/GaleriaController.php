@@ -17,7 +17,8 @@ class GaleriaController extends Controller
     public function index()
     {
         $title = 'Galeria';
-        return view('backend.singlepage.galeria.index', ['title' => $title]);
+        $galerias = Galeria::all();
+        return view('backend.singlepage.galeria.index', ['title' => $title, 'galerias' => $galerias]);
     }
 
     /**

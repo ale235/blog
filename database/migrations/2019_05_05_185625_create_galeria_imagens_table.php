@@ -18,6 +18,8 @@ class CreateGaleriaImagensTable extends Migration
             $table->unsignedInteger('galeria_id');
             $table->string('titulo');
             $table->string('image_path');
+            $table->integer('orden');
+            $table->integer('estado');
             $table->timestamps();
 
             $table->foreign('galeria_id')
