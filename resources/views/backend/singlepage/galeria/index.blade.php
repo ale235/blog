@@ -5,7 +5,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Listado de ¿Quienes Somos?</h3>
+                    <h3 class="box-title">Listado de Galerías</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
@@ -25,7 +25,7 @@
                                 overflow: hidden;
                                 text-overflow: ellipsis;">
                                 <td>{{$galeria->id}}</td>
-                                <td>{{$galeria->nombre}}</td>
+                                <td>{{$galeria->titulo}}</td>
                                 {{--<td>--}}
                                 {{--<div>--}}
                                 {{--<img src="{{ asset('imagenes/slider')}}/{{$slider->imagen}}" class="img-thumbnail" alt="{{$slider->titulo}}">--}}

@@ -2,6 +2,7 @@
   @foreach ($posts as $post)
     <div class="col-md-12 blogShort">
       <h2><a href="{{ url('/post')}}/{{$post->slug }}">{{$post->title}}</a></h2>
+      <hr>
       <div class="row row-article">
           <div class="col-md-12">
               <article>

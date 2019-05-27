@@ -33,6 +33,9 @@
                     <li>
                         <a href="{{ url('/admin/singlepage/header') }}">Header</a>
                     </li>
+                    <li>
+                        <a href="{{ url('/admin/singlepage/quienessomo') }}">¿Quienes Somos?</a>
+                    </li>
                     {{--<li>--}}
                     {{--<a href="{{ url('/admin/survey') }}">Todas las Encuestas</a>--}}
                     {{--</li>--}}

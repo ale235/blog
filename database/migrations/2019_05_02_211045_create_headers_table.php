@@ -16,9 +16,8 @@ class CreateHeadersTable extends Migration
         Schema::create('headers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image_path');
-            $table->string('text_title')->nulleable();
-            $table->string('text_subtitle')->nulleable();
-            $table->integer('style_type');
+            $table->integer('orden');
+            $table->integer('estado');
             $table->timestamps();
         });
     }

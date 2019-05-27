@@ -15,7 +15,7 @@ class Header extends Model
      * @var array
      */
     protected $fillable = [
-        'image_path', 'text_title', 'text_subtitle', 'style_type'
+        'image_path', 'orden', 'estado'
     ];
 
     public $timestamps = true;

@@ -14,7 +14,8 @@ class HeadersTableSeeder extends Seeder
     {
         Header::create([
             'image_path' => '/photos/shares/headers/welcome.png',
-            'style_type' => 1
+            'orden' => 1,
+            'estado' => 1
         ]);
     }
 }

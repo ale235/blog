@@ -5,7 +5,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Listado de Stands y Artistas</h3>
+                    <h3 class="box-title">Listado de Headers</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
@@ -20,33 +20,33 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($standsyartistas as $standsyartista)
+                        @foreach($headers as $header)
                             <tr style="
                                 overflow: hidden;
                                 text-overflow: ellipsis;">
-                                <td>{{$standsyartista->id}}</td>
-                                <td>{{$standsyartista->nombre}}</td>
+                                <td>{{$header->id}}</td>
+                                <td>{{$header->nombre}}</td>
                                 {{--<td>--}}
-                                    {{--<div>--}}
-                                        {{--<img src="{{ asset('imagenes/slider')}}/{{$slider->imagen}}" class="img-thumbnail" alt="{{$slider->titulo}}">--}}
-                                    {{--</div>--}}
+                                {{--<div>--}}
+                                {{--<img src="{{ asset('imagenes/slider')}}/{{$slider->imagen}}" class="img-thumbnail" alt="{{$slider->titulo}}">--}}
+                                {{--</div>--}}
                                 {{--</td>--}}
-                                <td class="index">{{$standsyartista->orden}}</td>
+                                <td class="index">{{$header->orden}}</td>
                                 <td>
                                     <label class="switch">
-                                        <input class="estado" type="checkbox" @if($standsyartista->estado) checked @endif>
+                                        <input class="estado" type="checkbox" @if($header->estado) checked @endif>
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
-                                        {{--<td>--}}
-                                            {{--<div class="btn-group" style="display: inline-block;">--}}
-                                                {{--<a href="slider/{{$slider->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>--}}
-                                                {{--<a href="slider/{{$slider->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>--}}
-                                                {{--<a href="" data-toggle="modal" data-target="#modal-delete-{{$slider->id}}" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>--}}
-                                            {{--</div>--}}
-                                        {{--</td>--}}
+                                {{--<td>--}}
+                                {{--<div class="btn-group" style="display: inline-block;">--}}
+                                {{--<a href="slider/{{$slider->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>--}}
+                                {{--<a href="slider/{{$slider->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>--}}
+                                {{--<a href="" data-toggle="modal" data-target="#modal-delete-{{$slider->id}}" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>--}}
+                                {{--</div>--}}
+                                {{--</td>--}}
                             </tr>
-{{--                            @include('backend.slider.modal')--}}
+                            {{--                            @include('backend.slider.modal')--}}
                         @endforeach
                         </tbody>
                     </table>
@@ -54,7 +54,7 @@
             {{--{!! $servicios->render() !!}--}}
             <!-- /.box-body -->
                 <div class="box-footer">
-                    <a  href="{{url('/admin/singlepage/standsyartista/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Stand y/o Artista</button></a>
+                    <a  href="{{url('/admin/singlepage/header/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Stand y/o Artista</button></a>
                 </div>
             </div>
             <!-- /.box -->
@@ -79,7 +79,7 @@
                 var orden = i + 1;
                 $.ajax({
                     type: 'get', // Type of response and matches what we said in the route
-                    url: '{{ route('ordenarStandsYArtistas') }}', // This is the url we gave in the route
+                    url: '{{ route('ordenarHeader') }}', // This is the url we gave in the route
                     data: {'id' : id, 'orden' : orden}, // a JSON object to send back
                     success: function(response){ // What to do if we succeed
                         console.log(response);
@@ -104,7 +104,7 @@
             var id = parseInt($($(this).parent().parent().parent().find('td')[0]).text());
             $.ajax({
                 type: 'get', // Type of response and matches what we said in the route
-                url: '{{ route('cambiarEstadoStandsYArtistas') }}', // This is the url we gave in the route
+                url: '{{ route('cambiarEstadoHeader') }}', // This is the url we gave in the route
                 data: {'id' : id, 'estado' : 1}, // a JSON object to send back
                 success: function(response){ // What to do if we succeed
                     console.log(response);
@@ -118,7 +118,7 @@
             var id = parseInt($($(this).parent().parent().parent().find('td')[0]).text());
             $.ajax({
                 type: 'get', // Type of response and matches what we said in the route
-                url: '{{ route('cambiarEstadoStandsYArtistas') }}', // This is the url we gave in the route
+                url: '{{ route('cambiarEstadoHeader') }}', // This is the url we gave in the route
                 data: {'id' : id, 'estado' : 0}, // a JSON object to send back
                 success: function(response){ // What to do if we succeed
                     console.log(response);

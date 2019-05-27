@@ -168,9 +168,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         return view('backend.singlepage.index');
     });
 
-    Route::get('/singlepage/header', 'SinglePageController@header');
-    Route::post('/singlepage/header/headerestilouno', 'SinglePageController@headerestilouno');
-    Route::post('/singlepage/header/headerestilodos', 'SinglePageController@headerestilodos');
+    //Header Routes
+    Route::get('/singlepage/header', 'HeaderController@index');
+    Route::get('/singlepage/header/create', 'HeaderController@create');
+    Route::post('/singlepage/header/store', 'HeaderController@store');
+    Route::get('/singlepage/header/ordenarHeader', 'HeaderController@ordenarHeader')->name('ordenarHeader');
+    Route::get('/singlepage/header/cambiarEstadoHeader', 'HeaderController@cambiarEstadoHeader')->name('cambiarEstadoHeader');
 
     //Galeria Routes
     Route::get('/singlepage/galeria', 'GaleriaController@index');
