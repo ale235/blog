@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ConcursoYMuestra;
+use App\Models\ConcursoYMuestraImagen;
 use App\Models\Galeria;
 use App\Models\GaleriaImagen;
 use Illuminate\Http\Request;
@@ -17,7 +19,8 @@ class ConcursosYMuestrasController extends Controller
     public function index()
     {
         $title = 'Concursos y Muestras';
-        return view('backend.singlepage.concursoymuestra.index', ['title' => $title]);
+        $concursosymuestras = ConcursoYMuestra::all();
+        return view('backend.singlepage.concursoymuestra.index', ['title' => $title, 'concursosymuestras' => $concursosymuestras]);
     }
 
     /**
@@ -39,14 +42,14 @@ class ConcursosYMuestrasController extends Controller
      */
     public function store(Request $request)
     {
-        $galeria = new Galeria([
+        $galeria = new ConcursoYMuestra([
             'titulo' => $request->get('title'),
             'image_path' => $request->get('imgportada'),
             'lugar' => $request->get('lugar'),
             'anio' =>  $request->get('anio'),
             'resenia' => $request->get('content'),
             'slug' => $request->get('slug'),
-            'orden' => (Galeria::all()->count() + 1),
+            'orden' => (ConcursoYMuestra::all()->count() + 1),
             'estado' => 1,
         ]);
         $galeria->save();
@@ -55,7 +58,7 @@ class ConcursosYMuestrasController extends Controller
         foreach ($request->files->all()['imggaleria'] as $img){
 //            dd(url('/photos/shares').'/galeria/'.trim($request->get('titulo')).'/'.trim($request->get('titulo').'-'.$count));
 //            dd(public_path('photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count));
-            $galeriaimagen = new GaleriaImagen([
+            $galeriaimagen = new ConcursoYMuestraImagen([
                 'galeria_id' => $galeria->id,
                 'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
                 'image_path' => url('/photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count.'.jpg')

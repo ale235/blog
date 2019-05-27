@@ -45,6 +45,9 @@
                     <li>
                         <a href="{{ url('/admin/singlepage/sponsor') }}">Sponsors</a>
                     </li>
+                    <li>
+                        <a href="{{ url('/admin/singlepage/concursoymuestra') }}">Concursos y Muestras</a>
+                    </li>
                 </ul>
                 <!-- /.nav-second-level -->
             </li>

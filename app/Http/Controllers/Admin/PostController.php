@@ -107,12 +107,13 @@ class PostController extends Controller {
      */
     public function store(Request $request) {
 
-//        dd($request);
+       // dd($request);
         //dd($request);
         $post = new Post([
             'title' => $request['title'],
             'summary' => '',
             'content' => $request->get('content'),
+            'image_path' => $request->get('imgportada'),
             'seen' => 1,
             'categoria_id' => 1,
             'published' => $request['published'] ?: 0,

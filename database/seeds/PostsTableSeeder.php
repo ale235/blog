@@ -17,6 +17,7 @@ class PostsTableSeeder extends Seeder
                 'title' => '¡Hola Mundo!',
                 'slug' => 'hola_mundo',
                 'descripcion' => 'Este es un post de prueba...',
+                'image_path' => '/photos/shares/blog/anki_2019-02-10_14-36-08.png',
                 'summary' => '<h1>Hola Mundo</h1><br><p>Esto es un post de prueba</p>',
                 'content' => '<h1>Hola Mundo</h1><br><p>Esto es un post de prueba</p>',
                 'created_at' => '2017-08-07 01:09:20',

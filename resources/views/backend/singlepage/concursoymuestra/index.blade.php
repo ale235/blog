@@ -2,74 +2,193 @@
 
 @section('content')
     <div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">{{$title}}</h1>
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Listado de Concursos y Muestras</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table id="sort" class="table table-striped grid">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Orden</th>
+                            <th>Estado</th>
+                            {{--<th>Opciones</th>--}}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($concursosymuestras as $concursosymuestra)
+                            <tr style="
+                                overflow: hidden;
+                                text-overflow: ellipsis;">
+                                <td>{{$concursosymuestra->id}}</td>
+                                <td>{{$concursosymuestra->titulo}}</td>
+                                {{--<td>--}}
+                                {{--<div>--}}
+                                {{--<img src="{{ asset('imagenes/slider')}}/{{$slider->imagen}}" class="img-thumbnail" alt="{{$slider->titulo}}">--}}
+                                {{--</div>--}}
+                                {{--</td>--}}
+                                <td class="index">{{$concursosymuestra->orden}}</td>
+                                <td>
+                                    <label class="switch">
+                                        <input class="estado" type="checkbox" @if($concursosymuestra->estado) checked @endif>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                                {{--<td>--}}
+                                {{--<div class="btn-group" style="display: inline-block;">--}}
+                                {{--<a href="slider/{{$slider->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>--}}
+                                {{--<a href="slider/{{$slider->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>--}}
+                                {{--<a href="" data-toggle="modal" data-target="#modal-delete-{{$slider->id}}" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>--}}
+                                {{--</div>--}}
+                                {{--</td>--}}
+                            </tr>
+                            {{--                            @include('backend.slider.modal')--}}
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            {{--{!! $servicios->render() !!}--}}
+            <!-- /.box-body -->
+                <div class="box-footer">
+                    <a  href="{{url('/admin/singlepage/concursoymuestra/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Galería</button></a>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
     </div>
-    <!-- /.col-lg-12 -->
-</div>
-
-    <div class="row">
-            <div class="col-6 col-md-6">
-                <div class="col-md-12">
-                    <h2>Estilo 1: <i class="fa fa-info"></i></h2>
-                </div>
-                <div class="col-md-12">
-                    <form action="{{ url('/admin/singlepage/header/headerestilouno') }}" enctype="multipart/form-data" method="post">
-                        {{ csrf_field() }}
-                        {{--Foto principal: recomendado 860 x 480px<br>--}}
-                        {{--<input name="photo" type="file">--}}
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
-                                    <i class="fa fa-picture-o"></i> Choose
-                                </a>
-                            </span>
-                            <input id="thumbnail" class="form-control" type="text" name="filepath">
-                        </div>
-                        <img id="holder" style="margin-top:15px;max-height:100px;">
-                        <br><br>
-                        <input type="submit" value="Subir">
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-6 col-md-6">
-                <div>
-                    <div class="col-md-12">
-                        <h2>Estilo 2: <i class="fa fa-info"></i></h2>
-                    </div>
-                    <div class="col-md-12">
-                        <form action="{{ url('/admin/singlepage/header/headerestilodos') }}" enctype="multipart/form-data" method="post">
-                            {{ csrf_field() }}
-                            {{--Foto principal: recomendado 860 x 480px<br>--}}
-                            {{--<input name="photo" type="file">--}}
-                            <div class="input-group">
-                            <span class="input-group-btn">
-                                <a id="lfm2" data-input="thumbnail2" data-preview="holder2" class="btn btn-primary">
-                                    <i class="fa fa-picture-o"></i> Choose
-                                </a>
-                            </span>
-                                <input id="thumbnail2" class="form-control" type="text" name="filepath2">
-                            </div>
-                            <img id="holder2" style="margin-top:15px;max-height:100px;">
-                            <br><br>
-                            Título: <br>
-                            <input name="title_text" type="text">
-                            <br><br>
-                            Subtítulo: <br>
-                            <input name="subtitle_text" type="text">
-                            <br><br>
-                            <input type="submit" value="Subir">
-                        </form>
-                    </div>
-                </div>
-            </div>
-</div>
 @endsection
 @push('scripts')
-<script src="{{asset('/vendor/laravel-filemanager/js/lfm.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script>
-    $('#lfm').filemanager('image');
-    $('#lfm2').filemanager('image');
+    var fixHelperModified = function(e, tr) {
+            var $originals = tr.children();
+            var $helper = tr.clone();
+            $helper.children().each(function(index) {
+                $(this).width($originals.eq(index).width())
+            });
+            return $helper;
+        },
+        updateIndex = function(e, ui) {
+            $('td.index', ui.item.parent()).each(function (i) {
+                $(this).html(i + 1);
+                var id = parseInt($($(this).parent().find('td')[0]).text());
+                var orden = i + 1;
+                $.ajax({
+                    type: 'get', // Type of response and matches what we said in the route
+                    url: '{{ route('ordenarConcursosYMuestras') }}', // This is the url we gave in the route
+                    data: {'id' : id, 'orden' : orden}, // a JSON object to send back
+                    success: function(response){ // What to do if we succeed
+                        console.log(response);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+                        console.log(JSON.stringify(jqXHR));
+                        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                    }
+                });
+            });
+
+
+        };
+
+    $("#sort tbody").sortable({
+        helper: fixHelperModified,
+        stop: updateIndex
+    }).disableSelection();
+
+    $(".estado").change(function(){
+        if($(this).prop("checked") == true){
+            var id = parseInt($($(this).parent().parent().parent().find('td')[0]).text());
+            $.ajax({
+                type: 'get', // Type of response and matches what we said in the route
+                url: '{{ route('cambiarEstadoConcursosYMuestras') }}', // This is the url we gave in the route
+                data: {'id' : id, 'estado' : 1}, // a JSON object to send back
+                success: function(response){ // What to do if we succeed
+                    console.log(response);
+                },
+                error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+                    console.log(JSON.stringify(jqXHR));
+                    console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                }
+            });
+        }else{
+            var id = parseInt($($(this).parent().parent().parent().find('td')[0]).text());
+            $.ajax({
+                type: 'get', // Type of response and matches what we said in the route
+                url: '{{ route('cambiarEstadoConcursosYMuestras') }}', // This is the url we gave in the route
+                data: {'id' : id, 'estado' : 0}, // a JSON object to send back
+                success: function(response){ // What to do if we succeed
+                    console.log(response);
+                },
+                error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+                    console.log(JSON.stringify(jqXHR));
+                    console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                }
+            });
+        }
+    });
 </script>
+<style>
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {display:none;}
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+</style>
 @endpush

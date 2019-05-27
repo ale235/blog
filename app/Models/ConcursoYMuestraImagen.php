@@ -4,12 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model {
-    /*
-     * 
-     */
-
-    protected $table = 'posts';
+class ConcursoYMuestraImagen extends Model
+{
+    protected $table = 'concursosymuestras_imagens';
     protected $primaryKey = 'id';
 
     /**
@@ -18,7 +15,9 @@ class Post extends Model {
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'descripcion', 'summary', 'content', 'published', 'seen', 'image', 'user_id', 'image_path', 'created_at', 'updated_at'
+        'concursosymuestra_id','titulo', 'image_path', 'slug', 'orden', 'estado'
     ];
+
+    public $timestamps = true;
 
 }

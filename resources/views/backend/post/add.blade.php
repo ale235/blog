@@ -65,6 +65,21 @@
                 </div>
             </div>
 
+            <div class="row form-group">
+                <div class="col-md-12 {{ $errors->has('imgportada') ? ' has-error' : '' }}">
+                    <label>Imagen en la principal: Poner solo si se desea que el posteo aparezca en la principal 200px 150px</label><em>*</em>
+                    <div class="input-group">
+                                    <span class="input-group-btn">
+                                    <a id="imgportada" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
+                                        <i class="fa fa-picture-o"></i> Elegí
+                                    </a>
+                                    </span>
+                        <input id="thumbnail" class="form-control" type="text" name="imgportada">
+                    </div>
+                </div>
+                <img id="holder" style="margin-top:15px;max-height:100px;">
+            </div>
+
             <div class="row form-group-">
                 <div class="col-md-12 {{ $errors->has('content') ? ' has-error' : '' }}">
                     <label>Contenido</label><em>*</em>
@@ -103,8 +118,12 @@
 
 <link href="{{ asset('summernote/summernote.css') }}" rel="stylesheet">
 <script src="{{ asset('summernote/summernote.js') }}"></script>
-
+<script src="{{asset('/vendor/laravel-filemanager/js/lfm.js')}}"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.7/js/fileinput.js" type="text/javascript"></script>
 <script>
+    $('#imgportada').filemanager('image');
+
     $(document).ready(function(){
 
         // Define function to open filemanager window

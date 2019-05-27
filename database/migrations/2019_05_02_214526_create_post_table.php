@@ -17,6 +17,7 @@ class CreatePostTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('slug');
+            $table->string('image_path');
             $table->string('descripcion');
             $table->longText('summary');
             $table->longText('content');

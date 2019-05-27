@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     $posts = DB::table('posts as p')
-        ->select('p.id','p.title','u.username','p.content','p.updated_at','p.summary','p.slug','p.created_at','p.descripcion','u.avatar')
+        ->select('p.id','p.title','u.username','p.content','p.updated_at','p.summary','p.slug','p.created_at','p.descripcion','u.avatar','p.image_path')
         ->join('users as u', 'p.user_id', '=', 'u.id')
         ->where('p.published', 1)
         ->orderBy('p.created_at', 'desc')
@@ -48,8 +48,14 @@ Route::get('/', function () {
         ->orderBy('q.orden','asc')
         ->get();
 
+    $concursosymuestras = DB::table('concursosymuestras as c')
+        ->where('c.estado',1)
+        ->orderBy('c.created_at','asc')
+        ->take(6)
+        ->get();
+
 //    dd($galerias);
-    return view('frontend.welcome', ['posts' => $posts,'header' => $header, 'galerias' => $galerias, 'standsyartistas' => $standsyartistas, 'sponsors' => $sponsors, 'miembros' => $miembros, 'avales' => $avales, 'quienessomos' => $quienessomos]);
+    return view('frontend.welcome', ['posts' => $posts,'header' => $header, 'galerias' => $galerias, 'standsyartistas' => $standsyartistas, 'sponsors' => $sponsors, 'miembros' => $miembros, 'avales' => $avales, 'quienessomos' => $quienessomos, 'concursosymuestras' => $concursosymuestras]);
 });
 
 Route::get('/principal', function () {
@@ -66,6 +72,20 @@ Route::get('/galeria/{slug}', function ($d) {
                         ->where('galeria_id','=',$galeria->id)
                         ->get();
     return view('frontend.includes.galeria.index',['galeria' => $galeria, 'galeriaimagen' => $galeriaimagen]);
+});
+
+Route::get('/concursoymuestra/{slug}', function ($d) {
+//    dd($d);
+    $concursoymuestra = DB::table('concursosymuestras as g')
+        ->where('slug','=',$d)
+        ->first();
+//    dd($concursoymuestra);
+    $concursoymuestraimagen = DB::table('concursosymuestras_imagens')
+        ->where('concursosymuestra_id','=',$concursoymuestra->id)
+        ->get();
+
+//    dd($concursoymuestraimagen);
+    return view('frontend.includes.concursoymuestra.index',['concursoymuestra' => $concursoymuestra, 'concursosymuestrasimagen' => $concursoymuestraimagen]);
 });
 
 Route::get('/blog', 'BlogController@index');
@@ -188,14 +208,19 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/aval/ordenarAvales', 'AvalesController@ordenarAvales')->name('ordenarAvales');
     Route::get('/singlepage/aval/cambiarEstadoAvales', 'AvalesController@cambiarEstadoAvales')->name('cambiarEstadoAvales');
 
-    //Avales Routes
+    //Quienes somos Routes
     Route::get('/singlepage/quienessomo', 'QuienesSomosController@index');
     Route::get('/singlepage/quienessomo/create', 'QuienesSomosController@create');
     Route::post('/singlepage/quienessomo/store', 'QuienesSomosController@store');
     Route::get('/singlepage/quienessomo/ordenarQuienesSomos', 'QuienesSomosController@ordenarQuienesSomos')->name('ordenarQuienesSomos');
     Route::get('/singlepage/quienessomo/cambiarEstadoQuienesSomos', 'QuienesSomosController@cambiarEstadoQuienesSomos')->name('cambiarEstadoQuienesSomos');
 
-
+    //Concursos y muestras Routes
+    Route::get('/singlepage/concursoymuestra', 'ConcursosYMuestrasController@index');
+    Route::get('/singlepage/concursosymuestra/create', 'ConcursosYMuestrasController@create');
+    Route::post('/singlepage/concursosymuestra/store', 'ConcursosYMuestrasController@store');
+    Route::get('/singlepage/concursosymuestra/ordenarConcursosYMuestras', 'ConcursosYMuestrasController@ordenarConcursosYMuestras')->name('ordenarConcursosYMuestras');
+    Route::get('/singlepage/concursosymuestra/cambiarEstadoConcursosYMuestras', 'ConcursosYMuestrasController@cambiarEstadoConcursosYMuestras')->name('cambiarEstadoConcursosYMuestras');
 
     //Post routes
     Route::get('/post', 'PostController@index');

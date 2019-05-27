@@ -1,99 +1,133 @@
 @extends('backend.layouts.master')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">{{$title}}</h1>
-</div>
-    <!-- /.col-lg-12 -->
-</div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{$title}}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
 
     <div class="row">
-            <div class="col-12 col-md-12">
-                <div class="col-md-12">
-                    <form action="{{ url('/admin/singlepage/standsyartista/store') }}" id="form-galery" enctype="multipart/form-data" method="post">
-                        {{ csrf_field() }}
-                        {{--Foto principal: recomendado 860 x 480px<br>--}}
-                        {{--<input name="photo" type="file">--}}
-                        <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
+        <div class="col-12 col-md-12">
+            <div class="col-md-12">
+                <form action="{{ url('/admin/singlepage/concursoymuestra/store') }}" id="form-galery" enctype="multipart/form-data" method="post">
+                    {{ csrf_field() }}
+                    {{--Foto principal: recomendado 860 x 480px<br>--}}
+                    {{--<input name="photo" type="file">--}}
+                    <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
                             <span style="font-size: 40px; background-color: #F3F5F6; padding: 0 10px;">
                                 Infomación de la Principal <!--Padding is optional-->
                             </span>
-                        </div>
+                    </div>
 
-                        <br><br>
+                    <br><br>
 
-                        <div class="row form-group">
-                            <div class="col-md-12 {{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label>Nombre del Stand y/o Artista</label><em>*</em>
-                                <input type="text" name="title" id="title" class="form-control" value="{{ old('title')}}">
-                                @if ($errors->has('title'))
-                                    <span class="form-error">
+                    <div class="row form-group">
+                        <div class="col-md-12 {{ $errors->has('title') ? ' has-error' : '' }}">
+                            <label>Título</label><em>*</em>
+                            <input type="text" name="title" id="title" class="form-control" value="{{ old('title')}}">
+                            @if ($errors->has('title'))
+                                <span class="form-error">
                                         {{ $errors->first('title') }}
                                     </span>
-                                @endif
-                            </div>
+                            @endif
                         </div>
+                    </div>
 
-                        <div class="row form-group">
-                            <div class="col-md-12 {{ $errors->has('imgportada') ? ' has-error' : '' }}">
-                                <label>Imagen principal</label><em>*</em>
-                                <div class="input-group">
+
+                    <div class="row form-group">
+                        <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
+                            <label>Link:</label><em>*</em><br>
+                            http://localhost:8000/galeria/
+                            <input type="text" name="slug" id="slug" class="" value="{{ old('slug')}}" size="50">
+                            @if ($errors->has('title'))
+                                <span class="form-error">
+                                    {{ $errors->first('title') }}
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12 {{ $errors->has('imgportada') ? ' has-error' : '' }}">
+                            <label>Imagen principal</label><em>*</em>
+                            <div class="input-group">
                                     <span class="input-group-btn">
                                     <a id="imgportada" data-input="thumbnail" data-preview="holder" class="btn btn-primary">
                                         <i class="fa fa-picture-o"></i> Elegí
                                     </a>
                                     </span>
-                                    <input id="thumbnail" class="form-control" type="text" name="imgportada">
+                                <input id="thumbnail" class="form-control" type="text" name="imgportada">
+                            </div>
+                        </div>
+                        <img id="holder" style="margin-top:15px;max-height:100px;">
+                    </div>
+
+                    <div style="width: 100%; height: 20px; border-bottom: 1px solid black; text-align: center">
+                            <span style="font-size: 40px; background-color: #F3F5F6; padding: 0 10px;">
+                                Infomación de la Galería <!--Padding is optional-->
+                            </span>
+                    </div>
+                    <br><br>
+
+                    <div class="row form-group">
+                        <div class="col-md-12 {{ $errors->has('lugar') ? ' has-error' : '' }}">
+                            <label>Lugar</label><em>*</em>
+                            <input type="text" name="lugar" id="lugar" class="form-control" value="{{ old('lugar')}}">
+                            @if ($errors->has('lugar'))
+                                <span class="form-error">
+                                        {{ $errors->first('lugar') }}
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12 {{ $errors->has('anio') ? ' has-error' : '' }}">
+                            <label>Año</label><em>*</em>
+                            <input type="text" name="anio" id="anio" class="form-control" value="{{ old('anio')}}">
+                            @if ($errors->has('anio'))
+                                <span class="form-error">
+                                        {{ $errors->first('anio') }}
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12 {{ $errors->has('imggaleria') ? ' has-error' : '' }}">
+                            <label>Imagen principal</label><em>*</em>
+                            <div class="form-group">
+                                <div class="file-loading">
+                                    <input id="imggaleria" type="file" name="imggaleria[]" multiple class="file" data-overwrite-initial="false">
                                 </div>
                             </div>
-                            <img id="holder" style="margin-top:15px;max-height:100px;">
                         </div>
+                    </div>
 
-                        <div class="row form-group">
-                            <div class="col-md-9 {{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label>Link a su web:</label><em>*</em><br>
-                                http://
-                                <input type="text" name="slug" id="slug" class="" value="{{ old('slug')}}" size="50">
-                                @if ($errors->has('title'))
-                                    <span class="form-error">
-                                    {{ $errors->first('title') }}
+
+
+                    <div class="row form-group-">
+                        <div class="col-md-12 {{ $errors->has('content') ? ' has-error' : '' }}">
+                            <label>Contenido</label><em>*</em>
+                            {{--<textarea name="content" id="content" class="form-control textarea" rows="8">{{ old('content') ? old('content'):@$post->content }}</textarea>--}}
+                            <textarea name="content" id="content" cols="30" class="form-control textarea" rows="40">{{ old('content') ? old('content'):@$post->content }}</textarea>
+                            @if ($errors->has('content'))
+                                <span class="form-error">
+                                    {{ $errors->first('content') }}
                                     </span>
-                                @endif
-                            </div>
+                            @endif
                         </div>
+                    </div>
 
-                        <div class="row form-group">
-                            <div class="col-md-9 {{ $errors->has('facebook') ? ' has-error' : '' }}">
-                                <label>Link a su face:</label><em>*</em><br>
-                                http://www.facebook.com/
-                                <input type="text" name="slug" id="slug" class="" value="{{ old('facebook')}}" size="50">
-                                @if ($errors->has('facebook'))
-                                    <span class="form-error">
-                                    {{ $errors->first('facebook') }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
-                        <div class="row form-group">
-                            <div class="col-md-9 {{ $errors->has('instagram') ? ' has-error' : '' }}">
-                                <label>Link a su insta:</label><em>*</em><br>
-                                http://www.instagram.com/
-                                <input type="text" name="slug" id="slug" class="" value="{{ old('instagram')}}" size="50">
-                                @if ($errors->has('instagram'))
-                                    <span class="form-error">
-                                    {{ $errors->first('instagram') }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
-                        <input type="submit" value="Subir">
-                    </form>
-                </div>
+                    <input type="submit" value="Subir">
+                </form>
             </div>
-</div>
+        </div>
+    </div>
 @endsection
 @push('scripts')
 <script src="{{asset('/vendor/laravel-filemanager/js/lfm.js')}}"></script>
@@ -103,7 +137,7 @@
 <script src="{{ asset('summernote/summernote.js') }}"></script>
 <script>
     $('#imgportada').filemanager('image');
-//    $('#imggaleria').filemanager('image');
+    //    $('#imggaleria').filemanager('image');
     $(document).ready(function(){
         $("#imggaleria").fileinput({
             theme: 'fa',
