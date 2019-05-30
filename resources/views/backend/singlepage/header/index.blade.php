@@ -16,7 +16,7 @@
                             <th>Nombre</th>
                             <th>Orden</th>
                             <th>Estado</th>
-                            {{--<th>Opciones</th>--}}
+                            <th>Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -25,7 +25,7 @@
                                 overflow: hidden;
                                 text-overflow: ellipsis;">
                                 <td>{{$header->id}}</td>
-                                <td>{{$header->nombre}}</td>
+                                <td><img id="holder" style="margin-top:15px;max-height:100px;"  src="{{asset($header->image_path)}}"></td>
                                 {{--<td>--}}
                                 {{--<div>--}}
                                 {{--<img src="{{ asset('imagenes/slider')}}/{{$slider->imagen}}" class="img-thumbnail" alt="{{$slider->titulo}}">--}}
@@ -38,13 +38,13 @@
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
-                                {{--<td>--}}
+                                <td>
                                 {{--<div class="btn-group" style="display: inline-block;">--}}
-                                {{--<a href="slider/{{$slider->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>--}}
-                                {{--<a href="slider/{{$slider->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>--}}
-                                {{--<a href="" data-toggle="modal" data-target="#modal-delete-{{$slider->id}}" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>--}}
+                                <a href="{{url('/admin/singlepage/header')}}/{{$header->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>
+                                <a href="{{url('/admin/singlepage/header')}}/{{$header->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>
+                                <a href="{{url('/admin/singlepage/header')}}/{{$header->id}}/delete" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>
                                 {{--</div>--}}
-                                {{--</td>--}}
+                                </td>
                             </tr>
                             {{--                            @include('backend.slider.modal')--}}
                         @endforeach
@@ -54,7 +54,7 @@
             {{--{!! $servicios->render() !!}--}}
             <!-- /.box-body -->
                 <div class="box-footer">
-                    <a  href="{{url('/admin/singlepage/header/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Stand y/o Artista</button></a>
+                    <a  href="{{url('/admin/singlepage/header/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Header</button></a>
                 </div>
             </div>
             <!-- /.box -->

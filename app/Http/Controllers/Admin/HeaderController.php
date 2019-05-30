@@ -15,7 +15,7 @@ class HeaderController extends Controller {
      */
     public function index() {
 //        dd();
-        $title = 'SinglePage';
+        $title = 'Headers';
         $headers = Header::all();
         return view('backend.singlepage.header.index', ['title' => $title, 'headers' => $headers]);
        
@@ -35,14 +35,15 @@ class HeaderController extends Controller {
      */
     public function store(Request $request)
     {
+//        dd($request);
         $header = new Header([
-            'image_path' => $request->get('imgportada'),
-            'orden' => (Aval::all()->count() + 1),
+            'image_path' => $request->get('filepath'),
+            'orden' => (Header::all()->count() + 1),
             'estado' => 1,
         ]);
         $header->save();
 
-        return view('backend.singlepage.header.create',['title' => 'lala']);
+        return view('backend.singlepage.header.index',['title' => 'lala']);
 
     }
 
@@ -52,9 +53,11 @@ class HeaderController extends Controller {
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function show(Galeria $galeria)
+    public function show($id)
     {
-        //
+        $header = Header::find($id);
+//        dd($header);
+        return view('backend.singlepage.header.show',['title' => 'Mostrar']);
     }
 
     /**
@@ -63,9 +66,11 @@ class HeaderController extends Controller {
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Galeria $galeria)
+    public function edit($id)
     {
-        //
+        $header = Header::find($id);
+//        dd($header);
+        return view('backend.singlepage.header.edit',['title' => 'Editar', 'header' => $header]);
     }
 
     /**
@@ -75,9 +80,13 @@ class HeaderController extends Controller {
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Galeria $galeria)
+    public function update(Request $request, $id)
     {
-        //
+        $header = Header::find($id);
+        $header->image_path = $request->get('filepath');
+        $header->update();
+
+        return view('backend.singlepage.header.index',[ 'title' => 'Headers','headers' => Header::all()]);
     }
 
     /**
@@ -86,9 +95,11 @@ class HeaderController extends Controller {
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Galeria $galeria)
+    public function destroy(Request $request, $id)
     {
-        //
+        $header = Header::find($id);
+        $header->delete();
+        return redirect('/admin/singlepage/header');
     }
 
     public function ordenarHeader(Request $request)

@@ -14,7 +14,7 @@
                     <a class="nav-link js-scroll-trigger" href="#miembrosdelstaff">Organizadores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#portfolio">Galeria</a>
+                    <a class="nav-link js-scroll-trigger" href="#portfolio">Galería</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#resenias">Reseña</a>

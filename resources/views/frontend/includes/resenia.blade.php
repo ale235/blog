@@ -19,11 +19,12 @@
                         <div class="card-body">
                             <h2 class="card-title" style="text-align: center">{{$post->title}}</h2>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <p class="card-text">{{$post->descripcion}}</p>
+                                    <img src="{{asset($post->image_path)}}" alt="..." class="img-thumbnail" style="float: left;">
                                 </div>
                                 <div class="col-md-6">
-                                    <img src="{{asset($post->image_path)}}" alt="..." class="img-thumbnail">
+
                                 </div>
                             </div>
                         </div>

@@ -171,6 +171,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     //Header Routes
     Route::get('/singlepage/header', 'HeaderController@index');
     Route::get('/singlepage/header/create', 'HeaderController@create');
+    Route::get('/singlepage/header/{id}', 'HeaderController@show');
+    Route::get('/singlepage/header/{id}/edit', 'HeaderController@edit');
+    Route::post('/singlepage/header/store', 'HeaderController@store');
+    Route::patch('/singlepage/header/{id}', 'HeaderController@update');
+    Route::get('/singlepage/header/{id}/delete', 'HeaderController@destroy');
+
     Route::post('/singlepage/header/store', 'HeaderController@store');
     Route::get('/singlepage/header/ordenarHeader', 'HeaderController@ordenarHeader')->name('ordenarHeader');
     Route::get('/singlepage/header/cambiarEstadoHeader', 'HeaderController@cambiarEstadoHeader')->name('cambiarEstadoHeader');

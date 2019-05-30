@@ -188,6 +188,7 @@ class PostController extends Controller {
         $post = Post::findOrFail($id);
         $post->title = $request['title'];
         $post->slug = $request['slug'];
+        $post->image_path = $request['imgportada'];
         //dd($request);
         $detail=$request->get('content');
 
