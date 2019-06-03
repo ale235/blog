@@ -44,12 +44,12 @@ class QuienesSomosController extends Controller
         $quienessomo = new QuienesSomo([
             'image_path' => $request->get('imgportada'),
             'texto_uno' => $request->get('title'),
-            'orden' => (Aval::all()->count() + 1),
+            'orden' => (QuienesSomo::all()->count() + 1),
             'estado' => 1,
         ]);
         $quienessomo->save();
 
-        return view('backend.singlepage.quienessomo.create',['title' => 'lala']);
+        return view('backend.singlepage.quienessomo.index',['title' => 'lala', 'quienessomos' => QuienesSomo::all()]);
 
     }
 
@@ -59,9 +59,11 @@ class QuienesSomosController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function show(Galeria $galeria)
+    public function show($id)
     {
-        //
+        $title = 'Quienes Somos';
+        $edit = QuienesSomo::find($id);
+        return view('backend.singlepage.quienessomo.show', ['title' => $title, 'quienessomo' => $edit]);
     }
 
     /**
@@ -70,9 +72,11 @@ class QuienesSomosController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Galeria $galeria)
+    public function edit($id)
     {
-        //
+        $title = 'Quienes Somos';
+        $edit = QuienesSomo::find($id);
+        return view('backend.singlepage.quienessomo.edit', ['title' => $title, 'quienessomo' => $edit]);
     }
 
     /**
@@ -82,9 +86,14 @@ class QuienesSomosController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Galeria $galeria)
+    public function update(Request $request, $id)
     {
-        //
+        QuienesSomo::find($id)->update([
+            'image_path' => $request->get('imgportada'),
+            'texto_uno' => $request->get('title'),
+        ]);
+
+        return view('backend.singlepage.quienessomo.index', ['title' => 'title', 'quienessomos' => QuienesSomo::all()]);
     }
 
     /**
@@ -93,9 +102,10 @@ class QuienesSomosController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Galeria $galeria)
+    public function destroy(Request $request)
     {
-        //
+        $quienessomo = QuienesSomo::find($request->id);
+        $quienessomo->delete();
     }
 
     public function ordenarQuienesSomos(Request $request)

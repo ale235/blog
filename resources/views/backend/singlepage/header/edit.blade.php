@@ -25,7 +25,7 @@
                                     <i class="fa fa-picture-o"></i> Choose
                                 </a>
                             </span>
-                            <input id="thumbnail" class="form-control" type="text" name="filepath" value="{{asset($header->image_path)}}">
+                            <input id="thumbnail" class="form-control" type="text" name="filepath" value="{{$header->image_path}}">
                         </div>
                         <img id="holder" style="margin-top:15px;max-height:100px;" src="{{asset($header->image_path)}}">
                         <br><br>

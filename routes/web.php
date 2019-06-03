@@ -181,6 +181,18 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/header/ordenarHeader', 'HeaderController@ordenarHeader')->name('ordenarHeader');
     Route::get('/singlepage/header/cambiarEstadoHeader', 'HeaderController@cambiarEstadoHeader')->name('cambiarEstadoHeader');
 
+    //Quienes somos Routes
+    Route::get('/singlepage/quienessomo', 'QuienesSomosController@index');
+    Route::get('/singlepage/quienessomo/create', 'QuienesSomosController@create');
+    Route::get('/singlepage/quienessomo/{id}', 'QuienesSomosController@show');
+    Route::get('/singlepage/quienessomo/{id}/edit', 'QuienesSomosController@edit');
+    Route::post('/singlepage/quienessomo/store', 'QuienesSomosController@store');
+    Route::patch('/singlepage/quienessomo/{id}', 'QuienesSomosController@update');
+    Route::get('/singlepage/quienessomo/{id}/delete', 'QuienesSomosController@destroy');
+    Route::get('/singlepage/quienessomo/ordenarQuienesSomos', 'QuienesSomosController@ordenarQuienesSomos')->name('ordenarQuienesSomos');
+    Route::get('/singlepage/quienessomo/cambiarEstadoQuienesSomos', 'QuienesSomosController@cambiarEstadoQuienesSomos')->name('cambiarEstadoQuienesSomos');
+
+
     //Galeria Routes
     Route::get('/singlepage/galeria', 'GaleriaController@index');
     Route::get('/singlepage/galeria/create', 'GaleriaController@create');
@@ -216,13 +228,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::post('/singlepage/aval/store', 'AvalesController@store');
     Route::get('/singlepage/aval/ordenarAvales', 'AvalesController@ordenarAvales')->name('ordenarAvales');
     Route::get('/singlepage/aval/cambiarEstadoAvales', 'AvalesController@cambiarEstadoAvales')->name('cambiarEstadoAvales');
-
-    //Quienes somos Routes
-    Route::get('/singlepage/quienessomo', 'QuienesSomosController@index');
-    Route::get('/singlepage/quienessomo/create', 'QuienesSomosController@create');
-    Route::post('/singlepage/quienessomo/store', 'QuienesSomosController@store');
-    Route::get('/singlepage/quienessomo/ordenarQuienesSomos', 'QuienesSomosController@ordenarQuienesSomos')->name('ordenarQuienesSomos');
-    Route::get('/singlepage/quienessomo/cambiarEstadoQuienesSomos', 'QuienesSomosController@cambiarEstadoQuienesSomos')->name('cambiarEstadoQuienesSomos');
 
     //Concursos y muestras Routes
     Route::get('/singlepage/concursoymuestra', 'ConcursosYMuestrasController@index');
