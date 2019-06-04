@@ -42,10 +42,10 @@ class MiembrosController extends Controller
     public function store(Request $request)
     {
         $miembro = new Miembro([
-            'titulo' => $request->get('title'),
+            'nombre' => $request->get('title'),
             'image_path' => $request->get('imgportada'),
             'twitter' => $request->get('twitter'),
-            'texto_uno' => $request->get('text_uno'),
+            'texto_uno' => $request->get('texto_uno'),
             'texto_dos' => $request->get('texto_dos'),
             'facebook' =>  $request->get('facebook'),
             'instagram' => $request->get('instagram'),
@@ -65,9 +65,11 @@ class MiembrosController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function show(Galeria $galeria)
+    public function show($id)
     {
-        //
+        $title = 'Miembro';
+        $show = Miembro::find($id);
+        return view('backend.singlepage.miembro.show', ['title' => $title, 'miembro' => $show]);
     }
 
     /**
@@ -76,9 +78,11 @@ class MiembrosController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Galeria $galeria)
+    public function edit($id)
     {
-        //
+        $title = 'Miembros';
+        $edit = Miembro::find($id);
+        return view('backend.singlepage.miembro.edit', ['title' => $title, 'miembro' => $edit]);
     }
 
     /**
@@ -88,9 +92,20 @@ class MiembrosController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Galeria $galeria)
+    public function update(Request $request, $id)
     {
-        //
+        Miembro::find($id)->update([
+            'nombre' => $request->get('title'),
+            'image_path' => $request->get('imgportada'),
+            'twitter' => $request->get('twitter'),
+            'texto_uno' => $request->get('texto_uno'),
+            'texto_dos' => $request->get('texto_dos'),
+            'facebook' =>  $request->get('facebook'),
+            'instagram' => $request->get('instagram'),
+            'slug' => $request->get('slug'),
+        ]);
+
+        return view('backend.singlepage.miembro.index', ['title' => 'Miembros', 'miembros' => Miembro::all()]);
     }
 
     /**
@@ -99,9 +114,10 @@ class MiembrosController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Galeria $galeria)
+    public function destroy(Request $request)
     {
-        //
+        $miembro = Miembro::find($request->id);
+        $miembro->delete();
     }
 
     public function ordenarMiembros(Request $request)

@@ -192,6 +192,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/quienessomo/ordenarQuienesSomos', 'QuienesSomosController@ordenarQuienesSomos')->name('ordenarQuienesSomos');
     Route::get('/singlepage/quienessomo/cambiarEstadoQuienesSomos', 'QuienesSomosController@cambiarEstadoQuienesSomos')->name('cambiarEstadoQuienesSomos');
 
+    //Miembros Routes
+    Route::get('/singlepage/miembro', 'MiembrosController@index');
+    Route::get('/singlepage/miembro/create', 'MiembrosController@create');
+    Route::get('/singlepage/miembro/{id}', 'MiembrosController@show');
+    Route::get('/singlepage/miembro/{id}/edit', 'MiembrosController@edit');
+    Route::post('/singlepage/miembro/store', 'MiembrosController@store');
+    Route::patch('/singlepage/miembro/{id}', 'MiembrosController@update');
+    Route::get('/singlepage/miembro/{id}/delete', 'MiembrosController@destroy');
+    Route::get('/singlepage/miembro/ordenarMiembros', 'MiembrosController@ordenarMiembros')->name('ordenarMiembros');
+    Route::get('/singlepage/miembro/cambiarEstadoMiembros', 'MiembrosController@cambiarEstadoMiembros')->name('cambiarEstadoMiembros');
+
 
     //Galeria Routes
     Route::get('/singlepage/galeria', 'GaleriaController@index');
@@ -214,13 +225,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::post('/singlepage/sponsor/store', 'SponsorsController@store');
     Route::get('/singlepage/sponsor/ordenarSponsors', 'SponsorsController@ordenarSponsors')->name('ordenarSponsors');
     Route::get('/singlepage/sponsor/cambiarEstadoSponsors', 'SponsorsController@cambiarEstadoSponsors')->name('cambiarEstadoSponsors');
-
-    //Miembros Routes
-    Route::get('/singlepage/miembro', 'MiembrosController@index');
-    Route::get('/singlepage/miembro/create', 'MiembrosController@create');
-    Route::post('/singlepage/miembro/store', 'MiembrosController@store');
-    Route::get('/singlepage/miembro/ordenarMiembros', 'MiembrosController@ordenarMiembros')->name('ordenarMiembros');
-    Route::get('/singlepage/miembro/cambiarEstadoMiembros', 'MiembrosController@cambiarEstadoMiembros')->name('cambiarEstadoMiembros');
 
     //Avales Routes
     Route::get('/singlepage/aval', 'AvalesController@index');
