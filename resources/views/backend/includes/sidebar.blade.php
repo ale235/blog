@@ -39,14 +39,14 @@
                     <li>
                         <a href="{{ url('/admin/singlepage/miembro') }}">Miembros</a>
                     </li>
+                    <li>
+                        <a href="{{ url('/admin/singlepage/standsyartista') }}">Stands y Artistas</a>
+                    </li>
                     {{--<li>--}}
                     {{--<a href="{{ url('/admin/survey') }}">Todas las Encuestas</a>--}}
                     {{--</li>--}}
                     <li>
                         <a href="{{ url('/admin/singlepage/galeria') }}">Galeria</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/admin/singlepage/standsyartista') }}">Stands y Artistas</a>
                     </li>
                     <li>
                         <a href="{{ url('/admin/singlepage/sponsor') }}">Sponsors</a>

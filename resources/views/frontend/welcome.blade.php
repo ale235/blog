@@ -31,6 +31,9 @@
 <!-- Portfolio Section -->
 @include('frontend.includes.galeria')
 
+<!-- Stand y Artistas Section -->
+@include('frontend.includes.standsyartistas')
+
 <!-- Reseñas Section -->
 @include('frontend.includes.resenia')
 

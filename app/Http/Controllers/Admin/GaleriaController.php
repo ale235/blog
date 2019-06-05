@@ -168,7 +168,7 @@ class GaleriaController extends Controller
     }
     public function cambiarEstadoGalerias(Request $request)
     {
-        $galeria = Miembro::find($request->id);
+        $galeria = Galeria::find($request->id);
         $galeria->estado = $request->estado;
         $galeria->update();
 //        $data = $request->all(); // This will get all the request data.

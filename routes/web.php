@@ -206,6 +206,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 
 
     //Galeria Routes
+    Route::get('/singlepage/galeria/ordenarGalerias', 'GaleriaController@ordenarGalerias')->name('ordenarGalerias');
+    Route::get('/singlepage/galeria/cambiarEstadoGalerias', 'GaleriaController@cambiarEstadoGalerias')->name('cambiarEstadoGalerias');
     Route::get('/singlepage/galeria', 'GaleriaController@index');
     Route::get('/singlepage/galeria/create', 'GaleriaController@create');
     Route::get('/singlepage/galeria/{id}', 'GaleriaController@show');
@@ -214,16 +216,18 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::patch('/singlepage/galeria/{id}', 'GaleriaController@update');
     Route::get('/singlepage/galeria/{id}/delete', 'GaleriaController@destroy');
     Route::get('/singlepage/galeria/{id}/deleteimagen', 'GaleriaController@destroyimagen');
-    Route::get('/singlepage/galeria/ordenarGalerias', 'GaleriaController@ordenarGalerias')->name('ordenarGalerias');
-    Route::get('/singlepage/galeria/cambiarEstadoGalerias', 'GaleriaController@cambiarEstadoGalerias')->name('cambiarEstadoGalerias');
 
 
     //Stand y Artistas Routes
-    Route::get('/singlepage/standsyartista', 'StandsYArtistasController@index');
-    Route::get('/singlepage/standsyartista/create', 'StandsYArtistasController@create');
-    Route::post('/singlepage/standsyartista/store', 'StandsYArtistasController@store');
     Route::get('/singlepage/standsyartista/ordenarStandsYArtistas', 'StandsYArtistasController@ordenarStandsYArtistas')->name('ordenarStandsYArtistas');
     Route::get('/singlepage/standsyartista/cambiarEstadoStandsYArtistas', 'StandsYArtistasController@cambiarEstadoStandsYArtistas')->name('cambiarEstadoStandsYArtistas');
+    Route::get('/singlepage/standsyartista', 'StandsYArtistasController@index');
+    Route::get('/singlepage/standsyartista/create', 'StandsYArtistasController@create');
+    Route::get('/singlepage/standsyartista/{id}', 'StandsYArtistasController@show');
+    Route::get('/singlepage/standsyartista/{id}/edit', 'StandsYArtistasController@edit');
+    Route::post('/singlepage/standsyartista/store', 'StandsYArtistasController@store');
+    Route::patch('/singlepage/standsyartista/{id}', 'StandsYArtistasController@update');
+    Route::get('/singlepage/standsyartista/{id}/delete', 'StandsYArtistasController@destroy');
 
     //Sponsors Routes
     Route::get('/singlepage/sponsor', 'SponsorsController@index');

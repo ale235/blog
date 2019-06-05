@@ -23,6 +23,9 @@
                     <a class="nav-link js-scroll-trigger" href="#concursosymuestras">Concursos y Muestras</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#standyartistas">Stand y Artistas</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#sponsors">Sponsors</a>
                 </li>
                 <li class="nav-item">
