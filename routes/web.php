@@ -193,6 +193,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/quienessomo/cambiarEstadoQuienesSomos', 'QuienesSomosController@cambiarEstadoQuienesSomos')->name('cambiarEstadoQuienesSomos');
 
     //Miembros Routes
+    Route::get('/singlepage/miembro/ordenarMiembros', 'MiembrosController@ordenarMiembros')->name('ordenarMiembros');
+    Route::get('/singlepage/miembro/cambiarEstadoMiembros', 'MiembrosController@cambiarEstadoMiembros')->name('cambiarEstadoMiembros');
+
     Route::get('/singlepage/miembro', 'MiembrosController@index');
     Route::get('/singlepage/miembro/create', 'MiembrosController@create');
     Route::get('/singlepage/miembro/{id}', 'MiembrosController@show');
@@ -200,16 +203,19 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::post('/singlepage/miembro/store', 'MiembrosController@store');
     Route::patch('/singlepage/miembro/{id}', 'MiembrosController@update');
     Route::get('/singlepage/miembro/{id}/delete', 'MiembrosController@destroy');
-    Route::get('/singlepage/miembro/ordenarMiembros', 'MiembrosController@ordenarMiembros')->name('ordenarMiembros');
-    Route::get('/singlepage/miembro/cambiarEstadoMiembros', 'MiembrosController@cambiarEstadoMiembros')->name('cambiarEstadoMiembros');
 
 
     //Galeria Routes
     Route::get('/singlepage/galeria', 'GaleriaController@index');
     Route::get('/singlepage/galeria/create', 'GaleriaController@create');
+    Route::get('/singlepage/galeria/{id}', 'GaleriaController@show');
+    Route::get('/singlepage/galeria/{id}/edit', 'GaleriaController@edit');
     Route::post('/singlepage/galeria/store', 'GaleriaController@store');
-    Route::get('/singlepage/galeria/ordenarGalerias', 'GaleriasController@ordenarGalerias')->name('ordenarGalerias');
-    Route::get('/singlepage/galeria/cambiarEstadoGalerias', 'GaleriasController@cambiarEstadoGalerias')->name('cambiarEstadoGalerias');
+    Route::patch('/singlepage/galeria/{id}', 'GaleriaController@update');
+    Route::get('/singlepage/galeria/{id}/delete', 'GaleriaController@destroy');
+    Route::get('/singlepage/galeria/{id}/deleteimagen', 'GaleriaController@destroyimagen');
+    Route::get('/singlepage/galeria/ordenarGalerias', 'GaleriaController@ordenarGalerias')->name('ordenarGalerias');
+    Route::get('/singlepage/galeria/cambiarEstadoGalerias', 'GaleriaController@cambiarEstadoGalerias')->name('cambiarEstadoGalerias');
 
 
     //Stand y Artistas Routes

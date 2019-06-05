@@ -14,9 +14,10 @@
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
+                            <th>Imagen</th>
                             <th>Orden</th>
                             <th>Estado</th>
-                            {{--<th>Opciones</th>--}}
+                            <th>Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -26,11 +27,11 @@
                                 text-overflow: ellipsis;">
                                 <td>{{$galeria->id}}</td>
                                 <td>{{$galeria->titulo}}</td>
-                                {{--<td>--}}
-                                {{--<div>--}}
-                                {{--<img src="{{ asset('imagenes/slider')}}/{{$slider->imagen}}" class="img-thumbnail" alt="{{$slider->titulo}}">--}}
-                                {{--</div>--}}
-                                {{--</td>--}}
+                                <td>
+                                    <div>
+                                        <img src="{{ asset($galeria->image_path)}}" class="img-thumbnail" width="50%" alt="{{$galeria->nombre}}">
+                                    </div>
+                                </td>
                                 <td class="index">{{$galeria->orden}}</td>
                                 <td>
                                     <label class="switch">
@@ -38,15 +39,14 @@
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
-                                {{--<td>--}}
-                                {{--<div class="btn-group" style="display: inline-block;">--}}
-                                {{--<a href="slider/{{$slider->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>--}}
-                                {{--<a href="slider/{{$slider->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>--}}
-                                {{--<a href="" data-toggle="modal" data-target="#modal-delete-{{$slider->id}}" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>--}}
-                                {{--</div>--}}
-                                {{--</td>--}}
+                                <td>
+                                    {{--<div class="btn-group" style="display: inline-block;">--}}
+                                    <a href="{{url('/admin/singlepage/galeria')}}/{{$galeria->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>
+                                    <a href="{{url('/admin/singlepage/galeria')}}/{{$galeria->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>
+                                    <a href="{{url('/admin/singlepage/galeria')}}/{{$galeria->id}}/delete" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>
+                                    {{--</div>--}}
+                                </td>
                             </tr>
-                            {{--                            @include('backend.slider.modal')--}}
                         @endforeach
                         </tbody>
                     </table>

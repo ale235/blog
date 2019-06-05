@@ -87,9 +87,13 @@ class GaleriaController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Galeria $galeria)
+    public function edit($id)
     {
-        //
+        $title = 'Galeria';
+        $editgaleria = Galeria::find($id);
+        $editgaleriaimagenes = GaleriaImagen::where('galeria_id',$editgaleria->id)->get();
+        //dd($editgaleriaimagenes);
+        return view('backend.singlepage.galeria.edit', ['title' => $title, 'galeria' => $editgaleria, 'galeriaimagenes' => $editgaleriaimagenes]);
     }
 
     /**
@@ -99,9 +103,32 @@ class GaleriaController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Galeria $galeria)
+    public function update(Request $request, $id)
     {
-        //
+//        dd($request);
+        Galeria::find($id)->update([
+            'titulo' => $request->get('title'),
+            'image_path' => $request->get('imgportada'),
+            'lugar' => $request->get('lugar'),
+            'anio' =>  $request->get('anio'),
+            'resenia' => $request->get('content'),
+            'slug' => $request->get('slug'),
+            'orden' => (Galeria::all()->count() + 1),
+            'estado' => 1,
+        ]);
+        $count = 1;
+        foreach ($request->files->all()['imggaleria'] as $img){
+            $galeriaimagen = new GaleriaImagen([
+                'galeria_id' => $id,
+                'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
+                'image_path' => '/photos/shares/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count.'.jpg')
+            ]);
+            $img->move(public_path('/photos/shares/galeria/').trim($request->get('title')), trim($request->get('title').'-'.$count).'.jpg');
+            $count++;
+            $galeriaimagen->save();
+        }
+
+        return view('backend.singlepage.galeria.index', ['title' => 'Galeria', 'galerias' => Galeria::all()]);
     }
 
     /**
@@ -113,5 +140,39 @@ class GaleriaController extends Controller
     public function destroy(Galeria $galeria)
     {
         //
+    }
+
+    public function destroyimagen(Request $request, $id)
+    {
+//        dd($id);
+        $galeriaimagen = GaleriaImagen::find($id);
+        $aux = $galeriaimagen->galeria_id;
+        $galeriaimagen->delete();
+        $title = 'Galeria';
+
+        $editgaleria = Galeria::find($aux);
+        $editgaleriaimagenes = GaleriaImagen::where('galeria_id',$editgaleria->id)->get();
+        //dd($editgaleriaimagenes);
+        return view('backend.singlepage.galeria.edit', ['title' => $title, 'galeria' => $editgaleria, 'galeriaimagenes' => $editgaleriaimagenes]);
+    }
+
+    public function ordenarGalerias(Request $request)
+    {
+
+        $galeria = Galeria::find($request->id);
+        $galeria->orden = $request->orden;
+        $galeria->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
+    }
+    public function cambiarEstadoGalerias(Request $request)
+    {
+        $galeria = Miembro::find($request->id);
+        $galeria->estado = $request->estado;
+        $galeria->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
     }
 }
