@@ -41,7 +41,7 @@ class StandsYArtistasController extends Controller
      */
     public function store(Request $request)
     {
-        $galeria = new StandsYArtista([
+        $standsyartista = new StandsYArtista([
             'nombre' => $request->get('title'),
             'image_path' => $request->get('imgportada'),
             'instagram' =>  $request->get('instagram'),
@@ -51,7 +51,7 @@ class StandsYArtistasController extends Controller
             'estado' => 1,
         ]);
 //        dd($request,$galeria);
-        $galeria->save();
+        $standsyartista->save();
 
         return view('backend.singlepage.standsyartista.create',['title' => 'Stands y Artistas']);
 
@@ -63,9 +63,11 @@ class StandsYArtistasController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function show(Galeria $galeria)
+    public function show($id)
     {
-        //
+        $title = 'Stand y/o Artista';
+        $show = StandsYArtista::find($id);
+        return view('backend.singlepage.standsyartista.show', ['title' => $title, 'standyartista' => $show]);
     }
 
     /**
@@ -74,9 +76,11 @@ class StandsYArtistasController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Galeria $galeria)
+    public function edit($id)
     {
-        //
+        $title = 'Stand y/o Artista';
+        $edit = StandsYArtista::find($id);
+        return view('backend.singlepage.standsyartista.edit', ['title' => $title, 'standyartista' => $edit]);
     }
 
     /**
@@ -86,9 +90,18 @@ class StandsYArtistasController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Galeria $galeria)
+    public function update(Request $request, $id)
     {
-        //
+        StandsYArtista::find($id)->update([
+            'nombre' => $request->get('title'),
+            'image_path' => $request->get('imgportada'),
+            'instagram' =>  $request->get('instagram'),
+            'facebook' => $request->get('facebook'),
+            'slug' => $request->get('title'),
+
+        ]);
+
+        return view('backend.singlepage.standsyartista.index', ['title' => 'Stands Y Artistas', 'standsyartistas' => StandsYArtista::all()]);
     }
 
     /**
@@ -97,9 +110,12 @@ class StandsYArtistasController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Galeria $galeria)
+    public function destroy(Request $request)
     {
-        //
+        $standsyartista = StandsYArtista::find($request->id);
+        $standsyartista->delete();
+
+        return view('backend.singlepage.standyartistas.index', ['title' => 'Stands y Artistas', 'standyartistas' => StandsYArtista::all()]);
     }
 
     public function ordenarStandsYArtistas(Request $request)
