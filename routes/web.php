@@ -241,11 +241,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/sponsor/{id}/delete', 'SponsorsController@destroy');
 
     //Avales Routes
-    Route::get('/singlepage/aval', 'AvalesController@index');
-    Route::get('/singlepage/aval/create', 'AvalesController@create');
-    Route::post('/singlepage/aval/store', 'AvalesController@store');
     Route::get('/singlepage/aval/ordenarAvales', 'AvalesController@ordenarAvales')->name('ordenarAvales');
     Route::get('/singlepage/aval/cambiarEstadoAvales', 'AvalesController@cambiarEstadoAvales')->name('cambiarEstadoAvales');
+    Route::get('/singlepage/aval', 'AvalesController@index');
+    Route::get('/singlepage/aval/create', 'AvalesController@create');
+    Route::get('/singlepage/aval/{id}', 'AvalesController@show');
+    Route::get('/singlepage/aval/{id}/edit', 'AvalesController@edit');
+    Route::post('/singlepage/aval/store', 'AvalesController@store');
+    Route::patch('/singlepage/aval/{id}', 'AvalesController@update');
+    Route::get('/singlepage/aval/{id}/delete', 'AvalesController@destroy');
 
     //Concursos y muestras Routes
     Route::get('/singlepage/concursoymuestra', 'ConcursosYMuestrasController@index');

@@ -11,7 +11,8 @@
     <div class="row">
             <div class="col-12 col-md-12">
                 <div class="col-md-12">
-                    <form action="{{ url('/admin/singlepage/aval/store') }}" id="form-galery" enctype="multipart/form-data" method="post">
+                    <form action="{{ url('/admin/singlepage/aval/'.$aval->id) }}" enctype="multipart/form-data" method="post">
+                        <input name="_method" type="hidden" value="PATCH">
                         {{ csrf_field() }}
                         {{--Foto principal: recomendado 860 x 480px<br>--}}
                         {{--<input name="photo" type="file">--}}
@@ -25,8 +26,8 @@
 
                         <div class="row form-group">
                             <div class="col-md-12 {{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label>Nombre del Aval</label><em>*</em>
-                                <input type="text" name="title" id="title" class="form-control" value="{{ old('title')}}">
+                                <label>Nombre del Stand y/o Artista</label><em>*</em>
+                                <input type="text" name="title" id="title" class="form-control" value="{{ $aval->texto_uno}}">
                                 @if ($errors->has('title'))
                                     <span class="form-error">
                                         {{ $errors->first('title') }}
@@ -44,14 +45,11 @@
                                         <i class="fa fa-picture-o"></i> Elegí
                                     </a>
                                     </span>
-                                    <input id="thumbnail" class="form-control" type="text" name="imgportada">
+                                    <input id="thumbnail" class="form-control" type="text" name="imgportada" value="{{ $aval->image_path}}">
                                 </div>
                             </div>
-                            <img id="holder" style="margin-top:15px;max-height:100px;">
+                            <img id="holder" style="margin-top:15px;max-height:100px;" src="{{asset($aval->image_path)}}">
                         </div>
-
-
-
                         <input type="submit" value="Subir">
                     </form>
                 </div>

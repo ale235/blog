@@ -16,7 +16,7 @@
                             <th>Nombre</th>
                             <th>Orden</th>
                             <th>Estado</th>
-                            {{--<th>Opciones</th>--}}
+                            <th>Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -25,7 +25,7 @@
                                 overflow: hidden;
                                 text-overflow: ellipsis;">
                                 <td>{{$aval->id}}</td>
-                                <td>{{$aval->nombre}}</td>
+                                <td>{{$aval->texto_uno}}</td>
                                 {{--<td>--}}
                                 {{--<div>--}}
                                 {{--<img src="{{ asset('imagenes/slider')}}/{{$slider->imagen}}" class="img-thumbnail" alt="{{$slider->titulo}}">--}}
@@ -38,13 +38,13 @@
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
-                                {{--<td>--}}
-                                {{--<div class="btn-group" style="display: inline-block;">--}}
-                                {{--<a href="slider/{{$slider->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>--}}
-                                {{--<a href="slider/{{$slider->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>--}}
-                                {{--<a href="" data-toggle="modal" data-target="#modal-delete-{{$slider->id}}" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>--}}
-                                {{--</div>--}}
-                                {{--</td>--}}
+                                <td>
+                                    {{--<div class="btn-group" style="display: inline-block;">--}}
+                                    <a href="{{url('/admin/singlepage/aval')}}/{{$aval->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>
+                                    <a href="{{url('/admin/singlepage/aval')}}/{{$aval->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>
+                                    <a href="{{url('/admin/singlepage/aval')}}/{{$aval->id}}/delete" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>
+                                    {{--</div>--}}
+                                </td>
                             </tr>
                             {{--                            @include('backend.slider.modal')--}}
                         @endforeach

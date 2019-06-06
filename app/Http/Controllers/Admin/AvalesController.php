@@ -59,9 +59,11 @@ class AvalesController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function show(Galeria $galeria)
+    public function show($id)
     {
-        //
+        $title = 'Avales';
+        $show = Aval::find($id);
+        return view('backend.singlepage.aval.show', ['title' => $title, 'aval' => $show]);
     }
 
     /**
@@ -70,9 +72,11 @@ class AvalesController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Galeria $galeria)
+    public function edit($id)
     {
-        //
+        $title = 'Aval';
+        $edit = Aval::find($id);
+        return view('backend.singlepage.aval.edit', ['title' => $title, 'aval' => $edit]);
     }
 
     /**
@@ -82,9 +86,14 @@ class AvalesController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Galeria $galeria)
+    public function update(Request $request, $id)
     {
-        //
+        Aval::find($id)->update([
+            'texto_uno' => $request->get('title'),
+            'image_path' => $request->get('imgportada'),
+        ]);
+
+        return view('backend.singlepage.aval.index', ['title' => 'Avales', 'avales' => Aval::all()]);
     }
 
     /**
@@ -93,9 +102,12 @@ class AvalesController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Galeria $galeria)
+    public function destroy(Request $request)
     {
-        //
+        $aval = Aval::find($request->id);
+        $aval->delete();
+
+        return view('backend.singlepage.sponsor.index', ['title' => 'Avales', 'avales' => Aval::all()]);
     }
 
     public function ordenarAvales(Request $request)

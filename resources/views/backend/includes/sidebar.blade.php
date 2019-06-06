@@ -46,6 +46,9 @@
                     {{--<a href="{{ url('/admin/survey') }}">Todas las Encuestas</a>--}}
                     {{--</li>--}}
                     <li>
+                        <a href="{{ url('/admin/singlepage/aval') }}">Avales</a>
+                    </li>
+                    <li>
                         <a href="{{ url('/admin/singlepage/galeria') }}">Galeria</a>
                     </li>
                     <li>

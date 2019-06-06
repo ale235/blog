@@ -60,15 +60,21 @@
         </div>
         <div class="row justify-content-center">
             <!-- Team Member 1 -->
-            @foreach($avales as $key => $aval)
-                <div class="container text-center">
-                    <a href="{{url($aval->image_path)}}">
-                        <img src="{{asset($aval->image_path)}}" class="thumbnail" width="10%" />
-                    </a>
-                    <br><br>
-                    <p class="text-muted mb-5" style="text-align: center; font-size: large">
-                        {{$aval->texto_uno}}
-                    </p>
+            @foreach($avales as $aval)
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border-0 shadow">
+                        {{--<img src="https://source.unsplash.com/TMgQMXoglsM/500x350" class="card-img-top" alt="...">--}}
+                        <img src="{{asset($aval->image_path)}}" class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            {{--<h5 class="card-title mb-0"><a href="{{url('http://'.$miembro->slug)}}">{{$miembro->nombre}}</a></h5>--}}
+                            <hr class="divider my-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card-text text-black-50">{{$aval->texto_uno}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             @endforeach
         </div>
