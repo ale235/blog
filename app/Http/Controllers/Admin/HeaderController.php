@@ -43,7 +43,7 @@ class HeaderController extends Controller {
         ]);
         $header->save();
 
-        return view('backend.singlepage.header.index',['title' => 'lala']);
+        return view('backend.singlepage.header.index',['title' => 'lala', 'headers' => Header::all()]);
 
     }
 
@@ -57,7 +57,7 @@ class HeaderController extends Controller {
     {
         $header = Header::find($id);
 //        dd($header);
-        return view('backend.singlepage.header.show',['title' => 'Mostrar']);
+        return view('backend.singlepage.header.show',['title' => 'Mostrar', 'header' => $header]);
     }
 
     /**

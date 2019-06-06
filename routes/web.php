@@ -17,7 +17,18 @@ Route::get('/', function () {
         ->where('p.published', 1)
         ->orderBy('p.created_at', 'desc')
         ->paginate(3);
-    $header = Header::first();
+
+    $headers = DB::table('headers as h')
+        ->where('h.estado',1)
+        ->orderBy('h.orden','asc')
+        ->take(1)
+        ->get();
+
+    $miembros = DB::table('miembros as m')
+        ->where('m.estado',1)
+        ->orderBy('m.orden','asc')
+        ->get();
+
     $galerias = DB::table('galerias as g')
                 ->where('g.estado',1)
                 ->orderBy('g.created_at','desc')
@@ -31,11 +42,6 @@ Route::get('/', function () {
     $sponsors = DB::table('sponsors as s')
         ->where('s.estado',1)
         ->orderBy('s.orden','asc')
-        ->get();
-
-    $miembros = DB::table('miembros as m')
-        ->where('m.estado',1)
-        ->orderBy('m.orden','asc')
         ->get();
 
     $avales = DB::table('avales as a')
@@ -56,7 +62,7 @@ Route::get('/', function () {
         ->get();
 
 //    dd($galerias);
-    return view('frontend.welcome', ['posts' => $posts,'header' => $header, 'galerias' => $galerias, 'standsyartistas' => $standsyartistas, 'sponsors' => $sponsors, 'miembros' => $miembros, 'avales' => $avales, 'quienessomos' => $quienessomos, 'concursosymuestras' => $concursosymuestras]);
+    return view('frontend.welcome', ['posts' => $posts,'headers' => $headers, 'galerias' => $galerias, 'standsyartistas' => $standsyartistas, 'sponsors' => $sponsors, 'miembros' => $miembros, 'avales' => $avales, 'quienessomos' => $quienessomos, 'concursosymuestras' => $concursosymuestras]);
 });
 
 Route::get('/principal', function () {
@@ -170,6 +176,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     });
 
     //Header Routes
+    Route::get('/singlepage/header/ordenarHeader', 'HeaderController@ordenarHeader')->name('ordenarHeader');
+    Route::get('/singlepage/header/cambiarEstadoHeader', 'HeaderController@cambiarEstadoHeader')->name('cambiarEstadoHeader');
     Route::get('/singlepage/header', 'HeaderController@index');
     Route::get('/singlepage/header/create', 'HeaderController@create');
     Route::get('/singlepage/header/{id}', 'HeaderController@show');
@@ -177,10 +185,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::post('/singlepage/header/store', 'HeaderController@store');
     Route::patch('/singlepage/header/{id}', 'HeaderController@update');
     Route::get('/singlepage/header/{id}/delete', 'HeaderController@destroy');
-
-    Route::post('/singlepage/header/store', 'HeaderController@store');
-    Route::get('/singlepage/header/ordenarHeader', 'HeaderController@ordenarHeader')->name('ordenarHeader');
-    Route::get('/singlepage/header/cambiarEstadoHeader', 'HeaderController@cambiarEstadoHeader')->name('cambiarEstadoHeader');
 
     //Quienes somos Routes
     Route::get('/singlepage/quienessomo/ordenarQuienesSomos', 'QuienesSomosController@ordenarQuienesSomos')->name('ordenarQuienesSomos');
