@@ -12,7 +12,7 @@
                 <hr class="divider my-4">
             </div>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
             <!-- Team Member 1 -->
             @foreach($miembros as $miembro)
                 <div class="col-xl-4 col-md-6 mb-4">

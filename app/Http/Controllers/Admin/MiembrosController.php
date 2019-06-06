@@ -118,6 +118,9 @@ class MiembrosController extends Controller
     {
         $miembro = Miembro::find($request->id);
         $miembro->delete();
+
+        return view('backend.singlepage.miembro.index', ['title' => 'Miembros', 'miembros' => Miembro::all()]);
+
     }
 
     public function ordenarMiembros(Request $request)
