@@ -61,9 +61,11 @@ class SponsorsController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function show(Galeria $galeria)
+    public function show($id)
     {
-        //
+        $title = 'Sponsor';
+        $show = Sponsor::find($id);
+        return view('backend.singlepage.sponsor.show', ['title' => $title, 'sponsor' => $show]);
     }
 
     /**
@@ -72,9 +74,12 @@ class SponsorsController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Galeria $galeria)
+    public function edit($id)
     {
-        //
+        $title = 'Sponsor';
+        $edit = Sponsor::find($id);
+        return view('backend.singlepage.sponsor.edit', ['title' => $title, 'sponsor' => $edit]);
+
     }
 
     /**
@@ -84,9 +89,15 @@ class SponsorsController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Galeria $galeria)
+    public function update(Request $request, $id)
     {
-        //
+        Sponsor::find($id)->update([
+            'nombre' => $request->get('title'),
+            'image_path' => $request->get('imgportada'),
+            'slug' => $request->get('slug'),
+        ]);
+
+        return view('backend.singlepage.sponsor.index', ['title' => 'Sponsor', 'sponsors' => Sponsor::all()]);
     }
 
     /**
@@ -95,9 +106,13 @@ class SponsorsController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Galeria $galeria)
+    public function destroy(Request $request)
     {
-        //
+        $sponsor = Sponsor::find($request->id);
+        $sponsor->delete();
+
+        return view('backend.singlepage.sponsor.index', ['title' => 'Sponsor', 'sponsors' => Sponsor::all()]);
+
     }
 
     public function ordenarSponsors(Request $request)

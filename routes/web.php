@@ -230,11 +230,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/standsyartista/{id}/delete', 'StandsYArtistasController@destroy');
 
     //Sponsors Routes
-    Route::get('/singlepage/sponsor', 'SponsorsController@index');
-    Route::get('/singlepage/sponsor/create', 'SponsorsController@create');
-    Route::post('/singlepage/sponsor/store', 'SponsorsController@store');
     Route::get('/singlepage/sponsor/ordenarSponsors', 'SponsorsController@ordenarSponsors')->name('ordenarSponsors');
     Route::get('/singlepage/sponsor/cambiarEstadoSponsors', 'SponsorsController@cambiarEstadoSponsors')->name('cambiarEstadoSponsors');
+    Route::get('/singlepage/sponsor', 'SponsorsController@index');
+    Route::get('/singlepage/sponsor/create', 'SponsorsController@create');
+    Route::get('/singlepage/sponsor/{id}', 'SponsorsController@show');
+    Route::get('/singlepage/sponsor/{id}/edit', 'SponsorsController@edit');
+    Route::post('/singlepage/sponsor/store', 'SponsorsController@store');
+    Route::patch('/singlepage/sponsor/{id}', 'SponsorsController@update');
+    Route::get('/singlepage/sponsor/{id}/delete', 'SponsorsController@destroy');
 
     //Avales Routes
     Route::get('/singlepage/aval', 'AvalesController@index');
