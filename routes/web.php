@@ -46,6 +46,7 @@ Route::get('/', function () {
     $quienessomos = DB::table('quienessomos as q')
         ->where('q.estado',1)
         ->orderBy('q.orden','asc')
+        ->take(1)
         ->get();
 
     $concursosymuestras = DB::table('concursosymuestras as c')
@@ -182,6 +183,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/header/cambiarEstadoHeader', 'HeaderController@cambiarEstadoHeader')->name('cambiarEstadoHeader');
 
     //Quienes somos Routes
+    Route::get('/singlepage/quienessomo/ordenarQuienesSomos', 'QuienesSomosController@ordenarQuienesSomos')->name('ordenarQuienesSomos');
+    Route::get('/singlepage/quienessomo/cambiarEstadoQuienesSomos', 'QuienesSomosController@cambiarEstadoQuienesSomos')->name('cambiarEstadoQuienesSomos');
     Route::get('/singlepage/quienessomo', 'QuienesSomosController@index');
     Route::get('/singlepage/quienessomo/create', 'QuienesSomosController@create');
     Route::get('/singlepage/quienessomo/{id}', 'QuienesSomosController@show');
@@ -189,8 +192,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::post('/singlepage/quienessomo/store', 'QuienesSomosController@store');
     Route::patch('/singlepage/quienessomo/{id}', 'QuienesSomosController@update');
     Route::get('/singlepage/quienessomo/{id}/delete', 'QuienesSomosController@destroy');
-    Route::get('/singlepage/quienessomo/ordenarQuienesSomos', 'QuienesSomosController@ordenarQuienesSomos')->name('ordenarQuienesSomos');
-    Route::get('/singlepage/quienessomo/cambiarEstadoQuienesSomos', 'QuienesSomosController@cambiarEstadoQuienesSomos')->name('cambiarEstadoQuienesSomos');
 
     //Miembros Routes
     Route::get('/singlepage/miembro/ordenarMiembros', 'MiembrosController@ordenarMiembros')->name('ordenarMiembros');
@@ -252,11 +253,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/aval/{id}/delete', 'AvalesController@destroy');
 
     //Concursos y muestras Routes
-    Route::get('/singlepage/concursoymuestra', 'ConcursosYMuestrasController@index');
-    Route::get('/singlepage/concursosymuestra/create', 'ConcursosYMuestrasController@create');
-    Route::post('/singlepage/concursosymuestra/store', 'ConcursosYMuestrasController@store');
     Route::get('/singlepage/concursosymuestra/ordenarConcursosYMuestras', 'ConcursosYMuestrasController@ordenarConcursosYMuestras')->name('ordenarConcursosYMuestras');
     Route::get('/singlepage/concursosymuestra/cambiarEstadoConcursosYMuestras', 'ConcursosYMuestrasController@cambiarEstadoConcursosYMuestras')->name('cambiarEstadoConcursosYMuestras');
+    Route::get('/singlepage/concursoymuestra', 'ConcursosYMuestrasController@index');
+    Route::get('/singlepage/concursoymuestra/create', 'ConcursosYMuestrasController@create');
+    Route::get('/singlepage/concursoymuestra/{id}', 'ConcursosYMuestrasController@show');
+    Route::get('/singlepage/concursoymuestra/{id}/edit', 'ConcursosYMuestrasController@edit');
+    Route::post('/singlepage/concursoymuestra/store', 'ConcursosYMuestrasController@store');
+    Route::patch('/singlepage/concursoymuestra/{id}', 'ConcursosYMuestrasController@update');
+    Route::get('/singlepage/concursoymuestra/{id}/delete', 'ConcursosYMuestrasController@destroy');
+    Route::get('/singlepage/concursoymuestra/{id}/deleteimagen', 'ConcursosYMuestrasController@destroyimagen');
 
     //Post routes
     Route::get('/post', 'PostController@index');

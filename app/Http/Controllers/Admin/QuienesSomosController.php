@@ -106,6 +106,9 @@ class QuienesSomosController extends Controller
     {
         $quienessomo = QuienesSomo::find($request->id);
         $quienessomo->delete();
+
+        return view('backend.singlepage.quienessomo.index', ['title' => 'Quienes Somos', 'quienessomos' => QuienesSomo::all()]);
+
     }
 
     public function ordenarQuienesSomos(Request $request)
