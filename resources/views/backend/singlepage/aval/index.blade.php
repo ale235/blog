@@ -54,7 +54,7 @@
             {{--{!! $servicios->render() !!}--}}
             <!-- /.box-body -->
                 <div class="box-footer">
-                    <a  href="{{url('/admin/singlepage/aval/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Stand y/o Artista</button></a>
+                    <a  href="{{url('/admin/singlepage/aval/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Aval</button></a>
                 </div>
             </div>
             <!-- /.box -->

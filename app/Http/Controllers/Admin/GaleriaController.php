@@ -53,6 +53,7 @@ class GaleriaController extends Controller
         $galeria->save();
 
         $count = 1;
+        if(isset($request->files->all()['imggaleria']))
         foreach ($request->files->all()['imggaleria'] as $img){
 //            dd(url('/photos/shares').'/galeria/'.trim($request->get('titulo')).'/'.trim($request->get('titulo').'-'.$count));
 //            dd(public_path('photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count));

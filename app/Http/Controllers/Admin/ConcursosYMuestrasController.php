@@ -56,6 +56,7 @@ class ConcursosYMuestrasController extends Controller
         $galeria->save();
 
         $count = 1;
+        if(isset($request->files->all()['imggaleria']))
         foreach ($request->files->all()['imggaleria'] as $img){
 //            dd(url('/photos/shares').'/galeria/'.trim($request->get('titulo')).'/'.trim($request->get('titulo').'-'.$count));
 //            dd(public_path('photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count));
@@ -120,18 +121,19 @@ class ConcursosYMuestrasController extends Controller
             'slug' => $request->get('slug'),
         ]);
         $count = 1;
+        if(isset($request->files->all()['imggaleria']))
         foreach ($request->files->all()['imggaleria'] as $img){
-            $galeriaimagen = new GaleriaImagen([
-                'galeria_id' => $id,
+            $galeriaimagen = new ConcursoYMuestraImagen([
+                'concursosymuestra_id' => $id,
                 'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
-                'image_path' => '/photos/shares/concursosymuestras/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count.'.jpg')
+                'image_path' => '/photos/shares/concursosymuestras/'.str_replace(' ', '',$request->get('title')).'/'.str_replace(' ', '',$request->get('title').'-'.$count.'.jpg'),
             ]);
-            $img->move(public_path('/photos/shares/concursosymuestras/').trim($request->get('title')), trim($request->get('title').'-'.$count).'.jpg');
+            $img->move(public_path('/photos/shares/concursosymuestras/').str_replace(' ', '',$request->get('title')), str_replace(' ', '',$request->get('title').'-'.$count).'.jpg');
             $count++;
             $galeriaimagen->save();
         }
 
-        return view('backend.singlepage.galeria.index', ['title' => 'Concurso y Muestra', 'concursosymuestras' => ConcursoYMuestra::all()]);
+        return view('backend.singlepage.concursoymuestra.index', ['title' => 'Concurso y Muestra', 'concursosymuestras' => ConcursoYMuestra::all()]);
     }
 
     /**
@@ -149,14 +151,14 @@ class ConcursosYMuestrasController extends Controller
     {
 //        dd($id);
         $galeriaimagen = ConcursoYMuestraImagen::find($id);
-        $aux = $galeriaimagen->galeria_id;
+        $aux = $galeriaimagen->concursosymuestra_id;
         $galeriaimagen->delete();
         $title = 'Galeria';
 
         $editgaleria = ConcursoYMuestra::find($aux);
-        $editgaleriaimagenes = ConcursoYMuestraImagen::where('galeria_id',$editgaleria->id)->get();
+        $editgaleriaimagenes = ConcursoYMuestraImagen::where('concursosymuestra_id',$editgaleria->id)->get();
         //dd($editgaleriaimagenes);
-        return view('backend.singlepage.galeria.edit', ['title' => $title, 'concursoymuestra' => $editgaleria, 'concursosymuestrasimagenes' => $editgaleriaimagenes]);
+        return view('backend.singlepage.concursoymuestra.edit', ['title' => $title, 'concursoymuestra' => $editgaleria, 'concursosymuestrasimagenes' => $editgaleriaimagenes]);
     }
 
     public function ordenarConcursosYMuestras(Request $request)
@@ -172,6 +174,26 @@ class ConcursosYMuestrasController extends Controller
     public function cambiarEstadoConcursosYMuestras(Request $request)
     {
         $galeria = ConcursoYMuestra::find($request->id);
+        $galeria->estado = $request->estado;
+        $galeria->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
+    }
+
+    public function ordenarConcursosYMuestrasInterior(Request $request)
+    {
+
+        $galeria = ConcursoYMuestraImagen::find($request->id);
+        $galeria->orden = $request->orden;
+        $galeria->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
+    }
+    public function cambiarEstadoConcursosYMuestrasInterior(Request $request)
+    {
+        $galeria = ConcursoYMuestraImagen::find($request->id);
         $galeria->estado = $request->estado;
         $galeria->update();
 //        $data = $request->all(); // This will get all the request data.

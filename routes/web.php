@@ -87,16 +87,16 @@ Route::get('/galeria/{slug}', function ($d) {
 
 Route::get('/concursoymuestra/{slug}', function ($d) {
 //    dd($d);
-    $concursoymuestra = DB::table('concursosymuestras as g')
+    $galeria = DB::table('concursosymuestras')
         ->where('slug','=',$d)
         ->first();
-//    dd($concursoymuestra);
-    $concursoymuestraimagen = DB::table('concursosymuestras_imagens')
-        ->where('concursosymuestra_id','=',$concursoymuestra->id)
+    $galeriaimagen = DB::table('concursosymuestras_imagens')
+        ->where('concursosymuestra_id','=',$galeria->id)
+        ->where('estado',1)
+        ->orderBy('orden','asc')
         ->get();
 
-//    dd($concursoymuestraimagen);
-    return view('frontend.includes.concursoymuestra.index',['concursoymuestra' => $concursoymuestra, 'concursosymuestrasimagen' => $concursoymuestraimagen]);
+    return view('frontend.includes.concursoymuestra.index',['concursoymuestra' => $galeria, 'concursosymuestrasimagen' => $galeriaimagen]);
 });
 
 Route::get('/blog', 'BlogController@index');
@@ -265,6 +265,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     //Concursos y muestras Routes
     Route::get('/singlepage/concursoymuestra/ordenarConcursosYMuestras', 'ConcursosYMuestrasController@ordenarConcursosYMuestras')->name('ordenarConcursosYMuestras');
     Route::get('/singlepage/concursoymuestra/cambiarEstadoConcursosYMuestras', 'ConcursosYMuestrasController@cambiarEstadoConcursosYMuestras')->name('cambiarEstadoConcursosYMuestras');
+    Route::get('/singlepage/concursoymuestra/ordenarConcursosYMuestrasInterior', 'ConcursosYMuestrasController@ordenarConcursosYMuestrasInterior')->name('ordenarConcursosYMuestrasInterior');
+    Route::get('/singlepage/concursoymuestra/cambiarEstadoConcursosYMuestrasInterior', 'ConcursosYMuestrasController@cambiarEstadoConcursosYMuestrasInterior')->name('cambiarEstadoConcursosYMuestrasInterior');
     Route::get('/singlepage/concursoymuestra', 'ConcursosYMuestrasController@index');
     Route::get('/singlepage/concursoymuestra/create', 'ConcursosYMuestrasController@create');
     Route::get('/singlepage/concursoymuestra/{id}', 'ConcursosYMuestrasController@show');

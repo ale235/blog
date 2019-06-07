@@ -86,15 +86,16 @@ class UsersController extends Controller {
             return back()->withErrors($validator)->withInput();
         } 
         else {
-            
+
             $user = User::create([
                 'username' => $request['username'],
                 'phone' => $request['phone'],
                 'email' => $request['email'],
-                'users_status_id' => $request['users_status_id'],
-                'users_role_id' => $request['users_role_id'],
+                'user_status_id' => 1,
+                'user_role_id' => 1,
                 'password' => bcrypt($request['password'])
             ]);
+
 
             if (!$user) {
                 throw new Exception('Error in saving data!');
