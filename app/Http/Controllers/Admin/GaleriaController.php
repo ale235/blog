@@ -142,7 +142,11 @@ class GaleriaController extends Controller
      */
     public function destroy($id)
     {
-        GaleriaImagen::where
+        $galeria = Galeria::find($id);
+        GaleriaImagen::where('galeria_id','=',$galeria->id)->delete();
+        $galeria->delete();
+        return view('backend.singlepage.galeria.index', ['title' => 'Galeria', 'galerias' => Galeria::all()]);
+
     }
 
     public function destroyimagen(Request $request, $id)
