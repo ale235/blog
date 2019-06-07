@@ -31,7 +31,7 @@ Route::get('/', function () {
 
     $galerias = DB::table('galerias as g')
                 ->where('g.estado',1)
-                ->orderBy('g.created_at','desc')
+                ->orderBy('g.created_at','asc')
                 ->take(6)
                 ->get();
     $standsyartistas = DB::table('standsyartistas as s')
@@ -77,7 +77,11 @@ Route::get('/galeria/{slug}', function ($d) {
                 ->first();
     $galeriaimagen = DB::table('galeria_imagens')
                         ->where('galeria_id','=',$galeria->id)
+                        ->where('estado',1)
+                        ->orderBy('orden','asc')
                         ->get();
+
+//    dd($galeriaimagen);
     return view('frontend.includes.galeria.index',['galeria' => $galeria, 'galeriaimagen' => $galeriaimagen]);
 });
 
@@ -213,6 +217,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     //Galeria Routes
     Route::get('/singlepage/galeria/ordenarGalerias', 'GaleriaController@ordenarGalerias')->name('ordenarGalerias');
     Route::get('/singlepage/galeria/cambiarEstadoGalerias', 'GaleriaController@cambiarEstadoGalerias')->name('cambiarEstadoGalerias');
+    Route::get('/singlepage/galeria/ordenarGaleriasInterior', 'GaleriaController@ordenarGaleriasInterior')->name('ordenarGaleriasInterior');
+    Route::get('/singlepage/galeria/cambiarEstadoGaleriasInterior', 'GaleriaController@cambiarEstadoGaleriasInterior')->name('cambiarEstadoGaleriasInterior');
     Route::get('/singlepage/galeria', 'GaleriaController@index');
     Route::get('/singlepage/galeria/create', 'GaleriaController@create');
     Route::get('/singlepage/galeria/{id}', 'GaleriaController@show');

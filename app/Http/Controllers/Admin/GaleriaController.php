@@ -59,9 +59,11 @@ class GaleriaController extends Controller
             $galeriaimagen = new GaleriaImagen([
                 'galeria_id' => $galeria->id,
                 'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
-                'image_path' => '/photos/shares/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count.'.jpg')
+                'image_path' => '/photos/shares/galeria/'.str_replace(' ','',$request->get('title')).'/'.str_replace(' ', '',$request->get('title').'-'.$count.'.jpg'),
+                'slug' => $request->get('slug'),
+                'orden' => (Galeria::all()->count() + 1),
             ]);
-            $img->move(public_path('/photos/shares/galeria/').trim($request->get('title')), trim($request->get('title').'-'.$count).'.jpg');
+            $img->move(public_path('/photos/shares/galeria/').str_replace(' ','',$request->get('title')), str_replace(' ','',$request->get('title').'-'.$count).'.jpg');
             $count++;
             $galeriaimagen->save();
         }
@@ -117,13 +119,14 @@ class GaleriaController extends Controller
             'estado' => 1,
         ]);
         $count = 1;
+        if(isset($request->files->all()['imggaleria']))
         foreach ($request->files->all()['imggaleria'] as $img){
             $galeriaimagen = new GaleriaImagen([
                 'galeria_id' => $id,
                 'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
-                'image_path' => '/photos/shares/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count.'.jpg')
+                'image_path' => '/photos/shares/galeria/'.str_replace(' ','',$request->get('title')).'/'.str_replace(' ','',$request->get('title').'-'.$count.'.jpg')
             ]);
-            $img->move(public_path('/photos/shares/galeria/').trim($request->get('title')), trim($request->get('title').'-'.$count).'.jpg');
+            $img->move(public_path('/photos/shares/galeria/').str_replace(' ','',$request->get('title')), str_replace(' ','',$request->get('title').'-'.$count).'.jpg');
             $count++;
             $galeriaimagen->save();
         }
@@ -137,9 +140,9 @@ class GaleriaController extends Controller
      * @param  \App\Galeria  $galeria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Galeria $galeria)
+    public function destroy($id)
     {
-        //
+        GaleriaImagen::where
     }
 
     public function destroyimagen(Request $request, $id)
@@ -168,7 +171,27 @@ class GaleriaController extends Controller
     }
     public function cambiarEstadoGalerias(Request $request)
     {
-        $galeria = Galeria::find($request->id);
+        $galeriaimagen = GaleriaImagen::find($request->id);
+        $galeriaimagen->estado = $request->estado;
+        $galeriaimagen->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
+    }
+
+    public function ordenarGaleriasInterior(Request $request)
+    {
+
+        $galeria = GaleriaImagen::find($request->id);
+        $galeria->orden = $request->orden;
+        $galeria->update();
+//        $data = $request->all(); // This will get all the request data.
+//        var_dump($data);
+//        dd($data); // This will dump and die
+    }
+    public function cambiarEstadoGaleriasInterior(Request $request)
+    {
+        $galeria = GaleriaImagen::find($request->id);
         $galeria->estado = $request->estado;
         $galeria->update();
 //        $data = $request->all(); // This will get all the request data.
