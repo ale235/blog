@@ -14,6 +14,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Nombre</th>
+                            <th>Imagen</th>
                             <th>Orden</th>
                             <th>Estado</th>
                             <th>Opciones</th>
@@ -26,11 +27,11 @@
                                 text-overflow: ellipsis;">
                                 <td>{{$concursosymuestra->id}}</td>
                                 <td>{{$concursosymuestra->titulo}}</td>
-                                {{--<td>--}}
-                                {{--<div>--}}
-                                {{--<img src="{{ asset('imagenes/slider')}}/{{$slider->imagen}}" class="img-thumbnail" alt="{{$slider->titulo}}">--}}
-                                {{--</div>--}}
-                                {{--</td>--}}
+                                <td>
+                                    <div>
+                                        <img src="{{ asset($concursosymuestra->image_path)}}" class="img-thumbnail" width="50%" alt="{{$concursosymuestra->nombre}}">
+                                    </div>
+                                </td>
                                 <td class="index">{{$concursosymuestra->orden}}</td>
                                 <td>
                                     <label class="switch">
@@ -54,7 +55,7 @@
             {{--{!! $servicios->render() !!}--}}
             <!-- /.box-body -->
                 <div class="box-footer">
-                    <a  href="{{url('/admin/singlepage/concursoymuestra/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Galería</button></a>
+                    <a  href="{{url('/admin/singlepage/concursoymuestra/create/')}}"><button type="button" class="btn btn-default pull-left"><i class="fa fa-plus"></i> Agregar Concurso y Muestra</button></a>
                 </div>
             </div>
             <!-- /.box -->

@@ -263,8 +263,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     Route::get('/singlepage/aval/{id}/delete', 'AvalesController@destroy');
 
     //Concursos y muestras Routes
-    Route::get('/singlepage/concursosymuestra/ordenarConcursosYMuestras', 'ConcursosYMuestrasController@ordenarConcursosYMuestras')->name('ordenarConcursosYMuestras');
-    Route::get('/singlepage/concursosymuestra/cambiarEstadoConcursosYMuestras', 'ConcursosYMuestrasController@cambiarEstadoConcursosYMuestras')->name('cambiarEstadoConcursosYMuestras');
+    Route::get('/singlepage/concursoymuestra/ordenarConcursosYMuestras', 'ConcursosYMuestrasController@ordenarConcursosYMuestras')->name('ordenarConcursosYMuestras');
+    Route::get('/singlepage/concursoymuestra/cambiarEstadoConcursosYMuestras', 'ConcursosYMuestrasController@cambiarEstadoConcursosYMuestras')->name('cambiarEstadoConcursosYMuestras');
     Route::get('/singlepage/concursoymuestra', 'ConcursosYMuestrasController@index');
     Route::get('/singlepage/concursoymuestra/create', 'ConcursosYMuestrasController@create');
     Route::get('/singlepage/concursoymuestra/{id}', 'ConcursosYMuestrasController@show');

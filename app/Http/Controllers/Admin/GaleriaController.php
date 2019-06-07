@@ -60,7 +60,6 @@ class GaleriaController extends Controller
                 'galeria_id' => $galeria->id,
                 'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
                 'image_path' => '/photos/shares/galeria/'.str_replace(' ','',$request->get('title')).'/'.str_replace(' ', '',$request->get('title').'-'.$count.'.jpg'),
-                'slug' => $request->get('slug'),
                 'orden' => (Galeria::all()->count() + 1),
             ]);
             $img->move(public_path('/photos/shares/galeria/').str_replace(' ','',$request->get('title')), str_replace(' ','',$request->get('title').'-'.$count).'.jpg');

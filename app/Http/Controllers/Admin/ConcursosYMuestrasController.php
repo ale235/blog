@@ -42,6 +42,7 @@ class ConcursosYMuestrasController extends Controller
      */
     public function store(Request $request)
     {
+
         $galeria = new ConcursoYMuestra([
             'titulo' => $request->get('title'),
             'image_path' => $request->get('imgportada'),
@@ -58,17 +59,20 @@ class ConcursosYMuestrasController extends Controller
         foreach ($request->files->all()['imggaleria'] as $img){
 //            dd(url('/photos/shares').'/galeria/'.trim($request->get('titulo')).'/'.trim($request->get('titulo').'-'.$count));
 //            dd(public_path('photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count));
+
             $galeriaimagen = new ConcursoYMuestraImagen([
-                'galeria_id' => $galeria->id,
+                'concursosymuestra_id' => $galeria->id,
                 'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
-                'image_path' => '/photos/shares/concursosymuestras/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count.'.jpg')
+                'image_path' => '/photos/shares/concursosymuestras/'.str_replace(' ', '',$request->get('title')).'/'.str_replace(' ', '',$request->get('title').'-'.$count.'.jpg'),
+                'estado' => 1,
+                'orden' => (ConcursoYMuestraImagen::all()->count() + 1),
             ]);
-            $img->move(public_path('/photos/shares/galeria/').trim($request->get('title')), trim($request->get('title').'-'.$count).'.jpg');
+            $img->move(public_path('/photos/shares/concursosymuestras/').str_replace(' ', '',$request->get('title')), str_replace(' ', '',$request->get('title').'-'.$count).'.jpg');
             $count++;
             $galeriaimagen->save();
         }
 
-        return view('backend.singlepage.concursosymuestra.create',['title' => 'lala']);
+        return view('backend.singlepage.concursoymuestra.create',['title' => 'lala']);
 
     }
 
@@ -155,7 +159,7 @@ class ConcursosYMuestrasController extends Controller
         return view('backend.singlepage.galeria.edit', ['title' => $title, 'concursoymuestra' => $editgaleria, 'concursosymuestrasimagenes' => $editgaleriaimagenes]);
     }
 
-    public function ordenarConcursoYMuestras(Request $request)
+    public function ordenarConcursosYMuestras(Request $request)
     {
 
         $galeria = ConcursoYMuestra::find($request->id);
@@ -165,7 +169,7 @@ class ConcursosYMuestrasController extends Controller
 //        var_dump($data);
 //        dd($data); // This will dump and die
     }
-    public function cambiarEstadoConcursoYMuestras(Request $request)
+    public function cambiarEstadoConcursosYMuestras(Request $request)
     {
         $galeria = ConcursoYMuestra::find($request->id);
         $galeria->estado = $request->estado;
