@@ -97,7 +97,7 @@ class StandsYArtistasController extends Controller
             'image_path' => $request->get('imgportada'),
             'instagram' =>  $request->get('instagram'),
             'facebook' => $request->get('facebook'),
-            'slug' => $request->get('title'),
+            'slug' => $request->get('slug'),
 
         ]);
 

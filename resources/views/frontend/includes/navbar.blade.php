@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#quienessomos">¿Quienes somos? </a>
+                    <a class="nav-link js-scroll-trigger" href="#quienessomos">¿Quienes somos?</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#miembrosdelstaff">Organizadores</a>
@@ -17,13 +17,13 @@
                     <a class="nav-link js-scroll-trigger" href="#portfolio">Galería</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#standyartistas">Stand y Artistas</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#resenias">Reseña</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#concursosymuestras">Concursos y Muestras</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#standyartistas">Stand y Artistas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#sponsors">Sponsors</a>

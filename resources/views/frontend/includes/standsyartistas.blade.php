@@ -1,4 +1,4 @@
-<section class="page-section" id="standsyartistas">
+<section class="page-section" id="standyartistas">
         <div class="container">
             <div class="row justify-content-center" style="margin-top: -50px;">
                 <div class="col-lg-8 text-center">
@@ -13,7 +13,7 @@
                     <div class="card border-0 shadow">
                         <img src="{{asset($standsyartista->image_path)}}" class="card-img-top" alt="...">
                         <div class="card-body text-center">
-                            <h5 class="card-title mb-0"><a href="{{url($standsyartista->slug)}}">{{$standsyartista->nombre}}</a></h5>
+                            <h5 class="card-title mb-0"><a href="{{url('http://'.$standsyartista->slug)}}">{{$standsyartista->nombre}}</a></h5>
                             {{--<div class="card-text text-black-50">Web Developer</div>--}}
                             <hr class="divider my-4">
                             <div class="col-md-12" style="text-align: center; padding: 0px 0px 20px">

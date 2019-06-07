@@ -31,7 +31,7 @@ Route::get('/', function () {
 
     $galerias = DB::table('galerias as g')
                 ->where('g.estado',1)
-                ->orderBy('g.created_at','asc')
+                ->orderBy('g.orden','asc')
                 ->take(6)
                 ->get();
     $standsyartistas = DB::table('standsyartistas as s')
