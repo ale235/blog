@@ -31,7 +31,7 @@
                         <div class="card-footer">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="#" class="btn btn-primary btn-sm">Leer más...</a>
+                                    <a href="{{url('/post/'.$post->slug)}}" class="btn btn-primary btn-sm">Leer más...</a>
                                 </div>
                                     <small class="text-muted">Escrito por : {{$post->username}}</small>
                             </div>
