@@ -13,7 +13,7 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="{{ url('/admin') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="{{ url('/admin') }}"><i class="fa fa-dashboard fa-fw"></i>Panel de Control</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-file-text-o"></i> Posts<span class="fa arrow"></span></a>
@@ -60,27 +60,27 @@
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-            <li>
-                <a href="{{ url('admin/comments') }}"><i class="fa fa-comments"></i> Todos los Comentarios</a>
-            </li>
-            <li>
-                <a href="{{ url('admin/tags') }}"><i class="fa fa-list"></i>List de Tags (todavía en construcción)</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Encuestas (Todavía en construcción)<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="{{ url('/admin/survey/add') }}">Nueva Encuesta</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/admin/survey') }}">Todas las Encuestas</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
-            </li>
-            <li>
-                <a href="{{ url('/admin/messages') }}"><i class="fa fa-weixin"></i> Todos los Mensajes (En construcción)</a>
-            </li>
+            {{--<li>--}}
+                {{--<a href="{{ url('admin/comments') }}"><i class="fa fa-comments"></i> Todos los Comentarios</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ url('admin/tags') }}"><i class="fa fa-list"></i>List de Tags (todavía en construcción)</a>--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Encuestas (Todavía en construcción)<span class="fa arrow"></span></a>--}}
+                {{--<ul class="nav nav-second-level">--}}
+                    {{--<li>--}}
+                        {{--<a href="{{ url('/admin/survey/add') }}">Nueva Encuesta</a>--}}
+                    {{--</li>--}}
+                    {{--<li>--}}
+                        {{--<a href="{{ url('/admin/survey') }}">Todas las Encuestas</a>--}}
+                    {{--</li>--}}
+                {{--</ul>--}}
+                {{--<!-- /.nav-second-level -->--}}
+            {{--</li>--}}
+            {{--<li>--}}
+                {{--<a href="{{ url('/admin/messages') }}"><i class="fa fa-weixin"></i> Todos los Mensajes (En construcción)</a>--}}
+            {{--</li>--}}
             <li>
                 <a href="#"><i class="fa fa-wrench fa-fw"></i> Configuración<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">

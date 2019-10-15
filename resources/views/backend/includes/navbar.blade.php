@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ url('/admin') }}">Administración de Mates y Papeles</a>
+        <a class="navbar-brand" href="{{ url('/admin') }}">Administración de JAJA Eventos</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -134,12 +134,12 @@
                 <i class="fa fa-user fa-fw"></i>{{ Auth::user()->username }} <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="{{ url('/admin/profile') }}"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                <li><a href="{{ url('/admin/profile') }}"><i class="fa fa-user fa-fw"></i>Perfil</a>
                 </li>
-                <li><a href="{{ url('/admin/password') }}"><i class="fa fa-gear fa-fw"></i> Change password</a>
+                <li><a href="{{ url('/admin/password') }}"><i class="fa fa-gear fa-fw"></i> Cambiar contraseña</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->

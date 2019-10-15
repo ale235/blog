@@ -1,5 +1,5 @@
 @extends('frontend.layouts.galeriatemplate')
-
+@section('title',$galeria->titulo)
 @section('contenido')
     <div id="wrapper">
         <div id="page-content-wrapper">
@@ -27,14 +27,14 @@
                                                         @if($key == 0)
                                                             <div class="carousel-item active" style="background-image: url({{asset($imagen->image_path)}})">
                                                                 <div class="carousel-caption d-none d-md-block">
-                                                                    <h2 class="display-4">{{$imagen->titulo}}</h2>
+                                                                    {{--<h2 class="display-4">{{$imagen->titulo}}</h2>--}}
                                                                     {{--<p class="lead">This is a description for the first slide.</p>--}}
                                                                 </div>
                                                             </div>
                                                         @else
                                                             <div class="carousel-item" style="background-image: url({{asset($imagen->image_path)}})">
                                                                 <div class="carousel-caption d-none d-md-block">
-                                                                    <h2 class="display-4">{{$imagen->titulo}}</h2>
+                                                                    {{--<h2 class="display-4">{{$imagen->titulo}}</h2>--}}
                                                                     {{--<p class="lead">This is a description for the second slide.</p>--}}
                                                                 </div>
                                                             </div>

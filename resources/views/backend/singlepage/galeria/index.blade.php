@@ -41,7 +41,7 @@
                                 </td>
                                 <td>
                                     {{--<div class="btn-group" style="display: inline-block;">--}}
-                                    <a href="{{url('/admin/singlepage/galeria')}}/{{$galeria->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>
+                                    {{--<a href="{{url('/admin/singlepage/galeria')}}/{{$galeria->id}}" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Ver</a>--}}
                                     <a href="{{url('/admin/singlepage/galeria')}}/{{$galeria->id}}/edit" class="btn btn-xs btn-primary edit" id="'.slider->id.'"><i class=""></i> Editar</a>
                                     <a href="{{url('/admin/singlepage/galeria')}}/{{$galeria->id}}/delete" class="btn btn-xs btn-primary" ><i class=""></i> Borrar</a>
                                     {{--</div>--}}

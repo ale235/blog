@@ -54,21 +54,20 @@ class GaleriaController extends Controller
 
         $count = 1;
         if(isset($request->files->all()['imggaleria']))
-        foreach ($request->files->all()['imggaleria'] as $img){
-//            dd(url('/photos/shares').'/galeria/'.trim($request->get('titulo')).'/'.trim($request->get('titulo').'-'.$count));
-//            dd(public_path('photos/shares').'/galeria/'.trim($request->get('title')).'/'.trim($request->get('title').'-'.$count));
-            $galeriaimagen = new GaleriaImagen([
-                'galeria_id' => $galeria->id,
-                'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
-                'image_path' => '/photos/shares/galeria/'.str_replace(' ','',$request->get('title')).'/'.str_replace(' ', '',$request->get('title').'-'.$count.'.jpg'),
-                'orden' => (Galeria::all()->count() + 1),
-            ]);
-            $img->move(public_path('/photos/shares/galeria/').str_replace(' ','',$request->get('title')), str_replace(' ','',$request->get('title').'-'.$count).'.jpg');
-            $count++;
-            $galeriaimagen->save();
-        }
+            foreach ($request->files->all()['imggaleria'] as $img){
 
-        return view('backend.singlepage.galeria.create',['title' => 'lala']);
+                $titulogaleria = strtolower(preg_replace('/^-|-$/','-',preg_replace('/-+/','-',preg_replace('/[^a-z0-9-]/i','-',$request->get('title')))));
+                $galeriaimagen = new GaleriaImagen([
+                    'galeria_id' => $galeria->id,
+                    'titulo' => trim($titulogaleria.'-'.$count.'.jpg'),
+                    'image_path' => '/photos/shares/galeria/'.$titulogaleria.'/'.$titulogaleria.'-'.$count.'.jpg'
+                ]);
+                $img->move(public_path('/photos/shares/galeria/').$titulogaleria, $titulogaleria.'-'.$count.'.jpg');
+                $count++;
+                $galeriaimagen->save();
+            }
+
+        return view('backend.singlepage.galeria.create',['title' => 'Galería']);
 
     }
 
@@ -121,17 +120,22 @@ class GaleriaController extends Controller
         $count = 1;
         if(isset($request->files->all()['imggaleria']))
         foreach ($request->files->all()['imggaleria'] as $img){
+
+            $titulogaleria = strtolower(preg_replace('/^-|-$/','-',preg_replace('/-+/','-',preg_replace('/[^a-z0-9-]/i','-',$request->get('title')))));
             $galeriaimagen = new GaleriaImagen([
                 'galeria_id' => $id,
-                'titulo' => trim($request->get('title').'-'.$count.'.jpg'),
-                'image_path' => '/photos/shares/galeria/'.str_replace(' ','',$request->get('title')).'/'.str_replace(' ','',$request->get('title').'-'.$count.'.jpg')
+                'titulo' => trim($titulogaleria.'-'.$count.'.jpg'),
+                'image_path' => '/photos/shares/galeria/'.$titulogaleria.'/'.$titulogaleria.'-'.$count.'.jpg'
             ]);
-            $img->move(public_path('/photos/shares/galeria/').str_replace(' ','',$request->get('title')), str_replace(' ','',$request->get('title').'-'.$count).'.jpg');
+            $img->move(public_path('/photos/shares/galeria/').$titulogaleria, $titulogaleria.'-'.$count.'.jpg');
             $count++;
             $galeriaimagen->save();
         }
 
-        return view('backend.singlepage.galeria.index', ['title' => 'Galeria', 'galerias' => Galeria::all()]);
+        $editgaleria = Galeria::find($id);
+        $editgaleriaimagenes = GaleriaImagen::where('galeria_id',$editgaleria->id)->get();
+//        return redirect('/singlepage/galaria/'.$id.'/edit')
+        return view('backend.singlepage.galeria.edit', ['id' => $id ,'title' => 'Galeria', 'galeria' => $editgaleria, 'galeriaimagenes' => $editgaleriaimagenes]);
     }
 
     /**
@@ -175,7 +179,7 @@ class GaleriaController extends Controller
     }
     public function cambiarEstadoGalerias(Request $request)
     {
-        $galeriaimagen = GaleriaImagen::find($request->id);
+        $galeriaimagen = Galeria::find($request->id);
         $galeriaimagen->estado = $request->estado;
         $galeriaimagen->update();
 //        $data = $request->all(); // This will get all the request data.

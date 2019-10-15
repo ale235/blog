@@ -1,4 +1,4 @@
-<section class="page-section" id="our-team">
+<section class="page-section" id="sponsors">
         <div class="container">
             <div class="row justify-content-center" style="margin-top: -50px;">
                 <div class="col-lg-8 text-center">

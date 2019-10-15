@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="J.A.J.A. es una organización productora de eventos culturales, cuya temática intenta englobar toda expresión artística juvenil, relacionada a la cultura freak global, con el objetivo de canalizar esta cultura, a través de diversas producciones artísticas.">
     <meta name="author" content="">
+    <meta property="og:image" content="{{asset('/img/JAJAlogopeque.png')}}" />
 
     <title>JAJA Eventos</title>
 
@@ -40,14 +41,11 @@
 <!-- Portfolio Section -->
 @include('frontend.includes.concursoymuestra')
 
-<!-- Contact Section -->
-@include('frontend.includes.contacto')
-
-
-
 <!-- Services Section -->
 @include('frontend.includes.sponsors')
 
+<!-- Contact Section -->
+@include('frontend.includes.contacto')
 
 <!-- Call to Action Section -->
 <section class="page-section" id="avales">
