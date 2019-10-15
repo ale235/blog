@@ -53,7 +53,7 @@
                                         </section>
                                         <br>
                                         <div>
-                                            <h4 class="post-title">MEMORIA DESCRIPTIVA</h4>
+                                            {{--<h4 class="post-title">MEMORIA DESCRIPTIVA</h4>--}}
                                             <hr>
                                             <div class="post-article" style="color: black">
                                                 {!! $galeria->resenia !!}

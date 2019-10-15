@@ -60,7 +60,7 @@ class GaleriaController extends Controller
                 $galeriaimagen = new GaleriaImagen([
                     'galeria_id' => $galeria->id,
                     'titulo' => trim($titulogaleria.'-'.$count.'.jpg'),
-                    'image_path' => '/photos/shares/galeria/'.$titulogaleria.'/'.$titulogaleria.'-'.$count.'.jpg'
+                    'image_path' => '/public/photos/shares/galeria/'.$titulogaleria.'/'.$titulogaleria.'-'.$count.'.jpg'
                 ]);
                 $img->move(public_path('/photos/shares/galeria/').$titulogaleria, $titulogaleria.'-'.$count.'.jpg');
                 $count++;
@@ -117,7 +117,7 @@ class GaleriaController extends Controller
             'orden' => (Galeria::all()->count() + 1),
             'estado' => 1,
         ]);
-        $count = 1;
+        $count = GaleriaImagen::where('galeria_id','=',$id)->count() + 1;
         if(isset($request->files->all()['imggaleria']))
         foreach ($request->files->all()['imggaleria'] as $img){
 
@@ -125,17 +125,18 @@ class GaleriaController extends Controller
             $galeriaimagen = new GaleriaImagen([
                 'galeria_id' => $id,
                 'titulo' => trim($titulogaleria.'-'.$count.'.jpg'),
-                'image_path' => '/photos/shares/galeria/'.$titulogaleria.'/'.$titulogaleria.'-'.$count.'.jpg'
+                'image_path' => '/public/photos/shares/galeria/'.$titulogaleria.'/'.$titulogaleria.'-'.$count.'.jpg'
             ]);
             $img->move(public_path('/photos/shares/galeria/').$titulogaleria, $titulogaleria.'-'.$count.'.jpg');
             $count++;
             $galeriaimagen->save();
         }
 
-        $editgaleria = Galeria::find($id);
-        $editgaleriaimagenes = GaleriaImagen::where('galeria_id',$editgaleria->id)->get();
+        //$editgaleria = Galeria::find($id);
+        //$editgaleriaimagenes = GaleriaImagen::where('galeria_id',$editgaleria->id)->get();
 //        return redirect('/singlepage/galaria/'.$id.'/edit')
-        return view('backend.singlepage.galeria.edit', ['id' => $id ,'title' => 'Galeria', 'galeria' => $editgaleria, 'galeriaimagenes' => $editgaleriaimagenes]);
+//        return view('backend.singlepage.galeria.edit', ['id' => $id ,'title' => 'Galeria', 'galeria' => $editgaleria, 'galeriaimagenes' => $editgaleriaimagenes]);
+        return view('backend.singlepage.galeria.index', ['title' => 'Galería', 'galerias' => Galeria::all()]);
     }
 
     /**

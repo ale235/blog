@@ -31,9 +31,9 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#avales">Avales</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#nuestrasredes">Nuestras redes</a>
-                </li>
+                {{--<li class="nav-item">--}}
+                    {{--<a class="nav-link js-scroll-trigger" href="#nuestrasredes">Nuestras redes</a>--}}
+                {{--</li>--}}
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="{{url('/blog')}}">Blog</a>
                 </li>

@@ -23,6 +23,9 @@
 <!-- Masthead -->
 @include('frontend.includes.masthead')
 
+{{--<!-- Contact Section -->--}}
+{{--@include('frontend.includes.contacto')--}}
+
 {{--Quienes Somos--}}
 @include('frontend.includes.quienessomos')
 
@@ -43,9 +46,6 @@
 
 <!-- Services Section -->
 @include('frontend.includes.sponsors')
-
-<!-- Contact Section -->
-@include('frontend.includes.contacto')
 
 <!-- Call to Action Section -->
 <section class="page-section" id="avales">
