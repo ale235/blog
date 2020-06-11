@@ -107,8 +107,6 @@ class PostController extends Controller {
      */
     public function store(Request $request) {
 
-       // dd($request);
-        //dd($request);
         $post = new Post([
             'title' => $request['title'],
             'summary' => '',
@@ -188,6 +186,7 @@ class PostController extends Controller {
         $post = Post::findOrFail($id);
         $post->title = $request['title'];
         $post->slug = $request['slug'];
+        $post->user_id = Auth::id();
         $post->image_path = $request['imgportada'];
         //dd($request);
         $detail=$request->get('content');

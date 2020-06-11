@@ -22,7 +22,8 @@
                 background-attachment: scroll;">
 
 <!-- Navigation -->
-@include('frontend.includes.navbar')
+{{--@include('frontend.includes.navbar')--}}
+@include('frontend.includes.navbar-galeria')
 
 @yield('contenido')
 
